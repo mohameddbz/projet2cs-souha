@@ -14,7 +14,7 @@ function Recommended() {
   const [currentPage, setCurrentPage] = useState(0); 
   const totalPages = Math.ceil(cardData.length / pageSize); 
   const [cards, setCards] = useState(cardData);
-    const [showMenu, setShowMenu] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
 
     const toggleMenu = () => {
         setShowMenu(!showMenu); 

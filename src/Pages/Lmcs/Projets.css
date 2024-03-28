@@ -1,0 +1,225 @@
+.page-container {
+  background-color: #F8F8FF; 
+  margin: 0 auto;
+  padding: 20px;
+  padding-top:10px;
+}
+
+.hero-container {
+  display: flex;
+  align-items: center;
+  padding:0 0;
+}
+
+.hero-title {
+  font-size: 18px;
+  margin-top: 50px;
+  margin-bottom: 2px;
+  margin-left:70px;
+  color: #0B487A;
+  
+  font-weight: normal;
+  position:absolute; 
+}
+
+.first-icon {
+  width: 60px;
+  height: 100%;
+  margin-left: 30PX; 
+  margin-top: 55px; 
+  color: #0B487A; 
+  position: absolute; 
+
+}
+
+
+
+.hero-title h1 {
+  margin: 0;
+  padding: 0;
+}
+
+  
+  .description-container {
+    background-color: #0B487A;
+    border-radius: 2px;
+    margin-top:50px;
+    margin-bottom: 30px;
+  }
+  
+  .description {
+    color: white;
+    font-size: 32px; /* Taille de police souhaitée */
+    margin-left: 90px;
+    padding: 20px;
+    font-weight: normal; /* Rend le texte non gras */
+}
+
+  
+  .semi-title {
+    display: flex;
+    margin-left:50px;
+    font-size:18px;
+    gap: 6rem;
+    position:relative;
+    margin-bottom: 30px;
+  }
+  
+  .projet-container {
+    display: flex;
+    flex-direction: column; /* Afficher les projets en colonne */
+    gap: 20px;
+  }
+  
+  .projet {
+    padding-left: 20px;
+    margin-bottom: 0px; /* Ajouter un espace en bas de chaque projet */
+   
+  }
+  .projet-detail {
+    margin-top: 10px;
+    margin-left: 30px;
+    max-width: 700px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+  }
+  .p-title {
+    margin-left: 30px;
+    color:#0B487A;
+  }
+
+ 
+  
+  .projet-detailexpanded {
+    margin-top: 10px;
+    margin-left:30px;
+    -webkit-line-clamp: unset;
+    max-width: 700px;
+
+  }
+  
+  .custom-button {
+    color: #0061B1; /* Couleur du texte en bleu */
+  
+  
+   
+  }
+  
+  
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .pagination button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+
+ .ligne{
+   
+        width: 60%; 
+        margin: 0; 
+        border: none; 
+        border-top: 1px solid #ccc; 
+      
+      
+ }
+ .recherche-container {
+    position:absolute;
+    right: 22px; /* Déplacer le sidebar complètement à droite */
+    top: 168px; /* Optionnel : définir la position verticale du sidebar */
+   /* Ajuster la largeur du sidebar si nécessaire */
+    height: 60%; /* Ajuster la hauteur du sidebar si nécessaire */
+
+    
+  }
+.recherche-bar{
+    
+        background-color: #0061B1;
+        display:flex;
+        position:relative;}
+ .rech{     
+        padding: 15px 18px;
+        width:15rem;
+        border: none;
+        outline: none;
+        margin-right: 10px;
+        background-color: transparent;
+        font-size:1rem;
+        color:white;
+}
+ 
+ 
+.rech::placeholder {
+    color:white; 
+}
+.custom-select {
+    position: relative;
+    display: inline-flex; /* Utiliser flexbox pour aligner les éléments sur la même ligne */
+    align-items: center; /* Centrer verticalement les éléments */
+  }
+  
+  .options-list {
+    position: absolute;
+    top: calc(100% + 5px); /* Place la liste juste en dessous de son conteneur parent */
+    right: 0;
+    background-color: white;
+    border: 1px solid black;
+    padding: 5px;
+    z-index: 1; /* Assure que la liste est au-dessus des autres éléments */
+    list-style: none;
+  }
+  
+  .options-list li {
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .filtres {
+    display: flex;
+    background-color: white;
+    padding: 10px;
+    position: relative;
+    margin-top: 0px; /* Ajoute un peu d'espace au-dessus des filtres */
+
+  }
+  
+  
+  .filtres button {
+    margin-right: 60px; /* Ajoute un peu d'espace entre les boutons */
+    background-color: white; /* Fond blanc pour les boutons */
+    border: none; 
+    padding: 10px 10px;
+    cursor: pointer;
+  }
+  
+  .filtres label {
+    margin-right: 120px; /* Ajoute un espace entre le texte et la liste déroulante */
+    padding-left:40px;
+  }
+  
+  
+
+      
+  @media screen and (max-width: 800px) {
+    .hero-title {
+      font-size: 14px; /* Redimensionner la taille du titre */
+     
+    }
+  
+    .first-icon {
+      width: 60px; /* Redimensionner la largeur de l'icône */
+ 
+    }
+  }
+ 
+  
+   

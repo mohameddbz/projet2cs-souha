@@ -1,0 +1,203 @@
+
+
+.equipe-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 326px;
+  min-height: 326px;
+}
+.back-image {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    bottom: 0;
+    left: 50%;
+    width: 50%; /* Divise l'écran en deux */
+    height: 326px; /* Hauteur de l'écran */
+    object-fit: cover; /* Remplit l'espace disponible sans déformer l'image */
+}
+
+.cover-img {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    bottom: 0;
+    left: 0; /* Commence à partir de la moitié de l'écran */
+    width: 50%; /* Divise l'écran en deux */
+    height: 326px; /* Hauteur de l'écran */
+}
+
+.equiipe-desc {
+  position: absolute;
+  top: 126px;
+  right: 556px;
+  bottom: 56px;
+  left: 98px;
+  width: 371px;
+  height: 154px;
+  font: 400 16px/1.37 "Open Sans", Helvetica, Arial, serif;
+  color: rgb(255, 255, 255);
+}
+.equipe-title {
+  position: absolute;
+  top: 50px;
+  right: 538px;
+  bottom: 222px;
+  left: 63px;
+  width: 422px;
+  height: 54px;
+  font: 400 40px/1.35 "Open Sans", Helvetica, Arial, serif;
+  color: rgb(255, 255, 255);
+}
+.equipe-con {
+    position:'absolute';
+    display: flex;
+    flex-direction: column; /* Afficher les équipes en colonne */
+    /* align-items: center;  */
+    margin-top: 400px; /* Ajouter un espacement au-dessus du conteneur */
+   
+    margin-left: 40px; /* Ajouter un espacement intérieur */
+    /* margin-right:20px */
+  }
+.equipe{
+   
+    border : 1px solid #0061B1;
+    margin-bottom:20px;
+    border-radius: 8px;
+    padding:15px;
+    width:900px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Ajout de l'ombre */
+}
+
+.equipe-titre{
+    color:#0061B1;
+    padding-bottom:10px;
+    font: 400 25px/1.35 "Open Sans", Helvetica, Arial, serif;
+}
+.equipe-titre2 {
+    font-weight: bold;
+    padding-bottom:10px;
+    font: 400 22px/1.35 "Open Sans", Helvetica, Arial, serif;
+}
+
+
+.plus {
+    position:relative;
+    bottom: -15px; /* Ajustez la valeur en fonction de la distance depuis le bas */
+    right: -810px; /* Ajustez la valeur en fonction de la distance depuis la droite */
+    cursor: pointer; /* Pour indiquer qu'il s'agit d'un lien cliquable */
+    color: #0061B1; /* Couleur du texte */
+}
+span{
+    font: 400 15px/1.35 "Open Sans", Helvetica, Arial, serif; 
+}
+.equipe-card-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Deux colonnes égales */
+    gap: 10px; /* Espace entre les cartes */
+  }
+  .pagination {
+    display: flex;
+    margin-top: 30px; 
+   justify-content:center;
+   margin-left:15rem;
+  }
+  
+  
+  
+  .pagination button {
+    margin: 0 10px; 
+    padding: 4px 4px; 
+    font-size: 16px; 
+    border: none; 
+    background-color: #0061B1; 
+    color: #fff; 
+    cursor: pointer;
+    border-radius:2px;
+  }
+  
+  .pagination button:disabled {
+    background-color: #ccc; 
+    cursor: not-allowed;
+  }
+  .equipe-card-container{
+    display:flex;
+    flex-wrap:wrap;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:1rem;
+    z-index:-2;
+}
+.card {
+    margin: 8px;
+    border: 2px solid #ededed;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 350px;
+    display: flex;
+    flex-direction: column; 
+    width:30%;
+}
+.card > img {
+    width:11rem;
+    max-width: 100%; 
+    max-height: 150px; 
+    display: block; 
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+.title{
+    margin-bottom:0.15rem;
+    color:#0061B1;
+    text-align:center;
+
+}
+.card-reviews{
+    margin-bottom:0.5rem;
+    display:fex;
+    gap:0.5rem;
+}
+
+.card-review{
+    text-align:center;
+    margin-bottom:0.10rem;
+}
+.icon-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #0061B1;
+    margin-right: 5px; 
+}
+
+.icon-circle svg {
+    color: white; 
+    width:1000%;
+    height:50%;
+    padding-left:5px;
+    /* padding-bottom:2px; */
+    
+}
+.image-container {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 40px;
+    max-width: 100%; 
+    height: auto;  
+    
+}
+
+
