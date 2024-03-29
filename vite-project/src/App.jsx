@@ -7,6 +7,8 @@ import BoxDr from './Components/BoxDr';
 import InscriptionForm from './Components/form';
 import DemandeForm from './Components/demandeform';
 import PieceDetail from './Components/detailspiece';
+import PiecesPage from './Components/pagepiece';
+import PieceCard from './Components/PieceCard';
 
 function App() {
   return (
@@ -25,7 +27,7 @@ function App() {
       </section> */}
       {/* <InscriptionForm/> */}
       {/* <DemandeForm/> */}
-      <PieceDetail/>
+      <PiecesPage/>
 
     </div>
   );
