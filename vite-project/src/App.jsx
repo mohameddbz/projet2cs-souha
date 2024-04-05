@@ -9,6 +9,7 @@ import DemandeForm from './Components/demandeform';
 import PieceDetail from './Components/detailspiece';
 import PiecesPage from './Components/pagepiece';
 import PieceCard from './Components/PieceCard';
+import FabLabHome from './Components/fablab';
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
       {/* <InscriptionForm/> */}
       {/* <DemandeForm/> */}
       <PiecesPage/>
-
+      {/* <FabLabHome/> */}
     </div>
   );
 }

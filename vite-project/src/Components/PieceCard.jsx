@@ -22,7 +22,7 @@ function PieceCard({ piece }) {
         <p className="text-gray-500">Stock: {piece.stock}</p>
       </div>
       
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full mt-4">
+      <button className="hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full mt-4" style={{ background:'#FFA500'}} >
         Voir plus
       </button>
     </div>
