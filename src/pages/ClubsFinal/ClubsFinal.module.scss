@@ -1,0 +1,270 @@
+.descContainer{
+
+width: 831px;
+height: 108px;
+
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #000000;
+
+
+}
+
+.clubDescContainer{
+    margin-left: 70px;
+    display: flex;
+    flex-direction: column;
+}
+
+.clubSubtitle3{
+    /* Intelligence artificielle */
+
+margin-top:0px;
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+/* identical to box height */
+display: flex;
+align-items: center;
+text-align: justify;
+
+color: #706F6F;
+
+
+}
+.subtitle3_box{
+    margin-top:0px;
+    margin-bottom:0px;
+}
+.descClub{
+    /* À ESI, vous avez de nombreuses opportunités de vous impliquer et d'être actif dans la vie sur le campus. L'engagement des étudiants souhaite que vous viviez pleinement l'expérience collégiale en profitant des événements et des activités tout au long de l'année, et nous rendons cela aussi facile que possible. */
+
+width: 450px;
+height: 235px;
+margin-top:0px;
+margin-bottom:0px;
+
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 27px;
+display: flex;
+align-items: center;
+text-align: justify;
+
+color: #000000;
+
+
+}
+
+.lineClub{
+    height:600px
+}
+
+.subtitle2_box {
+    margin-bottom: 15px;
+    margin-left: 40px;
+    z-index:2;
+    /* Découvrir Les Clubs Estudiantins */
+
+
+
+
+  }
+  
+  .subtitle2_span0 {
+    font: 500 2em/1.52 "Poppins", Helvetica, Arial, serif;
+    color: rgb(0, 97, 177);
+  }
+  .subtitle2_span1 {
+    font: 500 2em/1.52 "Poppins", Helvetica, Arial, serif;
+  }
+
+  .subtitle3_span0 {
+    /* Président : Nassim Iheb AOUADJ */
+
+
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+
+color: #706F6F;
+
+
+  }
+  .subtitle3_span1 {
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+
+color: #000000;
+  }
+  .clickedSubtitle {
+    color:#0061B1
+  }
+  .clickedSubtitle1 {
+    color:#0061B1
+  }
+  .clickedSubtitle2 {
+    color:#0061B1
+  }
+  .clickedSubtitle3 {
+    color:#0061B1
+  }
+  .clickedSubtitle4 {
+    color:#0061B1
+  }
+  .clickedSubtitle5 {
+    color:#0061B1
+  }
+  .clickedSubtitle6 {
+    color:#0061B1
+  }
+  .clickedSubtitle7 {
+    color:#0061B1
+  }
+  .clickedSubtitle8 {
+    color:#0061B1
+  }
+
+  .icon{
+    width:25px;
+    height:25px;
+    cursor: pointer;
+  }
+
+  .iconsRow{
+    display: flex;
+    flex-direction: row;
+    width:179.13px;
+    justify-content: space-between;
+    margin-top:25px;
+    
+  }
+
+
+  .highlightContainer{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+
+  
+  .bleuImg{
+    margin-right: 70px;
+  }
+  .blueContainer{
+    margin-top:40px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(212, 230, 255);
+    width: 100%;
+    padding: 60px;
+    align-items: center;
+  }
+  .bleuImgContainer{
+    display: flex;
+    flex-direction: row;
+  }
+  .bleuButton{
+    /* Frame 1 */
+  
+  cursor: pointer;
+  
+  width: 105px;
+  height: 48px;
+  
+  /* 2nd Primary/600 */
+  background: #2A4ECA;
+  border-radius: 10px;
+  
+  border:none;
+  outline: none;
+  color:white;
+  
+  
+  /* Body/Regular/500 */
+  font-family: 'poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  }
+
+  .clubTitle{
+    /* Les clubs scientifiques */
+
+
+
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+
+
+color: #000000;
+
+
+  }
+
+  .clubSubtitle{
+    /* School of AI Club */
+
+cursor: pointer;
+
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+/* identical to box height, or 267% */
+display: flex;
+align-items: flex-end;
+text-transform: capitalize;
+
+
+
+  }
+
+  .clubSubtitle2{
+    /* School of AI Club */
+
+margin-bottom:0px;
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+/* identical to box height */
+
+color: #0061B1;
+
+
+  }
+  .clubSubtitle:hover{
+    color: #0061B1
+  }
+
+  .clubListContainer{
+    display: flex;
+    flex-direction: column;
+    margin-right: 70px;
+    align-items: flex-end;
+
+  }
+
+  .bigTextContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+  }

@@ -1,0 +1,304 @@
+.navbar-full-container{
+    height: 125px;
+    position: relative;
+}
+.navbar-totale{
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.5);
+    z-index: 99;
+}
+.topNav-full-container{
+    background-color: #0061B1;
+    color: white;
+    width: 90%;
+    float: right;
+    border-radius: 0px 0px 50px 50px;
+    margin-right: 9%;
+}
+.toggleNavbarItem{
+    position: absolute;
+    top: 125px;
+    width: 100%;
+    left: 0;
+}
+.navItem{
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+    align-items: center;
+    padding: 9px 0px;
+    cursor: pointer;
+}
+.topNavLink{
+    color: white;
+    text-decoration: none;
+}
+.topNavLink:hover{
+    color: black;
+}
+.navItem:hover{
+    border-bottom: 3px solid #0061B1;
+    color: #0061B1;
+    padding: 9px 0px;
+}
+.NavUserIcon{
+    width: 30px;
+    height: 30px;
+    color: #0061B1;
+}
+.topNav-container ul{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.topNav-container li{
+    list-style-type: none;
+}
+.sdnSpan{
+    border : 2px solid white;
+    border-radius: 50%;
+    padding: 7px 3.5px;
+    margin: 0 5px;
+}
+.navbar-container{
+    display: grid;
+    grid-template-columns: 30% 70%;
+    font-family: "Open Sans", sans-serif;
+    align-items: center;
+    height: 100%;
+}
+.navbar-links{
+    display: flex;
+    flex-direction: column;
+}
+.navPart2UL{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.navPart2 li{
+    list-style-type: none;
+}
+.navbarLogo{
+    margin: 0px 40px;
+}
+.topNav-item, .navItem{
+    font-family: "Open Sans", sans-serif;
+}
+.collapseNavbar-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: auto;
+    font-family: "Open Sans", sans-serif;
+}
+.topSectionNav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 94%;
+    align-items: center;
+    padding: 2% 3%;
+}
+.navCollapLogo{
+    width: 140px;
+    height: 60px;
+}
+.navCollapseListContain{
+    background-color: #0061B1;
+    width: 100%;
+}
+.NavUserDiv{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: white;
+    justify-content: space-between;
+}
+.NavUserCollapIcon{
+    width: 40px;
+    height: 40px;
+    color: white;
+}
+.SearchNav-coll{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+.SearchNav-input{
+    border: none;
+    background-color: rgba(255,255,255,0.5);
+    margin-right: 10px;
+    padding: 13px ;
+    width: 90%;
+}
+::-webkit-input-placeholder{
+    color: black;
+    font-family: "Open Sans", sans-serif;
+}
+.navCollapseList li{
+    list-style-type: none;
+    padding: 13px 0px;
+    color: white;
+}
+.Nav-coll{
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+    cursor: pointer;
+}
+.sdnCollSpan{
+    border : 2px solid white;
+    border-radius: 50%;
+    padding: 7px 3.5px;
+    margin: 0 5px;
+}
+.sdnCollSpan:hover{
+    border-color: black;
+}
+.Nav-coll:hover{
+    background-color: #71b8f397;
+}
+.topNav-coll:hover{
+    color: black;
+    cursor: pointer;
+}
+.navCollapseList{
+    width: 80%;
+    text-align: left;
+    margin:2% 10%;
+}
+.toggleIcon{
+    width: 25px;
+    height: 25px;
+    margin: 0px 7px;
+}
+.toggleIocnDiv{
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+.block{
+    display: block;
+}
+.none{
+    display: none;
+}
+.hoverNavMenuItem{
+    background-color: white;
+    padding: 2% 5%;
+    text-align: center;
+    margin: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+}
+.hoverNavMenuItem li{
+    list-style-type: none;
+}
+.hoverNavMenuItem ul{
+    border-left: 2px solid #708ca175;
+}
+.sectionHoverMenu{
+    justify-self:center;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+.navImg{
+    width: 90%;
+    border-radius: 5px;
+}
+.navItem-contact{
+    color: #0061B1;
+    font-family: "Open sans", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 13px 0px;
+}
+.navItem-Text{
+    font-family: "Open sans", sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    color: black;
+}
+.hoverNavItemLink{
+    color: black;
+    font-family: "Open sans", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+}
+.hoverNavItemLink:hover{
+    color: #0061B1;
+}
+.hoverNavItem{
+    margin: 10px 0px;
+}
+.hoverNavItem{
+    color: #0061B1;
+    font-family: "Open sans", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 10px 0;
+}
+.navItem-title{
+    font-family: "Open sans", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    filter: drop-shadow(2px 7px 7px 0px rgba(0, 0, 0, 0.25)) ;
+    padding: 0px 0px 15px 0px;
+}
+@media only screen and (max-width: 1024px) {
+    .topNavLink{
+        font-size: 13px;
+    }
+    .navItem{
+        font-size: 14px;
+    }
+}
+@media only screen and (max-width: 860px) {
+    .topNav-full-container{
+        width: 92%;
+    }
+    .topNavLink{
+        font-size: 11px;
+    }
+    .navItem{
+        font-size: 15px;
+    }
+}
+/* navbar Admin */
+.nabvarAdminContainer{
+    width: 100%;
+    box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.5);
+}
+.navbarAdminTotale{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+    width: 95%;
+    text-align: center;
+    margin: auto;
+}
+.navbarAdminLogo{
+    width: 150px;
+    height: auto;
+}
+.navbarAdminContent{
+    display: flex;
+    flex-direction: row;
+}
+.navbarAdminIcon{
+    width: 30px;
+    height: auto;
+    margin-left: 20px;
+}

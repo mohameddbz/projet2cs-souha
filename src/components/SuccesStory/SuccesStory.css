@@ -1,0 +1,73 @@
+.succesStory-totale{
+    margin: 100px auto;
+    width: 98%;
+    text-align: center;
+}
+.succes-span{
+    color:#0061B1 ;
+    font-size: 40px;
+}
+.SuccesTitre{
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+    padding: 30px 0px 20px 0px;
+    font-size: 40px;
+    font-weight: bold;
+}
+.hr-line1{
+    width: 200px;
+    border: 2px solid #0061B1;
+    text-align: center;
+}
+.succesCard-container{
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    text-align: center;
+    margin: auto;
+}
+.succesImg{
+    width:410px;
+    height: 312px;
+    padding: 0;
+    border-radius: 10px;
+}
+.SuccesDescription{
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    margin-left: -20px;
+    margin-top: 30px;
+    min-height: 312px;
+    padding:10px 20px;
+}
+.SuccesTitle{
+    font-family: "Roboto Condensed", sans-serif;
+    color:#0061B1;
+    font-size: 25px;
+    padding: 20px 10px;
+    text-align: left;
+}
+.SuccesParag{
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    text-align: left;
+    padding: 10px;
+    line-height: .7cm ;
+}
+.succes-full-container{
+    width: 100%;
+    text-align: center;
+    margin: 50px auto;
+    background-image: url('../../assets/images/skyBg.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.succes-container{
+    height: 100%;
+    padding: 80px 20px;
+}
+
+.slick-dots li button:before{
+    color: white !important;
+}

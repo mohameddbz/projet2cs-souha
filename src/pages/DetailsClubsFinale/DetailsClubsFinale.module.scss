@@ -1,0 +1,316 @@
+@font-face {
+  font-family: 'Open Sans Bold';
+  src: url('/fonts/OpenSans/OpenSans-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans Regular';
+  src: url('/fonts/OpenSans/OpenSans-Regular.ttf') format('truetype');
+}
+.clubsdetailscontainer {
+    background-color: rgb(248, 248, 255);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.textNewsletter{
+    font: 300 1.5em/1.52 "Poppins", Helvetica, Arial, serif;
+}
+.newsContainer{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.input{
+    height: 60px;
+    border: 2px solid #83839A;
+    border-radius: 10px;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.input input::placeholder {
+    color: #83839A; /* Change the color of the placeholder text */
+  }
+.subscribeRow{
+    display: flex;
+    flex-direction: row;
+}
+.subscribeButton{
+cursor: pointer;
+ margin-left:20px;
+width: 179px;
+height: 60px;
+
+background: #0061B1;
+border-radius: 10px;
+filter: drop-shadow(0px 20px 20px rgba(0, 0, 0, 0.2));
+border:none;
+outline:none;
+font: 300 21px/1.52 "Poppins", Helvetica, Arial, serif;
+color:white
+}
+.subtitle_box {
+    margin-bottom: 15px;
+    z-index:2;
+  }
+  
+  .subtitle_span0 {
+    font: 800 2em/1.52 "Open Sans Bold", Helvetica, Arial, serif;
+    color: rgb(0, 97, 177);
+  }
+  .subtitle_span1 {
+    font: 800 2em/1.52 "Open Sans Bold", Helvetica, Arial, serif;
+  }
+.descrContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left:140px;
+    margin-right:140px;
+    margin-top:40px;
+    margin-bottom:40px;
+    
+}
+
+.subtitle2_box {
+    margin-bottom: 15px;
+    margin-left: 40px;
+    z-index:2;
+  }
+  
+  .subtitle2_span0 {
+    font: 500 2em/1.52 "Open Sans Bold", Helvetica, Arial, serif;
+    color: rgb(0, 97, 177);
+  }
+  .subtitle2_span1 {
+    font: 500 2em/1.52 "Open Sans Bold", Helvetica, Arial, serif;
+  }
+.descText{
+  display: flex;
+  flex-direction: column;
+}
+descImg{
+
+}
+.carouselContainer{
+    
+}
+.carouselcard2{
+    width:364px;
+    height:475px;
+    filter: drop-shadow(0px 20px 20px rgba(0, 0, 0, 0.2));
+    padding:20px;
+    padding-bottom: 70px;
+    
+}
+.carouselcard4{
+    width:590px;
+    height:281px;
+    filter: drop-shadow(0px 20px 20px rgba(0, 0, 0, 0.2));
+    padding:20px;
+    padding-bottom: 70px;
+}
+.whiteContainer{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding-bottom: 80px;
+}
+
+.feedbackContainer{
+    margin-top:30px;
+    display: flex;
+    flex-direction: column;
+    padding-left:100px;
+    padding-right:100px;
+    padding-bottom:30px;
+}
+.carouselcard3{
+    width:424px;
+    height:553.3px;
+    filter: drop-shadow(0px 20px 20px rgba(0, 0, 0, 0.2));
+    padding:20px
+    
+}
+.carouselSecond{
+//    width:100%
+}
+.carouselcard{
+    width:203px;
+    height:269px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.247));
+    padding:10px
+    
+}
+.expanded{
+  height: auto !important; /* Override height to expand */
+  overflow-y: visible !important; /* Ensure overflow is visible when expanded */
+
+
+}
+.descParagraph{
+  height: 218px; /* Set default height */
+  overflow: hidden; /* Hide overflow */
+  transition: height 0.3s ease; /* Smooth transition */
+width: 750px;
+
+
+font-family: 'Open Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 30px;
+
+
+color: #000000;
+}
+.nextArrow{
+    border-radius: 50px;
+    width:50px;
+    height:50px
+    
+}
+.prevArrow{
+    border-radius: 50px;
+    width:50px;
+    height:50px
+}
+.joinButton{
+   
+/* Rectangle 3 */
+margin-right:80px;
+width: 169px;
+height: 37px;
+cursor:pointer;
+
+background: #0061B1;
+border-radius: 10px;
+filter: drop-shadow(0px 20px 20px rgba(0, 0, 0, 0.2));
+
+/* Nous rejoindre */
+
+
+font-family: 'Open Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 20px;
+line-height: 27px;
+outline:none;
+border:none;
+
+color: #FFFFFF;
+
+}
+
+.objClub{
+    width:821px;
+    height:201px
+}
+.objContainer {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 120%; /* Place it at the vertical center */
+    left: 50%; /* Place it at the horizontal center */
+    transform: translate(-50%, -50%); /* Center the element */
+  }
+  .cards1Container{
+    margin-top: 240px;
+    display: flex;
+    flex-direction: column;
+    padding-left:100px;
+    padding-right:100px;
+    padding-bottom:30px;
+  }
+  .cards2Container{
+    margin-top:30px;
+    display: flex;
+    flex-direction: column;
+    padding-left:100px;
+    padding-right:100px;
+    padding-bottom:30px;
+  }
+  .objEqContainer {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+.eqContainer{
+    display: flex;
+    flex-direction: column;
+    padding-left:100px;
+    padding-right:100px;
+    margin-top:30px;
+    padding-top:15px;
+    padding-bottom:30px;
+    background-color: rgb(212, 230, 255);
+
+}
+
+.regarderNousContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+.lirePlus{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor:pointer;
+
+    font-family: 'Open Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 27px;
+/* identical to box height */
+
+color: #0061B1;
+}
+.lirePlusArrow{
+
+}
+.buttonsContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left:140px;
+    margin-right:140px;
+    margin-top:10px;
+    margin-bottom:10px;
+    /* Regarder nous! */
+    height: 28px;
+
+font-family: 'Open Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 27px;
+/* identical to box height */
+
+color: #252641;
+
+
+    
+}
+.regarderNousIcon{
+    width:39px;
+    height:39px;
+    margin-right:15px;
+    filter: drop-shadow(0px 20px 20px rgba(0, 0, 0, 0.2));
+}
+
+.grpButton1{
+    width:500px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}

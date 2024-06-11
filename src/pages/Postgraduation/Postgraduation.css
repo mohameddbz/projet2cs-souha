@@ -1,0 +1,424 @@
+
+
+.postgra-section1 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 830px;
+    min-height: 830px;
+  }
+  
+  .postgra-rect {
+    position: absolute;
+    top: 85px;
+    right: 0px;
+    bottom: 198px;
+    left: 0px;
+    width: 1024px;
+    height: 547px;
+    background-color: rgb(249, 252, 255);
+    opacity: 0.2;
+  }
+  
+  .postgra-big_title {
+    font: 700 35px/1.37 "Open Sans", Helvetica, Arial, serif;
+    color: rgb(0, 0, 0);
+  }
+  
+  .postgra-big_title_box {
+    position: absolute;
+    top: 80px;
+    right: 496px;
+    bottom: 614px;
+    left: 39px;
+    width: 489px;
+    height: 96px;
+  }
+  
+  .postgra-big_title_span0 {
+    font: 700 1em/1.37 "Open Sans", Helvetica, Arial, serif;
+  }
+  
+  .postgra-big_title_span1 {
+    font: 700 1em/1.37 "Open Sans", Helvetica, Arial, serif;
+    color: rgb(0, 97, 177);
+  }
+  
+  .postgra-highlight {
+    position: absolute;
+    top: 190px;
+    right: 496px;
+    bottom: 540px;
+    left: 39px;
+    width: 489px;
+    height: 50px;
+    font: 400 18px/1.38 "Open Sans", Helvetica, Arial, serif;
+    color: rgb(26, 36, 52);
+    opacity: 0.69;
+  }
+  
+  .postgra-rect1 {
+    position: absolute;
+    top: 290px;
+    right: 981px;
+    bottom: 420px;
+    left: 39px;
+    width: 4px;
+    height: 96px;
+    background-color: rgb(0, 97, 177);
+  }
+  
+  .postgra-subtitle {
+    position: absolute;
+    top: 280px;
+    right: 719px;
+    bottom: 492px;
+    left: 83px;
+    width: 222px;
+    height: 24px;
+    font: 700 20px/1.2 "Inter", Helvetica, Arial, serif;
+    color: rgb(26, 36, 52);
+    letter-spacing: 0.4px;
+    opacity: 0.69;
+  }
+  
+  .postgra-image {
+    position: absolute;
+    top: 346px;
+    right: 877px;
+    bottom: 420px;
+    left: 83px;
+    width: 64px;
+    height: 64px;
+    filter: drop-shadow(8px 8px 16px rgba(0, 0, 0, 0.117));
+    border-radius: 50%;
+  }
+  
+  .postgra-image1 {
+    position: absolute;
+    top: 346px;
+    right: 837px;
+    bottom: 420px;
+    left: 123px;
+    width: 64px;
+    height: 64px;
+    filter: drop-shadow(8px 8px 16px rgba(0, 0, 0, 0.117));
+    border-radius: 50%;
+  }
+  
+  .postgra-image2 {
+    position: absolute;
+    top: 346px;
+    right: 797px;
+    bottom: 420px;
+    left: 163px;
+    width: 64px;
+    height: 64px;
+    filter: drop-shadow(8px 8px 16px rgba(0, 0, 0, 0.117));
+    border-radius: 50%;
+  }
+  
+  .postgra-image3 {
+    position: absolute;
+    top: 346px;
+    right: 757px;
+    bottom: 420px;
+    left: 203px;
+    width: 64px;
+    height: 64px;
+    filter: drop-shadow(8px 8px 16px rgba(0, 0, 0, 0.117));
+    border-radius: 50%;
+  }
+  
+.postgra-rect2 {
+  position: absolute;
+  top: 346px;
+  right: 717px;
+  bottom: 420px;
+  left: 243px;
+  width: 64px;
+  height: 64px;
+  background-color: rgb(0, 97, 177);
+  border-radius: 32px 32px 32px 32px;
+  outline: 4px solid rgb(249, 252, 255);
+  outline-offset: -4px;
+  box-shadow: 8px 8px 16px 0px rgba(0, 0, 0, 0.117);
+}
+.postgra-highlight1 {
+  position: absolute;
+  top: 338px;
+  right: 726px;
+  bottom: 437px;
+  left: 258px;
+  width: 45px;
+  height: 29px;
+  font: 700 16px/1.79 "Inter", Helvetica, Arial, serif;
+  color: rgb(255, 255, 255);
+  letter-spacing: 0.32px;
+}
+.postgra-rect3 {
+  position: absolute;
+  top: 437px;
+  right: 785px;
+  bottom: 356px;
+  left: 39px;
+  width: 200px;
+  height: 37px;
+  background-color: rgb(0, 97, 177);
+  border-radius: 16px 16px 16px 16px;
+}
+.postgra-medium_title {
+  position: absolute;
+  top: 420px;
+  right: 833px;
+  bottom: 360px;
+  left: 88px;
+  width: 103px;
+  height: 29px;
+  font: 700 24px/1.2 "Inter", Helvetica, Arial, serif;
+  color: rgb(255, 255, 255);
+  letter-spacing: 0.48px;
+}
+.postgra-box {
+  position: absolute;
+  top: 437px;
+  right: 569px;
+  bottom: 356px;
+  left: 255px;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 37px;
+  border-radius: 16px 16px 16px 16px;
+  outline: 1px solid rgb(0, 97, 177);
+  outline-offset: -1px;
+  filter: drop-shadow(8px 8px 16px rgba(0, 0, 0, 0.039));
+}
+.postgra-medium_title1 {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 4px 42px 4px 49px;
+  width: 109px;
+  height: 29px;
+  font: 600 24px/1.2 "Inter", Helvetica, Arial, serif;
+  color: rgb(26, 36, 52);
+  text-align: center;
+  letter-spacing: 0.48px;
+}
+.postgra-highlight2 {
+  position: absolute;
+  top: 447px;
+  right: 75px;
+  bottom: 357px;
+  left: 768px;
+  width: 181px;
+  height: 26px;
+  font: 400 18px/1.39 "Open Sans", Helvetica, Arial, serif;
+  color: rgb(26, 36, 52);
+}
+.postgra-image21 {
+  position: absolute;
+  top: 487px;
+  right: 214px;
+  bottom: 301px;
+  left: 768px;
+  width: 42px;
+  height: 42px;
+}
+.postgra-text {
+  position: absolute;
+  top: 487px;
+  right: 98px;
+  bottom: 325px;
+  left: 818px;
+  width: 108px;
+  height: 18px;
+  font: 400 13px/1.39 "Open Sans", Helvetica, Arial, serif;
+  color: rgb(26, 36, 52);
+}
+.postgra-text1 {
+  position: absolute;
+  top: 506px;
+  right: 77px;
+  bottom: 306px;
+  left: 818px;
+  width: 129px;
+  height: 18px;
+  font: 300 13px/1.39 "Open Sans", Helvetica, Arial, serif;
+  color: rgb(87, 84, 85);
+}
+
+.postgra-image6 {
+  position: absolute;
+  top: 110px;
+  right: 42px;
+  bottom: 219px;
+  left: 667px;
+  width: 270px;
+  height: 360px;
+}
+.derniere_soutenance{
+    top: 100px;
+}
+@use "../utils" as *;
+@use "../global" as *;
+
+.section2 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 1024px;
+  height: 528px;
+  min-height: 528px;
+}
+.cover {
+  position: absolute;
+  top: 35px;
+  right: 699px;
+  bottom: 147px;
+  left: 46px;
+  width: 279px;
+  height: 346px;
+}
+.image4 {
+  position: absolute;
+  top: 57px;
+  right: 822px;
+  bottom: 435px;
+  left: 175px;
+  width: 27px;
+  height: 36px;
+}
+.medium_title2 {
+  position: absolute;
+  top: 185px;
+  right: 711px;
+  bottom: 273px;
+  left: 57px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 256px;
+  height: 70px;
+  font: 700 26px/1.34 "Open Sans", Helvetica, Arial, serif;
+  color: rgb(0, 0, 0);
+  text-align: center;
+}
+.rect5 {
+  position: absolute;
+  top: 81px;
+  right: 377px;
+  bottom: 147px;
+  left: 368px;
+  width: 279px;
+  height: 300px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px 10px 10px 10px;
+  outline: 1px solid rgb(169, 206, 244);
+  outline-offset: -1px;
+  box-shadow: 0px 10px 60px 0px rgba(38, 44, 117, 0.078);
+}
+.medium_title21 {
+  position: absolute;
+  top: 185px;
+  right: 387px;
+  bottom: 273px;
+  left: 377px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 260px;
+  height: 70px;
+  font: 700 26px/1.34 "Open Sans", Helvetica, Arial, serif;
+  color: rgb(0, 0, 0);
+  text-align: center;
+}
+.image5 {
+  position: absolute;
+  top: 35px;
+  right: 474px;
+  bottom: 413px;
+  left: 470px;
+  width: 80px;
+  height: 80px;
+}
+.box {
+  position: absolute;
+  top: 458px;
+  right: 417px;
+  bottom: 33px;
+  left: 407px;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 37px;
+  border-radius: 16px 16px 16px 16px;
+  outline: 1px solid rgb(0, 97, 177);
+  outline-offset: -1px;
+  filter: drop-shadow(8px 8px 16px rgba(0, 0, 0, 0.039));
+}
+.medium_title1 {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 4px 42px 4px 49px;
+  width: 109px;
+  height: 29px;
+  font: 600 24px/1.2 "Inter", Helvetica, Arial, serif;
+  color: rgb(26, 36, 52);
+  text-align: center;
+  letter-spacing: 0.48px;
+}
+.box1 {
+  position: absolute;
+  top: 35px;
+  right: 64px;
+  bottom: 147px;
+  left: 681px;
+  display: flex;
+  flex-direction: column;
+  width: 279px;
+  height: 346px;
+  min-height: 346px;
+  filter: drop-shadow(0px 4px 4px rgb(0, 97, 177));
+}
+.rect51 {
+  position: absolute;
+  top: 46px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  width: 279px;
+  height: 300px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px 10px 10px 10px;
+  outline: 1px solid rgb(169, 206, 244);
+  outline-offset: -1px;
+  box-shadow: 0px 10px 60px 0px rgba(38, 44, 117, 0.078);
+}
+.image51 {
+  position: absolute;
+  top: 0px;
+  right: 97px;
+  bottom: 266px;
+  left: 102px;
+  width: 80px;
+  height: 80px;
+}
+.subtitle3 {
+  position: absolute;
+  top: 101px;
+  right: 15px;
+  bottom: 70px;
+  left: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 175px;
+  font: 300 20px/1.75 "Open Sans", Helvetica, Arial, serif;
+  color: rgb(0, 0, 0);
+  text-align: center;
+}

@@ -1,0 +1,190 @@
+.subtitle2_box {
+    margin-bottom: 15px;
+    margin-left: 40px;
+    z-index:2;
+    /* Découvrir Les Clubs Estudiantins */
+
+
+
+
+  }
+  
+  .subtitle2_span0 {
+    font: 500 2em/1.52 "Poppins", Helvetica, Arial, serif;
+    color: rgb(0, 97, 177);
+  }
+  .subtitle2_span1 {
+    font: 500 2em/1.52 "Poppins", Helvetica, Arial, serif;
+  }
+  .carouselClubsItem{
+    width:740px;
+    height:414.39px;
+    filter: drop-shadow(0px 20px 20px rgba(0, 0, 0, 0.2));
+    padding:20px;
+    padding-bottom: 70px;
+    
+}
+
+.centeredCarousel{
+    
+}
+
+.importedCarouselItem{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.carouselRect{
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+width: 740px;
+height: 414.39px;
+margin:40px;
+
+filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+background: #FFFFFF;
+border-radius: 10px;
+
+}
+
+
+.icon{
+  width:25px;
+  height:25px;
+  cursor: pointer;
+}
+
+.iconsRow{
+  display: flex;
+  flex-direction: row;
+  width:179.13px;
+  justify-content: space-between;
+  margin-left: 70px;
+}
+.BigCarouselContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lirePlusClub{
+  margin-left: 550px;
+  cursor: pointer;
+}
+
+.carousel1Container{
+  margin-top:30px;
+    display: flex;
+    flex-direction: column;
+    padding-left:100px;
+    padding-right:100px;
+    padding-bottom:30px;
+}
+.prqTextContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.prqClub{
+  width:654px;
+  height:88px;
+}
+.carContainer1{
+  display: flex;
+  flex-direction: column;
+ 
+width: 300px;
+height: 414.39px;
+
+background: #FFFFFF;
+border-radius: 10px;
+
+}
+.clubsContainer{
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(248, 248, 255);
+}
+.highlightContainer{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.descContainer{
+    /* Unis dans la diversité, nous cultivons l'excellence et l'innovation. Ensemble, nous façonnons l'avenir au sein de nos clubs étudiants. */
+
+width: 921px;
+height: 122px;
+
+font-family: 'Open Sans';
+font-style: normal;
+font-weight: 300;
+font-size: 25px;
+line-height: 34px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #0061B1;
+
+
+}
+.cardPrq{
+  width:245px;
+  height:418px
+}
+.cardPrqContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 40px;
+  width:100%
+  
+}
+.bleuImg{
+  margin-right: 70px;
+}
+.blueContainer{
+  margin-top:40px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(212, 230, 255);
+  width: 100%;
+  padding: 60px;
+  align-items: center;
+}
+.bleuImgContainer{
+  display: flex;
+  flex-direction: row;
+}
+.bleuButton{
+  /* Frame 1 */
+
+cursor: pointer;
+
+width: 105px;
+height: 48px;
+
+/* 2nd Primary/600 */
+background: #2A4ECA;
+border-radius: 10px;
+
+border:none;
+outline: none;
+color:white;
+
+
+/* Body/Regular/500 */
+font-family: 'poppins';
+font-style: normal;
+font-weight: 300;
+font-size: 16px;
+line-height: 24px;
+
+
+
+
+}

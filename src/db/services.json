@@ -1,0 +1,21 @@
+[
+
+{
+    "service":"Services de rédaction publicitaire",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut diam sapien. "
+},
+{
+    "service":"services d'articles",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut diam sapien. "
+},
+{
+    "service":"Services d'articles",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut diam sapien. "
+},
+{
+    "service":"Services de recherche",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut diam sapien. "
+}
+
+
+]

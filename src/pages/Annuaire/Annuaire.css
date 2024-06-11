@@ -1,0 +1,310 @@
+
+
+.annuaire-recommended-container * {
+    margin-left: auto; 
+    margin-right: auto; 
+    box-sizing: border-box;
+}
+
+.annuaire-recommended-title{
+    margin-left:18rem;
+    position:relative;
+    text-align: center;
+    margin-bottom:25px;
+    margin-top:20px;
+    font-size:28px;
+    font-family: Open sans-serif;
+    color:#0061B1;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.20);
+}
+
+.annuaire-recommended-flex{
+    display:flex;
+    margin-left:20rem;
+    gap:6rem;
+    font-size:18px;
+    margin-bottom:5px;
+}
+
+.annuaire-lien {   
+    text-decoration: none; 
+}
+
+.annuaire-lien:hover {
+    text-decoration: underline;
+    color:#0061B1;    
+}
+
+.annuaire-card-container{
+    display:flex;
+    flex-wrap:wrap;
+    margin-left:18.5rem;
+    margin-top:1rem;
+    z-index:-2;
+}
+
+.annuaire-card {
+    margin: 8px;
+    border: 2px solid #ededed;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 345px;
+    display: flex;
+    flex-direction: column; 
+    width:31%;
+}
+
+.annuaire-card > img {
+    width:11rem;
+    max-width: 100%; 
+    max-height: 150px; 
+    display: block; 
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.annuaire-title{
+    margin-bottom:0.15rem;
+    color:#0061B1;
+    text-align:center;
+
+}
+
+.annuaire-card-reviews{
+    margin-bottom:0.5rem;
+    display:fex;
+    gap:0.5rem;
+}
+
+.annuaire-card-review{
+    text-align:center;
+    margin-bottom:0.10rem;
+}
+
+.annuaire-icon-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #0061B1;
+    margin-right: 5px; 
+}
+
+.annuaire-icon-circle svg {
+    color: white; 
+    width:1000%;
+    height:50%;
+    padding-left:5px;
+}
+
+.annuaire-image-container {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 40px;
+    max-width: 100%; 
+    height: auto;  
+}
+
+.annuaire-sidebar {
+    position:absolute; 
+    top: 9.5rem; 
+    left: 10px; 
+    width: 20rem; 
+    height: 110%; 
+    z-index: 3; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-top:86px; 
+    gap: 2rem;
+} 
+
+.annuaire-search {
+    background-color: #0061B1;
+    border-radius: 5px;
+    display:flex;
+    position:relative;
+} 
+
+.annuaire-search-bar{
+    padding: 15px 20px;
+    width:14rem;
+    border: none;
+    outline: none;
+    margin-right: 10px;
+    border-radius: 5px;
+    position: relative;    
+    background-color: transparent;
+    font-size:1rem;
+    color:White;
+
+   
+   
+   
+
+}
+
+.annuaire-search-bar::placeholder {
+     color:white; 
+}
+
+.annuaire-submenu {
+    position: absolute;
+    top: 100%;
+    left: 0px; 
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 10px;
+    width:100%;
+    list-style: none;
+    z-index: 999;
+}
+
+.annuaire-submenu li {
+    cursor: pointer;
+}
+
+.annuaire-submenu li:hover {
+    background-color:#0061B1;
+}
+
+.annuaire-pagination {
+    display: flex;
+    margin-top: 30px; 
+    justify-content:center;
+    margin-left:15rem;
+}
+  
+.annuaire-pagination button {
+    margin: 0 5px; 
+    padding: 4px 4px; 
+    font-size: 16px; 
+    border: none; 
+    background-color: #0061B1; 
+    color: #fff; 
+    cursor: pointer;
+    border-radius:2px;
+}
+  
+.annuaire-pagination button:disabled {
+    background-color: #ccc; 
+    cursor: not-allowed;
+}
+.lien{
+    color:#0061B1;
+    text-decoration:none;
+    font-size:22px;
+    font-family: Open sans-serif;
+}
+
+
+  
+  @media screen and (max-width: 1000px) {
+    .recommended-flex {
+        flex-direction: row;       
+        /* align-items: center; 
+        justify-content: center;  */
+        gap: 4rem;
+        margin-left: 32vw; 
+    }
+    .sidebar {
+    position:absolute;
+        
+        width: 20rem;
+        padding: 25px; 
+        margin-left: auto;
+        margin-right: auto; 
+      
+    }
+
+    .search-bar {
+        width: 12rem; 
+        padding: 15px 20px; 
+    }
+
+
+
+
+
+
+
+
+
+
+  }
+  @media screen and (max-width: 950px) {
+    
+    .annuaire-recommended-title {
+        margin-left: 0; 
+        text-align: center; 
+    }
+
+   
+    .annuaire-recommended-flex {
+        flex-direction: row;       
+         align-items: center; 
+        justify-content: center; 
+        gap: 4rem;
+        margin-left: -5vw; 
+    }
+
+    
+
+   
+    .annuaire-card-container {
+        width: 100%; 
+        margin-left: 0; 
+        margin-top:35vh;
+        justify-content: center; 
+        gap:10px;
+    }
+
+   
+    .annuaire-card {
+        width: 45%; 
+        margin-left: auto;
+        margin-right: auto; 
+        max-width:260px;
+    }
+
+  
+    .annuaire-lien {
+        margin-bottom: 1rem; 
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .annuaire-sidebar {
+        position:absolute;
+        left:0;
+        right:0;
+        width: 20rem; 
+        padding: 25px;
+        margin-left: auto;
+        margin-right: auto; 
+      
+    }
+
+    .annuaire-search-bar {
+        width: 12rem; 
+        padding: 15px 20px;
+    }
+}
+
+
+
+
+
+
+
+
+

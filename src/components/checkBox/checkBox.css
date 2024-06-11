@@ -1,0 +1,8 @@
+.checkbox{
+    width: 17px;
+    height: 17px;
+    border-color: blue !important;
+}
+.chechBoxLabel{
+    margin: 5px;
+}
