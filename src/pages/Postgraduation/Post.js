@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Post.css';
-import Lcsiback from '../../images/Lcsiback.png';
-import lcsib from '../../images/lcsib.png';
-import a from '../../images/a.png';
+import Lcsiback from '../../Images/Lcsiback.png';
+import lcsib from '../../Images/lcsib.png';
+import a from '../../Images/a.png';
 import cardData from '../../db/soutenance.json';
 import treePic from '../../assets/images/TreePic.jpg';
 import LLM from '../../assets/images/LLM.png';

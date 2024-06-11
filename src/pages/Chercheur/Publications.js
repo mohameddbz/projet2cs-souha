@@ -1,10 +1,10 @@
 import React from 'react';
 import './Publications.css';
-import Cherch from '../../images/Cherch.png';
+import Cherch from '../../Images/Cherch.png';
 import { BsTwitterX } from "react-icons/bs";
 import { FaLinkedinIn } from "react-icons/fa"; 
 import { MdMailOutline } from "react-icons/md"; 
-import LLM  from '../../images/LLM.png';
+import LLM  from '../../Images/LLM.png';
 
 
 

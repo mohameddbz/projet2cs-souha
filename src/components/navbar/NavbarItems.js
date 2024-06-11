@@ -19,10 +19,10 @@ const listItem=[
                         lien:''
                     },{
                         item:'Annuaire',
-                        lien:'/Annuaire/Administration'
+                        lien:'/AnnuaireEnseignants'
                     },{
                         item:'Contact',
-                        lien:''
+                        lien:'/Contact'
                     }]
             },
             {
@@ -33,10 +33,10 @@ const listItem=[
                         lien:''
                     },{
                         item:'Histoires de réussite',
-                        lien:''
+                        lien:'/SuccessStories'
                     },{
                         item:'Clubs',
-                        lien:'/DetailsClubs'
+                        lien:'/ClubsFinal'
                     },{
                         item:'Fablab',
                         lien:''
@@ -74,7 +74,7 @@ const listItem=[
                         items:[
                             {
                                 item:'Programme',
-                                lien:''
+                                lien:'/ProgrammeFinal'
                             },{
                                 item:'Master',
                                 lien:''
@@ -165,10 +165,10 @@ const listItem=[
                                 title:'E-partenariat',
                                 items:[
                                     {
-                                        item:'Cooperation national',
+                                        item:'Cooperation nationale',
                                         lien:''
                                     },{
-                                        item:'Cooperation international',
+                                        item:'Cooperation internationale',
                                         lien:''
                                     },{
                                         item:'Demander devis',

@@ -1,6 +1,6 @@
 import React from 'react';
 import './Postgraduation.css'
-import post from '../../images/post.png'
+import post from '../../Images/post.png'
 
 function renderSection1(props) {
   return (

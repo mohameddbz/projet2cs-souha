@@ -19,25 +19,7 @@ function ScrollToTop() {
 }
 
 function EsiFinal(props) {
-  const [expanded, setExpanded] = useState(false);
-
-  const toggleExpand = () => {
-    setExpanded(!expanded);
-  };
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleCollapsible = () => {
-    setIsOpen(!isOpen);
-    console.log('isOpen:', isOpen);
-  };
-
-  const [isOpen1, setIsOpen1] = useState(false);
-
-  const toggleCollapsible1 = () => {
-    setIsOpen1(!isOpen1);
-  };
-
+ 
 
   return (
     <div>
@@ -70,24 +52,24 @@ function EsiFinal(props) {
       <div className={styles.ContentContainer}>
          
 
-          <CollapsibleComponent i="1" title="Informations clés" content={
+          <CollapsibleComponent i="1" title="Introduction" content={
           <div className={styles.collapsibleContentContainer}>
           <img className={styles.EsiFinalLine2} src={'/assets/EsiFinalLine2.svg'} alt="line" />
           <img className={styles.collapsibleContent} src={'/assets/collapsibleContent.svg'} alt="line" />
           </div>
           }/>
 
-       <CollapsibleComponent i="2" title="Introduction" content={
+       <CollapsibleComponent i="2" title="Inscription" content={
           <div className={styles.collapsibleContentContainer}>
           <img className={styles.EsiFinalLine2} src={'/assets/EsiFinalLine2.svg'} alt="line" />
-          <img className={styles.collapsibleContent} src={'/assets/collapsibleContent.svg'} alt="line" />
+          <h2 className={styles.textInscription}>Découvrez comment rejoindre notre communauté dynamique en vous inscrivant dès aujourd'hui ! Que vous soyez un étudiant en herbe, un professionnel désireux de perfectionner ses compétences ou un curieux avide d'apprendre, notre processus d'inscription simple et convivial vous permettra de commencer votre parcours éducatif sans tracas.</h2>
           </div>
           }/>
 
         <CollapsibleComponent i="3" title="Programme" content={
           <div className={styles.collapsibleContentContainer}>
           <img className={styles.EsiFinalLine2} src={'/assets/EsiFinalLine2.svg'} alt="line" />
-          <img className={styles.collapsibleContent} src={'/assets/collapsibleContent.svg'} alt="line" />
+         <h2 className={styles.textInscription}>Explorez nos programmes diversifiés conçus pour répondre à une multitude d'intérêts et de besoins. De la technologie à l'art, en passant par les affaires et les sciences, nos programmes offrent une formation de qualité dispensée par des experts du domaine. Plongez-vous dans une expérience d'apprentissage enrichissante et découvrez les possibilités infinies qui s'offrent à vous.</h2>
           </div>
           }/>
 
@@ -95,7 +77,7 @@ function EsiFinal(props) {
        <CollapsibleComponent i="4" title="Graduation" content={
           <div className={styles.collapsibleContentContainer}>
           <img className={styles.EsiFinalLine2} src={'/assets/EsiFinalLine2.svg'} alt="line" />
-          <img className={styles.collapsibleContent} src={'/assets/collapsibleContent.svg'} alt="line" />
+          <h2 className={styles.textInscription}>Félicitations aux diplômés ! Notre cérémonie de remise des diplômes est un moment inoubliable où nous célébrons vos succès et vos réalisations. C'est le moment de reconnaître votre travail acharné, votre dévouement et votre persévérance. Rejoignez-nous pour une journée de célébration, de nostalgie et de nouveaux départs alors que vous franchissez cette étape importante de votre vie.</h2>
           </div>
           }/>
 
@@ -103,14 +85,14 @@ function EsiFinal(props) {
       <CollapsibleComponent i="5" title="Opportunité de carrière" content={
           <div className={styles.collapsibleContentContainer}>
           <img className={styles.EsiFinalLine2} src={'/assets/EsiFinalLine2.svg'} alt="line" />
-          <img className={styles.collapsibleContent} src={'/assets/collapsibleContent.svg'} alt="line" />
+          <h2  className={styles.textInscription}>Explorez les opportunités de carrière passionnantes qui s'offrent à vous après avoir suivi nos programmes. Grâce à nos partenariats avec des entreprises de premier plan et notre réseau mondial d'anciens élèves, nous vous connectons avec des possibilités professionnelles stimulantes et enrichissantes. Transformez votre éducation en action et lancez-vous dans une carrière prometteuse.</h2>
           </div>
           }/>
 
-     <CollapsibleComponent i="6" title="Opportunité de carrière" content={
+     <CollapsibleComponent i="6" title="Poser Une Question" content={
           <div className={styles.collapsibleContentContainer}>
           <img className={styles.EsiFinalLine2} src={'/assets/EsiFinalLine2.svg'} alt="line" />
-          <img className={styles.collapsibleContent} src={'/assets/collapsibleContent.svg'} alt="line" />
+          <h2  className={styles.textInscription}>Avez-vous des interrogations sur nos programmes, notre processus d'inscription ou toute autre question ? Nous sommes là pour vous aider ! N'hésitez pas à poser vos questions, notre équipe dévouée se fera un plaisir de vous fournir les réponses dont vous avez besoin pour prendre des décisions éclairées sur votre parcours éducatif.</h2>
           </div>
           }/>
 

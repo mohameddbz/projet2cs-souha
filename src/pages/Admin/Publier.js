@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import cn from 'classnames';
 import SidebarAdm from '../../components/Sidebar/SidebarAdmin/SidebarAdm';
 import './Publier.css';
 import { FaUpload } from 'react-icons/fa';
+import axios from 'axios';
+
+
 
 function Admin2(props) {
   const [subject, setSubject] = useState('');
@@ -11,16 +13,50 @@ function Admin2(props) {
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleSubmit = (event) => {
+  
     event.preventDefault();
+  
     if (!subject || !description) {
-      alert('Please enter both subject and description.');
+      alert('Veuillez entrer à la fois un sujet et une description.');
       return;
     }
-    console.log('Subject:', subject);
-    console.log('Description:', description);
+    const formData = new FormData();
+  formData.append('titre', subject);
+  formData.append('description', description);
+  formData.append('etat', 'non valide'); // ajoutez d'autres valeurs fixes comme nécessaire
+  formData.append('image', selectedFile); // assurez-vous que 'image' est le bon nom de champ attendu par votre API
+  formData.append('type_publication', 'event'); // exemple de valeur fixe
+  formData.append('date_debut', '2024-07-15T09:00:00Z');
+  formData.append('date_fin', '2024-07-15T17:00:00Z');
+  formData.append('date_publication', '2024-06-10T08:00:00Z');
+  formData.append('categorie', 1); // exemple d'ID de catégorie
+  formData.append('publisher', 1); // exemple d'ID de l'éditeur
+  const s = localStorage.getItem('token'); // Assurez-vous que le token est bien géré
+  console.log(localStorage.getItem('token'));
+
+
+  axios.post('http://127.0.0.1:8000/publication/add/', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      'Authorization': `token ${s}` // Assurez-vous d'utiliser le bon préfixe
+    }
+  })
+  .then(response => {
+    console.log('Réponse du serveur:', response.data);
+    alert('Publication ajoutée avec succès!');
     setSubject('');
     setDescription('');
-  };
+    setSelectedFile(null);
+  })
+  .catch(error => {
+    console.error('Il y a eu une erreur!', error);
+    alert('Erreur lors de l’envoi des données');
+  });
+};
+    // console.log('Subject:', subject);
+    // console.log('Description:', description);
+    // setSubject('');
+    // setDescription('');
 
   const handleCancel = () => {
     setSubject('');

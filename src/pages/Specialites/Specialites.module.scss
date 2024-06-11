@@ -1,0 +1,117 @@
+
+@font-face {
+    font-family: 'Quantico Bold';
+    src: url('/fonts/Quantico-Bold.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Quantico Regular';
+    src: url('/fonts/Quantico-Regular.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Roboto Regular';
+    src: url('/fonts/Roboto-Regular.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Roboto Bold';
+    src: url('/fonts/Roboto-Bold.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Open Sans Regular';
+    src: url('/fonts/OpenSans/OpenSans-Regular.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Open Sans Light';
+    src: url('/fonts/OpenSans/OpenSans-Light.ttf') format('truetype');
+  }
+.esiFinalCover{
+    z-index: -2;
+    width:100%;
+    position: absolute;
+}
+
+.SpecialitesContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.coverTextContainer{
+    display: flex;
+    height: 423px;
+    margin-bottom: 70px;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 90px;
+    margin-left: 70px;
+}
+
+.Title2{
+    /* Plongez dans l'avant-garde des systèmes informatiques */
+
+
+font-family: 'Quantico Regular';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 34px;
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
+width: 1000px
+
+}
+
+.Title1{
+    /* Innovation et application redéfinissant la communication. */
+
+
+width: 947px;
+height: 102px;
+
+
+font-family: 'Quantico Bold';
+font-style: normal;
+font-weight: 700;
+font-size: 38px;
+line-height: 51px;
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
+
+
+}
+
+.specCardContainer{
+    display: flex;
+    flex-direction: row;
+    margin-top: 100px;
+    margin-bottom: 60px;
+    margin-left: 40px;
+    margin-right: 40px;
+    justify-content: center;
+}
+
+.specCardImage{
+    width:700px;
+    height:400px;
+    border-radius: 20px;
+    border: 2px solid #0061B1;
+    box-shadow: 0 0 10px #0061B1;
+    margin-left: 30px;
+}
+
+.specCardTitle{
+    height: 72px;
+    font: 600 40px/1.8 "Open Sans", Helvetica, Arial, serif;
+    color: rgb(0, 97, 177);
+}
+
+.specCardDesc{
+    font: 600 18px/1.8 "Open Sans", Helvetica, Arial, serif;
+}

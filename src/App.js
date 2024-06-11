@@ -4,7 +4,7 @@ import Enseignants from'./pages/Annuaire/Enseignants'
 import Alumni from './pages/Annuaire/Alumni';
 import Projets from './pages/Lmcs/Projets';
 import Equipe from './pages/Lmcs/Equipe';
-import Historique from './pages/Admin/Historique'
+// import Historique from './pages/Admin/Historique'
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LandingPage from './pages/LandingPage/LandingPage';
@@ -21,20 +21,22 @@ import DemandePartenariatFinale from './pages/DemandePartenariatFinale/DemandePa
 import DetailsClubsFinale from './pages/DetailsClubsFinale/DetailsClubsFinale';
 import ClubsFinal from './pages/ClubsFinal/ClubsFinal';
 import EsiFinal from './pages/EsiFinal/EsiFinal';
-import Lcsi from './pages/LCSI/Lcsi';
 import Lmcs from './pages/Lmcs/Lmcs'
 import Post from './pages/Postgraduation/Post';
 import Chercheur from './pages/Chercheur/Chercheur';
 import Publication from './pages/Chercheur/Publications'
 import Publications from './pages/Chercheur/Publications';
 import Admin2 from './pages/Admin/Publier';
+import Historique from './pages/Admin/Historique';
+import Lcsi from './pages/LCSI/Lcsi';
+
 import PublicationPage from './pages/Admin/Publication';
 import AdminPage from './pages/Admin/Admin';
 import HistoriquePage from './pages/Admin/Historique';
 import Principal from './pages/Admin/Principal';
 import ProfilePage from './pages/Admin/Profile';
 import Historique_p from './pages/Admin/Historique_p';
-// import ClubsFinal from './pages/ClubsFinal/ClubsFinal';
+
 
 
 // import Postgraduation from './Pages/Postgraduation/Postgraduation'
@@ -56,6 +58,7 @@ function App() {
         < Route path ="/Annuaire/Administration" element ={<Annuaire/>}/>
         < Route path ="/Annuaire/Enseignants" element={<Enseignants/> }/>
         < Route path ="/Annuaire/Alumni" element ={<Alumni/>}/>
+        <Route path='/LCSI' element={<Lcsi/>}></Route>
         < Route path ="/LMCSProjects" element ={<Projets/>}/>
         < Route path ="/Admin" element ={<Principal/>}/>
         <Route path="/Admin/dashboard" element={<Historique_p />} />
@@ -63,18 +66,16 @@ function App() {
             <Route path="/Admin/publier" element={<Admin2 />} />
             <Route path="/Admin/publications_en_attente" element={<AdminPage />} />
             <Route path="/Admin/profile" element={<ProfilePage />} />
-            {/* <Route path="/demande_suppression" element={<ProfilePage />} /> */}
+            <Route path="/demande_suppression" element={<ProfilePage />} />
             <Route path="/Admin/historique" element={<HistoriquePage />} />
-            {/* Ajoutez d'autres routes ici selon les liens de votre sidebar */}
+            Ajoutez d'autres routes ici selon les liens de votre sidebar
        
 
         < Route path ="/LMCSTeams" element ={<Equipe/>}/>
-        < Route path ="/lcsi" element ={<Lcsi/>}/>
         < Route path ="/lmcs" element ={<Lmcs/>}/>
         < Route path ="/postraduation" element ={<Post/>}/>
         < Route path ="/chercheur" element ={<Chercheur/>}/>
         < Route path ="/publication" element ={<Publications/>}/>
-        {/* < Route path ="/FormAdmin" element ={<FormAdmin/>}/> */}
         < Route path ="/Historique" element ={<Historique/>}/>
       
       

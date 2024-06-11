@@ -1,0 +1,83 @@
+
+.ContactContainer{
+    background-color: #F5F5F5;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    z-index: -10;
+}
+
+.Container1{
+    display: flex;
+    flex-direction: column;
+    width:700px
+}
+.contactRelex{
+    width:427px;
+    height:140px
+}
+.title1{
+    /* Comment nous trouver! */
+
+
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 30px;
+
+color: #0061B1;
+
+
+}
+
+.subtitle{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 300;
+font-size: 15px;
+width:660px
+
+}
+
+.Container2{
+    width:620px
+}
+
+.nameRow{
+    display: flex;
+    flex-direction: row;
+    width:642px;
+    justify-content: flex-start;
+}
+
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    justify-content: space-around;
+}
+.envoiButton{
+    /* Rectangle 413 */
+
+
+width: 149px;
+height: 44px;
+
+background: #0061B1;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+/* Valider */
+
+
+border-radius: 5px;
+cursor: pointer;
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 20px;
+outline: none;
+border: none;
+
+color: #FFFFFF;
+
+
+}
