@@ -20,44 +20,44 @@ function Admin2(props) {
       alert('Veuillez entrer à la fois un sujet et une description.');
       return;
     }
+
     const formData = new FormData();
-  formData.append('titre', subject);
-  formData.append('description', description);
-  formData.append('etat', 'non valide'); // ajoutez d'autres valeurs fixes comme nécessaire
-  formData.append('image', selectedFile); // assurez-vous que 'image' est le bon nom de champ attendu par votre API
-  formData.append('type_publication', 'event'); // exemple de valeur fixe
-  formData.append('date_debut', '2024-07-15T09:00:00Z');
-  formData.append('date_fin', '2024-07-15T17:00:00Z');
-  formData.append('date_publication', '2024-06-10T08:00:00Z');
-  formData.append('categorie', 1); // exemple d'ID de catégorie
-  formData.append('publisher', 1); // exemple d'ID de l'éditeur
-  const s = localStorage.getItem('token'); // Assurez-vous que le token est bien géré
-  console.log(localStorage.getItem('token'));
+    formData.append('titre', subject);
+    formData.append('description', description);
+    formData.append('etat', 'non valide');
+    formData.append('image', selectedFile);
+    formData.append('type_publication', 'event');
+    formData.append('date_debut', '2024-07-15T09:00:00Z');
+    formData.append('date_fin', '2024-07-15T17:00:00Z');
+    formData.append('date_publication', '2024-06-10T08:00:00Z');
+    formData.append('categorie', 1);
+    formData.append('publisher', 2);
+  
+    const token = localStorage.getItem('token');
+    console.log(token);
 
-
-  axios.post('http://127.0.0.1:8000/publication/add/', formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-      'Authorization': `token ${s}` // Assurez-vous d'utiliser le bon préfixe
-    }
-  })
-  .then(response => {
-    console.log('Réponse du serveur:', response.data);
-    alert('Publication ajoutée avec succès!');
-    setSubject('');
-    setDescription('');
-    setSelectedFile(null);
-  })
-  .catch(error => {
-    console.error('Il y a eu une erreur!', error);
-    alert('Erreur lors de l’envoi des données');
-  });
-};
-    // console.log('Subject:', subject);
-    // console.log('Description:', description);
-    // setSubject('');
-    // setDescription('');
-
+    axios.post('http://127.0.0.1:8000/publication/add/', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'Authorization': `token ${token}` // Assurez-vous que c'est le bon préfixe
+      }
+    })
+    .then(response => {
+      console.log('Réponse du serveur:', response.data);
+      alert('Publication ajoutée avec succès!');
+      setSubject('');
+      setDescription('');
+      setSelectedFile(null);
+    })
+    .catch(error => {
+      console.error('Il y a eu une erreur!', error);
+      if (error.response && error.response.status === 401) {
+        alert('Échec de l’authentification : Vérifiez le token ou les permissions');
+      } else {
+        alert('Erreur lors de l’envoi des données');
+      }
+    });
+  };
   const handleCancel = () => {
     setSubject('');
     setDescription('');

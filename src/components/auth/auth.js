@@ -29,24 +29,37 @@ function Auth() {
         email,
         password
       });
-      const  access  = response.data;
-      console.log('Token reçu:', response.data);
-      if (access) {
-        localStorage.setItem('token', response.data);
-        
-        navigate('/Admin/dashboard'); // Utilisez navigate pour la redirection
+      const { token } = response.data;
+      if (token) {
+        console.log('Token reçu:', token);
+        localStorage.setItem('token', token);
+        navigate('/Admin/dashboard');
       } else {
         alert('Connexion échouée : aucun token reçu');
       }
     } catch (error) {
       console.error('Erreur de connexion', error);
-      if (error.response && error.response.status === 401) {
-        alert('Identifiants invalides');
+      if (error.response) {
+        switch (error.response.status) {
+          case 400:
+            alert('Email et mot de passe sont requis');
+            break;
+          case 401:
+            alert('Identifiants invalides');
+            break;
+          case 500:
+            alert('Problème de serveur');
+            break;
+          default:
+            alert('Problème de connexion');
+        }
       } else {
-        alert('Problème de connexion');
+        alert('Problème de connexion au serveur');
       }
     }
   };
+  
+  
   return (
     <div className={`container ${isSignUpMode ? 'sign-up-mode' : ''}`}>
       <div className="forms-container">

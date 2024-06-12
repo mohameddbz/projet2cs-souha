@@ -4,8 +4,8 @@ import data from '../../db/Administration.json'
 import { GoMail } from "react-icons/go";
 import { FaPhone } from "react-icons/fa";
 import { MdPlace } from "react-icons/md";
-import equipe1 from'../../Images/equipe1.png'
-import equipe2 from '../../Images/equipe2.png'
+import equipe1 from'../../images/equipe1.png'
+import equipe2 from '../../images/equipe2.png'
 import cardData from '../../db/Equipe.json';
 import { MdExpandMore } from "react-icons/md";
 import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md';

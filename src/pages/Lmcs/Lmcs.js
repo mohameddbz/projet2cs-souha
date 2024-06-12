@@ -1,16 +1,16 @@
 import {React, useState} from 'react';
 import  './Lmcs.css';
-import Lcsiback from '../../Images/Lcsiback.png';
-import lcsib from '../../Images/lcsib.png';
-import a from '../../Images/a.png';
-import icon from '../../Images/icon.png'
+import Lcsiback from '../../images/Lcsiback.png';
+import lcsib from '../../images/lcsib.png';
+import a from '../../images/a.png';
+import icon from '../../images/icon.png'
 import cardData from '../../db/services.json'
-import blog_image from '../../Images/blog_image.png';
-import partenaire1 from '../../Images/partenaire1.png';
-import partenaire2 from '../../Images/partenaire2.png';
-import partenaire3 from '../../Images/partenaire3.png';
-import partenaire4 from '../../Images/partenaire4.png';
-import partenaire5 from '../../Images/partenaire5.png';
+import blog_image from '../../images/blog_image.png';
+import partenaire1 from '../../images/partenaire1.png';
+import partenaire2 from '../../images/partenaire2.png';
+import partenaire3 from '../../images/partenaire3.png';
+import partenaire4 from '../../images/partenaire4.png';
+import partenaire5 from '../../images/partenaire5.png';
 import cardData1 from '../../db/blog.json';
 import Footer from '../../components/Footer/Footer'
 import Navbar from '../../components/navbar/navbar'

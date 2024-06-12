@@ -1,17 +1,120 @@
+.chatbotIcon {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 70px;
+  height: 70px;
+  background-color: #0061B1;
+  border-radius: 50%;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 9999; /* Assure qu'il apparaît au-dessus des autres éléments */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+}
+.popupHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0061B1; /* Couleur de fond de l'en-tête */
+  color: white; /* Couleur du texte de l'en-tête */
+  padding: 10px 20px; /* Padding pour l'en-tête */
+  border-top-left-radius: 8px; /* Arrondi pour le coin supérieur gauche */
+  border-top-right-radius: 8px; /* Arrondi pour le coin supérieur droit */
+}
 
-.chatbotIcon{
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    width: 70px;
-    height: 70px; 
-    background-color: #007bff; 
-    border-radius: 50%;
-    color: #ffffff; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    z-index: 9999; /* Ensure it appears on top of other elements */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6); 
-  }
+.popupHeader > div {
+  display: flex;
+  flex-direction: column; /* Organise le titre et le statut en colonne */
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.popup {
+  position: fixed;
+  bottom: 1%;
+  padding: 0; /* Padding nul pour le popup global */
+  right: 3%;
+  width: 30%;
+  height: 500px;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.25);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  z-index: 100;
+}
+
+.popupContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* Assure la scrollabilité des messages */
+  padding: 20px 2%; /* Ajuste le padding pour les messages */
+  margin-bottom: 60px; /* Laisse de l'espace pour la zone de saisie en bas */
+}
+
+.messages {
+  overflow-y: auto;
+  padding: 20px 25px; /* Ajustement des paddings pour un meilleur aspect visuel */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* Assure que les conteneurs de messages utilisent toute la largeur disponible */
+}
+
+
+
+.user, .bot {
+  max-width: 80%; /* Limite la largeur maximale à 80% pour un meilleur aspect visuel */
+  width: auto; /* Adapte la largeur en fonction du contenu */
+  margin: 5px 0; /* Ajustement vertical des marges pour chaque message */
+  padding: 10px; /* Padding interne pour la lisibilité */
+  border-radius: 10px;
+  box-sizing: border-box;
+  word-wrap: break-word; /* Permet au texte de se casser pour éviter les débordements */
+  white-space: normal; /* Gère les espaces et retours à la ligne */
+}
+
+.user {
+  align-self: flex-end; /* Alignement des messages de l'utilisateur à droite */
+  background-color: #0061B1; /* Fond bleu pour l'utilisateur */
+  color: white; /* Texte blanc pour l'utilisateur */
+  text-align: right; /* Alignement du texte à droite */
+}
+
+.bot {
+  align-self: flex-start; /* Alignement des messages du bot à gauche */
+  background-color: #f1f1f1; /* Fond gris pour le bot */
+  color: #333; /* Texte gris foncé pour le bot */
+  text-align: left; /* Alignement du texte à gauche */
+}
+
+.messageInputContainer {
+  padding: 10px 2%;
+  position: absolute; /* Fixe le conteneur au bas de la popup */
+  bottom: 0;
+  left: 0;
+  width: 100%; /* Assure que le conteneur s'étend sur toute la largeur */
+  box-sizing: border-box; /* Inclut le padding dans le calcul de la largeur */
+}
+
+.messageInput {
+  border: 2px solid #0061B1; /* Bordure plus prononcée */
+  padding: 12px 15px; /* Padding plus généreux pour plus de confort */
+  border-radius: 25px; /* Bordure très arrondie */
+  width: calc(100% - 30px); /* Ajustement de la largeur */
+  margin: 0 auto; /* Centrer l'input dans le conteneur */
+  display: block;
+  box-sizing: border-box;
+}
+
