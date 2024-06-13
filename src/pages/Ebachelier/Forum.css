@@ -1,0 +1,28 @@
+.forum-container {
+  display: flex;          /* Utilise Flexbox pour aligner les éléments enfants */
+  gap: 3%;
+  flex-direction: row;    /* Aligner les enfants horizontalement */
+  align-items: stretch;   /* Aligner les enfants de sorte qu'ils remplissent la hauteur du conteneur */
+  height: fit-content;          /* Hauteur complète de la vue, ajustez selon vos besoins */
+  }
+  .forum{
+    background-color: #F9F9F9;
+  }
+.forum-header {
+    text-align: center; /* Centre le texte horizontalement */
+    padding: 20px; /* Ajoute un padding pour l'espacement */
+  }
+  
+  .forum-title {
+    color: #0056b3; /* Donne une couleur bleue au titre */
+    margin: 0; /* Retire les marges par défaut du titre */
+    padding-bottom: 10px; /* Espacement entre le titre et le sous-titre */
+  }
+  
+  .forum-subtitle {
+    color: #333; /* Couleur plus sombre pour le sous-titre */
+   font-size: 20px;
+   font-weight: 500;
+    margin: 1% 0 5% 0; /* Retire les marges par défaut du sous-titre */
+  }
+  

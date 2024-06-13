@@ -31,11 +31,21 @@ import Historique from './pages/Admin/Historique';
 import Lcsi from './pages/LCSI/Lcsi';
 
 import PublicationPage from './pages/Admin/Publication';
+import PublicationAdmin from './pages/Admin/Admin_pub';
 import AdminPage from './pages/Admin/Admin';
 import HistoriquePage from './pages/Admin/Historique';
 import Principal from './pages/Admin/Principal';
 import ProfilePage from './pages/Admin/Profile';
 import Historique_p from './pages/Admin/Historique_p';
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
+import FabLabPage from './pages/Fablab/PagePres';
+import DemandeForm from './pages/Fablab/Demande';
+import PieceDetail from './pages/Fablab/DetailsPiece';
+import InscriptionForm from './pages/Fablab/Inscription';
+import Ebachelier from './pages/Ebachelier/Ebachelier';
+import ForumPage from './pages/Ebachelier/Forum';
+import Presentation from './pages/Presentation/Presentation';
 
 
 
@@ -54,20 +64,21 @@ function App() {
       <Routes>
         <Route path='/' element={<LandingPage/>}></Route>
         <Route path='/EventList' element={<Evenements/>}></Route>
-        <Route path='/Auth' element={<Authentification/>}></Route>
+        <Route path="/Auth" element={<PublicRoute><Authentification /></PublicRoute>} />
         < Route path ="/Annuaire/Administration" element ={<Annuaire/>}/>
         < Route path ="/Annuaire/Enseignants" element={<Enseignants/> }/>
         < Route path ="/Annuaire/Alumni" element ={<Alumni/>}/>
         <Route path='/LCSI' element={<Lcsi/>}></Route>
         < Route path ="/LMCSProjects" element ={<Projets/>}/>
-        < Route path ="/Admin" element ={<Principal/>}/>
-        <Route path="/Admin/dashboard" element={<Historique_p />} />
-            <Route path="/Admin/publications" element={<PublicationPage />} />
-            <Route path="/Admin/publier" element={<Admin2 />} />
-            <Route path="/Admin/publications_en_attente" element={<AdminPage />} />
-            <Route path="/Admin/profile" element={<ProfilePage />} />
-            <Route path="/demande_suppression" element={<ProfilePage />} />
-            <Route path="/Admin/historique" element={<HistoriquePage />} />
+        < Route path ="/Admin" element ={<PrivateRoute><Principal /></PrivateRoute>}/>
+        <Route path="/Admin/publications" allowedRoles={['administrateur']} element={<PrivateRoute><PublicationAdmin /></PrivateRoute>} />
+            <Route path="/Publieur/publications" allowedRoles={['editeur']} element={<PrivateRoute><PublicationPage /></PrivateRoute>} />
+            <Route path="/Admin/publications_en_attente" allowedRoles={['administrateur']} element={<PrivateRoute><AdminPage /></PrivateRoute>} />
+            <Route path="/Admin/profile" allowedRoles={['administrateur']} element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
+            <Route path="/Admin/historique" allowedRoles={['administrateur']} element={<PrivateRoute><HistoriquePage /></PrivateRoute>} />
+            <Route path="/Publieur/publier" allowedRoles={['editeur']} element={<PrivateRoute><Admin2 /></PrivateRoute>} />
+            <Route path="/Publieur/profile" allowedRoles={['editeur']} element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
+            <Route path="/Publieur/historique" allowedRoles={['editeur']} element={<PrivateRoute><HistoriquePage /></PrivateRoute>} />
             Ajoutez d'autres routes ici selon les liens de votre sidebar
        
 
@@ -89,6 +100,13 @@ function App() {
         <Route path='/Clubs' element={<Clubs/>}></Route>
         < Route path ="/ClubsFinal" element ={<ClubsFinal/>}/>
         <Route path='/EsiFinal' element={<EsiFinal/>}></Route>
+        <Route path='/FabLab/Accueil' element={<FabLabPage/>}></Route>
+        <Route path='/FabLab/Demande_piece' element={<DemandeForm/>}></Route>
+        <Route path='/FabLab/Details_piece' element={<PieceDetail/>}></Route>
+        <Route path='/FabLab/Inscription' element={<InscriptionForm/>}></Route>
+        <Route path='/Ebachelier/Accueil' element={<Ebachelier/>}></Route>
+        <Route path='/Ebachelier/Forum' element={<ForumPage/>}></Route>
+        <Route path='/Presentation' element={<Presentation/>}></Route>
         
 
 

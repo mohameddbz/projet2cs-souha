@@ -1,0 +1,44 @@
+.next-section {
+    display: flex;
+    position: relative;
+    justify-content: space-between; /* Espacement entre les deux colonnes */
+    align-items: center; /* Alignement vertical des contenus des colonnes */
+    margin: 40px 20px; /* Espacement amélioré autour de la section pour éviter chevauchement */
+    min-height: 300px; /* Hauteur minimale pour éviter les chevauchements en cas de contenu peu élevé */
+}
+
+.column {
+    flex: 1; /* Chaque colonne prend la moitié de l'espace disponible */
+    padding: 20px; /* Espacement à l'intérieur de chaque colonne */
+    display: flex;
+    flex-direction: column; /* Pour assurer que le contenu de la colonne est bien structuré */
+    justify-content: space-around; /* Distribue l'espace autour des éléments à l'intérieur */
+}
+
+.text-and-buttons {
+    display: flex;
+    flex-direction: column; /* Disposition verticale des éléments */
+    align-items: flex-start; /* Alignement à gauche des boutons et du texte */
+}
+
+.button { /* Correction du nom de la classe ici, était .bouton avant */
+    margin: 5px; /* Espacement entre les boutons */
+    padding: 10px 20px; /* Padding pour les boutons */
+    background-color: #007BFF; /* Couleur de fond des boutons */
+    color: white; /* Couleur du texte des boutons */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Bords arrondis */
+    cursor: pointer; /* Curseur en forme de pointeur */
+    flex-shrink: 0; /* Empêche le bouton de rétrécir si la colonne est trop petite */
+}
+
+.video-container {
+    display: flex;
+    justify-content: center; /* Centrage de la vidéo */
+    align-items: center; /* Centrage vertical */
+}
+
+video {
+    width: 100%; /* Adaptation de la vidéo à la largeur de la colonne */
+    max-width: 500px; /* Largeur maximale pour éviter une vidéo trop grande */
+}

@@ -1,0 +1,12 @@
+.node {
+    position: absolute;
+    background-color: #D9D9D9;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+  }
+  

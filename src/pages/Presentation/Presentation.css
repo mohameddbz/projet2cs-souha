@@ -1,0 +1,65 @@
+.home-page {
+    font-family: Arial, sans-serif;
+}
+
+header, footer {
+    padding: 20px;
+    text-align: center;
+    background-color: #f1f1f1;
+}
+
+footer {
+    margin-top: 20px;
+}
+.academic-pathway-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f0f0f0;
+    padding: 20px;
+  }
+  
+  .text-container {
+    flex-basis: 50%;
+    padding-right: 20px;
+  }
+  
+  .diagram-container {
+    flex-basis: 50%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .diagram-container img {
+    width: 100%;
+    max-width: 400px; /* Adjust size as necessary */
+  }
+  
+  .presentation-button {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+  .presentation-button:hover {
+    background-color: #003d7a;
+  }
+  
+  h2 {
+    color: #0056b3; /* Deep blue color matching your theme */
+    margin-bottom: 10px;
+  }
+  
+  ul {
+    padding-left: 20px; /* Proper indentation for list */
+  }
+  
+  li {
+    margin-bottom: 5px; /* Space between list items */
+  }
+  

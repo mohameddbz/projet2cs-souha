@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import './auth.css'; // Assurez-vous que le chemin est correct pour vos CSS
-import log from '../../assets/images/log.svg'; // Assurez-vous que le chemin est correct pour vos images
-import register from '../../assets/images/register.svg'; // Assurez-vous que le chemin est correct pour vos images
+import { Link } from 'react-router-dom'; // Import Link from React Router
+import './auth.css'; // Import your CSS file here
+import log from '../../assets/images/log.svg'
+import register from '../../assets/images/register.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock, faUser } from '@fortawesome/free-solid-svg-icons';
-import logoEsi from '../../assets/images/logo_esi1.svg'; // Assurez-vous que le chemin est correct pour vos images
-import axios from 'axios'; // Assurez-vous d'avoir installé axios
-import { Link, useNavigate } from 'react-router-dom'; // Importez useNavigate
-
+import logoEsi from '../../assets/images/logo_esi1.svg'
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 function Auth() {
   const [isSignUpMode, setIsSignUpMode] = useState(false);
   const [email, setEmail] = useState('');
@@ -29,11 +29,23 @@ function Auth() {
         email,
         password
       });
-      const { token } = response.data;
+      const { token, is_adminstrateur, is_editeur } = response.data;
       if (token) {
         console.log('Token reçu:', token);
         localStorage.setItem('token', token);
-        navigate('/Admin/dashboard');
+        localStorage.setItem('is_adminstrateur', is_adminstrateur);
+        localStorage.setItem('is_editeur', is_editeur);
+        console.log(is_editeur);
+        console.log(is_adminstrateur);
+
+        // Redirigez l'utilisateur en fonction de son rôle
+        if (is_adminstrateur) {
+          navigate('/Admin/publications');
+        } else if (is_editeur) {
+          navigate('/Publieur/publications');
+        } else {
+          navigate('/'); // Rediriger vers une page par défaut si non-admin/éditeur
+        }
       } else {
         alert('Connexion échouée : aucun token reçu');
       }
@@ -57,14 +69,13 @@ function Auth() {
         alert('Problème de connexion au serveur');
       }
     }
-  };
-  
-  
+};
+
   return (
     <div className={`container ${isSignUpMode ? 'sign-up-mode' : ''}`}>
       <div className="forms-container">
         <div className="signin-signup">
-          <form className="sign-in-form" onSubmit={handleSignIn}>
+          <form action="#" className="sign-in-form" onSubmit={handleSignIn} >
             <h2 className="title">Se Connecter</h2>
             <div className="input-field">
               <FontAwesomeIcon icon={faUser} className="fa-icon"></FontAwesomeIcon>
@@ -72,11 +83,38 @@ function Auth() {
             </div>
             <div className="input-field">
               <FontAwesomeIcon icon={faLock} className="fa-icon"></FontAwesomeIcon>
-              <input type="password" placeholder="Mot de passe" value={password} onChange={(e) => setPassword(e.target.value)} />
+              <input type="password" placeholder="mot de passe" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
             <input type="submit" value="Se Connecter" className="btn solid" />
+            <p className="social-text">Ou bien se connecter via le compte gmail@esi.dz</p>
+            <div className="social-media">
+              <Link to="#" className="social-icon">
+                <FontAwesomeIcon icon={faEnvelope}  className="fab fa-facebook-f"></FontAwesomeIcon>
+              </Link>
+            </div>
           </form>
-          {/* Incluez ici le formulaire d'inscription si nécessaire */}
+          <form action="#" className="sign-up-form">
+            <h2 className="title">S'inscrire</h2>
+            <div className="input-field">
+              <i className="fas fa-user"></i>
+              <input type="text" placeholder="Nom utilisateur" />
+            </div>
+            <div className="input-field">
+              <i className="fas fa-envelope"></i>
+              <input type="email" placeholder="Email" />
+            </div>
+            <div className="input-field">
+              <i className="fas fa-lock"></i>
+              <input type="password" placeholder="Mot de passe" />
+            </div>
+            <input type="submit" className="btn" value="S'inscrire" />
+            <p className="social-text">Ou bien s'inscrire en utilisant le compte gmail@esi.dz</p>
+            <div className="social-media">
+            <Link to="#" className="social-icon">
+                <FontAwesomeIcon icon={faEnvelope}  className="fab fa-facebook-f"></FontAwesomeIcon>
+              </Link>
+            </div>
+          </form>
         </div>
       </div>
 

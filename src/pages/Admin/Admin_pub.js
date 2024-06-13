@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { FaHourglassHalf, FaSearch } from 'react-icons/fa';
-import axios from 'axios';
-import './Admin.css';
+import { FaList, FaSearch, FaTrash } from 'react-icons/fa';
 import SidebarAdm from '../../components/Sidebar/SidebarAdmin/SidebarAdm';
+import axios from 'axios';
+import './Admin_pub.css';
 
-function AdminPage() {
+function PublicationAdmin() {
     const [publications, setPublications] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [error, setError] = useState('');
 
-    // Déplacez fetchPublications ici pour la rendre accessible dans tout le composant
+    // Définir fetchPublications en dehors mais à l'intérieur de PublicationAdmin
     const fetchPublications = async () => {
         const token = localStorage.getItem('token');
         try {
-            const response = await axios.get('http://127.0.0.1:8000/publication/search/?etat=en attente', {
+            const response = await axios.get('http://127.0.0.1:8000/publication/search/?etat=valide', {
                 headers: { 'Authorization': `token ${token}` }
             });
-            setPublications(response.data); // Vérifiez ici la structure exacte attendue.
+            setPublications(response.data);
         } catch (error) {
             console.error('Erreur lors de la récupération des publications:', error);
             setError('Failed to fetch publications. Please try again later.');
@@ -25,28 +25,11 @@ function AdminPage() {
 
     useEffect(() => {
         fetchPublications();
-    }, [fetchPublications]);
+    }, []);
 
-    function handleApprove(id) {
-        const token = localStorage.getItem('token');
-        axios.put(`http://127.0.0.1:8000/publication/validate/${id}/`, {}, {
-            headers: {
-                'Authorization': `token ${token}`
-            }
-        })
-        .then(response => {
-            console.log('Publication approved successfully:', response);
-            fetchPublications(); // Refresh publications list
-        })
-        .catch(error => {
-            console.error('Failed to approve publication:', error);
-            alert('Failed to approve the publication. Please try again.');
-        });
-    }
-    
     function handleReject(id) {
         const token = localStorage.getItem('token');
-        axios.put(`http://127.0.0.1:8000/publication/refuse/${id}/`, {}, {
+        axios.put(`http://127.0.0.1:8000/publication/annuler/${id}/`, {}, {
             headers: {
                 'Authorization': `token ${token}`
             }
@@ -67,9 +50,9 @@ function AdminPage() {
 
     const filteredPublications = publications.filter(
         publication =>
-            publication.titre.toLowerCase().includes(searchTerm) ||
-            publication.etat.toLowerCase().includes(searchTerm) ||
-            publication.date_publication.includes(searchTerm)
+            publication.titre?.toLowerCase().includes(searchTerm) ||
+            publication.etat?.toLowerCase().includes(searchTerm) ||
+            publication.date_publication?.includes(searchTerm)
     );
 
     if (error) {
@@ -83,7 +66,7 @@ function AdminPage() {
             </div>
             <div className="admin-container">
                 <div className="admin-header">
-                    <h1><FaHourglassHalf /> Publications en attente</h1>
+                    <h1><FaList /> Publications</h1>
                     <div className="search-box">
                         <button className="search-button" onClick={() => console.log('Search clicked')}>
                             <FaSearch />
@@ -101,25 +84,26 @@ function AdminPage() {
                     <thead>
                         <tr>
                             <th>Titre</th>
-                            <th>Auteur</th>
-                            <th>Date</th>
+                            <th>Acteur</th>
+                            <th>État</th>
+                            <th>Validation</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                    {filteredPublications.map(publication => (
-                        <tr key={publication.id_publication}>
-                            <td>{publication.titre || 'No Title'}</td>
-                            <td>{publication.publisher || 'No Publisher'}</td>
-                            <td>{publication.date_publication || 'No Date'}</td>
-                            <td>
-                                <div className="action-buttons">
-                                    <button className="approve" data-tooltip="Approuver" onClick={() => handleApprove(publication.id_publication)}>&#10004;</button>
-                                    <button className="reject" data-tooltip="Rejeter" onClick={() => handleReject(publication.id_publication)}>&#10006;</button>
-                                </div>
-                            </td>
-                        </tr>
-                    ))}
+                        {filteredPublications.map(publication => (
+                            <tr key={publication.id_publication}>
+                                <td>{publication.titre || 'No Title'}</td>
+                                <td>{publication.publisher || 'No Publisher'}</td>
+                                <td>{publication.etat || 'No Status'}</td>
+                                <td>{publication.date_publication || 'No Date'}</td>
+                                <td>
+                                    <div className="action-buttons">
+                                        <button className="reject" data-tooltip="Supprimer" onClick={() => handleReject(publication.id_publication)}><FaTrash/></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
@@ -127,4 +111,4 @@ function AdminPage() {
     );
 }
 
-export default AdminPage;
+export default PublicationAdmin;
