@@ -35,7 +35,7 @@ function SuccesStory() {
 // tableau de dépendances vide pour appel unique
 
   const loadDataPublications = () => {
-    axios.get('http://localhost:8000/publication/searchall/?type_publication=success story')
+    axios.get('http://localhost:8000/publication/searchall/?type_publication=success%20story&etat=valide')
       .then(res => {
         console.log(res.data.length);
         setCards(res.data);

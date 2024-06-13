@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './Chatbot.module.scss';
+import axios from 'axios';
 
 function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,17 +10,44 @@ function Chatbot() {
     setIsOpen(!isOpen); // This toggles the state of the popup
   };
 
-  const handleSend = (event) => {
+  const handleSend = async (event) => {
     if (event.key === 'Enter' && event.target.value.trim()) {
-      const newMessages = [...messages, { text: event.target.value, sender: 'user' }];
+      const userMessage = event.target.value;
+      const newMessages = [...messages, { text: userMessage, sender: 'user' }];
       setMessages(newMessages);
 
-      // Simulate a response from the chatbot
-      setTimeout(() => {
-        setMessages([...newMessages, { text: "Ceci est une réponse automatique.", sender: 'bot' }]);
-      }, 1000);
+      // Clear input after sending
+      event.target.value = '';
 
-      event.target.value = ''; // Clear input after send
+      try {
+        // Make a request to the backend API
+        const response = await axios.get(`http://127.0.0.1:8000/query_publications/?query=${userMessage}`,{
+          headers:{'Content-Type':'application/json'}
+        });
+        
+        // Debugging: Log the response data to see what is being returned
+        console.log('Response from backend:', response.data.results);
+
+        // Get the response data
+        const botResponse = response.data.results;
+
+        if (Array.isArray(botResponse)) {
+          // Update messages with the bot response
+          const formattedBotMessages = botResponse.map(result => ({ text: result, sender: 'bot' }));
+          setMessages([...newMessages, ...formattedBotMessages]);
+        } else if (typeof botResponse === 'string') {
+          // Handle string response format
+          setMessages([...newMessages, { text: botResponse, sender: 'bot' }]);
+        } else {
+          // Handle unexpected response format
+          console.error('Unexpected response format from backend. Expected an array or a string.');
+          setMessages([...newMessages, { text: 'Unexpected response format from backend.', sender: 'bot' }]);
+        }
+      } catch (error) {
+        // Handle error (you can show an error message to the user here)
+        console.error('Error fetching response from backend:', error);
+        setMessages([...newMessages, { text: 'Sorry, something went wrong. Please try again later.', sender: 'bot' }]);
+      }
     }
   };
 

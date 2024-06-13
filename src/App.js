@@ -46,10 +46,12 @@ import InscriptionForm from './pages/Fablab/Inscription';
 import Ebachelier from './pages/Ebachelier/Ebachelier';
 import ForumPage from './pages/Ebachelier/Forum';
 import Presentation from './pages/Presentation/Presentation';
+import Contact from './pages/ContactRelex/Contact';
 
 
 
 // import Postgraduation from './Pages/Postgraduation/Postgraduation'
+import SuccessStories from './pages/SuccessStories/SuccessStories';
 
 
   
@@ -64,11 +66,13 @@ function App() {
       <Routes>
         <Route path='/' element={<LandingPage/>}></Route>
         <Route path='/EventList' element={<Evenements/>}></Route>
+        <Route path='/SuccessStories' element={<SuccessStories/>}></Route>
         <Route path="/Auth" element={<PublicRoute><Authentification /></PublicRoute>} />
         < Route path ="/Annuaire/Administration" element ={<Annuaire/>}/>
         < Route path ="/Annuaire/Enseignants" element={<Enseignants/> }/>
         < Route path ="/Annuaire/Alumni" element ={<Alumni/>}/>
         <Route path='/LCSI' element={<Lcsi/>}></Route>
+        <Route path='/Contact' element={<Contact/>}></Route>
         < Route path ="/LMCSProjects" element ={<Projets/>}/>
         < Route path ="/Admin" element ={<PrivateRoute><Principal /></PrivateRoute>}/>
         <Route path="/Admin/publications" allowedRoles={['administrateur']} element={<PrivateRoute><PublicationAdmin /></PrivateRoute>} />

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import "./Forum.css";
 import QuestionDetails from '../../components/QuestionItem/QuestionItem';
 import QuestionList from "../../components/QuestionList/QuestionList";
+import Navbar from '../../components/navbar/navbar';
+import Footer from '../../components/Footer/Footer';
 
 const ForumPage = () => {
     const questions = [
@@ -183,6 +185,8 @@ const ForumPage = () => {
       
 
       return (
+        <>
+        <Navbar/>
         <div className='forum'>
         <header className="forum-header">
           <h1 className="forum-title">Forum E-Bachelier</h1>
@@ -198,6 +202,9 @@ const ForumPage = () => {
 <QuestionDetails question={selectedQuestion} />
 </div>
         </div>
+        <Footer/>
+        </>
+        
       );
     }
 

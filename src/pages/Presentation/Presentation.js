@@ -5,6 +5,8 @@ import "./Presentation.css";
 import Carousel from '../../components/Carousel/Carousel';
 import BoxComponent from '../../components/Box/def';
 import EffectifsComponent from '../../components/Effectif/Effectif';
+import Navbar from '../../components/navbar/navbar';
+import Footer from '../../components/Footer/Footer';
 
 function Presentation() {
     const textData = [{
@@ -30,11 +32,13 @@ function Presentation() {
 
     return (
         <div className="home-page">
+            <Navbar/>
             <Carousel />
             <BoxComponent data={textData[0]} isImageOnLeft={true} />
             <BoxComponent data={textData[1]} isImageOnLeft={false} />
             <BoxComponent data={textData[2]} isImageOnLeft={true} />
             <EffectifsComponent />
+            <Footer/>
         </div>
     );
 }

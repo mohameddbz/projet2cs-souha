@@ -108,6 +108,7 @@ function Admin2(props) {
             <option value="event">Événement</option>
             <option value="actualité">Actualité</option>
             <option value="article">Article</option>
+            <option value="Success Story">Success Story</option>
           </select>
         </div>
 

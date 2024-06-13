@@ -7,7 +7,7 @@ const listItem=[
                 items:[
                     {
                         item:'Présentation',
-                        lien:''
+                        lien:'/Presentation'
                     },{
                         item:'Mot Président',
                         lien:''
@@ -29,17 +29,24 @@ const listItem=[
                 title:'Vie estudiantine',
                 items:[
                     {
-                        item:'Engagement étudiant',
-                        lien:''
-                    },{
                         item:'Histoires de réussite',
                         lien:'/SuccessStories'
                     },{
                         item:'Clubs',
                         lien:'/ClubsFinal'
                     },{
-                        item:'Fablab',
-                        lien:''
+                        item:'Fablab Accueil',
+                        lien:'/FabLab/Accueil'
+                    },{
+                        item:'Fablab Demande',
+                        lien:'/FabLab/Demande_piece'
+                    }
+                    ,{
+                        item:'Fablab Piece',
+                        lien:'/FabLab/Details_piece'
+                    },{
+                        item:'Fablab Inscription',
+                        lien:'/FabLab/Inscription'
                     }]
             },
         ]
@@ -51,8 +58,8 @@ const listItem=[
                     title:'E-Bacheliers',
                     items:[
                         {
-                            item:"Pourqoui faire l'ESI",
-                            lien:''
+                            item:"Presentation",
+                            lien:'/Ebachelier/Accueil'
                         },{
                             item:"Procedure d'inscription ",
                             lien:''
@@ -61,7 +68,7 @@ const listItem=[
                             lien:''
                         },{
                             item:'Forum',
-                            lien:''
+                            lien:'/Ebachelier/Forum'
                         }]
                 }
             ]
@@ -118,16 +125,37 @@ const listItem=[
                             title:'Recherche',
                             items:[
                                 {
-                                    item:'LMCS',
+                                    item:'Presentation LMCS',
+                                    lien:'/lmcs'
+                                },
+                                {
+                                    item:'Projets LMCS',
                                     lien:'/LMCSProjects'
-                                },{
-                                    item:'LCSI',
-                                    lien:''
+                                },
+                                {
+                                    item:'Equipes LMCS',
+                                    lien:'/LMCSTeams'
+                                },
+                                {
+                                    item:'Presentation LCSI',
+                                    lien:'/lcsi'
+                                },
+                                {
+                                    item:'Projets LCSI',
+                                    lien:'/LCSIProjects'
+                                },
+                                {
+                                    item:'Equipes LCSI',
+                                    lien:'/LCSITeams'
                                 }]
                         },
                         {
                             title:'Graduate',
                             items:[
+                                {
+                                    item:'Post graduation',
+                                    lien:'/postraduation'
+                                },
                                 {
                                     item:'Programme',
                                     lien:''

@@ -3,6 +3,8 @@ import { FaUserAlt, FaMicrochip, FaLaptop } from 'react-icons/fa';
 import './PagePres.css'; // CSS du FabLabPage
 import ExplorationSection from '../../components/ExplorerFab/ExplorerFab';
 import Accordion from '../../components/Charte/Charte';
+import Navbar from '../../components/navbar/navbar';
+import Footer from '../../components/Footer/Footer';
 const accordionData = [
   { id: 1, name: "Objet", details: "Détails sur l'objet de la charte du FABLAB." },
   { id: 2, name: "Personnes autorisées", details: "Détails sur qui est autorisé à utiliser le FABLAB." },
@@ -15,6 +17,7 @@ const accordionData = [
 function FabLabPage() {
   return (
     <div>
+      <Navbar/>
       <div className="fablab-container">
         <div className="title-container">
           <h1 className="fablab-title">ESI Fablab</h1>
@@ -67,6 +70,7 @@ function FabLabPage() {
         </div>
         <ExplorationSection />
             <Accordion data={accordionData} />
+        <Footer/>
         </div>
   );
 }

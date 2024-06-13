@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 import './Demande.css'
+import Navbar from '../../components/navbar/navbar';
+import Footer from '../../components/Footer/Footer';
 
 function DemandeForm() {
   const [formData, setFormData] = useState({
@@ -30,7 +32,9 @@ function DemandeForm() {
   };
 
   return (
-    <div className="demande-form">
+    <>
+      <Navbar/>
+      <div className="demande-form">
       <h1>Demander Pièce électronique</h1>
       <form onSubmit={handleSubmit}>
         <div className="input-group">
@@ -60,6 +64,8 @@ function DemandeForm() {
         <button type="submit" className="action-button">Demander</button>
       </form>
     </div>
+    <Footer/>
+    </>
   );
 }
 

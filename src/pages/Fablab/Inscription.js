@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './Inscription.css'; // Assurez-vous que le chemin vers le fichier CSS est correct
+import Navbar from '../../components/navbar/navbar';
+import Footer from '../../components/Footer/Footer';
 
 function InscriptionForm() {
   // États pour chaque champ du formulaire
@@ -22,6 +24,8 @@ function InscriptionForm() {
   };
 
   return (
+    <>
+    <Navbar/>
     <div className="inscription-form">
       <h1>Formulaire d'inscription</h1>
       <h3>Formulaire d'Inscription pour Nouveau Projet à ESI-FabLab</h3>
@@ -139,6 +143,8 @@ function InscriptionForm() {
         <button type="submit" className="form-button">Envoyer</button>
       </form>
     </div>
+    <Footer/>
+    </>
   );
 }
 

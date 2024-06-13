@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
 import './DetailsPiece.css';
-import image1 from '../../assets/dfd.jpg';
-import image2 from '../../assets/quas.jpg';
-import image3 from '../../assets/pok.jpg';
+import image1 from '../../assets/ard.jpg';
+import image2 from '../../assets/ard2.jpg';
+import image3 from '../../assets/ard3.jpg';
+import Navbar from '../../components/navbar/navbar';
+import Footer from '../../components/Footer/Footer';
 
 function PieceDetail() {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -14,13 +16,17 @@ function PieceDetail() {
         statut: "Disponible",
         categorie: "Microcontrôleurs",
         description: "Dans le cadre des efforts menés par l’école pour la lutte contre le changement climatique et la restauration d’un écosystème naturel, l’ESI a organisé une campagne de reboisement hier mardi 05 mars 2024  à 14h00, et ce, en collaboration avec la Direction des forets et la ceinture verte de la wilaya d’Alger, circonscriptions  de Belfort.Cette campagne a vu la participation de toute la communauté de l’école étudiants, enseignants et employés ayant contribué à la  plantation de plus de 200 arbustes dans les différents espaces de l’école. Cette opération de plantation vise également à consacrer la culture environnementale dans la communauté de l’école  et à faire connaitre l’importance de la ceinture verte, tout en inculquant aux participants les bonnes pratiques de plantation et les modalités de préservation des arbustes plantés au regard des changements climatiques.",
-        images: [image1, image2, image3],
+        images: [image1, image2, image3]
+
+
     };
 
     const displayedDescription = isDescriptionExpanded ? piece.description : `${piece.description.substring(0, 100)}...`;
 
     return (
-        <div className="detail-container">
+        <>
+          <Navbar/>
+          <div className="detail-container">
             <h1 className="title">Détails sur la pièce</h1>
             <button onClick={() => window.history.back()} className="back-button">
                 <FaArrowLeft className="mr-2" /> Revenir
@@ -65,6 +71,8 @@ function PieceDetail() {
                 </div>
             </div>
         </div>
+          <Footer/>
+        </>
     );
 }
 

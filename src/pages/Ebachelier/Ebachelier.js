@@ -4,27 +4,27 @@ import './Ebachelier.css';
 import { FaBrain, FaEye, FaHeartbeat, FaUser } from 'react-icons/fa';
 import { FaComments } from 'react-icons/fa';
 import { FaFileAlt } from 'react-icons/fa'; // Importing file icon from react-icons
-import alumniImage from '../../assets/dfd.jpg';
 import galeriEsiImage from '../../assets/im1.jpeg';
-import clubsEtudiantsImage from '../../assets/pok.jpg';
+
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import im1 from "../../assets/dfd.jpg"
+import Navbar from '../../components/navbar/navbar';
+import Footer from '../../components/Footer/Footer';
 
 
 const testimonials = [
   {
     name: "Mohamed BENAMER",
     role: "Consultant ERP",
-    imageUrl: im1,
+    imageUrl: galeriEsiImage,
     text: "Étudier à l'ESI est une source de fierté pour moi. Choisir la filière Systèmes d'Information correspond parfaitement à mon travail."
   },
   {
     name: "Mezaine DAHOU",
-    imageUrl: im1,
+    imageUrl: galeriEsiImage,
     role: "Entrepreneur",
     text: "Étudier à l'ESI est une fierté pour moi. J'y ai acquis des connaissances exceptionnelles en obstétrique, et j'ai été formée et éduquée pour être fiable sur le marché du travail."
   },
-  { imageUrl: im1,
+  { imageUrl: galeriEsiImage,
     name: "Mohamed BENAMER",
     role: "Consultant ERP",
     text: "Étudier à l'ESI est une source de fierté pour moi. Choisir la filière Systèmes d'Information correspond parfaitement à mon travail."
@@ -89,6 +89,7 @@ if (displayedTestimonials.length < 2) {
 
   return (
     <div>
+      <Navbar/>
  <div className="bachelier-container">
       <p className="network-message">
       Bienvenue sur notre espace E-bachelier, dédié à vous, futurs pionniers de l'ingénierie !
@@ -184,7 +185,7 @@ if (displayedTestimonials.length < 2) {
       <button className="read-more-button">Lire plus</button>
     </div>
     <div className="gallery-grid">
-      <div className="grid-item image" style={{ backgroundImage: `url(${alumniImage})` }}></div>
+      <div className="grid-item image" style={{ backgroundImage: `url(${galeriEsiImage})` }}></div>
       <div className="grid-item text">
         <h2>Alumni</h2>
         <p>Les anciens de l'ESI sont dispersés dans différentes régions, s'engageant au niveau national et mondial.</p>
@@ -198,7 +199,7 @@ if (displayedTestimonials.length < 2) {
         <button className='buttonn'>Voir plus →</button>
       </div>
       
-      <div className="grid-item image" style={{ backgroundImage: `url(${clubsEtudiantsImage})` }}></div>
+      <div className="grid-item image" style={{ backgroundImage: `url(${galeriEsiImage})` }}></div>
       <div className="grid-item text">
         <h2>Clubs Etudiants</h2>
         <p>Unis dans la diversité, nous cultivons l'excellence et l'innovation. Ensemble, nous façonnons l'avenir au sein de nos clubs étudiants.</p>
@@ -231,6 +232,7 @@ if (displayedTestimonials.length < 2) {
         ))}
       </div>
     </div>
+    <Footer/>
     </div>
    
   );
