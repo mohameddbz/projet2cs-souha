@@ -22,9 +22,9 @@
 .succesCard-container{
     display: flex;
     flex-direction: row;
-    width: 80%;
     text-align: center;
     margin: auto;
+    width: 90%;
 }
 .succesImg{
     width:410px;
@@ -39,7 +39,7 @@
     margin-left: -20px;
     margin-top: 30px;
     min-height: 312px;
-    padding:10px 20px;
+    padding:10px 40px;
 }
 .SuccesTitle{
     font-family: "Roboto Condensed", sans-serif;
@@ -54,6 +54,8 @@
     text-align: left;
     padding: 10px;
     line-height: .7cm ;
+    width:80%;
+    height: 290px;
 }
 .succes-full-container{
     width: 100%;
@@ -65,9 +67,174 @@
 }
 .succes-container{
     height: 100%;
-    padding: 80px 20px;
+    padding: 6% 2%;
+    text-align: center;
 }
 
 .slick-dots li button:before{
     color: white !important;
+}
+
+@media only screen and (max-width: 950px){
+    .succesImg{
+        width:310px;
+        height: 242px;
+        padding: 0;
+        border-radius: 10px;
+    }
+    .SuccesParag{
+        font-family: "Open Sans", sans-serif;
+        font-size: 14px;
+        text-align: left;
+        padding: 7px;
+        line-height: .5cm ;
+        width:345px;
+        height: 230px;
+    }
+}
+@media only screen and (max-width: 800px){
+    .succesImg{
+        width:300px;
+        height: 230px;
+        padding: 0;
+        border-radius: 10px;
+    }
+    .SuccesParag{
+        font-family: "Open Sans", sans-serif;
+        font-size: 14px;
+        text-align: left;
+        padding: 7px;
+        line-height: .4cm ;
+        width:310px;
+        height: 195px;
+    }
+    .SuccesDescription{
+        background-color: white;
+        border: 1px solid white;
+        border-radius: 10px;
+        margin-left: -20px;
+        margin-top: 30px;
+        min-height: 250px;
+        padding:10px 20px;
+    }
+    .SuccesTitle{
+        font-family: "Roboto Condensed", sans-serif;
+        color:#0061B1;
+        font-size: 19px;
+        padding: 10px 8px;
+        text-align: left;
+    }
+}
+@media only screen and (max-width: 670px){
+    .succesImg{
+        width:200px;
+        height: 130px;
+        padding: 0;
+        border-radius: 10px;
+    }
+    .SuccesParag{
+        font-family: "Open Sans", sans-serif;
+        font-size: 11px;
+        text-align: left;
+        padding: 5px;
+        line-height: .3cm ;
+        width:235px;
+        height: 150px !important;
+    }
+    .SuccesTitle{
+        font-family: "Roboto Condensed", sans-serif;
+        color:#0061B1;
+        font-size: 15px;
+        padding: 6px 5px;
+        text-align: left;
+    }
+    .SuccesDescription{
+        background-color: white;
+        border: 1px solid white;
+        border-radius: 10px;
+        margin-left: -20px;
+        margin-top: 30px;
+        min-height: 190px;
+        padding:10px 20px;
+    }
+}
+@media only screen and (max-width: 440px){
+    .succesImg{
+        width:350px;
+        height: 312px;
+        padding: 0;
+        border-radius: 10px;
+    }
+    .SuccesTitle{
+        font-family: "Roboto Condensed", sans-serif;
+        color:#0061B1;
+        font-size: 21px;
+        padding: 16px 10px;
+        text-align: left;
+    }
+    .SuccesParag{
+        font-family: "Open Sans", sans-serif;
+        font-size: 13px;
+        text-align: left;
+        padding: 7px;
+        line-height: .5cm ;
+        width:330px;
+        height: 290px;
+    }
+    .succesCard-container{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        margin: auto;
+        width: 90%;
+    }
+    .SuccesDescription{
+        background-color: white;
+        border: 1px solid white;
+        border-radius: 10px;
+        margin-left: 0px;
+        margin-top: -20px;
+        min-height: 312px;
+        padding:10px 20px;
+    }
+}
+@media only screen and (max-width: 390px){
+    .succesImg{
+        width:300px;
+        height: 270px;
+        padding: 0;
+        border-radius: 10px;
+    }
+    .SuccesTitle{
+        font-family: "Roboto Condensed", sans-serif;
+        color:#0062b3;
+        font-size: 18px;
+        padding: 12px 8px;
+        text-align: left;
+    }
+    .SuccesParag{
+        font-family: "Open Sans", sans-serif;
+        font-size: 12px;
+        text-align: left;
+        padding: 5px;
+        line-height: .5cm ;
+        width:290px;
+        height: 280px;
+    }
+    .succesCard-container{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        margin: auto;
+        width: 90%;
+    }
+    .SuccesDescription{
+        background-color: white;
+        border: 1px solid white;
+        border-radius: 10px;
+        margin-left: 0px;
+        margin-top: -20px;
+        min-height: 312px;
+        padding:10px 20px;
+    }
 }

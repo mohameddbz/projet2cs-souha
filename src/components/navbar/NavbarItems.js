@@ -19,7 +19,7 @@ const listItem=[
                         lien:''
                     },{
                         item:'Annuaire',
-                        lien:'/AnnuaireEnseignants'
+                        lien:'/Annuaire/Administration'
                     },{
                         item:'Contact',
                         lien:'/Contact'

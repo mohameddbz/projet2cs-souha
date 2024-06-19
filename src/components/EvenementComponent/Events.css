@@ -1,9 +1,6 @@
 .events-full-container{
-    background-image: url('../../assets/images/skyBg.svg');
     padding: 5% 0px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin: 40px auto;
+    margin: 20px auto;
     width: 98%;
     text-align: center;
 }
@@ -30,8 +27,7 @@
     font-weight: bold;
 }
 .events-container{
-    
-    width: 98%;
+    width: 100%;
     text-align: center;
     margin: auto;
     padding: 10px;
@@ -212,7 +208,7 @@
 }
 .cardEvenementContainer{
     width: 250px;
-    height: 340px;
+    height: 370px;
     align-content: center;
     display: flex;
     flex-direction: column;
@@ -220,6 +216,20 @@
     font-family: 'Open Sans', sans-serif;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
     margin: 15px;
+    background-color: white;
+}
+.cardEvenementBtnContainer{
+    margin-top: 3px;
+    text-align: center;
+    margin: auto;
+}
+.cardEvenementBtn{
+    padding: 6px 60px;
+    background-color: #0061B1;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Open Sans', sans-serif;
+    color: white;
 }
 .slideFromRight {
     transition: transform 0.3s ease-in-out;
@@ -343,6 +353,7 @@
     grid-template-columns: auto auto auto;
 }
 
+
 @media only screen and (max-width: 1024px) {
     .evenementSection1{
         width: 320px;
@@ -352,7 +363,7 @@
     }
     .cardEvenementContainer{
         width: 210px;
-        height: 300px;
+        height: 350px;
         align-content: center;
         display: flex;
         flex-direction: column;
@@ -360,6 +371,7 @@
         font-family: 'Open Sans', sans-serif;
         box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
         margin: 7px;
+        background-color: white;
     }
     .cardEvenementTitle{
         color: #0061B1;

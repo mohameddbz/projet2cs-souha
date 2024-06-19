@@ -1,11 +1,35 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './news.css'; // Assurez-vous que le chemin est correct pour votre fichier CSS
 import content from './contenu';
 import Card from './Card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faAnglesLeft, faAnglesRight} from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 
 function News (){
+  const [cards, setCards] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+
+  useEffect(() => {
+    loadDataPublications();
+  }, []);
+
+  const loadDataPublications = () => {
+    axios.get('http://localhost:8000/publication/searchall/?type_publication=actualite&etat=valide', {
+    })
+      .then(res => {
+        setCards(res.data);
+        console.log(cards)
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Error fetching data:', err);
+        setError(true);
+        setLoading(false);
+      });
+  };
   const slideRef = useRef(null);
 
   const nextSlide = () => {
@@ -24,10 +48,10 @@ function News (){
         <hr className="hr-line"/>
         <div className="Card-container">
           <div className="slideContainer" ref={slideRef}>
-            {content.map((item)=>{
+            {cards.map((item)=>{
               return(
-                <div className="itemCard" style={{ backgroundImage: `url(${item.photo})` }}>
-                  <Card titre={item.title} description={item.description}/>
+                <div className="itemCard" style={{ backgroundImage: `url(${`http://localhost:8000${item.image}`})` }}>
+                  <Card titre={item.titre} description={item.description}/>
                 </div>
               )
             })}

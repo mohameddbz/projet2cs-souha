@@ -12,7 +12,7 @@ function LandingPage () {
   return (
     <div>
       <Navbar/>
-      <div>
+      <div style={{maxWidth:'100%'}}>
         <Accueil/>
         <AboutUs/>
         <News/>

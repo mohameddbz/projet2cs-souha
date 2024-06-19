@@ -6,6 +6,9 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { MdMailOutline } from "react-icons/md"; 
 import LLM  from '../../images/LLM.png';
 
+
+
+
 function Publications() {
   return (
     <div className="Rechercheur_container">

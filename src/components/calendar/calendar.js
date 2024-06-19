@@ -1,16 +1,33 @@
-import React , {useState} from 'react'
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import './calendar.css'
+import React, { useState } from 'react';
+import { DateRangePicker } from 'react-date-range';
+import 'react-date-range/dist/styles.css';
+import 'react-date-range/dist/theme/default.css';
+import './calendar.css';
 
-function Calendrier() {
-  const [date, setDate] = useState(new Date());
-  const onChange = (date) => setDate(date);
+function Calendrier({ onDateRangeChange }) {
+  const [dateRange, setDateRange] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: 'selection'
+    }
+  ]);
+
+  const handleSelect = (ranges) => {
+    setDateRange([ranges.selection]);
+    onDateRangeChange(ranges.selection);
+  };
 
   return (
     <div className='calendar-container'>
-      <Calendar onChange={onChange} value={date}/>
+      <DateRangePicker
+        ranges={dateRange}
+        onChange={handleSelect}
+        staticRanges={[]}  // Supprimer les options de plage statique
+        inputRanges={[]}   // Supprimer les options de plage d'entrée
+      />
     </div>
   );
 }
+
 export default Calendrier;
