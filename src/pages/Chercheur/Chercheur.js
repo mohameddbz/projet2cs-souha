@@ -86,7 +86,7 @@ function Chercheur(props) {
               <br />
             </span>
             <span className='chercheur-medium_title11_span3'>
-              Réalisation du Succès
+            Accomplissements
               <br />
             </span>
             <span className='chercheur-medium_title11_span4'>

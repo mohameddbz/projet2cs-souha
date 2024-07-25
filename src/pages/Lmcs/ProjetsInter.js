@@ -10,7 +10,7 @@ import Navbar from "../../components/navbar/navbar";
 import Footer from "../../components/Footer/Footer"
 
 const pageSize = 5; 
-function Projets() {
+function ProjetsInter() {
   
   const handleThemeSelect = (selectedTheme) => {
   setTheme(selectedTheme);
@@ -108,8 +108,8 @@ const handleAnneeSelect = (selectedAnnee) => {
       </div> 
   
       <div className='semi-title'>
-        <a href="#" className="lien">Projets nationaux</a>
-        <a href="ProjetsInter" className="lien" >Projets Internationaux</a>
+        <a href="LMCSProjects" className="lien">Projets nationaux</a>
+        <a href="#" className="lien" >Projets Internationaux</a>
       </div>
   
     <div className='recherche-container'>
@@ -191,4 +191,4 @@ const handleAnneeSelect = (selectedAnnee) => {
   
 }
 
-export default Projets
+export default ProjetsInter

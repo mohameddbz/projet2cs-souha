@@ -26,7 +26,7 @@ import Post from './pages/Postgraduation/Post';
 import Chercheur from './pages/Chercheur/Chercheur';
 import Publication from './pages/Chercheur/Publications'
 import Publications from './pages/Chercheur/Publications';
-import Admin2 from './pages/Admin/Publier';
+import Publier from './pages/Admin/Publier';
 import Historique from './pages/Admin/Historique';
 import Lcsi from './pages/LCSI/Lcsi';
 
@@ -47,8 +47,9 @@ import Ebachelier from './pages/Ebachelier/Ebachelier';
 import ForumPage from './pages/Ebachelier/Forum';
 import Presentation from './pages/Presentation/Presentation';
 import Contact from './pages/ContactRelex/Contact';
-
-
+import Admchercheur from './pages/Admin/Admchercheur'
+import ProjetLabo from './pages/Admin/ProjetLabo';
+import ProjetsInter from './pages/Lmcs/ProjetsInter'
 
 // import Postgraduation from './Pages/Postgraduation/Postgraduation'
 import SuccessStories from './pages/SuccessStories/SuccessStories';
@@ -65,6 +66,7 @@ function App() {
       <BrowserRouter>
       <Routes>
         <Route path='/' element={<LandingPage/>}></Route>
+        <Route path='/' element={<LandingPage/>}></Route>
         <Route path='/EventList' element={<Evenements/>}></Route>
         <Route path='/SuccessStories' element={<SuccessStories/>}></Route>
         <Route path="/Auth" element={<PublicRoute><Authentification /></PublicRoute>} />
@@ -80,18 +82,21 @@ function App() {
             <Route path="/Admin/publications_en_attente" allowedRoles={['administrateur']} element={<PrivateRoute><AdminPage /></PrivateRoute>} />
             <Route path="/Admin/profile" allowedRoles={['administrateur']} element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
             <Route path="/Admin/historique" allowedRoles={['administrateur']} element={<PrivateRoute><HistoriquePage /></PrivateRoute>} />
-            <Route path="/Publieur/publier" allowedRoles={['editeur']} element={<PrivateRoute><Admin2 /></PrivateRoute>} />
+            <Route path="/Publieur/publier" allowedRoles={['editeur']} element={<PrivateRoute><Publier/></PrivateRoute>} />
+
             <Route path="/Publieur/profile" allowedRoles={['editeur']} element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
             <Route path="/Publieur/historique" allowedRoles={['editeur']} element={<PrivateRoute><HistoriquePage /></PrivateRoute>} />
-            Ajoutez d'autres routes ici selon les liens de votre sidebar
-       
-
+            Ajoutez d'autres routes ici selon les liens de votre sideba
+            < Route path ="/ProjetLabo" element ={<ProjetLabo/>}/>
+            < Route path ="/admchercheur" element ={<Admchercheur/>}/>
         < Route path ="/LMCSTeams" element ={<Equipe/>}/>
         < Route path ="/lmcs" element ={<Lmcs/>}/>
         < Route path ="/postraduation" element ={<Post/>}/>
         < Route path ="/chercheur" element ={<Chercheur/>}/>
         < Route path ="/publication" element ={<Publications/>}/>
         < Route path ="/Historique" element ={<Historique/>}/>
+        < Route path ="/ProjetsInter" element ={<ProjetsInter/>}/>
+        
       
       
         < Route path ="/AvantPromo" element ={<AvantPromo/>}/>

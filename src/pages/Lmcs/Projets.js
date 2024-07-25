@@ -108,8 +108,8 @@ const handleAnneeSelect = (selectedAnnee) => {
       </div> 
   
       <div className='semi-title'>
-        <a href="/" className="lien">Projets nationaux</a>
-        <a href="Enseignants" className="lien" >Projets Internationaux</a>
+        <a href="#" className="lien">Projets nationaux</a>
+        <a href="ProjetsInter" className="lien" >Projets Internationaux</a>
       </div>
   
     <div className='recherche-container'>
