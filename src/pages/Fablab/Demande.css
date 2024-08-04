@@ -1,93 +1,83 @@
-/* Conteneur principal du formulaire */
 .demande-form {
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 40px;
-    max-width: 600px;
-    margin: 20px auto;
-    font-family: Arial, sans-serif;
-    border: none; /* Supprimez toutes les bordures ou remplacez par 'border: none;' */
-  }
-  
-  /* Titre du formulaire */
-  .demande-form h1 {
-    font-size: 44px;
-    font-weight: bold;
-    text-align: center;
-    color: #0061B1;
-    margin-bottom: 30px;
-  }
-  
-  /* Groupe d'inputs et single input blocks */
-  .input-group, .input-block {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  
-  /* Style pour chaque input et select dans le formulaire */
-  .input-group input, .input-block input, .input-block select, textarea {
-    flex: 1;
-    margin-right: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 18px;
-  }
-  
-  /* Spécifique pour le dernier élément du groupe pour éviter l'espacement à droite */
-  .input-group input:last-child, .input-block input:last-child {
-    margin-right: 0;
-  }
-  
-  /* Container for the quantity controls */
-  .quantity-controls {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-  
-  .quantity-controls input[type="number"] {
-    width: 50px;
-    text-align: center;
-    margin-right: 0;
-  }
-  
-  /* Boutons pour augmenter ou diminuer la quantité */
-  .quantity-controls button {
-    background-color: #0061B1;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .quantity-controls button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Bouton pour soumettre le formulaire */
-  .action-button {
-    width: 100%;
-    padding: 12px 20px;
-    background-color: #0061B1;
-    margin: 0;
-    color: white;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .action-button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Textarea styling */
-  textarea {
-    height: 100px; /* Adjusted height for text area */
-    resize: vertical; /* Allows vertical resize only */
-    width: 100%;
-  }
-  
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  max-width: 600px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+  border: none;
+}
+
+.demande-form h1 {
+  font-size: 44px;
+  font-weight: bold;
+  text-align: center;
+  color: #0061B1;
+  margin-bottom: 30px;
+}
+
+.input-group, .input-block {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.input-group input, .input-block input, .input-block select, textarea {
+  flex: 1;
+  margin-right: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
+.input-group input:last-child, .input-block input:last-child {
+  margin-right: 0;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.quantity-controls input[type="number"] {
+  width: 50px;
+  text-align: center;
+  margin-right: 0;
+}
+
+.quantity-controls button {
+  background-color: #0061B1;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.quantity-controls button:hover {
+  background-color: #0056b3;
+}
+
+.action-button {
+  width: 100%;
+  padding: 12px 20px;
+  background-color: #0061B1;
+  margin: 0;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.action-button:hover {
+  background-color: #0056b3;
+}
+
+textarea {
+  height: 100px;
+  resize: vertical;
+  width: 100%;
+}

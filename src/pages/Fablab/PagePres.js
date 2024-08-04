@@ -1,10 +1,12 @@
 import React from 'react';
 import { FaUserAlt, FaMicrochip, FaLaptop } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import './PagePres.css'; // CSS du FabLabPage
 import ExplorationSection from '../../components/ExplorerFab/ExplorerFab';
 import Accordion from '../../components/Charte/Charte';
 import Navbar from '../../components/navbar/navbar';
 import Footer from '../../components/Footer/Footer';
+
 const accordionData = [
   { id: 1, name: "Objet", details: "Détails sur l'objet de la charte du FABLAB." },
   { id: 2, name: "Personnes autorisées", details: "Détails sur qui est autorisé à utiliser le FABLAB." },
@@ -15,9 +17,18 @@ const accordionData = [
 ];
 
 function FabLabPage() {
+  const navigate = useNavigate();
+
+  const handleScrollToCharte = () => {
+    const charteElement = document.getElementById('charte-section');
+    if (charteElement) {
+      charteElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <div className="fablab-container">
         <div className="title-container">
           <h1 className="fablab-title">ESI Fablab</h1>
@@ -49,29 +60,31 @@ function FabLabPage() {
         </p>
       </div>
       <div className="next-section">
-            <div className="column text-and-buttons">
-                <h1 className='video-text'>
-                Équipement Électronique du Laboratoire : 
-                <p className='video-text2'>Explorez notre Arsenal   Technologique!</p>
-                </h1>
-                <div className="buttons-container">
-                    <button className="button1">Demander</button>
-                    <button className="button2">Lire la Charte</button>
-                </div>
-            </div>
-            <div className="column video-container">
-                <div className="video-wrapper">
-                    <video width="320" height="240" controls>
-                        <source src="movie.mp4" type="video/mp4"/>
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            </div>
+        <div className="column text-and-buttons">
+          <h1 className='video-text'>
+            Équipement Électronique du Laboratoire : 
+            <p className='video-text2'>Explorez notre Arsenal Technologique!</p>
+          </h1>
+          <div className="buttons-container">
+            <button className="button1" onClick={() => navigate('/FabLab/Demande_piece')}>Demander</button>
+            <button className="button2" onClick={handleScrollToCharte}>Lire la Charte</button>
+          </div>
         </div>
-        <ExplorationSection />
-            <Accordion data={accordionData} />
-        <Footer/>
+        <div className="column video-container">
+          <div className="video-wrapper">
+            <video width="320" height="240" controls>
+              <source src="movie.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </div>
+      </div>
+      <ExplorationSection />
+      <div id="charte-section">
+        <Accordion data={accordionData} />
+      </div>
+      <Footer />
+    </div>
   );
 }
 

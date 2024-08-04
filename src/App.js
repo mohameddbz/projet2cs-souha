@@ -1,4 +1,12 @@
 import './App.css';
+import AjouterPiece from './pages/Admin/AjouterPiece';
+import AddCategory from './pages/Admin/AddCategory';
+import PiecesElectronics from './pages/Fablab/PiecesElectronics';
+import PiecesPage from './pages/Admin/PiecesPage';
+import PieceModal from './pages/Admin/PieceModal';
+import CategoriesPage from './pages/Admin/CategoriesPage';
+import FablabInscriptionPage from './pages/Admin/FablabInscriptionPage';
+
 import Annuaire from './pages/Annuaire/Annuaire';
 import Enseignants from'./pages/Annuaire/Enseignants'
 import Alumni from './pages/Annuaire/Alumni';
@@ -111,12 +119,21 @@ function App() {
         <Route path='/EsiFinal' element={<EsiFinal/>}></Route>
         <Route path='/FabLab/Accueil' element={<FabLabPage/>}></Route>
         <Route path='/FabLab/Demande_piece' element={<DemandeForm/>}></Route>
-        <Route path='/FabLab/Details_piece' element={<PieceDetail/>}></Route>
+        
         <Route path='/FabLab/Inscription' element={<InscriptionForm/>}></Route>
         <Route path='/Ebachelier/Accueil' element={<Ebachelier/>}></Route>
         <Route path='/Ebachelier/Forum' element={<ForumPage/>}></Route>
         <Route path='/Presentation' element={<Presentation/>}></Route>
         
+        <Route path="/ajouter_piece" element={<AjouterPiece/>}></Route>
+        <Route path="/Fablab/pieces" element={<PiecesElectronics/>} />
+        <Route path="/ajouter_category" element={<AddCategory/>} />
+        <Route path="/Fablab/pieces/:id" element={<PieceDetail />} />
+        <Route path="/pieces" exact element={<PiecesPage/>} />
+       
+          <Route path="/modifier_piece/:id" element={<PieceModal/>} />
+          <Route path='/Fablab/categories' element={<CategoriesPage />} />
+          <Route path="/fablab-inscriptions" element={<FablabInscriptionPage/>} />
 
 
 

@@ -1,0 +1,55 @@
+@font-face {
+    font-family: 'Open Sans Regular';
+    src: url('/fonts/OpenSans/OpenSans-Regular.ttf') format('truetype');
+  }
+  
+  .container {
+    height: fit-content;
+    display: flex;
+    background-color: white;
+  }
+  
+  .sidebarContainer {
+    height: 100%;
+    background-color: white !important;
+    padding-right: 40px;
+    padding-left: 20px;
+  }
+  
+  .menuContainer {
+    height: 100%;
+    background-color: white;
+  }
+  
+  .SubMenu {
+    font-family: 'Open Sans Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+  }
+  
+  .widthMenu {
+    width: fit-content;
+  }
+  
+  .menuText {
+    width: 600px;
+    font-family: 'Open Sans Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+  }
+  
+  .logo {
+    margin-bottom: 20px; // Adjust spacing as needed
+  }
+  
+  .MenuItemContainer {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .icon {
+    margin-right: 10px;
+  }
+  

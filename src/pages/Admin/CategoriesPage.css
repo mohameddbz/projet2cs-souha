@@ -1,0 +1,326 @@
+.categories-page-container {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar {
+    width: 30%;
+    margin: 1%;
+    padding: 2%;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.categories-container {
+    width: 70%;
+    margin: 5%;
+    padding: 2%;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.categories-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.categories-header h1 {
+    display: flex;
+    align-items: center;
+    color: #0061B1;
+    font-size: 24px;
+    margin: 0;
+}
+
+.search-input {
+    padding: 8px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Table styles */
+.categories-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.categories-table thead {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    padding: 10px 0;
+    font-weight: bold;
+    background-color: #f0f0f0;
+    border-bottom: 2px solid #ccc;
+}
+
+.categories-table tr {
+    background-color: #F6F7FE;
+    text-align: left;
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    align-items: center;
+    border-radius: 5px;
+    color: #8F9BBA;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.categories-table td {
+    padding: 12px;
+    border: none;
+}
+
+.categories-table th {
+    padding: 12px;
+    color: #454648;
+}
+
+/* Button styles */
+.action-buttons {
+    display: flex;
+    gap: 1%;
+    position: relative;
+}
+
+.action-buttons button {
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 4px;
+}
+
+.action-buttons button::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    width: 100%;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 8px;
+    border-radius: 4px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.action-buttons button:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+.approve, .reject {
+    border: none;
+    font-weight: bold;
+    background: none;
+    font-size: 16px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.approve {
+    color: green;
+}
+
+.reject {
+    color: red;
+}
+
+.approve:hover {
+    background-color: #0061B1;
+    color: #f0f0f0;
+}
+
+.reject:hover {
+    background-color: #0061B1;
+    color: #f0f0f0;
+}
+
+/* Ajouter des styles pour les boutons d'action dans le tableau */
+.categories-table td.action-column {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.categories-table button {
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.edit-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.delete-button {
+    background-color: #F44336;
+    color: white;
+}
+
+.edit-button:hover {
+    background-color: #45a049;
+}
+
+.delete-button:hover {
+    background-color: #e53935;
+}
+
+.admin-page-container {
+    display: flex;
+    width: 100%; /* Utilise toute la largeur de la vue */
+}
+
+.sidebar {
+    width: 30%; /* Largeur du sidebar à 20% de la vue */
+    margin: 1%;
+    padding: 2%; /* Espacement interne */
+    height: 100vh; /* S'assure que le sidebar atteint la hauteur de la fenêtre */
+    box-sizing: border-box; /* Inclut padding et bordure dans la largeur totale */
+}
+
+.admin-container {
+    width: 70%;
+    margin: 5%;  /* Applique une marge de 5% tout autour */
+    padding: 2%; /* Padding de 2% pour le contenu interne */
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre douce pour un effet subtil */
+    border-radius: 5px; /* Bordures arrondies pour un design plus doux */
+    box-sizing: border-box; /* Inclut padding et bordure dans la largeur et hauteur totales */
+}
+
+.admin-table {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.admin-header h1 {
+    display: flex;
+    align-items: center; /* Centre l'icône verticalement avec le texte */
+    color: #0061B1;
+    font-size: 24px;
+    margin: 0;
+}
+
+.admin-header h1 svg {
+    margin-right: 10px; /* Espacement entre l'icône et le texte */
+    color: #0061B1; /* Couleur de l'icône */
+}
+
+.admin-table-header {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr; /* Répartition pour trois colonnes */
+    padding: 10px 0;
+    font-weight: bold;
+    background-color: #f0f0f0;
+    border-bottom: 2px solid #ccc;
+}
+
+.admin-table tr {
+    background-color: #F6F7FE;
+    margin-bottom: 10px;
+    text-align: left;
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr; /* Alignement avec les en-têtes */
+    align-items: center;
+    border-radius: 5px;
+    color: #8F9BBA;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Ajout d'une ombre pour la séparation visuelle */
+}
+
+.admin-table td {
+    padding: 12px;
+    text-align: left;
+    border: none;
+}
+
+.admin-table th {
+    padding: 12px 12px 12px 12px;
+    color: #454648;
+}
+
+.action-buttons {
+    display: flex; /* Utilisez flexbox pour aligner les éléments enfants */
+    gap: 1%; /* Espace entre les boutons */
+    position: relative;
+}
+
+.action-buttons button {
+    padding: 6px 12px; /* Ajustement du padding pour un meilleur design */
+    font-size: 14px; /* Taille de la police pour les boutons */
+    line-height: 1.5; /* Hauteur de ligne pour le texte dans les boutons */
+    background-color: #f9f9f9; /* Couleur de fond du bouton */
+    cursor: pointer; /* Change le curseur pour indiquer qu'il s'agit d'un bouton cliquable */
+    transition: background-color 0.3s; /* Transition douce pour le changement de couleur de fond */
+    border-radius: 4px; /* Bordures arrondies pour les boutons */
+}
+
+.action-buttons button::after {
+    content: attr(data-tooltip); /* Utilise l'attribut data-tooltip pour le texte du tooltip */
+    position: absolute;
+    width: 100%;
+    bottom: 100%; /* Positionne le tooltip au-dessus du bouton */
+    left: 50%; /* Centre le tooltip horizontalement par rapport au bouton */
+    transform: translateX(-50%); /* Ajuste la position horizontale pour centrer */
+    background-color: #333; /* Couleur de fond du tooltip */
+    color: #fff; /* Couleur du texte dans le tooltip */
+    padding: 5px 8px; /* Padding autour du texte du tooltip */
+    border-radius: 4px; /* Bordures arrondies pour le tooltip */
+    opacity: 0; /* Rend le tooltip invisible par défaut */
+    visibility: hidden; /* Cache le tooltip par défaut */
+    transition: opacity 0.3s, visibility 0.3s; /* Transitions pour l'opacité et la visibilité */
+}
+
+.action-buttons button:hover::after {
+    opacity: 1; /* Rend le tooltip visible au survol */
+    visibility: visible; /* Assure que le tooltip devient visible */
+}
+
+.approve, .reject {
+    border: none;
+    font-weight: bold;
+    background: none;
+    margin-top: 0px;
+    font-size: 16px;
+    cursor: pointer;
+    line-height: 1; /* Assurez-vous que la hauteur de ligne ne déforme pas l'alignement */
+}
+
+.approve {
+    color: green;
+}
+
+.reject {
+    color: red;
+}
+
+.approve:hover {
+    background-color: #0061B1;
+    color: #f0f0f0;
+}
+
+.reject:hover {
+    background-color: #0061B1;
+    color: #f0f0f0;
+}

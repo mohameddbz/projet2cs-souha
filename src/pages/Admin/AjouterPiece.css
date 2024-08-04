@@ -1,0 +1,107 @@
+.admin-page-container {
+    display: flex;
+  }
+  
+  .sidebar {
+    width: 20%;
+    background-color: #f8f9fa;
+  }
+  
+  .admin-container {
+    width: 80%;
+    padding: 20px;
+  }
+  
+  .AdminTitleContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .AdminTitle {
+    font-size: 24px;
+    font-weight: bold;
+    color: #343a40;
+  }
+  
+  .AdminInputContainer, .AdminDescriptionContainer, .AdminFileContainer {
+    margin-bottom: 20px;
+  }
+  
+  .AdminLabel {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #495057;
+  }
+  
+  .AdminInput, .AdminTextarea, .file-upload-btn, .cancel-button, .submit-button, select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  .AdminTextarea {
+    height: 100px;
+    resize: vertical;
+  }
+  
+  .file-upload-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .file-upload-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .AdminFilePreview {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #6c757d;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .cancel-button, .submit-button {
+    width: auto;
+    margin-left: 10px;
+  }
+  
+  .cancel-button {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .cancel-button:hover {
+    background-color: #c82333;
+  }
+  
+  .submit-button {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .submit-button:hover {
+    background-color: #218838;
+  }
+  
+  .AdminHighlight {
+    font-size: 16px;
+    font-weight: bold;
+    color: #495057;
+    margin-bottom: 8px;
+  }
+  
