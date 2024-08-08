@@ -1,16 +1,24 @@
-.detail-container {
-    max-width: 1024px;
-    margin: auto;
-    padding: 24px;
-    background-color: white;
+.title-blue {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 32px;
 }
 
 .title {
     font-size: 32px;
     font-weight: bold;
     text-align: center;
-    color: #4a5568;
+   
     margin-bottom: 32px;
+}
+
+/* Reste de vos styles */
+.detail-container {
+    max-width: 1024px;
+    margin: auto;
+    padding: 24px;
+    background-color: white;
 }
 
 .shadow-card {
@@ -100,7 +108,7 @@
     color: #0061B1;
     margin-bottom: 8px;
 }
-.text-detail{
+.text-detail {
     color: black;
 }
 
@@ -114,7 +122,7 @@
 }
 
 .status-available {
-    background-color: #48bb78;
+    background-color: #0061B1;
 }
 
 .status-unavailable {

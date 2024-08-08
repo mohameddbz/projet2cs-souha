@@ -222,3 +222,47 @@ video {
     color: #0061B1;
 }
 
+.button1,
+.button2 {
+  margin-right: 10px; /* Espacement entre les boutons */
+  padding: 10px 20px;
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 200px;
+  transition: background-color 0.3s, color 0.3s; /* Transition douce pour les changements de couleur */
+}
+
+.button1 {
+  background-color: #0061B1;
+  color: white;
+}
+
+.button1:hover {
+  background-color: white;
+  color: #0061B1;
+  border: 1px solid #0061B1; /* Ajoute une bordure pour le bouton 1 sur hover */
+}
+
+.button1:active {
+  background-color: white;
+  color: #0061B1;
+  border: 1px solid #0061B1; /* Ajoute une bordure pour le bouton 1 sur click */
+}
+
+.button2 {
+  background-color: white;
+  color: #0061B1;
+  border: 1px solid #0061B1;
+}
+
+.button2:hover {
+  background-color: #0061B1;
+  color: white;
+}
+
+.button2:active {
+  background-color: #0061B1;
+  color: white;
+}

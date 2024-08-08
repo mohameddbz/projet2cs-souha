@@ -1,0 +1,72 @@
+.admin-page-container {
+    display: flex;
+  }
+
+  .sidebar {
+    width: 20%;
+    background-color: #f8f9fa;
+  }
+
+  .admin-container {
+    width: 80%;
+    padding: 20px;
+  }
+
+  .AdminTitleContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .AdminTitle {
+    font-size: 24px;
+    font-weight: bold;
+    color: #343a40;
+  }
+
+  .AdminInputContainer {
+    margin-bottom: 20px;
+  }
+
+  .AdminLabel {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #495057;
+  }
+
+  .AdminInput {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .submit-button {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+
+  .submit-button:hover {
+    background-color: #218838;
+  }
+
+  .message {
+    color: green;
+  }
+
+  .error {
+    color: red;
+  }
