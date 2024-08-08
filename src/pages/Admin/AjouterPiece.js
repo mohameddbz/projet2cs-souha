@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './AjouterPiece.css';
 import { FaUpload } from 'react-icons/fa';
 import axios from 'axios';
-import SidebarFablab from '../../components/Sidebar/SidebarAdmin/SidebarFablab';
+import SidebarFablab from '../../components/SidebarAdmin/SidebarFablab';
 
 function AjouterPiece(props) {
   const [nom, setNom] = useState('');
@@ -15,22 +15,25 @@ function AjouterPiece(props) {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    axios.get('http://127.0.0.1:8000/categories/', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      })
-      .then(response => {
-        console.log(response.data);
+    const fetchCategories = async () => {
+      const token = localStorage.getItem('token');
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/categories/`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
         setCategories(response.data);
-      })
-      .catch(error => {
-        console.error('There was an error fetching the categories!', error);
-      });
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+        alert('Erreur lors de la récupération des catégories.');
+      }
+    };
+
+    fetchCategories();
   }, []);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!nom || !description || !categorie) {
@@ -48,29 +51,24 @@ function AjouterPiece(props) {
 
     const token = localStorage.getItem('token');
 
-    axios.post('http://127.0.0.1:8000/ajouter_piece/', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        'Authorization': `token ${token}`
-      }
-    })
-    .then(response => {
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/ajouter_piece/`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Authorization': `token ${token}`
+        }
+      });
+
       console.log('Réponse du serveur:', response.data);
       alert('Pièce ajoutée avec succès!');
-      setNom('');
-      setQuantiteDisponible(0);
-      setEtat(true);
-      setCategorie('');
-      setDescription('');
-      setSelectedFile(null);
-    })
-    .catch(error => {
-      console.error('Il y a eu une erreur!', error);
+      handleReset();
+    } catch (error) {
+      console.error('Erreur lors de l’envoi des données:', error);
       alert('Erreur lors de l’envoi des données');
-    });
+    }
   };
 
-  const handleCancel = () => {
+  const handleReset = () => {
     setNom('');
     setQuantiteDisponible(0);
     setEtat(true);
@@ -85,6 +83,10 @@ function AjouterPiece(props) {
 
   const handleIconClick = () => {
     document.getElementById('fileInput').click();
+  };
+
+  const handleCancel = () => {
+    handleReset();
   };
 
   return (

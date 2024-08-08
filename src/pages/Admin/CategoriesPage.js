@@ -3,8 +3,8 @@ import { FaList, FaPen, FaTrash, FaPlus } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './CategoriesPage.css';
-import SidebarFablab from '../../components/Sidebar/SidebarAdmin/SidebarFablab';
-import CategoryModal from './CategoryModal'; // Assurez-vous que l'importation est correcte
+import SidebarFablab from '../../components/SidebarAdmin/SidebarFablab';
+import CategoryModal from './CategoryModal';
 
 function CategoriesPage() {
     const [categories, setCategories] = useState([]);
@@ -21,31 +21,30 @@ function CategoriesPage() {
         setLoading(true);
         const token = localStorage.getItem('token');
         try {
-            const response = await axios.get('http://127.0.0.1:8000/categories/', {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/categories/`, {
                 headers: { 'Authorization': `token ${token}` }
             });
             setCategories(response.data);
-            setLoading(false);
         } catch (error) {
             console.error('Erreur lors de la récupération des catégories:', error);
             setError('Failed to fetch categories. Please try again later.');
+        } finally {
             setLoading(false);
         }
     };
 
-    const handleDelete = (id) => {
+    const handleDelete = async (id) => {
         const token = localStorage.getItem('token');
-        axios.delete(`http://127.0.0.1:8000/categories/delete/${id}/`, {
-            headers: { 'Authorization': `token ${token}` }
-        })
-        .then(response => {
-            console.log('Category deleted successfully:', response);
-            fetchCategories();
-        })
-        .catch(error => {
+        try {
+            await axios.delete(`${process.env.REACT_APP_API_URL}/categories/delete/${id}/`, {
+                headers: { 'Authorization': `token ${token}` }
+            });
+            console.log('Category deleted successfully');
+            fetchCategories(); // Re-fetch categories after deletion
+        } catch (error) {
             console.error('Failed to delete the category:', error);
             alert('Failed to delete the category. Please try again.');
-        });
+        }
     };
 
     const handleEdit = (category) => {
@@ -55,12 +54,12 @@ function CategoriesPage() {
     const handleSave = async (updatedCategory) => {
         const token = localStorage.getItem('token');
         try {
-            const response = await axios.put(`http://127.0.0.1:8000/categories/update/${updatedCategory.id_category}/`, updatedCategory, {
+            await axios.put(`${process.env.REACT_APP_API_URL}/categories/update/${updatedCategory.id_category}/`, updatedCategory, {
                 headers: { 'Authorization': `token ${token}` }
             });
-            console.log('Category updated successfully:', response);
+            console.log('Category updated successfully');
             setSelectedCategory(null);
-            fetchCategories();
+            fetchCategories(); // Re-fetch categories after update
         } catch (error) {
             console.error('Failed to update the category:', error);
             alert('Failed to update the category. Please try again.');

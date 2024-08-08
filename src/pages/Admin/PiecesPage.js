@@ -3,7 +3,7 @@ import { FaList, FaPen, FaTrash, FaPlus, FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './PiecesPage.css';
-import SidebarFablab from '../../components/Sidebar/SidebarAdmin/SidebarFablab';
+import SidebarFablab from '../../components/SidebarAdmin/SidebarFablab';
 import PieceModal from './PieceModal'; // Assurez-vous que l'importation est correcte
 
 function PiecesPage() {
@@ -24,51 +24,49 @@ function PiecesPage() {
         setLoading(true);
         const token = localStorage.getItem('token');
         try {
-            const response = await axios.get('http://127.0.0.1:8000/pieces/', {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/pieces/`, {
                 headers: { 'Authorization': `token ${token}` }
             });
             setPieces(response.data.map(piece => ({
                 ...piece,
                 date_ajout: piece.date_ajout ? new Date(piece.date_ajout).toISOString().slice(0, 16) : '',
             })));
-            setLoading(false);
         } catch (error) {
-            console.error('Erreur lors de la récupération des pièces:', error);
-            setError('Failed to fetch pieces. Please try again later.');
+            // console.error('Erreur lors de la récupération des pièces:', error);
+            // setError('Failed to fetch pieces. Please try again later.');
+        } finally {
             setLoading(false);
         }
     };
 
-    const loadCategories = () => {
-        axios.get('http://127.0.0.1:8000/categories/')
-            .then(res => {
-                const categoriesData = res.data || [];
-                setCategories(categoriesData);
-                const categoryMap = {};
-                categoriesData.forEach(category => {
-                    categoryMap[category.id_category] = category.name;
-                });
-                setCategoryMap(categoryMap);
-            })
-            .catch(err => {
-                console.error('Error fetching categories:', err);
-                setError(true);
+    const loadCategories = async () => {
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/categories/`);
+            const categoriesData = response.data || [];
+            setCategories(categoriesData);
+            const categoryMap = {};
+            categoriesData.forEach(category => {
+                categoryMap[category.id_category] = category.name;
             });
+            setCategoryMap(categoryMap);
+        } catch (error) {
+            console.error('Error fetching categories:', error);
+            setError(true);
+        }
     };
 
-    const handleDelete = (id) => {
+    const handleDelete = async (id) => {
         const token = localStorage.getItem('token');
-        axios.delete(`http://127.0.0.1:8000/supprimer_piece/${id}/`, {
-            headers: { 'Authorization': `token ${token}` }
-        })
-        .then(response => {
-            console.log('Piece deleted successfully:', response);
-            fetchPieces();
-        })
-        .catch(error => {
+        try {
+            await axios.delete(`${process.env.REACT_APP_API_URL}/supprimer_piece/${id}/`, {
+                headers: { 'Authorization': `token ${token}` }
+            });
+            console.log('Piece deleted successfully');
+            fetchPieces(); // Reload pieces after deletion
+        } catch (error) {
             console.error('Failed to delete the piece:', error);
             alert('Failed to delete the piece. Please try again.');
-        });
+        }
     };
 
     const handleEdit = (piece) => {
@@ -78,10 +76,10 @@ function PiecesPage() {
     const handleSave = async (updatedPiece) => {
         const token = localStorage.getItem('token');
         try {
-            const response = await axios.put(`http://127.0.0.1:8000/modifier_piece/${updatedPiece.id_piece}/`, updatedPiece, {
+            await axios.put(`${process.env.REACT_APP_API_URL}/modifier_piece/${updatedPiece.id_piece}/`, updatedPiece, {
                 headers: { 'Authorization': `token ${token}` }
             });
-            console.log('Piece updated successfully:', response);
+            console.log('Piece updated successfully');
             setSelectedPiece(null);
             fetchPieces();
         } catch (error) {

@@ -1,26 +1,25 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './AddCategory.css'; // Import the CSS file
-import SidebarFablab from '../../components/Sidebar/SidebarAdmin/SidebarFablab';
+import SidebarFablab from '../../components/SidebarAdmin/SidebarFablab';
 
 function AddCategory() {
   const [categoryName, setCategoryName] = useState('');
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
-    axios.post('http://localhost:8000/categories/add/', { name: categoryName })
-      .then(response => {
-        setMessage(response.data.message);
-        setCategoryName('');
-        setError('');
-      })
-      .catch(error => {
-        setError('Failed to add category');
-        setMessage('');
-      });
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/categories/add/`, { name: categoryName });
+      setMessage(response.data.message);
+      console.log(response)
+      setCategoryName('');
+      setError('');
+    } catch (error) {
+      setError('Failed to add category');
+      setMessage('');
+    }
   };
 
   return (

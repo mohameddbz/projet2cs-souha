@@ -15,19 +15,22 @@ function PieceModal({ piece, onClose, onSave }) {
     const [currentPhoto, setCurrentPhoto] = useState(piece.photo || '');
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
-        axios.get('http://127.0.0.1:8000/categories/', {
-            headers: { 'Authorization': `Bearer ${token}` }
-        })
-        .then(response => {
-            setCategories(response.data);
-        })
-        .catch(error => {
-            console.error('Erreur lors de la récupération des catégories:', error);
-        });
+        const fetchCategories = async () => {
+            const token = localStorage.getItem('token');
+            try {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/categories/`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                setCategories(response.data);
+            } catch (error) {
+                console.error('Erreur lors de la récupération des catégories:', error);
+            }
+        };
+
+        fetchCategories();
     }, []);
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         if (!nom || !description || !categorie) {
@@ -45,7 +48,12 @@ function PieceModal({ piece, onClose, onSave }) {
             formData.append('photo', selectedFile);
         }
 
-        onSave({ id_piece: piece.id_piece, ...formData });
+        try {
+            await onSave({ id_piece: piece.id_piece, ...formData });
+        } catch (error) {
+            console.error('Erreur lors de la sauvegarde de la pièce:', error);
+            alert('Erreur lors de la sauvegarde de la pièce. Veuillez réessayer.');
+        }
     };
 
     const handleCancel = () => {

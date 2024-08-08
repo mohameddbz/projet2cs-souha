@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { IoMdSearch, IoIosArrowDown } from 'react-icons/io';
 import { FcPrevious, FcNext } from 'react-icons/fc';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 import Navbar from '../../components/navbar/navbar';
 import Footer from '../../components/Footer/Footer';
 import './PiecesElectronics.css';
@@ -31,35 +31,34 @@ function PiecesElectronics() {
     filterPieces();
   }, [selectedCategory, searchTerm, pieces]);
 
-  const loadCategories = () => {
-    axios.get('http://localhost:8000/categories/')
-      .then(res => {
-        const categoriesData = res.data || [];
-        setCategories(categoriesData);
-        const categoryMap = {};
-        categoriesData.forEach(category => {
-          categoryMap[category.id_category] = category.name;
-        });
-        setCategoryMap(categoryMap);
-      })
-      .catch(err => {
-        console.error('Error fetching categories:', err);
-        setError(true);
+  const loadCategories = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/categories/`);
+      const categoriesData = response.data || [];
+      setCategories(categoriesData);
+
+      const categoryMap = {};
+      categoriesData.forEach(category => {
+        categoryMap[category.id_category] = category.name;
       });
+      setCategoryMap(categoryMap);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+      setError(true);
+    }
   };
 
-  const loadPieces = () => {
+  const loadPieces = async () => {
     setLoading(true);
-    axios.get('http://localhost:8000/pieces/')
-      .then(res => {
-        setPieces(res.data || []);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error('Error fetching pieces:', err);
-        setError(true);
-        setLoading(false);
-      });
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/pieces/`);
+      setPieces(response.data || []);
+    } catch (error) {
+      console.error('Error fetching pieces:', error);
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const filterPieces = () => {

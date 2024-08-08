@@ -2,11 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import styles from './SidebarFablab.module.scss';
-import im from '../../../assets/logoSidebar.svg'; 
-import pubIcon from'../../../assets/pubIcon.svg';
-
-import deconnect from '../../../assets/deconnect.svg';
-import profile from '../../../assets/profile.svg';
+import im from '../../assets/logoSidebar.svg'; 
+import pubIcon from'../../assets/pubIcon.svg';
+import deconnect from '../../assets/deconnect.svg';
+import profile from '../../assets/profile.svg';
 
 function textMenu(icon, text) {
     return (

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaList } from 'react-icons/fa';
 import axios from 'axios';
-import SidebarFablab from '../../components/Sidebar/SidebarAdmin/SidebarFablab';
+import SidebarFablab from '../../components/SidebarAdmin/SidebarFablab';
 import './FablabInscriptionPage.css';
 
 function FablabInscriptionPage() {
