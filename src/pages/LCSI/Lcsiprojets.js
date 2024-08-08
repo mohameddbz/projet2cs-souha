@@ -1,5 +1,5 @@
 import {React, useState} from 'react'
-import './Projets.css'
+import './Lcsiprojets.css'
 import cardData from '../../db/Projets.json'
 import { FcNext, FcPrevious } from "react-icons/fc"; 
 import { GrLinkNext } from "react-icons/gr";

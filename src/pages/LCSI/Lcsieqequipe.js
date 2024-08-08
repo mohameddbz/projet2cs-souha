@@ -1,5 +1,5 @@
 import {React,useState} from 'react'
-import './Equipe.css';
+import './Lcsiequipe.css';
 import data from '../../db/Administration.json'
 import { GoMail } from "react-icons/go";
 import { FaPhone } from "react-icons/fa";

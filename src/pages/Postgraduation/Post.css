@@ -1,14 +1,9 @@
 
 
-.post-lcsi-container {
-    display: flex;
-    align-items:center;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto; 
-   
-  }
+
+
+
+
   .post-cover {
     position: absolute;
     top: 20px;
@@ -90,12 +85,12 @@
     
      .post-rect {
       position:absolute;
-      top: 490px;
+      top: 525px;
       display:flex;
       bottom: 0px;
       width: 100%;
       height: 152px;
-      margin-left: -8px;
+      /* margin-left: -8px; */
       background-color: #0061B1;
       box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.247);
     }
@@ -131,7 +126,7 @@
   .soutenance-sidebar {
     display: flex;
     align-items: center;
-    margin-top: 550px;
+    margin-top: 200px;
   }
   
   .soutenance-search {
@@ -275,7 +270,7 @@
   .sout-evenement-buttons {
     position:absolute;
     display: flex;
-    top:755px;
+    top:805px;
     left:40px;
     flex-direction: column; /* Afficher les cartes en colonne */
     gap: 25px; 
@@ -316,15 +311,17 @@
     
   }
   
-  .titles {
+  .post-titles {
     display: flex;
     align-items: center;
+    
   }
   
-  .title {
+  .post-title {
     margin-right: 87px;
     margin-left:50px;
-    margin-top:15px;
+    margin-top:30px;
+   margin-bottom: 30px ;
     font: 700 22px/1.37 "Open Sans", Helvetica, Arial, serif;
     color: #0061B1; /* Couleur bleue */
   }
@@ -415,4 +412,165 @@
     height: auto; 
     flex-shrink: 0; 
     margin-left: 20px; 
+}
+@media (max-width: 830px) {
+  .lcsi-cover {
+    height: auto;
+    width: 100%;
+  }
+
+  .post-recherche {
+    align-items: center;
+    width: 90%;
+    text-align: center;
+    font-size: 26px;
+    top: 180px;
+  }
+
+  .post-rect {
+    position:relative;
+    top:-10px;
+    width: 100%;
+    bottom: auto;
+    height: auto;
+    padding: 20px 10px;
+  }
+
+  .post-medium-title {
+    font-size: 13px;
+    margin: 0 auto;
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  .soutenance-sidebar {
+    position: relative;
+    
+ 
+    flex-direction: row;
+    width: 30%;
+    margin-top: 0px;
+  }
+
+  .soutenance-search, .soutenance-evenements {
+    margin: 60px 20px;
+  }
+
+  .post-container {
+    display: flex;
+    justify-content: center; /* Centrer horizontalement */
+    align-items: center; /* Centrer verticalement */
+    flex-direction: column;
+    position: relative;
+  }
+
+  .post-evenement-container {
+    position: relative;
+    top: 0px;
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Ajuster la largeur pour qu'elle soit de 100% */
+    max-width: 600px; 
+    margin-left: 0;
+    margin-right: 0;
+    align-items: center;
+   
+  }
+
+  .sout-evenement-buttons {
+    position: relative;
+    top: 40px;
+   
+  }
+
+  .sout-evenement {
+    width: 80%; /* Ajuster la largeur pour qu'elle soit de 100% */
+    max-width: 600px; /* Optionnel : Limiter la largeur maximale */
+    position: relative;
+    top: 40px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 0;
+    margin-right: 0;
+   
+  }
+
+  .post-evn-span {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .sout-evenement-s2 {
+    text-align: center;
+  }
+
+  .sout-evenement-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .sout-evenement-description {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .post-titles {
+    position: relative;
+    top:50px;
+    margin-bottom: 50px;
+    width: 200%;
+    flex-direction: row; /* Afficher les éléments verticalement */
+    align-items: center;
+    
+  }
+.post-title{
+  font-size: 16px;
+}
+ 
+
+  .contact-info {
+    margin-bottom: 20px;
+    width: 80%; /* Ajuster la largeur pour qu'elle soit de 90% */
+    max-width: 100%; /* Supprimer la limite de largeur maximale */
+    left: -310px;
+  }
+
+  
+
+  .appel-evenement {
+    width: 80%; 
+   
+    left:-320px;
+    /* right: 310px; */
+  /* align-items: center; */
+    top:150px;
+    position: absolute;
+
+  }
+ 
+ 
+
+  .appel-evenement-buttons {
+    display: flex;
+    flex-direction: column; /* Afficher les cartes verticalement */
+     margin-left: 0px;
+    width: 100%;
+  }
+
+  .pf{
+    position: relative;
+    top:230px;
+  }
+
+  .soutenance-blog_subtitle{
+    font-size:13px;
+  }
+
+  
+
+ 
 }

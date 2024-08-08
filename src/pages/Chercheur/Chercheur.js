@@ -57,9 +57,9 @@ function Chercheur(props) {
     ))}
   </div>
   <div className="chercheur-menu">
-    <a href="#" className="chercheur-highlight1">Profile</a>
-    <a href="#" className="chercheur-highlight1">Publication</a>
-    <a href="#" className="chercheur-highlight1">Projet Recherche</a>
+    <a href="/Chercheur" className="chercheur-highlight1">Profile</a>
+    <a href="/publication" className="chercheur-highlight1">Publication</a>
+   
   </div>
 
   <div>

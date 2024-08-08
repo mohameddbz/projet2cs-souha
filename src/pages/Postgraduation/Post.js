@@ -6,9 +6,11 @@ import a from '../../images/a.png';
 import cardData from '../../db/soutenance.json';
 import treePic from '../../assets/images/TreePic.jpg';
 import LLM from '../../assets/images/LLM.png';
-import navbar from '../../components/navbar/navbar'
 import Navbar from '../../components/navbar/navbar';
 import Footer from '../../components/Footer/Footer'
+import groupe1 from '../../images/Group 578.png';
+import groupe2 from '../../images/Group 579.png';
+import groupe3 from '../../images/Group580.png';
 
 // Définir la taille de la page
 const pageSize = 4;
@@ -107,7 +109,7 @@ const Countdown = ({ initialDays, initialHours, initialMinutes,initialSeconds}) 
 };
 
 // Composant principal Lcsi
-const Lcsi = () => {
+const Post = () => {
   const [currentPage, setCurrentPage] = useState(0);
 
   const getCurrentPageCard = () => {
@@ -118,38 +120,26 @@ const Lcsi = () => {
 
   return (
      <div>
+  
       <Navbar/>
-      <div className="main-content">
-    <img className='lcsi-cover' src={Lcsiback} alt="alt text" />
-    <img className='lcsi-cover' src={lcsib} alt="alt text" />
-    <h1 className='post-recherche'>Poste graduation et Recherche</h1>
-      <div className='lcsi_emoj'>
-    <div className='lcsi-ep1'>
-        <img className='lcsi-image' src={a} alt="alt text" />
-        <svg className='lcsi-image1' xmlns="http://www.w3.org/2000/svg" width="3rem" height="2em" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M7 2h10v7.85q0 .575-.25 1.025t-.7.725l-3.55 2.1l.7 2.3H17l-3.1 2.2l1.2 3.8l-3.1-2.35L8.9 22l1.2-3.8L7 16h3.8l.7-2.3l-3.55-2.1q-.45-.275-.7-.725T7 9.85zm4 2v7.05l1 .6l1-.6V4z"></path>
-        </svg>
-        <div className='lcsi-info'>Excellence</div>
-    </div>
-
-    <div className='lcsi-ep2'>
-        <img className='lcsi-image' src={a} alt="alt text" />
-        <svg className='lcsi-image1' xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48" color="#0061B1"><g fill="none" stroke="#0061B1" strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} color="red"><path d="M21 6H9C7.34315 6 6 7.34315 6 9V31C6 32.6569 7.34315 34 9 34H39C40.6569 34 42 32.6569 42 31V21"></path><path d="M24 34V42"></path><path d="M32 6L28 10L32 14"></path><path d="M38 6L42 10L38 14"></path><path d="M14 42L34 42"></path></g></svg>
-        <p className='lcsi-info2'>
-            Qualité <br />
-            méthodologique
-        </p>
-    </div>
-    <div className='lcsi-ep3'>
-        <img className='lcsi-image' src={a} alt="alt text" />
-        <svg className='lcsi-image1' xmlns="http://www.w3.org/2000/svg" color="#0061B1" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M13 3c3.9 0 7 3.1 7 7c0 2.8-1.6 5.2-4 6.3V21H9v-3H8c-1.1 0-2-.9-2-2v-3H4.5c-.4 0-.7-.5-.4-.8L6 9.7C6.2 5.9 9.2 3 13 3m0-2C8.4 1 4.6 4.4 4.1 8.9L2.5 11c-.6.8-.6 1.8-.2 2.6c.4.7 1 1.2 1.7 1.3V16c0 1.9 1.3 3.4 3 3.9V23h11v-5.5c2.5-1.7 4-4.4 4-7.5c0-5-4-9-9-9m-3 9c-.6 0-1-.4-1-1s.4-1 1-1s1 .4 1 1s-.4 1-1 1m3 0c-.6 0-1-.4-1-1s.4-1 1-1s1 .4 1 1s-.4 1-1 1m3 0c-.5 0-1-.4-1-1s.5-1 1-1s1 .4 1 1s-.5 1-1 1"></path></svg>
-        <p className='lcsi-info2'>
-            Pensée <br />
-            innovante
-        </p>
-    </div>
-    </div>
-      
+     
+      <div className="lcsi-main-content">
+    <img className="lcsi-cover" src={Lcsiback} alt="alt text" />
+    <img className="top-image" src={lcsib} alt="alt text" />
+    <div className='lcsi-header'>
+      <h1 className='lcsi-hero_title'>Post graduation et Recherche</h1>
+      <div className='imagecontainer'>
+  <div className='top-images'>
+    <img src={groupe1} alt="groupe 1" />
+    <img src={groupe2} alt="groupe 2" />
+  </div>
+  <div className='bottom-image'>
+    <img src={groupe3} alt="groupe 3" />
+  </div>
+</div>
+    </div> 
+   
+  </div>
       <div className='post-rect'>
         <h2 className='post-medium-title'>Prochaine soutenance 2024</h2>
         <Countdown initialDays={2} initialHours={12} initialMinutes={30} initialSeconds={60}/>
@@ -215,9 +205,9 @@ const Lcsi = () => {
     </div>
   ))}
 </div>
-     <div className="titles">
-     <span className="title">Contactez-nous</span>
-     <span className="title">Appel d'offre</span>
+     <div className="post-titles">
+     <span className="post-title">Contactez-nous</span>
+     <span className="post-title">Appel d'offre</span>
 </div>
 <div className="contact-info">
   <span>Vous avez des questions sur<br/> les études à ESI ?</span>
@@ -240,11 +230,15 @@ const Lcsi = () => {
 </div>
 
 
+    
     </div>
-    </div>
+ 
+   <div className='pf'>
     <Footer/>
     </div>
+    </div>
+    
   );
 }
 
-export default Lcsi;
+export default Post;

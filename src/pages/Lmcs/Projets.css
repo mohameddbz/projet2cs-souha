@@ -224,3 +224,75 @@
  
   
    
+/* Styles pour les petits écrans */
+@media screen and (max-width: 800px) {
+  .page-container {
+    display: flex;
+    flex-direction: column;
+   
+  }
+
+  .semi-title {
+    display: flex;
+    flex-direction: row; /* Affiche les liens en ligne */
+    justify-content: center; /* Centre les liens horizontalement */
+    gap: 2rem; /* Espacement entre les liens */
+    margin: 10px 0; /* Espacement autour des liens */
+    z-index: 1; 
+  }
+
+  .recherche-container {
+    width: 300px; /* Largeur du container pour les petits écrans */
+   align-items: center;
+    margin-top: 90px; /* Espacement au-dessus du container de recherche */
+
+    
+  }
+
+  .projet-container {
+    width: 100%; /* Largeur du container pour les petits écrans */
+    margin-top: 220px; /* Espacement au-dessus du container des projets */
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Espacement au-dessus de la pagination */
+    order: 4; /* Assurez-vous que la pagination est affichée après les projets */
+  }
+}
+@media screen and (max-width: 1100px) {
+  .page-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .semi-title {
+    display: flex;
+    flex-direction: row; /* Affiche les liens en ligne */
+    justify-content: center; /* Centre les liens horizontalement */
+    gap: 2rem; /* Espacement entre les liens */
+    margin: 10px 0; /* Espacement autour des liens */
+    z-index: 1; 
+  }
+
+  .recherche-container {
+    width: 300px; /* Largeur du container pour les petits écrans */
+    margin: 0 auto; /* Centre le container horizontalement */
+    margin-top: 90px; /* Espacement au-dessus du container de recherche */
+    align-items: center; /* Centre les éléments horizontalement */
+    justify-content: center;
+  }
+
+  .projet-container {
+    width: 100%; /* Largeur du container pour les petits écrans */
+    margin-top: 220px; /* Espacement au-dessus du container des projets */
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Espacement au-dessus de la pagination */
+    order: 4; /* Assurez-vous que la pagination est affichée après les projets */
+  }
+}
