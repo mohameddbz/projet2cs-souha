@@ -1,0 +1,589 @@
+.lcsi-container {
+    display: flex;
+    flex-direction: column;
+    width: 1024px;
+    height: 100%;
+    top: 129px;
+  }
+  .main-content {
+    margin-top: 250px; /* Ajoutez cette ligne */
+  }
+  
+  
+  .lcsi-cover {
+    position: absolute;
+    top: 134px;
+    right: 0px;
+    bottom: 262px;
+    left: 0px;
+    width: 100%;
+    height: 357px;
+  }
+  
+  .lcsi-hero_title {
+      position: absolute;
+      top: 160px;
+      right: 408px;
+      bottom: 347px;
+      left: 35px;
+      width: 581px;
+      height: 195px;
+      font: 400 48px/1.35 "Open Sans", Helvetica, Arial, serif;
+      color: rgb(255, 255, 255);}
+  
+  .lcsi-ep1 {
+      position: absolute;
+      right: 300px; 
+      top:190px;
+  }
+  
+  .lcsi-ep2{
+      position: absolute;
+      right: 180px; 
+      top:190px;
+  }
+  
+  .lcsi-ep3{
+      position: absolute;
+      right: 240px; 
+      top:285px;
+  }
+  
+  .lcsi-image {
+      position: relative;
+      width: 95%;
+      height: auto;
+      border-radius: 5px;
+      float: left;
+  }
+  
+  .lcsi-image1 {
+      position: absolute;
+      top: 14px;
+      left: 35px; 
+      width: 29px;
+      height: 35px;
+      color:#0061B1;
+  }
+  
+  .lcsi-info {
+      position: absolute;
+      bottom: 32px;
+      left: 20px;
+      width: 61px;
+      height: 16px;
+      font: 600 12px/1.33 "Open Sans", Helvetica, Arial, serif;
+      color: rgb(0, 0, 0);
+  }
+  
+  .lcsi-info2 {
+      position: absolute;
+      top: 40px;
+      right: 26px;
+      bottom: 359px;
+      display: flex;
+      justify-content: center;
+      width: 59px;
+      height: 32px;
+      font: 600 12px/1.33 "Open Sans", Helvetica, Arial, serif;
+      color: rgb(0, 0, 0);
+      text-align: center;
+  }
+  
+  .lcsi-rect {
+      position:absolute;
+      top: 460px;
+      right: auto;
+      bottom: 0px;
+      left:50%;
+      width: 1000px;
+      height: 252px;
+      margin-left: -497px;
+      background-color: rgb(255, 255, 255);
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.247);
+  }
+  
+  .lcsi-medium_title {
+    position:absolute;
+    top: 14px;
+    right:  auto;
+    bottom: 232px;
+    left: 35%;
+    display: flex;
+    text-align:center;
+    width: 254px;
+    height: 33px;
+    font: 700 24px/1.37 "Open Sans", Helvetica, Arial, serif;
+    color: rgb(0, 97, 177);
+    text-align: center;
+  }
+  
+  .lcsi-highlight {
+    position: absolute;
+    top: 48px;
+    right: 111px;
+    bottom: 35px;
+    left: 111px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 802px;
+    height: 175px;
+    font: 400 18px/1.38 "Open Sans", Helvetica, Arial, serif;
+    color: rgb(0, 0, 0);
+    text-align: center;
+  }
+  
+  .lcsi-rect2 {
+    position: absolute;
+    top: 740px;
+    padding: 10px;
+    right: 20px;
+    bottom: 45px;
+    left: 10px;
+    width: calc(100% - 40px);
+    height: 260px;
+    background-color: rgb(0, 97, 177);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.247);
+  }
+  
+  .lcsi-rect3 {
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 292px;
+    height: 54px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 0px 0px 7px 7px;
+    text-align: center;
+  }
+  
+  .lcsi-medium_title1 {
+    font: 700 24px/1.37 "Open Sans", Helvetica, Arial, serif;
+    color: #0061B1;
+    margin: auto;
+  }
+  
+  .lcsi-ep4 {
+    position: relative;
+    left: 63px;
+    top: 0px;
+  }
+  
+  
+  .lcsi-hero_title2 {
+    position: absolute;
+    top: 40px;
+    right: 93px;
+    bottom: 206px;
+    left: 110px;
+    display: flex;
+    align-items: center;
+    width: 151px;
+    height: 65px;
+    font: 700 48px/1.35 "Open Sans", Helvetica, Arial, serif;
+    color: rgb(255, 255, 255);
+  }
+  
+  .lcsi-hero_title21 {
+    position: absolute;
+    top: 40px;
+    right: 93px;
+    bottom: 206px;
+    left: 830px;
+    display: flex;
+    align-items: center;
+    width: 151px;
+    height: 65px;
+    font: 700 48px/1.35 "Open Sans", Helvetica, Arial, serif;
+    color: rgb(255, 255, 255);
+  }
+  
+  .lcsi-paragraph {
+    position: absolute;
+    top: 123px;
+    right: 872px;
+    bottom: 174px;
+    left: 110px;
+    display: flex;
+    align-items: center;
+    width: 80px;
+    height: 36px;
+    font: 600 13px/1.38 "Open Sans", Helvetica, Arial, serif;
+    color: rgb(0, 0, 0);
+  }
+  
+  .lcsi-paragraph1 {
+    position: absolute;
+    top: 123px;
+    right: 164px;
+    bottom: 174px;
+    left:830px;
+    display: flex;
+    align-items: center;
+    width: 80px;
+    height: 36px;
+    font: 600 13px/1.38 "Open Sans", Helvetica, Arial, serif;
+    color: rgb(0, 0, 0);
+  }
+  
+  .lcsi-image5 {
+    position: absolute;
+    top: 122px;
+    right: 809px;
+    bottom: 151px;
+    left: 175px;
+    width: 60px;
+    height: 50px;
+    color:white;
+  }
+  
+  .lcsi-image6 {
+    position: absolute;
+    top: 141px;
+    right: 431px;
+    bottom: 133px;
+    left: 625px;
+    width: 45px;
+    height: 45px;
+    color:white;
+  }
+  .lcsi-ep5{
+    left:500px;
+  }
+  .lcsi-hero_title3 {
+    position: absolute;
+    top: 101px;
+    right: 502px;
+    bottom: 117px;
+    left: 539px;
+    display: flex;
+    align-items: center;
+    width: 83px;
+    height: 65px;
+    font: 600 48px/1.35 "Open Sans", Helvetica, Arial, serif;
+    color: rgb(255, 255, 255);
+  }
+  
+  .lcsi-paragraph2 {
+    position: absolute;
+    top: 180px;
+    right: 420px;
+    bottom: 68px;
+    left: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 54px;
+    font: 600 13px/1.38 "Open Sans", Helvetica, Arial, serif;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    letter-spacing: -0.1px;
+  }
+  
+  .lcsi-image7 {
+    position: absolute;
+    top: 122px;
+    right: 119px;
+    bottom: 159px;
+    left: 905px;
+    width: 46px;
+    height: 52px;
+    color: white;
+  }
+  
+  .lcsi-RECT3 {
+    position: absolute;
+    top: 1100px;
+    left: 40px;
+  }
+  
+  .lcsi-highlight4 {
+    position: absolute;
+    width: 350px;
+    top: 100px;
+    height: 96px;
+    font: 500 16px/1.5 "Lato", Helvetica, Arial, serif;
+    color: rgb(82, 82, 82);
+  }
+  
+  .lcsi-box_title2 {
+    position: absolute;
+    top: -45px;
+    width: 451px;
+    font: 600 38px/1.35 "Open Sans", Helvetica, Arial, serif;
+  }
+  
+  .lcsi-hero_title_span0 {
+    font: 600 1em/1.8 "Open Sans", Helvetica, Arial, serif;
+    color: black;
+  }
+  
+  .lcsi-hero_title_span1 {
+    font: 600 1em/1.8 "Open Sans", Helvetica, Arial, serif;
+    color: rgb(0, 97, 177);
+  }
+  
+  .lcsi-box-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .lcsi-box {
+    flex: 0 0 calc(50% - 20px);
+    margin-bottom: 30px;
+    position: relative;
+    background-color: white; /* Couleur de fond initiale blanche */
+    box-shadow: 20px 10px 35px 0px rgba(0, 0, 0, 0.086);
+    overflow: hidden;
+    width: 180px;
+    height: 291px;
+    left: 420px;
+    top: -40px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; /* Ajout de la transition */
+  }
+  
+  .lcsi-box.active {
+    background-color: rgb(0, 97, 177); /* Couleur de fond bleue lorsqu'elle est active */
+    color: white; /* Texte en blanc lorsqu'elle est active */
+  }
+  
+  .lcsi-image00 {
+    position: absolute;
+    top: 32px;
+    right: 124px;
+    bottom: 195px;
+    left: 125px;
+    width: 64px;
+    height: 64px;
+    filter: invert(31%) sepia(99%) saturate(5637%) hue-rotate(200deg) brightness(99%) contrast(106%); /* Changer la couleur de l'image en bleu */
+    transition: filter 0.3s;
+  }
+  
+  .lcsi-box.active .lcsi-image00 {
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%); /* Changer la couleur de l'image en blanc lorsqu'elle est active */
+  }
+  
+  .lcsi-highlight00 {
+    position: absolute;
+    top: 112px;
+    right: auto;
+    bottom: auto;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 28px;
+    font: 600 18px/1.55 "Sora", Helvetica, Arial, serif;
+    color: black; /* Texte en noir */
+    text-align: center;
+  }
+  
+  .lcsi-highlight01 {
+    position: absolute;
+    top: 171px;
+    right: auto;
+    bottom: auto;
+    left: 0;
+    width: 100%;
+    height: auto;
+    font: 500 16px/1.5 "Lato", Helvetica, Arial, serif;
+    color: black; /* Texte en noir */
+    text-align: center;
+  }
+  
+  /* Changer le texte en blanc lorsque la boîte est active */
+  .lcsi-box.active .lcsi-highlight00,
+  .lcsi-box.active .lcsi-highlight01 {
+    color: white;
+  }
+  
+  
+  .lcsi-blog-container{
+    background-color:black;
+    /* padding:30px; */
+  }
+  
+  .lcsi-blog-cont {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* background-color:black; */
+  }
+  
+  .lcsi-blog {
+    position: relative;
+    top: 1432px;
+    bottom: 37px;
+    left: 87px;
+    width: 449px; 
+    height:372px;
+    background-color:white;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 16px 16px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+   padding:17px;
+   gap:2rem;
+  }
+  
+  .lcsi-hero_title_blog {
+    font: 700 1em/1.8 "Open Sans", Helvetica, Arial, serif;
+    color: rgb(0, 0, 0);
+   
+    
+  }
+  
+  .lcsi-hero_title_b {
+    position: absolute;
+    top: 1720px;
+    right:auto;
+    left:95px;
+    bottom: auto;
+    text-align: center;
+    width: 1000px;
+    height: 92px;
+  
+  }
+  
+  .lcsi-hero_title_blog0 {
+    font: 600 2.2em/1.8 "Open Sans", Helvetica, Arial, serif;
+    color: black;
+  }
+  
+  .lcsi-hero_title_blog1 {
+    font: 600 2.2em/1.8 "Open Sans", Helvetica, Arial, serif;
+    color: rgb(0, 97, 177);
+  }
+  
+  .lcsi-blog_subtitle {
+    position: absolute;
+    top: 32px;
+    right: auto;
+    bottom: auto;
+    width: 293px;
+    height: 84px;
+    font: 600 21px/1.33 "Sora", Helvetica, Arial, serif;
+    color: rgb(0, 97, 177);
+  }
+  
+  .lcsi-blog_highlight {
+    position: absolute;
+    top: 132px;
+    right: auto;
+    bottom: auto;
+    width: 293px;
+    height: 96px;
+    font: 500 16px/1.5 "Lato", Helvetica, Arial, serif;
+    color: rgb(82, 82, 82);
+  }
+  
+  .lcsi-blog_image {
+    position: absolute;
+    top: 32px;
+    right: 31px;
+    bottom: 95px;
+    width: 126px;
+    height: 278px;
+    border-radius: 8px 8px 8px 8px;
+  }
+  
+  .lcsi-blog-like,
+  .lcsi-blog_vues,
+  .lcsi-blog_temps {
+    font: 500 16px/1.5 "Lato", Helvetica, Arial, serif;
+    color: rgb(82, 82, 82);
+    top:250px;
+    position:absolute;
+  }
+  
+  .lcsi-blog_like {
+    margin-right: 10px;
+  }
+  
+  .lcsi-blog_vues {
+    margin-left: 40px;
+  }
+  
+  .lcsi-blog_temps {
+    margin-left: 90px;
+  }
+  
+  .lcsi-blog_more {
+    position: absolute;
+    top:300px;
+    right: auto;
+    bottom: auto;
+    width: 188px;
+    height: 24px;
+    font: 500 16px/1.5 "Lato", Helvetica, Arial, serif;
+    color: rgb(0, 97, 177);
+    text-decoration: underline;
+  }
+  
+  .lcsi-image11 {
+    position: absolute;
+    top: 392px;
+    right: 794px;
+    bottom: 125px;
+    left: 206px;
+    width: 24px;
+    height: 24px;
+  }
+  .lcsiparten{
+    position:absolute;
+    top :2250px;
+    width:100%;
+  }
+  .lcsi-partenaire {
+  
+   
+    padding-bottom:10px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
+    overflow: hidden;
+    /* width:1024px; */
+  }
+  .lcsi-partenaire_title {
+    text-align: center;
+    font: 600 2.2em/1.8 "Open Sans", Helvetica, Arial, serif;
+    color: rgb(0, 97, 177);
+  }
+  
+  
+  .lcsi-flex_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0px 10px;
+    margin: 13px 7px 21px 25px;
+  }
+  
+  .lcsi-part {
+    width: 160px;
+    min-width: 0px;
+    object-fit: cover;
+  }
+  
+  .lcsi-parte1 {
+    width: 148px;
+    min-width: 0px;
+    object-fit: cover;
+  }
+  
+  .lcsi-parte2 {
+    width: 164px;
+    min-width: 0px;
+    object-fit: cover;
+  }
+  .lcsi-f{
+    position:absolute;
+    top:2600px;
+  }

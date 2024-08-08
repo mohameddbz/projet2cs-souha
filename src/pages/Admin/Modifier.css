@@ -1,0 +1,259 @@
+.popup-modifier {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    max-width: 900px;
+    width: 100%; /* Adaptabilité pour les petits écrans */
+    max-height: 80vh; /* Hauteur maximale pour permettre le scroll */
+    overflow-y: auto; /* Permet le scroll vertical si le contenu dépasse */
+    z-index: 9999; /* Assure que le popup est au-dessus de tout le reste */
+}
+
+.popup-modifier h2 {
+    margin-top: 0;
+}
+
+.popup-modifier p {
+    margin-bottom: 10px;
+}
+
+.button-annuler {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+
+.AdminRoot {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Utiliser toute la largeur disponible */
+    max-width: 1200px; /* Maximum width pour limiter l'étirement sur grands écrans */
+    margin: auto; /* Centrer dans la page */
+    height: 65%;
+    min-height: 673px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+  }
+  .ModifTitleContainer {
+    display: flex;
+    align-items: center; /* Alignement vertical au centre */
+    margin-bottom: 20px; /* Espacement sous le titre et l'icône */
+  }
+  .ModifTitle {
+    font-size: 24px; /* Taille du texte du titre */
+    margin-left: 10px; /* Espacement entre l'icône et le texte */
+  }
+  .ModifIcon {
+    width: 24px; /* Taille de l'icône */
+    height: 24px; /* Taille de l'icône */
+    display: flex; /* Affichage flex pour centrer l'icône */
+    align-items: center;
+    justify-content: center;
+  }
+  .ModifContainer {
+    display: block; /* Pour que le contenu soit en bloc sous le titre et l'icône */
+    width: 100%; /* Utiliser toute la largeur disponible */
+  }
+  
+  .ModifIconCircle, .ModifImage1, .ModifTitle, .ModifContainer {
+    /* Styles communs pour positionnement et dimensionnement */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .ModifIconCircle {
+      position: relative;
+      display: flex; /* Utiliser flex pour aligner l'icône et le texte horizontalement */
+      align-items: center; /* Alignement vertical au centre */
+      width: 48px; /* Taille du cercle */
+      height: 48px; /* Taille du cercle */
+      background-color: #F5F5F5;
+      border-radius: 50%;
+      justify-content: center; /* Centrer l'icône dans le cercle */
+    }
+  
+  .ModifLabel {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .ModifImage1 {
+    width: 24px;
+    height: 24px;
+  }
+  
+  
+  .ModifRect5, .ModifRect6 {
+    /* Même largeur pour une uniformité */
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background-color: rgba(217, 217, 217, 0);
+    border-radius: 10px;
+    border: 1px solid rgb(217, 217, 217);
+  }
+  .ModifInputContainer, .ModifDescriptionContainer {
+    margin-top: 20px;
+  }
+  .ModifInput, .ModifTextarea {
+    width: 100%;
+    padding: 1% 1% 1% 1%;
+    margin: 2% 2% 2% 0%;
+    font-size: 16px;
+    color: #333;
+    border-radius: 5px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  .ModifTextarea {
+    height: 150px; /* Adjust height as necessary */
+    resize: vertical; /* Allows vertical resize only */
+  }
+  .button-modif-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .cancel-modif-button, .submit-modif-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .cancel-modif-button {
+    background-color: #f8f9fa;
+    color: #333;
+  }
+  
+  .submit-modif-button {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .cancel-modif-button:hover {
+    background-color: #e2e6ea;
+  }
+  
+  .submit-modif-button:hover {
+    background-color: #0056b3;
+  }
+  .ModifFileContainer {
+    padding: 20px;
+    background-color: #f4f4f6;
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+  /* Supprime le soulignement et change la couleur des liens */
+  .sidebar a {
+    text-decoration: none; /* Supprime le soulignement */
+    color: black; /* Change la couleur des liens, mettez la couleur que vous souhaitez */
+  }
+  
+  /* Ajoute un style pour les liens au survol */
+  .sidebar a:hover {
+    color: #0056b3; /* Change la couleur au survol */
+  }
+  
+  .ModifHighlight {
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .file-upload-btn {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center; /* Align vertical */
+  }
+  
+  .file-upload-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  .ModifFilePreview {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  
+  @media (max-width: 768px) {
+    .AdminRoot {
+        flex-direction: column;
+    }
+  
+    .AdminIconCircle, .AdminImage1, .AdminTitle {
+        margin-bottom: 10px;
+    }
+  
+    .AdminRect5, .AdminRect6, .AdminInput, .AdminTextarea {
+        width: 100%; /* Assurez-vous qu'ils s'adaptent à la taille de l'écran mobile */
+    }
+  }
+  .close-buttonn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: white;
+    cursor: pointer;
+    font-size: 24px; /* Taille de l'icône */
+    color: #333; /* Couleur de l'icône */
+}
+
+.image-preview-container {
+  display: flex;
+  width: 80%;
+  justify-content: space-around; /* This will space out the images evenly */
+  padding: 20px;
+  border-bottom: 1px solid #ccc; /* Adds a light line below the image container */
+  margin-bottom: 20px; /* Space below the container */
+}
+
+.image-preview {
+  flex: 1; /* Ensures that each image preview box takes equal space */
+  text-align: center; /* Centers the image within the box */
+  padding: 10px; /* Space inside each image preview box */
+  border: 1px solid #ddd; /* Adds a subtle border around the image */
+  box-shadow: 0px 0px 8px #eee; /* Soft shadow around the images */
+  margin: 0 10px; /* Spacing between image previews */
+}
+
+.image-preview img {
+  width: 100%; /* Makes the image take the full width of its container */
+  height: auto; /* Automatically adjusts the height to maintain the aspect ratio */
+  max-height: 200px; /* Ensures the image does not exceed 200px in height */
+  border-radius: 5px; /* Rounds the corners of the image */
+}
+
+
+  

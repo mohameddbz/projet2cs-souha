@@ -1,0 +1,172 @@
+
+.adminn-table {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.adminn-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.adminn-header h1 {
+    display: flex;
+    align-items: center; /* Centre l'icône verticalement avec le texte */
+    color: #0061B1;
+    font-size: 24px;
+    margin: 0;
+}
+
+.adminn-header h1 svg {
+    margin-right: 10px; /* Espacement entre l'icône et le texte */
+    color: #0061B1; /* Couleur de l'icône */
+}
+
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 50%; /* Ajustez selon votre besoin */
+}
+
+.search-input {
+    padding: 8px 8px 8px 30px; /* Ajustement pour le bouton */
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.search-button {
+    position: absolute;
+    left: 5px; /* Ajustez selon l'espacement désiré */
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #ccc; /* Couleur de l'icône */
+    font-size: 16px;
+}
+
+.search-button:hover {
+    color: #007bff; /* Change color on hover */
+}
+
+/* En-tête de la table */
+.adminn-table-header {
+    display: grid;
+    grid-template-columns: auto auto auto auto; /* Dernière colonne plus large */
+    padding: 10px 0;
+    font-weight: bold;
+    background-color: #f0f0f0;
+    border-bottom: 2px solid #ccc;
+}
+
+
+/* Lignes de la table */
+.adminn-table tr {
+    background-color: #F6F7FE;
+    margin-bottom: 10px;
+    text-align: left;
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr 1fr; /* Alignement avec les en-têtes */
+    align-items: center;
+    border-radius: 5px;
+    color: #8F9BBA;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Ajout d'une ombre pour la séparation visuelle */
+}
+
+.adminn-table td {
+    padding: 12px;
+    text-align: left;
+    border: none;
+}
+
+/* Styles pour les en-têtes de colonnes */
+.adminn-table th {
+    padding: 12px 12px 12px 12px;
+    color: #454648;
+}
+
+
+/* Styles pour le conteneur des boutons */
+.action-buttons {
+    display: flex; /* Utilisez flexbox pour aligner les éléments enfants */
+    gap: 1%; /* Espace entre les boutons */
+    position: relative;
+}
+
+/* Style des boutons */
+.action-buttons button {
+    padding: 6px 12px; /* Ajustement du padding pour un meilleur design */
+    font-size: 14px; /* Taille de la police pour les boutons */
+    line-height: 1.5; /* Hauteur de ligne pour le texte dans les boutons */
+    background-color: #f9f9f9; /* Couleur de fond du bouton */
+    cursor: pointer; /* Change le curseur pour indiquer qu'il s'agit d'un bouton cliquable */
+    transition: background-color 0.3s; /* Transition douce pour le changement de couleur de fond */
+    border-radius: 4px; /* Bordures arrondies pour les boutons */
+}
+
+/* Tooltip styles */
+.action-buttons button::after {
+    content: attr(data-tooltip); /* Utilise l'attribut data-tooltip pour le texte du tooltip */
+    position: absolute;
+    width: 100%;
+    bottom: 100%; /* Positionne le tooltip au-dessus du bouton */
+    left: 50%; /* Centre le tooltip horizontalement par rapport au bouton */
+    transform: translateX(-50%); /* Ajuste la position horizontale pour centrer */
+    background-color: #333; /* Couleur de fond du tooltip */
+    color: #fff; /* Couleur du texte dans le tooltip */
+    padding: 5px 8px; /* Padding autour du texte du tooltip */
+    border-radius: 4px; /* Bordures arrondies pour le tooltip */
+    opacity: 0; /* Rend le tooltip invisible par défaut */
+    visibility: hidden; /* Cache le tooltip par défaut */
+    transition: opacity 0.3s, visibility 0.3s; /* Transitions pour l'opacité et la visibilité */
+}
+
+.action-buttons button:hover::after {
+    opacity: 1; /* Rend le tooltip visible au survol */
+    visibility: visible; /* Assure que le tooltip devient visible */
+}
+
+
+.approve, .reject {
+    border: none;
+    font-weight: bold;
+    background: none;
+    margin-top: 0px;
+    font-size: 16px;
+    cursor: pointer;
+    line-height: 1; /* Assurez-vous que la hauteur de ligne ne déforme pas l'alignement */
+}
+
+.approve {
+    color: green;
+}
+
+.reject {
+    color: red;
+}
+.approve:hover{
+    background-color: #0061B1;
+    color: #f0f0f0;
+}
+.reject:hover{
+    background-color: #0061B1;
+    color: #f0f0f0;}
+
+
+    .publish-button {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 8px 16px;
+        margin-left: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        cursor:pointer;
+    }
+    
+    .publish-button:hover {
+        background-color: #f0f0f0;
+    }

@@ -1,0 +1,31 @@
+
+.paginationComponent{
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+}
+.faChevron{
+    color: white;
+    background-color: #0061B1;
+    padding: 5px;
+    border-radius: 50%;
+    width: 13px;
+    height: 13px;
+}
+.page-item{
+    color: #0061B1;
+    margin: 10px;
+    cursor: pointer;
+    font-family: "Cairo" , sans-serif;
+    list-style-type: none;
+}
+.activePage{
+    text-decoration: underline;
+    color: #0061B1;
+    text-decoration-thickness: 2px ;
+    text-decoration-color: #0061B1; 
+    transform: scale(1.1); /* Par exemple, agrandir légèrement la taille */
+    transition: transform 0.3s ease-in-out;     
+}
