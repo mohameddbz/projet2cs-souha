@@ -59,7 +59,6 @@ import Contact from './pages/ContactRelex/Contact';
 import Admchercheur from './pages/Admin/Admchercheur'
 import ProjetLabo from './pages/Admin/ProjetLabo';
 import ProjetsInter from './pages/Lmcs/ProjetsInter'
-<<<<<<< HEAD
 import BachelierAdmin from './pages/BachelierAdmin/BachelierAdmin'
 // import Postgraduation from './Pages/Postgraduation/Postgraduation'
 import SuccessStories from './pages/SuccessStories/SuccessStories';
@@ -67,18 +66,7 @@ import PublicationDetail from './pages/SuccessStories/PublicationDetail';
 import ProgrammeFinal from './pages/Programme/ProgrammeFinal';
 import AjouterUser from './pages/Admin/AjouterUser';
 import ListUser from './page/Admin/ListeUSer';
-
-=======
-import BachelierAdmin from './pages/BachelierAdmin/BachelierAdmin';
-// import Postgraduation from './Pages/Postgraduation/Postgraduation'
-import SuccessStories from './pages/SuccessStories/SuccessStories';
-import PublicationDetail from './pages/SuccessStories/PublicationDetail';
-import AjouterUser from './pages/Admin/AjouterUser';
-import ListeUser from './pages/Admin/ListeUser';
->>>>>>> f211bbbcd897014f105e94b08af50924299b8084
-  
-  
-    
+      
 // ======= page historique pas integrer les 2 
 // ======= page chercheur pas integrer 
 // ======= page Publications
@@ -101,11 +89,9 @@ function App() {
         <Route path='/LCSI' elemennpmt={<Lcsi/>}></Route>
         <Route path='/Contact' element={<Contact/>}></Route>
         < Route path ="/LMCSProjects" element ={<Projets/>}/>
-<<<<<<< HEAD
         < Route path ="/Admin" allowedRoles={['administrateur']}  element ={<PrivateRoute><Principal /></PrivateRoute>}/>
-=======
+
         < Route path ="/Admin" allowedRoles={['administrateur']} element ={<PrivateRoute><Principal /></PrivateRoute>}/>
->>>>>>> f211bbbcd897014f105e94b08af50924299b8084
         <Route path="/Admin/publications" allowedRoles={['administrateur']} element={<PrivateRoute><PublicationAdmin /></PrivateRoute>} />
             <Route path="/Publieur/publications" allowedRoles={['editeur']} element={<PrivateRoute><PublicationPage /></PrivateRoute>} />
             <Route path="/Admin/publications_en_attente" allowedRoles={['administrateur']} element={<PrivateRoute><AdminPage /></PrivateRoute>} />
@@ -127,13 +113,9 @@ function App() {
         < Route path ="/Historique" element ={<Historique/>}/>
         < Route path ="/ProjetsInter" element ={<ProjetsInter/>}/>
         <Route path="/Admin/Ajouter_user" allowedRoles={['administrateur']} element={<PrivateRoute><AjouterUser /></PrivateRoute>} />
-<<<<<<< HEAD
+
         <Route path="/Admin/Liste_des_utilisateurs" allowedRoles={['administrateur']} element={<PrivateRoute><ListUser /></PrivateRoute>} />
-=======
-            <Route path="/Admin/Liste_des_utilisateurs" allowedRoles={['administrateur']} element={<PrivateRoute><ListeUser /></PrivateRoute>} />
->>>>>>> f211bbbcd897014f105e94b08af50924299b8084
-      
-      
+            
         < Route path ="/AvantPromo" element ={<AvantPromo/>}/>
         < Route path ="/CatalogueFormation" element ={<CatalogueFormation/>}/>
         < Route path ="/DemandeDevis" element ={<DemandeDevis/>}/>
