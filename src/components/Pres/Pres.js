@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Pres.css';
 
-const Node = ({ id, x, y, icon, size, color }) => {
-  const style = {
-    left: `${x}px`,
-    top: `${y}px`,
-    width: `${size}px`,
-    height: `${size}px`,
-    fontSize: `${size * 0.5}px`,  // Ajuster la taille de l'icône en fonction de la taille du nœud
-    backgroundColor: color,       // Couleur dynamique basée sur la propriété color
-  };
+const Node = ({ id, relativeX, relativeY, initialSize, color, icon }) => {
+  const [style, setStyle] = useState({});
+
+  useEffect(() => {
+    const updateStyle = () => {
+      const size = Math.min(window.innerWidth, window.innerHeight) * initialSize / 1000; // Ajuster le facteur de redimensionnement
+      setStyle({
+        left: `${relativeX * 100}vw`,
+        top: `${relativeY * 100}vh`,
+        width: `${size}px`,
+        height: `${size}px`,
+        fontSize: `${size * 0.5}px`,
+        backgroundColor: color
+      });
+    };
+
+    updateStyle();
+    window.addEventListener('resize', updateStyle);
+    return () => window.removeEventListener('resize', updateStyle);
+  }, [relativeX, relativeY, initialSize, color]);
 
   return (
     <div className="node" style={style} data-id={id}>

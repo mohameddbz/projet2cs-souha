@@ -45,6 +45,7 @@ export default function SidebarPub() {
                     </SubMenu>
                     <SubMenu label="Paramètres" className={styles.SubMenu}>
                         <MenuItem className={styles.widthMenu}><Link to="/Admin/profile">{textMenu(profile,'Profile')}</Link></MenuItem>
+                        <MenuItem className={styles.widthMenu}><Link to="/Admin/Ajouter_user">{textMenu(pubilerIcon,'Profile')}</Link></MenuItem>
                         <MenuItem className={styles.widthMenu} onClick={logout}>{textMenu(deconnect,'Se Deconnecter')}</MenuItem>
                     </SubMenu>
                 </Menu>

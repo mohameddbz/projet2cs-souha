@@ -1,23 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import './QuestionList.css';
-import { FaEye, FaClock, FaChevronLeft, FaChevronRight, FaPlusCircle, FaChevronDown } from 'react-icons/fa';
-import Ajouter from '../Ajouter/Ajouter'; // Assuming this is the modal component
+import './QuestionListAdm.css';
+import { FaEye, FaClock, FaChevronLeft, FaChevronRight, FaPlusCircle, FaChevronDown, FaTrash, FaReply } from 'react-icons/fa';
+import Ajouter from '../Ajouter/Ajouter';
 
-function QuestionList({onSelect, selectedQuestionId }) {
-  const [questions, setQuestions] = useState([]);
+function QuestionListAdm({ questions, onSelect, onDelete, onReply, selectedQuestionId }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [sortType, setSortType] = useState('recent');
   const [currentQuestions, setCurrentQuestions] = useState([]);
   const [totalQuestions, setTotalQuestions] = useState(0);
   const questionsPerPage = 5;
   const [showModal, setShowModal] = useState(false);
-
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/questions/`)
-      .then(response => response.json())
-      .then(data => setQuestions(data))
-      .catch(error => console.error('Error fetching questions:', error));
-  }, []);
 
   useEffect(() => {
     const sortedQuestions = [...questions].sort((a, b) => {
@@ -36,25 +28,21 @@ function QuestionList({onSelect, selectedQuestionId }) {
   }, [currentPage, questions, sortType]);
 
   const paginate = pageNumber => {
-    if (pageNumber !== currentPage && pageNumber > 0 && pageNumber <= Math.ceil(totalQuestions / questionsPerPage)) {
+    if (pageNumber > 0 && pageNumber <= Math.ceil(totalQuestions / questionsPerPage)) {
       setCurrentPage(pageNumber);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
-
-  const startIndex = (currentPage - 1) * questionsPerPage + 1;
-  const endIndex = startIndex + currentQuestions.length - 1;
 
   return (
     <div className='question-bar'>
       <div className="filter-area">
         <div className="result-info">
-          Affichage de {startIndex} à {endIndex} sur {totalQuestions} résultats.
+          Affichage de {currentPage * questionsPerPage - questionsPerPage + 1} à {Math.min(currentPage * questionsPerPage, totalQuestions)} sur {totalQuestions} résultats.
           <button className="add-button" onClick={() => setShowModal(true)}>
             <FaPlusCircle />
           </button>
         </div>
-        <div className="sort-dropdown">
+        <div className="sortt-dropdown">
           <p>Trier par</p>
           <select onChange={(e) => setSortType(e.target.value)}>
             <option value="recent">Récents</option>
@@ -75,13 +63,15 @@ function QuestionList({onSelect, selectedQuestionId }) {
             <div className="question-metadata">
               <span className="views"><FaEye /> {question.views}</span>
               <span className="date-posted"><FaClock /> {new Date(question.date_creation).toLocaleDateString()}</span>
+              <FaTrash className="action-icon" onClick={(event) => onDelete(question.id, event)} />
+              <FaReply className="action-icon" onClick={(event) => onReply(question.id, event)} />
             </div>
           </div>
         ))}
       </div>
-      <div className="pagination">
+      <div className="pagination-bachelier">
         <button onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1}>
-          <FaChevronLeft /> Prec
+          <FaChevronLeft /> Préc
         </button>
         {Array.from({ length: Math.ceil(totalQuestions / questionsPerPage) }, (_, index) => index + 1).map(number => (
           <button key={number} onClick={() => paginate(number)} className={currentPage === number ? 'active' : ''}>
@@ -89,7 +79,7 @@ function QuestionList({onSelect, selectedQuestionId }) {
           </button>
         ))}
         <button onClick={() => paginate(currentPage + 1)} disabled={currentPage >= Math.ceil(totalQuestions / questionsPerPage)}>
-          Suiv <FaChevronRight />
+          Suiv<FaChevronRight />
         </button>
       </div>
       <Ajouter show={showModal} onClose={() => setShowModal(false)} />
@@ -97,4 +87,4 @@ function QuestionList({onSelect, selectedQuestionId }) {
   );
 }
 
-export default QuestionList;
+export default QuestionListAdm;

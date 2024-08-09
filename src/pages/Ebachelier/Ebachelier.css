@@ -1,32 +1,36 @@
+.ebachelier{
+  background-color: #F9F9F9;
+}
 .bachelier-container {
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Aligner les enfants à gauche */
+  align-items: flex-start;
   justify-content: center;
   background-color: #0061B1;
   width: 100%;
-  height: 300px;
-  overflow: hidden;
+  height: 50vh; /* Utiliser des unités relatives pour la hauteur */
+   overflow: hidden;
+  z-index: 60;
 }
 
 .network-message {
   position: absolute;
-  top: 20px;  /* Ajustez en fonction de vos besoins */
-  left: 20px; /* Aligné à gauche sans décalage horizontal */
+  top: 2%; /* Utiliser des unités relatives */
+  left: 2%; /* Aligné à gauche sans décalage horizontal */
   color: white;
   text-align: left;
-  font-size: 30px;
+  font-size: 3vw; /* Taille de la police relative */
   font-weight: bold;
-  width: 30%; /* Assure que le texte est aligné à gauche du conteneur */
+  width: 40%; /* Assure que le texte est aligné à gauche du conteneur */
   z-index: 1;
 }
 
 .network {
   position: relative;
-  width: 100%; /* Largeur suffisante pour contenir tous les nœuds */
+  width: 100%;
   height: 100%;
-  margin-left: 15%; /* Pousse le réseau vers la droite */
+  margin-left: 20%; /* Pousse le réseau vers la droite */
 }
 
 .connections {
@@ -39,27 +43,32 @@
 
 /* Responsive styles for tablets */
 @media (max-width: 768px) {
+  .bachelier-container {
+    height: 35vh; /* Ajuster la hauteur pour les tablettes */
+  }
   .network-message {
-    font-size: 20px; /* Réduire la taille de la police */
-    width: 50%; /* Augmenter la largeur pour une meilleure lisibilité */
+    font-size: 3vw; /* Réduire la taille de la police */
+    width: 40%; /* Augmenter la largeur pour une meilleure lisibilité */
   }
   .network {
-    margin-left: 5%; /* Réduire la marge pour plus d'espace */
+    margin-left: 20%; /* Réduire la marge pour plus d'espace */
   }
 }
 
 /* Responsive styles for mobile phones */
 @media (max-width: 480px) {
+  .bachelier-container {
+    height: 35vh; /* Ajuster la hauteur pour les mobiles */
+  }
   .network-message {
-    font-size: 16px; /* Taille de police encore plus petite pour les petits écrans */
-    top: 10px; /* Moins d'espace au-dessus */
-    left: 10px; /* Moins d'espace à gauche */
-    width: 80%; /* Utiliser plus de l'espace disponible */
+    font-size: 3vw; /* Taille de police encore plus petite pour les petits écrans */
+    width: 40%; /* Utiliser plus de l'espace disponible */
   }
   .network {
-    margin-left: 0; /* Supprimer la marge gauche pour maximiser l'utilisation de l'espace */
+    margin-left: 20%; /* Supprimer la marge gauche pour maximiser l'utilisation de l'espace */
   }
 }
+
 .fablab-section, .bachelier-container {
   position: relative;
   z-index: 2; /* Assure que le texte et les hexagones sont au-dessus du filtre */
@@ -67,15 +76,15 @@
 .fablab-section {
   background-color: #ffffff; /* Couleur de fond */
   padding: 10px 40px; /* Padding pour l'espacement intérieur */
- margin-right: 50px;
- margin-left: 50px;
+  margin-right: 50px;
+  margin-left: 50px;
   position: relative;
   margin-top: -20px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Ombre portée appliquée ici */
 }
 .fablab-header {
-  font-size: 24px; /* Taille de la police pour le titre */
+  font-size: 2.4vw; /* Taille de la police relative */
   color: #0061B1; /* Couleur du texte pour le titre */
   margin-bottom: 10px; /* Espacement entre le titre et la description */
   margin-top: 5px;
@@ -83,13 +92,14 @@
 }
 
 .fablab-description {
-  font-size: 16px; /* Taille de la police pour la description */
+  font-size: 1.6vw; /* Taille de la police relative */
   color: #000000; /* Couleur du texte pour la description */
   text-align: justify; /* Justifie le texte pour un alignement uniforme des deux côtés */
   line-height: 1.5; /* Hauteur de ligne pour améliorer la lisibilité */
   text-align: center;
   font-weight: 600;
 }
+
 .ingenium-connect-container {
   display: flex;
   background-color: #0061B1;
@@ -122,7 +132,7 @@
 }
 
 .ingenium-connect-logo button {
-  font-size: 20px;
+  font-size: 2vw; /* Taille de la police relative */
   border: none;
   background-color: #0061B1;
   padding: 10px;
@@ -143,6 +153,7 @@
 }
 
 .guide-title {
+  font-size: 3vw; /* Taille de la police relative */
   color: #0061B1;
   margin-bottom: 60px;
 }
@@ -158,7 +169,7 @@
   border: 1px solid #A9CEF4;
   height: 250px;
   border-radius: 10px;
-  font-size: 26px;
+  font-size: 2.6vw; /* Taille de la police relative */
   font-weight: bold;
   padding: 20px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -181,13 +192,13 @@
   justify-content: center;
   margin: 0 auto 10px;
   color: white;
-  font-size: 24px;
+  font-size: 2.4vw; /* Taille de la police relative */
 }
 
 .read-more-button {
   background-color: #0061B1;
   color: white;
-  font-size: 20px;
+  font-size: 2vw; /* Taille de la police relative */
   font-weight: bold;
   border: none;
   padding: 10px 20px;
@@ -199,14 +210,18 @@
 .read-more-button:hover {
   background-color: #002060;
 }
+
 .gallery-grid {
   display: grid;
   background-color: #F0F7FD; /* Couleur de fond générale de la grille */
   grid-template-columns: repeat(3, 1fr); /* Crée trois colonnes */
   grid-gap: 0; /* Aucun espace entre les cellules */
-  max-width: 90%;
-  margin: auto;
+  width: calc(100% - 20%); /* Ajuster pour prendre en compte la marge */
+  margin: 2% 10% 2% 10%; /* Marge de 2% de tous les côtés */
+  box-sizing: border-box;
+  justify-content: center;
 }
+
 
 .grid-item {
   position: relative; /* Permet le positionnement absolu à l'intérieur de chaque élément */
@@ -214,11 +229,17 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 20px; /* Marge intérieure de chaque élément de grille */
+  /*padding: 20px; /* Marge intérieure de chaque élément de grille */
+}
+
+
+.grid-item.text{
+padding: 4%;
 }
 
 .grid-item.image {
   background-size: cover;
+  width: 100%;
   background-position: center;
 }
 
@@ -241,7 +262,12 @@
 /* Appliquez les couleurs aux boutons en fonction de leur case */
 .grid-item:nth-child(4) .buttonn { color: #0061B1; } /* Bleu plus foncé */
 .grid-item:nth-child(2) .buttonn { color: white;} /* Jaune plus foncé */
-.grid-item:nth-child(6) .buttonn { color: white; } /* Violet plus foncé */
+.grid-item:nth-child(6) .buttonn { color: #0061B1; } /* Violet plus foncé */
+
+/* Appliquez les couleurs aux h2 en fonction de leur case */
+.grid-item:nth-child(2) h2 { color: white; } /* Jaune pour le premier texte */
+.grid-item:nth-child(4) h2 { color: #0061B1; } /* Bleu pour le deuxième texte */
+.grid-item:nth-child(6) h2 { color: #0061B1; } /* Violet pour le troisième texte */
 
 .testimonials-container {
   max-width: 900px;
@@ -288,19 +314,19 @@
 }
 
 .testimonial-text {
-  font-size: 16px;
+  font-size: 1.6vw; /* Taille de la police relative */
   color: #616161;
   margin-bottom: 20px; /* Espacement avant le nom */
 }
 
 .testimonial-name {
-  font-size: 18px;
+  font-size: 1.8vw; /* Taille de la police relative */
   font-weight: bold;
   color: #0061B1;
 }
 
 .testimonial-role {
-  font-size: 16px;
+  font-size: 1.6vw; /* Taille de la police relative */
   color: #757575;
   font-style: italic;
 }
@@ -341,4 +367,18 @@
 
 .navigation button:focus {
   outline: none; /* Supprimer le contour lors de la sélection */
+}
+
+/* Responsive styles for tablets */
+@media (max-width: 768px) {
+  .fablab-header, .guide-title, .testimonial-name, .testimonial-role, .testimonial-text, .card, .read-more-button, .ingenium-connect-logo button, .icon-circle {
+    font-size: 2vw; /* Ajuster la taille de la police pour les tablettes */
+  }
+}
+
+/* Responsive styles for mobile phones */
+@media (max-width: 480px) {
+  .fablab-header, .guide-title, .testimonial-name, .testimonial-role, .testimonial-text, .card, .read-more-button, .ingenium-connect-logo button, .icon-circle {
+    font-size: 4vw; /* Ajuster la taille de la police pour les mobiles */
+  }
 }
