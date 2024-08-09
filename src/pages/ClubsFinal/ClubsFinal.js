@@ -25,7 +25,7 @@ function ClubsFinal(props) {
 
   const loadDataInfo = async () => {
     try {
-      const res = await axios.get(`${process.env.REACT_APP_API_URL}/club`);
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/clubs`);
       setClubs(res.data);
 
       // Set default selected club to the first one

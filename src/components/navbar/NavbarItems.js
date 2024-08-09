@@ -43,7 +43,7 @@ const listItem=[
                     }
                     ,{
                         item:'Fablab Piece',
-                        lien:'/FabLab/Details_piece'
+                        lien:'/FabLab/piece'
                     },{
                         item:'Fablab Inscription',
                         lien:'/FabLab/Inscription'
@@ -68,7 +68,8 @@ const listItem=[
                             lien:''
                         },{
                             item:'Forum',
-                            lien:'/Ebachelier/Forum'
+                             lien:'/Ebachelier/Forum',
+                             adminLink: '/Ebachelier/BachelierAdmin'
                         }]
                 }
             ]

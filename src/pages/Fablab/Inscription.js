@@ -27,7 +27,20 @@ function InscriptionForm() {
     'Individuel avec coach', 'Individuel sans coach', 'Équipe avec coach',
     'Équipe sans coach', 'Initié par ESI en collaboration avec fablab'
   ];
-
+  const resetFields = () => {
+    setNom('');
+    setPrenom('');
+    setImmatriculation('');
+    setPhone('');
+    setEmail('');
+    setCycleEtudes('');
+    setTypeProjet('');
+    setOutilsMaitrise('');
+    setProjetEnRelation('');
+    setDescription('');
+    // setError(null);
+    // setSuccess(null);
+  };
   // Gérer la soumission du formulaire
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -45,7 +58,7 @@ function InscriptionForm() {
     };
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/inscription-utilisateur/', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/inscription-utilisateur/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -59,9 +72,11 @@ function InscriptionForm() {
 
       if (response.ok) {
         setSuccess('Inscription réussie !');
+        resetFields();
         setError(null);
       } else {
         setError(data);
+        resetFields();
         setSuccess(null);
       }
     } catch (error) {

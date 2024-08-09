@@ -147,7 +147,7 @@ function PiecesElectronics() {
           {!loading && !error && currentItems.length === 0 && <p>No pieces found.</p>}
           {!loading && !error && currentItems.map((piece, index) => (
             <Link to={`/Fablab/pieces/${piece.id_piece}`} key={index} className='pieces-card'>
-              <img src={`http://localhost:8000/${piece.photo}`} alt={piece.nom} />
+              <img src={`${process.env.REACT_APP_API_URL}${piece.photo}`} alt={piece.nom} />
               <div className='pieces-card-details'>
                 <h3 className='pieces-title'>{piece.nom}</h3>
                 <section className='pieces-card-review'>

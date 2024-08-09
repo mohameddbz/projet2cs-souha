@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Link } from 'react-router-dom';
+import { Link, redirect, useNavigate } from 'react-router-dom';
 import cn from "classnames";
 import styles from "./ProgrammeFinal.module.scss"
 import Chatbot from "../../components/chatbot/Chatbot";
@@ -23,18 +23,26 @@ const optionCycle = [
     { value: '5', label: '3CS' },
   ];
 
+ 
 
 
 function ScrollToTop() {
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
+    window.location.href = "https://talents.esi.dz/scolar/programme_list/";
+
   }, []);
 
   return null;
 }
 
 function ProgrammeFinal(props) {
- 
+  const navigate = useNavigate();
+  useEffect(() => {
+    // window.scrollTo(0, 0);
+    window.open("https://talents.esi.dz/scolar/programme_list/", '_blank');
+    navigate('/')
+  }, []);
     const styleSelect = {
         Input: () => ({
             font:'400 14px/1.42 "Poppins", Helvetica, Arial, serif',
