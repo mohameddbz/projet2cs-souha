@@ -1,66 +1,110 @@
 @font-face {
-    font-family: 'Open Sans Regular';
-    src: url('/fonts/OpenSans/OpenSans-Regular.ttf') format('truetype');
-  }
-  .container {
-    height: fit-content;
+  font-family: 'Open Sans Regular';
+  src: url('/fonts/OpenSans/OpenSans-Regular.ttf') format('truetype');
+}
+.container {
+  height: 100%;
+  width: 100% !important;
+  display: flex;
+  background-color: white;
+  box-sizing: border-box; /* Inclut padding et bordure dans la largeur totale */
+}
 
-    display: flex;
-    background-color: white;
-   
-  }
+.sidebarContainer {
+  height: 100%;
+  background-color: white !important; // Ensure the background stays white
+  padding-right: 2%;
+  width: 100% !important;
+  padding-left: 2%;
+  box-sizing: border-box; /* Inclut padding et bordure dans la largeur totale */
+  z-index: 999; /* Above the overlay */
+}
+
+.menuContainer {
+  height: 100%;
+  background-color: white; // Ensure the background of the menu stays white
   
-  .sidebarContainer {
-    height: 100%;
-    background-color: white !important; // Ensure the background stays white
-    padding-right: 40px;
-    padding-left: 20px;
-   
-  }
-  
-  .menuContainer {
-    height: 100%;
-    background-color: white; // Ensure the background of the menu stays white
-    
-  }
-  
-  .box {
-    height: 100%;
-    margin-top: 20px;
-  }
-  
-  .SubMenu{
-    
-  
+}
+
+.box {
+  height: 100%;
+  margin-top: 20px;
+}
+
+.SubMenu{
+width: 100%;
+font-family: 'Open Sans Regular';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+}
+.widthMenu{
+  width:100% !important
+}
+
+.menuText{
+  width:100% !important;
   font-family: 'Open Sans Regular';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   }
-  .widthMenu{
-    width:fit-content
-  }
-  
-  .menuText{
-    
-    width:600px;
-    font-family: 'Open Sans Regular';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    }
-  .logo{
-  
-  
-  }
-  
-  .MenuItemContainer{
-    display: flex;
-    flex-direction: row;
-    
-    
-  }
-  
-  .icon{
-    margin-right: 10px;
-  }
+
+.MenuItemContainer{
+  display: flex;
+  flex-direction: row;
+}
+
+.icon{
+  margin-right: 10px;
+}
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998; /* Assure that this is below the sidebar */
+  transition: opacity 0.3s ease;
+}
+/* Show the overlay when sidebar is visible */
+.overlayVisible {
+  display: block;
+}
+/* SidebarAdm.module.scss */
+.hamburgerMenu {
+  display: none; /* Default state: icon is hidden */
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 1001; /* Ensure it's above other content */
+}
+@media (max-width: 768px) {
+.sidebarContainer {
+  position: fixed;
+  width: 40% !important;
+  left: -1000px; /* Initially hide the sidebar off-screen */
+  padding: 2% 2% 2% 2%;
+  transition: left 0.3s;
+  box-sizing: border-box; /* Inclut padding et bordure dans la largeur totale */
+}
+.overlayVisible {
+  display: block;
+  opacity: 1; /* Make overlay visible */
+}
+
+.sidebarVisible {
+  left: 0; /* Adjust this value to show the sidebar */
+}
+
+.hamburgerMenu {
+  display: block; /* Only display the icon on small screens */
+}
+
+.menuContainer, .SubMenu {
+  display: block; /* Makes sure the menu is always visible when sidebar is expanded */
+}
+}

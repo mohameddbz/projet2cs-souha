@@ -1,0 +1,71 @@
+/* AddUserForm.module.css */
+.formContainer {
+    width: 70%; /* Assurez-vous que cette largeur est appropriée pour tous les appareils, ajustez via des media queries si nécessaire */
+    display: flex;
+    flex-direction: column;
+    margin: 2% 2% 2% 2%;  /* Centre le formulaire horizontalement */
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-weight: bold;
+    background-color:#F6F7FE;; /* Ajoute un fond pour une meilleure visibilité */
+}
+.adminPageContainer {
+    display: flex;
+    width: 100%; /* Utilise toute la largeur de la vue */
+}
+
+.formGroup {
+    width: 90%; /* Ajustez ici la largeur */
+    margin: 10px auto; /* Centrage et espacement des éléments du formulaire */
+}
+
+.label, .input, .select {
+    display: block;
+    width: 100%; /* Utilisez 100% pour remplir le .formGroup */
+    margin-bottom: 10px;
+}
+
+.input, .select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.button {
+    width: auto; /* Auto pour que le bouton ne prenne que l'espace nécessaire */
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #0061B1;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.sidebar {
+    width: 30%; /* Largeur du sidebar à 20% de la vue */
+    margin: 1%;
+    padding: 2%; /* Espacement interne */
+    height: 100vh; /* S'assure que le sidebar atteint la hauteur de la fenêtre */
+    box-sizing: border-box; /* Inclut padding et bordure dans la largeur totale */
+}
+.sidebar a {
+    text-decoration: none; /* Supprime le soulignement */
+    color: black; /* Change la couleur des liens, mettez la couleur que vous souhaitez */
+}
+
+/* Ajoute un style pour les liens au survol */
+.sidebar a:hover {
+    
+    color: #0056b3; /* Change la couleur au survol */
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+

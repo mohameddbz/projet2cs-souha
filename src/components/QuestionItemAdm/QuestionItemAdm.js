@@ -1,8 +1,8 @@
 import React from 'react';
-import './QuestionItem.css';
+import './QuestionItemAdm.css';
 import { FaClock } from 'react-icons/fa'; // Import the clock icon
 
-const QuestionDetails = ({selectedQuestion }) => {
+const QuestionItemAdm = ({ selectedQuestion }) => {
     if (!selectedQuestion) {
         return <div className="details-container">Select a question from the list.</div>;
     }
@@ -37,4 +37,4 @@ const QuestionDetails = ({selectedQuestion }) => {
 );
 }
 
-export default QuestionDetails;
+export default QuestionItemAdm;

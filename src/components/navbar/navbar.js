@@ -13,7 +13,7 @@ function Navbar () {
     const [navSmallSize, setNavSmallSize] = useState(false);
     const [openMenuSmallNav, setOpenMenuSmallNav] = useState(false);
     const leaveDelay = 300; // Délai en millisecondes
-
+    const isAdmin = localStorage.getItem('is_adminstrateur') === 'true';  // Récupérer le statut d'administrateur
     useEffect(() => {
         const handleResize = () => {
           setNavSmallSize(window.innerWidth < 920);
@@ -68,7 +68,13 @@ function Navbar () {
                                             {hoveredIndex === index && (
                                                 <div className='toggleNavbarItem'>
                                                     <DropdownNav
-                                                        subMenu={item.subMenu}
+                                                         subMenu={item.subMenu.map(subItem => ({
+                                                            ...subItem,
+                                                            items: subItem.items.map(linkItem => ({
+                                                                ...linkItem,
+                                                                lien: linkItem.item === 'Forum' ? (isAdmin ? linkItem.adminLink : linkItem.lien) : linkItem.lien  // Condition pour le lien d'administration du forum
+                                                            }))
+                                                        }))}
                                                         hoveredIndex={hoveredIndex}
                                                         index={index}
                                                     />

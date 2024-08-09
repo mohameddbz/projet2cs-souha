@@ -7,7 +7,7 @@
     width: 100%;
     background-color: white;
     box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.5);
-    z-index: 99;
+    z-index: 1000;
 }
 .topNav-full-container{
     background-color: #0061B1;
@@ -22,6 +22,7 @@
     top: 125px;
     width: 100%;
     left: 0;
+    z-index: 1001;
 }
 .navItem{
     color: black;
@@ -113,6 +114,7 @@
 .navCollapseListContain{
     background-color: #0061B1;
     width: 100%;
+    z-index: 2000;
 }
 .NavUserDiv{
     display: flex;

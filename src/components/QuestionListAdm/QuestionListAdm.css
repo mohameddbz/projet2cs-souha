@@ -1,0 +1,184 @@
+.question-bar{
+    width: 40%;
+    background-color: white;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+    border-radius: 5px;
+    margin-bottom: 5%;
+}
+.question-list {
+    width: 100%;
+    background-color: white;
+    padding: 10px;
+    box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur totale */
+}
+  
+.question-item {
+    cursor: pointer;
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+    position: relative; /* Pour le positionnement du marqueur */
+}
+.question-item:hover {
+    background-color:#1e88e52b;
+}
+
+  
+.question-item.selected::before {
+    content: ""; /* Nécessaire pour le pseudo-élément */
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background-color: #0061B1; /* La barre bleue indiquant l'élément sélectionné */
+    z-index: 1;  /* Assurez-vous que ceci est suffisamment élevé pour être visible */
+}
+  
+.question-title {
+    margin: 0;
+    color: #0061B1;
+}
+  
+.question-content {
+    margin: 5px 0 0;
+    font-size: 0.9rem;
+    color:black;
+}
+.question-metadata {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 0.8rem;
+    color: #666;
+  }
+  
+  .views, .date-posted {
+    display: flex;
+    align-items: center;
+  }
+  
+  .views svg, .date-posted svg {
+    margin-right: 5px;
+  }
+
+  .pagination-bachelier {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+  }
+  
+  .pagination-bachelier button {
+    border: 1px solid #ccc;
+    font-size: medium;
+    font-weight: bold;
+    background: #fff;
+    padding: 5px 10px;
+    margin: 0 4px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    color: #424242;
+  }
+  
+  .pagination-bachelier button:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .pagination-bachelier button.active {
+    color: #424242;
+    border-bottom: 3px solid #424242; /* Ajoute un trait sous le bouton sélectionné */
+    padding-bottom: 2px; /* Réduit le padding en bas pour compenser l'ajout de la bordure */
+  }
+  
+  .pagination-bachelier button.disabled {
+    opacity: 0.5;
+    cursor: default;
+    color: #CCCCCC;
+
+  }
+
+  .filter-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .result-info {
+    font-size: 1rem;
+    display: flex;
+    gap: 50px;
+    margin: 5%;
+    color: #424242;
+    font-weight: 500;
+    align-items: center;
+    flex-direction: row;
+  }
+  
+  .add-button {
+    background: none;
+    border: none;
+    right: 0;
+    cursor: pointer;
+    padding: 1% 0 0 0;
+    font-size: 2rem;  
+    align-items: center;
+    color: #0061B1;
+  }
+  .add-button:hover {
+    color: #61B100;
+  }
+  .sortt-dropdown {
+    position: relative;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    margin: 0 5% 5% 5%;
+    border-radius: 3px;
+  }
+  
+  .sortt-dropdown p {
+    width: 30%;
+    margin: 0;
+  }
+  
+  .sortt-dropdown svg {
+    position: absolute;
+    right: 10px; /* Positionnez l'icône à 10px du bord droit du `select` */
+    top: 50%; /* Centrer verticalement l'icône */
+    transform: translateY(-50%);
+    pointer-events: none; /* Empêche l'icône d'intercepter les clics */
+  }
+  
+  .sortt-dropdown select {
+    width: 100%;
+    padding: 8px 30px 8px 12px; /* Padding droit augmenté pour l'icône */
+    border: 0.5px solid #ccc;
+    background-color: white;
+    font-size: 0.9rem;
+    color: #333;
+    border-radius: 3px;
+    appearance: none;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.2s ease-in-out; /* Transition douce pour les changements de bordure */
+  }
+  
+  .sortt-dropdown select:hover {
+    border-color: #888; /* Changement de couleur au survol */
+  }
+  
+  .sortt-dropdown select:focus {
+    border-color: #0056b3; /* Bordure bleue au focus pour une meilleure visibilité */
+    outline: none; /* Supprimer le contour par défaut pour un look personnalisé */
+  }
+  
+  .sortt-dropdown select option {
+    padding: 20px; /* Padding généreux pour une meilleure manipulation */
+    background: white; /* Fond blanc pour une meilleure lisibilité */
+    color: #333; /* Définir une couleur de texte explicite pour assurer la cohérence */
+  }
+  
