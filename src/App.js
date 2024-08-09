@@ -65,7 +65,7 @@ import SuccessStories from './pages/SuccessStories/SuccessStories';
 import PublicationDetail from './pages/SuccessStories/PublicationDetail';
 import ProgrammeFinal from './pages/Programme/ProgrammeFinal';
 import AjouterUser from './pages/Admin/AjouterUser';
-import ListUser from './page/Admin/ListeUSer';
+import ListUser from './pages/Admin/ListeUser';
       
 // ======= page historique pas integrer les 2 
 // ======= page chercheur pas integrer 
