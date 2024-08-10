@@ -9,6 +9,17 @@
   border: none; /* Supprimez toutes les bordures ou remplacez par 'border: none;' */
 }
 
+ .myy{
+  width: 100%;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 18px;
+ }
+
+
 /* Titre du formulaire */
 .demande-form h1 {
   font-size: 44px;
@@ -19,11 +30,12 @@
 }
 
 /* Groupe d'inputs et single input blocks */
-.input-group, .input-block {
+.input-group, .input-block  {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
 }
+
 
 /* Style pour chaque input et select dans le formulaire */
 .input-group input, .input-block input, .input-block select, textarea {
@@ -90,3 +102,4 @@ textarea {
   resize: vertical; /* Allows vertical resize only */
   width: 100%;
 }
+

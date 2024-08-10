@@ -51,7 +51,8 @@ function ExplorationSection() {
         <div className="exploration-section">
             <div className="header-with-button">
                 <h1>Explorer le matériel</h1>
-                <button onClick={() => window.location.href = `${process.env.REACT_APP_API_URL}/Fablab/pieces`}>Voir tous</button> </div>
+                 {/* il faut changer window.location.href */}
+                <button onClick={() => window.location.href = 'http://localhost:3000/Fablab/pieces'}>Voir tous</button> </div>
             <div className="item-container">
             {items.map((item) => (
                     <div className="item-box" key={item.id_piece}>

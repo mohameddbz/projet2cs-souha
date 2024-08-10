@@ -127,7 +127,7 @@ function App() {
         < Route path ="/ClubsFinal" element ={<ClubsFinal/>}/>
         <Route path='/EsiFinal' element={<EsiFinal/>}></Route>
         <Route path='/FabLab/Accueil' element={<FabLabPage/>}></Route>
-        <Route path='/FabLab/Demande_piece' element={<DemandeForm/>}></Route>
+        <Route path='/FabLab/Demande_piece/:id' element={<DemandeForm/>}></Route>
         <Route path="/ajouter_piece" element={<AjouterPiece/>}></Route>
         <Route path="/FabLab/piece" element={<PiecesElectronics/>} />
         <Route path="/ajouter_category" element={<AddCategory/>} />

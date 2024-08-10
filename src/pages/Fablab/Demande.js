@@ -1,11 +1,14 @@
+
 import React, { useState, useEffect } from 'react';
 import { FaPlus, FaMinus } from 'react-icons/fa';
-
+import { useParams, useNavigate } from 'react-router-dom';
 import './Demande.css';
+import axios from 'axios';
 import Navbar from '../../components/navbar/navbar';
 import Footer from '../../components/Footer/Footer';
 
 function DemandeForm() {
+  const { id } = useParams(); // Get the piece ID from the URL
   const [formData, setFormData] = useState({
     nom: '',
     prenom: '',
@@ -13,11 +16,12 @@ function DemandeForm() {
     numero_telephone: '',
     numero_immatriculation: '',
     cycle_etude: '',
-    piece: '',
+    piece: id,
     quantite_emprunnee: 1,
     description: '',
     // utilisateur: '',  // Champ utilisateur
   });
+  const [piece,setPiece]= useState(`piece id : ${id}`)
 
   const [userName, setUserName] = useState('');
   const [errors, setErrors] = useState({});
@@ -53,7 +57,20 @@ function DemandeForm() {
     // if (formData.email) {
     //   fetchUserName();
     // }
-  }, [formData.email]);
+    const loadPiece = async () => {
+      try {
+        // Replace 'id' with the actual ID or state variable as needed
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/pieces/${id}`);
+        setPiece(response.data.nom);
+      } catch (error) {
+        console.error('Error fetching piece details:', error);
+      }
+    };
+
+    if (id) {
+      loadPiece();
+    }
+  },[id]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -67,7 +84,9 @@ function DemandeForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem('token');
+      console.log('test test test ')
+      console.log(formData)
+      // const token = localStorage.getItem('token');
       const response = await fetch(`${process.env.REACT_APP_API_URL}/faire-demande-materiel/`, {
         method: 'POST',
         headers: {
@@ -91,10 +110,10 @@ function DemandeForm() {
             numero_telephone: '',
             numero_immatriculation: '',
             cycle_etude: '',
-            piece: '',
-            quantite_emprunnee: 1,
+            piece: id,
+            quantite_empruntee: 1,
             description: '',
-            // utilisateur: '',
+          //  utilisateur: '',
           });
           setUserName('');
         } else {
@@ -116,38 +135,44 @@ function DemandeForm() {
 
   return (
     <>
-      <Navbar />
+      <Navbar/>
       <div className="demande-form">
-        <h1>Demander Pièce électronique</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="input-group">
-            <input type="text" name="nom" placeholder="Nom" value={formData.nom} onChange={handleInputChange} />
-            <input type="text" name="prenom" placeholder="Prénom" value={formData.prenom} onChange={handleInputChange} />
+      <h1>Demander Pièce électronique</h1>
+      <form onSubmit={handleSubmit}>
+
+        <div className="input-group">
+          <input type="text" name="nom" placeholder="Nom" value={formData.nom} onChange={handleInputChange} />
+          <input type="text" name="prenom" placeholder="Prénom" value={formData.prenom} onChange={handleInputChange} />
+        </div>
+        <div className="input-group">
+          <input type="tel" name="numero_telephone" placeholder="Téléphone" value={formData.numero_telephone} onChange={handleInputChange} />
+          <input type="text" name="numero_immatriculation" placeholder="Numéro d'immatriculation" value={formData.numero_immatriculation} onChange={handleInputChange} />
+
+        </div>
+        <input className='myy' type="email" name="email" placeholder="E-mail" value={formData.email} onChange={handleInputChange} />
+        <div className="input-block">
+          <select name="cycle_etude" value={formData.cycle_etude} onChange={handleInputChange}>
+            <option value="">Sélectionnez ou saisissez une option...</option>
+            <option value="1CP">1CP</option>
+            <option value="2CP">2CP</option>
+            <option value="1CS">1CS</option>
+            <option value="2CS">2CS</option>
+            <option value="3CS">3CS</option>
+          </select>
+        </div>
+        <div className="input-group">
+          <input type="text" name="nomPiece" placeholder="Nom de la pièce" value={piece}  />
+          <div className="quantity-controls">
+            <button type="button" onClick={() => handleQuantityChange(-1)}><FaMinus /></button>
+            <input type="number" name="quantite_empruntee" value={formData.quantite_empruntee} onChange={handleInputChange} />
+            <button type="button" onClick={() => handleQuantityChange(1)}><FaPlus /></button>
           </div>
-          <div className="input-group">
-            <input type="tel" name="numero_telephone" placeholder="Téléphone" value={formData.numero_telephone} onChange={handleInputChange} />
-            <input type="text" name="numero_immatriculation" placeholder="Numéro d'immatriculation" value={formData.numero_immatriculation} onChange={handleInputChange} />
-          </div>
-          <div className="input-block">
-            <select name="cycle_etude" value={formData.cycle_etude} onChange={handleInputChange}>
-              <option value="">Sélectionnez ou saisissez une option...</option>
-              <option value="Cycle 1">Cycle 1</option>
-              <option value="Cycle 2">Cycle 2</option>
-            </select>
-          </div>
-          <div className="input-group">
-            <input type="text" name="piece" placeholder="Nom de la pièce" value={formData.piece} onChange={handleInputChange} />
-            <div className="quantity-controls">
-              <button type="button" onClick={() => handleQuantityChange(-1)}><FaMinus /></button>
-              <input type="number" name="quantite_emprunnee" value={formData.quantite_emprunnee} onChange={(e) => setFormData(prev => ({ ...prev, quantite_emprunnee: Number(e.target.value) }))} />
-              <button type="button" onClick={() => handleQuantityChange(1)}><FaPlus /></button>
-            </div>
-          </div>
-          <textarea name="description" placeholder="Bref description pourquoi vous demandez cette pièce" value={formData.description} onChange={handleInputChange}></textarea>
-          <button type="submit" className="action-button">Demander</button>
-        </form>
-      </div>
-      <Footer />
+        </div>
+        <textarea name="description" placeholder="Bref description pourquoi vous demandez cette piece" value={formData.description} onChange={handleInputChange}></textarea>
+        <button type="submit" className="action-button">Demander</button>
+      </form>
+    </div>
+    <Footer/>
     </>
   );
 }
