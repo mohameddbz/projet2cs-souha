@@ -23,7 +23,7 @@ function Equipe() {
     useEffect(() => {
         const fetchEquipes = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_API_URL}/laboratoire/lcsi/equipes/`);
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/laboratoire/lmcs/equipes/`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
