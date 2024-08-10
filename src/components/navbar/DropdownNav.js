@@ -18,15 +18,9 @@ function DropdownNav (props) {
                         <li className='navItem-title'>{list.title}</li>
                         {
                             list.items.map((item, i) =>{
-                                // if(item.lien==="/ProgrammeFinal"){
-                                //     window.location.href = "https://talents.esi.dz/scolar/programme_list/";
-                                //     return null; // ou une autre valeur si nécessaire
-                                // } else {
                                     return( 
                                         <li className='hoverNavItem'><Link className='hoverNavItemLink' to={item.lien}>{item.item}</Link></li>
                                     )
-                                // }
-                          
                             })
                         }
                         </ul>
