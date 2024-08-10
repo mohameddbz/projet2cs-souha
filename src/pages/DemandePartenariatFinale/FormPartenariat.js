@@ -33,29 +33,27 @@ function FormPartenariat(props) {
 
   const handleButtonClick = async () => {
     const formData = {
-      email,
-      prenom,
       nom,
+      prenom,
       profession,
       country,
-      phoneNumber,
       organisme,
+      phoneNumber,
+      etat: "en attente",
       tailleOrganisme,
+      email,
       websiteUrl,
     };
 
     try {
-      console.log(formData)
-      const response = await fetch(`${process.envREACT_APP_API_URL}/demande_partenariat`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/demande_partenariat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
       });
-
       if (response.ok) {
-        // Navigate to the success page or show success message
         navigate('/DemandeEnregistree');
       } else {
         console.error('Error submitting the form');
