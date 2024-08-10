@@ -6,7 +6,7 @@ import a from '../../images/a.png';
 import cardData from '../../db/soutenance.json';
 import treePic from '../../assets/images/TreePic.jpg';
 import LLM from '../../assets/images/LLM.png';
-import navbar from '../../components/navbar/navbar'
+import axios from 'axios' ;
 import Navbar from '../../components/navbar/navbar';
 import Footer from '../../components/Footer/Footer'
 
@@ -14,29 +14,7 @@ import Footer from '../../components/Footer/Footer'
 const pageSize = 4;
 
 // Définir les données des événements
-const eventsData = [
-  {
-    date: '06 Mar 2024',
-    title: 'Arbre pour chaque étudiant',
-    type: '(compagne de reboisement)',
-    description: 'Rejoignez-nous dans cette compagne de plantation de plus de 200 arbres afin que nous nous engagions ensemble pour la protection de notre planète et de créer du lien convivial avec les autres étudiants partageant les mêmes valeurs.',
-    image: treePic,
-  },
-  {
-    date: '10 Apr 2024',
-    title: 'Conférence sur le Climat',
-    type: '(événement écologique)',
-    description: 'Participez à notre conférence sur le changement climatique et découvrez les dernières recherches et initiatives pour lutter contre le réchauffement climatique.',
-    image: treePic,
-  },
-  {
-    date: '15 May 2024',
-    title: 'Marathon pour la Terre',
-    type: '(événement sportif)',
-    description: 'Joignez-vous à notre marathon annuel pour promouvoir la santé et la sensibilisation environnementale. Courons ensemble pour une planète plus verte!',
-    image: treePic,
-  },
-];
+
 const soutData = [
   {
     date: '06 Mar 2024',
@@ -60,55 +38,69 @@ const soutData1 = [
 ];
 // Composant Countdown pour gérer la logique du compte à rebours
 const Countdown = ({ initialDays, initialHours, initialMinutes,initialSeconds}) => {
-  const [days, setDays] = useState(initialDays);
-  const [hours, setHours] = useState(initialHours);
-  const [minutes, setMinutes] = useState(initialMinutes);
-  const [seconds, setSeconds] = useState(initialSeconds);
+  // const [days, setDays] = useState(initialDays);
+  // const [hours, setHours] = useState(initialHours);
+  // const [minutes, setMinutes] = useState(initialMinutes);
+  // const [seconds, setSeconds] = useState(initialSeconds);
 
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      if (seconds === 0) {
-        if (minutes === 0) {
-          if (hours === 0) {
-            if (days === 0) {
-              clearInterval(timer);
-              return;
-            }
-            setDays(prevDays => prevDays - 1);
-            setHours(23);
-          } else {
-            setHours(prevHours => prevHours - 1);
-          }
-          setMinutes(59);
-        } else {
-          setMinutes(prevMinutes => prevMinutes - 1);
-        }
-        setSeconds(59);
-      } else {
-        setSeconds(prevSeconds => prevSeconds - 1);
-      }
-    }, 1000); // Mise à jour toutes les secondes
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     if (seconds === 0) {
+  //       if (minutes === 0) {
+  //         if (hours === 0) {
+  //           if (days === 0) {
+  //             clearInterval(timer);
+  //             return;
+  //           }
+  //           setDays(prevDays => prevDays - 1);
+  //           setHours(23);
+  //         } else {
+  //           setHours(prevHours => prevHours - 1);
+  //         }
+  //         setMinutes(59);
+  //       } else {
+  //         setMinutes(prevMinutes => prevMinutes - 1);
+  //       }
+  //       setSeconds(59);
+  //     } else {
+  //       setSeconds(prevSeconds => prevSeconds - 1);
+  //     }
+  //   }, 1000); // Mise à jour toutes les secondes
   
-    return () => clearInterval(timer);
-  }, [days, hours, minutes, seconds]);
+  //   return () => clearInterval(timer);
+  // }, [days, hours, minutes, seconds]);
   
-  return (
-    <div className='soutenance-container'>
-      <div className='soutenance-blog'>
-        <h3 className='soutenance-blog_subtitle'>Jours: {days}</h3>
-        <h5 className='soutenance-blog_subtitle'>Heures: {hours}</h5>
-        <h5 className='soutenance-blog_subtitle'>Minutes: {minutes}</h5>
-        <h5 className='soutenance-blog_subtitle'>Secondes: {seconds}</h5>
+  // return (
+  //   <div className='soutenance-container'>
+  //     <div className='soutenance-blog'>
+  //       <h3 className='soutenance-blog_subtitle'>Jours: {days}</h3>
+  //       <h5 className='soutenance-blog_subtitle'>Heures: {hours}</h5>
+  //       <h5 className='soutenance-blog_subtitle'>Minutes: {minutes}</h5>
+  //       <h5 className='soutenance-blog_subtitle'>Secondes: {seconds}</h5>
 
-      </div>
-    </div>
-  );
+  //     </div>
+  //   </div>
+  // );
 };
 
 // Composant principal Lcsi
 const Lcsi = () => {
   const [currentPage, setCurrentPage] = useState(0);
+  const [eventsData, setEventsData] = useState([]);
+
+  useEffect(() => {
+    const fetchEventsData = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/publication/searchall/?type_publication=event&etat=valide`); // Replace with your API endpoint
+        setEventsData(response.data);
+      } catch (error) {
+        console.error('Error fetching events data:', error);
+      }
+    };
+
+    fetchEventsData();
+  }, []);
 
   const getCurrentPageCard = () => {
     const startIndex = currentPage * pageSize;
@@ -151,7 +143,7 @@ const Lcsi = () => {
     </div>
       
       <div className='post-rect'>
-        <h2 className='post-medium-title'>Prochaine soutenance 2024</h2>
+       
         <Countdown initialDays={2} initialHours={12} initialMinutes={30} initialSeconds={60}/>
         <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 256 256" color="white" style={{ position: "absolute", bottom: "64", left: "42" }}>
           <path fill="currentColor" d="m251.76 88.94l-120-64a8 8 0 0 0-7.52 0l-120 64a8 8 0 0 0 0 14.12L32 117.87v48.42a15.9 15.9 0 0 0 4.06 10.65C49.16 191.53 78.51 216 128 216a130 130 0 0 0 48-8.76V240a8 8 0 0 0 16 0v-40.49a115.6 115.6 0 0 0 27.94-22.57a15.9 15.9 0 0 0 4.06-10.65v-48.42l27.76-14.81a8 8 0 0 0 0-14.12M128 200c-43.27 0-68.72-21.14-80-33.71V126.4l76.24 40.66a8 8 0 0 0 7.52 0L176 143.47v46.34c-12.6 5.88-28.48 10.19-48 10.19m80-33.75a97.8 97.8 0 0 1-16 14.25v-45.57l16-8.53Zm-20-47.31l-.22-.13l-56-29.87a8 8 0 0 0-7.52 14.12L171 128l-43 22.93L25 96l103-54.93L231 96Z" />
@@ -177,44 +169,52 @@ const Lcsi = () => {
 
       <div className='post-container'>
       <div className='post-evenement-container'>
-        {eventsData.map((event, index) => (
-          <div key={index} className='post-evenement'>
-            <div className='post-evenement-s1'>
-              <div className='post-evenement-img-cont'>
-                <img src={event.image} alt='' className='post-evenement-img' />
-                <div className='post-evenement-date'><span className='post-evn-span'>{event.date.split(' ')[0]}</span>{event.date.split(' ')[1]} {event.date.split(' ')[2]}</div>
-              </div>
-            </div>
-            <div className='post-evenement-s2'>
-              <div className='post-evenement-title'>{event.title}</div>
-              <div className='post-evenement-type'>{event.type}</div>
-              <div className='post-evenement-description'>
-                {event.description}
+      {eventsData.map((event, index) => (
+        <div key={index} className='post-evenement'>
+          <div className='post-evenement-s1'>
+            <div className='post-evenement-img-cont'>
+              <img src={`${process.env.REACT_APP_API_URL}${event.image}`} alt='' className='post-evenement-img' />
+              <div className='post-evenement-date'>
+                {event.date_debut ? (
+                  <>
+                    <span className='post-evn-span'>{event.date_debut.split(' ')[0]}</span>
+                    {event.date_debut.split(' ')[1]} {event.date_debut.split(' ')[2]}
+                  </>
+                ) : (
+                  <span className='post-evn-span'>Date non disponible</span>
+                )}
               </div>
             </div>
           </div>
-        ))}
-      </div>
+          <div className='post-evenement-s2'>
+            <div className='post-evenement-title'>{event.titre}</div>
+            <div className='post-evenement-type'>{event.type}</div>
+            <div className='post-evenement-description'>
+              {event.description}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
     </div>
     <div>
     <div className='sout-evenement-buttons'>
-  {soutData .map((event, index) => (
-    <div key={index} className='sout-evenement'>
-      <div className='poste-evenement-date'>
-        <span className='post-evn-span'>{event.date.split(' ')[0]}</span>
-        {event.date.split(' ')[1]} {event.date.split(' ')[2]}
-      </div>
-      <div className='sout-evenement-s2'>
-              <div className='sout-evenement-title'>{event.title}</div>
-              <div className='sout-evenement-description'>
-                {event.description}
-              </div>
-
-       </div>
-
+      {soutData .map((event, index) => (
+        <div key={index} className='sout-evenement'>
+          <div className='poste-evenement-date'>
+            <span className='post-evn-span'>{event.date.split(' ')[0]}</span>
+            {event.date.split(' ')[1]} {event.date.split(' ')[2]}
+          </div>
+          <div className='sout-evenement-s2'>
+                  <div className='sout-evenement-title'>{event.title}</div>
+                  <div className='sout-evenement-description'>
+                    {event.description}
+                  </div>
+          </div>
+        </div>
+      ))}
     </div>
-  ))}
-</div>
      <div className="titles">
      <span className="title">Contactez-nous</span>
      <span className="title">Appel d'offre</span>
@@ -232,7 +232,7 @@ const Lcsi = () => {
             <div className='appel-evenement-title'>{event.title}</div>
             <div className='appel-evenement-description'>{event.description}</div>
           </div>
-          <img src={event.image} alt='' className='appel-evenement-img' />
+          <img src={`${process.env.REACT_APP_API_URL}${event.image}`} className='appel-evenement-img' />
         </div>
       </div>
     ))}
