@@ -13,10 +13,11 @@ function QuestionList({onSelect, selectedQuestionId }) {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/questions/`)
+    fetch(`${process.env.REACT_APP_API_URL}/questions`)
       .then(response => response.json())
       .then(data => setQuestions(data))
       .catch(error => console.error('Error fetching questions:', error));
+      
   }, []);
 
   useEffect(() => {
