@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { FaList, FaSearch, FaPen, FaTrash } from 'react-icons/fa';
 import axios from 'axios';
-import './Publication.css';
+import './Articles.css';
+import { useLocation } from 'react-router-dom';
 import SidebarPub from '../../components/Sidebar/SidebarAdmin/SidebarPub';
 import PublicationModal from './Modifier';
 import './Modifier.css';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function PublicationPage() {
     const navigate = useNavigate();
-   // const [userInfo, setUserInfo] = useState('');
     const [publications, setPublications] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [error, setError] = useState('');
@@ -17,31 +17,24 @@ function PublicationPage() {
     const [showPopup, setShowPopup] = useState(false);
 
     useEffect(() => {
-        getUser();
-        // Initial fetch only on mount
-    }, []);
-
-    const getUser = async () => {
-        const token = localStorage.getItem('token');
         try {
-            const res = await axios.get(`${process.env.REACT_APP_API_URL}/user/`, {
-                headers: { 'Authorization': `Token ${token}` }  // Correct 'Token' instead of 'token'
+            const res = axios.get(`${process.env.REACT_APP_API_URL}/user/`, {
+                headers: { 'Authorization': `token ${token}` }
             });
-            // setUserInfo(res.data);
-            fetchPublications(res.data);
-        } catch (error) {
-            console.error('Error fetching user:', error);
-            setError('Failed to fetch user info. Please try again later.');
-        }
-    };
 
-    const fetchPublications = async (userInfo) => {
-        if (!userInfo || !userInfo.Categorie) return;
+        }catch(error){
+            console.error('Erreur lors de la récupération des publications:', error);
+            setError('Failed to fetch publications. Please try again later.');
+        };
+        console.log(res)
+        fetchPublications();  // Initial fetch
+    }, [showPopup]);
 
+    const fetchPublications = async () => {
         const token = localStorage.getItem('token');
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API_URL}/publication/searchall/?publisher=${userInfo.Categorie.id_categorie}`, {
-                headers: { 'Authorization': `Token ${token}` }  // Correct 'Token' instead of 'token'
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/publication/searchall/?publisher=2`, {
+                headers: { 'Authorization': `token ${token}` }
             });
             setPublications(response.data.map(pub => ({
                 ...pub,
@@ -51,7 +44,7 @@ function PublicationPage() {
                 date_creation: pub.date_creation ? new Date(pub.date_creation).toLocaleDateString('fr-FR') : ''
             })));
         } catch (error) {
-            console.error('Error fetching publications:', error);
+            console.error('Erreur lors de la récupération des publications:', error);
             setError('Failed to fetch publications. Please try again later.');
         }
     };
@@ -60,11 +53,11 @@ function PublicationPage() {
         const token = localStorage.getItem('token');
         try {
             const response = await axios.get(`${process.env.REACT_APP_API_URL}/publication1/${id}/`, {
-                headers: { 'Authorization': `Token ${token}` }  // Correct 'Token' instead of 'token'
+                headers: { 'Authorization': `token ${token}` }
             });
             setSelectedPublication({
                 ...response.data,
-                date_debut: response.data.date_debut ? new Date(response.data.date_debut).toISOString().slice(0, 16) : '',
+                date_debut: response.data.date_debut ? new Date(response.data.date_debut).toISOString().slice(0, 16)  : '',
                 date_fin: response.data.date_fin ? new Date(response.data.date_fin).toISOString().slice(0, 16) : '',
                 date_publication: response.data.date_publication ? new Date(response.data.date_publication).toISOString().slice(0, 16) : ''
             });
@@ -76,7 +69,17 @@ function PublicationPage() {
     };
 
     const handleReject = async (id) => {
-        // Uncomment and implement rejection logic if needed
+        // const token = localStorage.getItem('token');
+        // try {
+        //     const response = await axios.delete(`${process.env.REACT_APP_API_URL}/publication/delete/${id}`, {
+        //         headers: { 'Authorization': `token ${token}` }
+        //     });
+        //     console.log('Publication rejected successfully:', response);
+        //     fetchPublications();  // Refresh the list after deletion
+        // } catch (error) {
+        //     console.error('Failed to reject the publication:', error);
+        //     alert('Failed to reject the publication. Please try again.');
+        // }
     };
 
     const handleSearchChange = (event) => {
@@ -91,7 +94,7 @@ function PublicationPage() {
     );
 
     if (error) {
-        return <div>{error}</div>;
+        return <div>Error loading publications. Please try again later.</div>;
     }
 
     return (
@@ -135,11 +138,10 @@ function PublicationPage() {
                                 <td>
                                     <div className="action-buttons">
                                         <button className="approve" data-tooltip="Modifier" onClick={() => handleApprove(publication.id_publication)}>
-                                            <FaPen />
+                                            <FaPen/>
                                         </button>
-                                        {/* Uncomment if needed */}
                                         {/* <button className="reject" data-tooltip="Supprimer" onClick={() => handleReject(publication.id_publication)}>
-                                            <FaTrash />
+                                            <FaTrash/>
                                         </button> */}
                                     </div>
                                 </td>
@@ -155,7 +157,7 @@ function PublicationPage() {
                     onSave={(updatedPublication) => {
                         console.log('Updated Publication:', updatedPublication);
                         setShowPopup(false);
-                        fetchPublications();  // Refresh the list after saving
+                        
                     }}
                 />
             )}
