@@ -118,7 +118,7 @@ function PieceDetail() {
                   </button>
                 )}
               </p>
-              <button onClick={() => navigate('/FabLab/Demande_piece')} className="action-button">
+              <button onClick={() => navigate(`/FabLab/Demande_piece/${id}`)} className="action-button">
                 Demander
               </button>
               </div>

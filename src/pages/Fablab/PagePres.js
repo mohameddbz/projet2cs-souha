@@ -65,6 +65,7 @@ function FabLabPage() {
             <p className='video-text2'>Explorez notre Arsenal Technologique!</p>
           </h1>
           <div className="buttons-container">
+             {/* il faut changer le navigate  */}
             <button className="button1" onClick={() => navigate('/FabLab/Demande_piece')}>Demander</button>
             <button className="button2" onClick={handleScrollToCharte}>Lire la Charte</button>
           </div>

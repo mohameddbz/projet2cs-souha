@@ -142,6 +142,7 @@ function ClubsFinal(props) {
                 <div className={styles.detailClubEvent}>
                   <div className={styles.titleClubEvent}>Rejoignez aujourd'hui l'événement de <span className={styles.spanClubEvent}>{event.titre}</span> </div>
                   <div className={styles.paragClubEvent}>{event.description}</div>
+                   {/* peut etre un probleme  */}
                   <div className={styles.btnClubEvent}><Link to={event.link} className={styles.linkClubEvent}>S'inscrire</Link></div>
                 </div>
               </div>

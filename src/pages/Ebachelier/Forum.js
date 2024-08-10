@@ -19,6 +19,7 @@ const ForumPage = () => {
         }
         const data = await response.json();
         setQuestions(data);
+        
         if (data.length > 0) {
           setSelectedQuestion(data[0]); // Pré-sélectionner la première question si disponible
         }

@@ -18,8 +18,8 @@ function ExplorationSection() {
         const fetchData = async () => {
             try {
                 const [piecesResponse, categoriesResponse] = await Promise.all([
-                    axios.get('http://localhost:8000/pieces/'),
-                    axios.get('http://localhost:8000/categories/')
+                    axios.get(`${process.env.REACT_APP_API_URL}/pieces/`),
+                    axios.get(`${process.env.REACT_APP_API_URL}/categories/`)
                 ]);
                 const pieces = piecesResponse.data;
                 const categories = categoriesResponse.data;
@@ -51,11 +51,12 @@ function ExplorationSection() {
         <div className="exploration-section">
             <div className="header-with-button">
                 <h1>Explorer le matériel</h1>
+                 {/* il faut changer window.location.href */}
                 <button onClick={() => window.location.href = 'http://localhost:3000/Fablab/pieces'}>Voir tous</button> </div>
             <div className="item-container">
             {items.map((item) => (
                     <div className="item-box" key={item.id_piece}>
-                        <img src={`http://localhost:8000/${item.photo}`} alt={item.nom} />
+                        <img src={`${process.env.REACT_APP_API_URL}${item.photo}`} alt={item.nom} />
                       
                  <div className="item-info">
                  <p className="item-name">{item.nom}</p>

@@ -5,6 +5,7 @@ import { FaBrain, FaEye, FaHeartbeat, FaUser, FaComments, FaFileAlt, FaArrowLeft
 import galeriEsiImage from '../../assets/im1.jpeg';
 import Navbar from '../../components/navbar/navbar';
 import Footer from '../../components/Footer/Footer';
+import axios from 'axios'
 
 const testimonials = [
   {
@@ -25,9 +26,23 @@ const testimonials = [
     imageUrl: galeriEsiImage,
     text: "Étudier à l'ESI est une source de fierté pour moi. Choisir la filière Systèmes d'Information correspond parfaitement à mon travail."
   }
-];
+];   
+
 
 function Ebachelier (){
+  const [succesList,setSuccesList]=useState('')
+  useEffect(() => {
+    const fetchSuccesStories = async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/publication/searchall/?type_publication=success%20story&etat=valide`);
+        const data = await response.json()
+        setSuccesList(data);
+      } catch (error) {
+        console.error('Error fetching succes stories details:', error);
+      }
+    }
+    fetchSuccesStories()
+  }, []);
   const [index, setIndex] = useState(0);
 
   const handlePrev = () => {
@@ -38,10 +53,10 @@ function Ebachelier (){
     setIndex((prevIndex) => (prevIndex + 2 >= testimonials.length ? 0 : prevIndex + 2));
   };
 
-  const displayedTestimonials = testimonials.slice(index, index + 2);
-  if (displayedTestimonials.length < 2) {
-    displayedTestimonials.push(...testimonials.slice(0, 2 - displayedTestimonials.length));
-  }
+  const displayedTestimonials = succesList.slice(index, index + 2);
+  // if (displayedTestimonials.length < 2) {
+  //   displayedTestimonials.push(...succesList.slice(0, 2 - displayedTestimonials.length));
+  // }
 
   const initialNodes = [
     { id: 1, x: 553.78, y: 83.88, icon: <FaUser color='#0061B1' />, size: 72, color: '#FFFFFF' },
@@ -217,13 +232,13 @@ function Ebachelier (){
           </div>
         </div>
         <div className="testimonial-cards">
-          {displayedTestimonials.map((testimonial) => (
-            <div className="testimonial-card" key={testimonial.name}>
+          {displayedTestimonials.map((succes) => (
+            <div className="testimonial-card" key={succes.titre}>
               <div className="testimonial-text-container">
-                <div className="testimonial-image" style={{ backgroundImage: `url(${testimonial.imageUrl})` }}></div>
-                <h3 className="testimonial-name">{testimonial.name}</h3>
-                <p className="testimonial-role">{testimonial.role}</p>
-                <p className="testimonial-text">{testimonial.text}</p>
+                <div className="testimonial-image" style={{ backgroundImage: `url(${process.env.REACT_APP_API_URL}${succes.image})` }}></div>
+                <h3 className="testimonial-name">{succes.titre}</h3>
+                {/* <p className="testimonial-role">{succes.role}test</p> */}
+                <p className="testimonial-text">{succes.description}</p>
               </div>
             </div>
           ))}
