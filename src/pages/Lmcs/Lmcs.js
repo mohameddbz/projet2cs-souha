@@ -1,3 +1,6 @@
+
+// il faut integrer les Derniers conseils et Que peut accomplirnotre LCSI?
+
 import {React, useState} from 'react';
 import  './Lmcs.css';
 import Lcsiback from '../../images/Lcsiback.png';
@@ -113,7 +116,7 @@ function Lcsi () {
         <h1 className="lcsi-hero_title_box">
             <span className="lcsi-box_title2">
                 <span className="lcsi-hero_title_span0">Que peut accomplir</span>
-                <span className="lcsi-hero_title_span1"> notre LCSI?</span>
+                <span className="lcsi-hero_title_span1">notre LCSI?</span>
             </span>
         </h1>
         <h4 className="lcsi-highlight4">

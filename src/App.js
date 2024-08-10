@@ -86,7 +86,7 @@ function App() {
         < Route path ="/Annuaire/Administration" element ={<Annuaire/>}/>
         < Route path ="/Annuaire/Enseignants" element={<Enseignants/> }/>
         < Route path ="/Annuaire/Alumni" element ={<Alumni/>}/>
-        <Route path='/LCSI' elemennpmt={<Lcsi/>}></Route>
+        <Route path='/LCSI' element={<Lcsi/>}></Route>
         <Route path='/Contact' element={<Contact/>}></Route>
         < Route path ="/LMCSProjects" element ={<Projets/>}/>
         < Route path ="/Admin" allowedRoles={['administrateur']}  element ={<PrivateRoute><Principal /></PrivateRoute>}/>

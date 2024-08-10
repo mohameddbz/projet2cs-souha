@@ -26,8 +26,8 @@ function CategoriesPage() {
             });
             setCategories(response.data);
         } catch (error) {
-            console.error('Erreur lors de la récupération des catégories:', error);
-            setError('Failed to fetch categories. Please try again later.');
+            // console.error('Erreur lors de la récupération des catégories:', error);
+            // setError('Failed to fetch categories. Please try again later.');
         } finally {
             setLoading(false);
         }
