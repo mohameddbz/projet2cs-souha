@@ -42,6 +42,7 @@ function PublicationPage() {
         try {
             const response = await axios.get(`${process.env.REACT_APP_API_URL}/publication/searchall/?publisher=${userInfo.Categorie.id_categorie}`, {
                 headers: { 'Authorization': `Token ${token}` }  // Correct 'Token' instead of 'token'
+
             });
             setPublications(response.data.map(pub => ({
                 ...pub,
@@ -51,6 +52,7 @@ function PublicationPage() {
                 date_creation: pub.date_creation ? new Date(pub.date_creation).toLocaleDateString('fr-FR') : ''
             })));
         } catch (error) {
+            console.error('Error fetching publications:', error);
             console.error('Error fetching publications:', error);
             setError('Failed to fetch publications. Please try again later.');
         }
@@ -77,6 +79,7 @@ function PublicationPage() {
 
     const handleReject = async (id) => {
         // Uncomment and implement rejection logic if needed
+        // Uncomment and implement rejection logic if needed
     };
 
     const handleSearchChange = (event) => {
@@ -92,6 +95,7 @@ function PublicationPage() {
 
     if (error) {
         return <div>{error}</div>;
+        return <div>{error}</div>;
     }
 
     return (
@@ -101,6 +105,7 @@ function PublicationPage() {
             </div>
             <div className="admin-container">
                 <div className="admin-header">
+                    <h1><FaList /> Publications </h1>
                     <h1><FaList /> Publications </h1>
                     <div className="search-box">
                         <button className="search-button" onClick={() => console.log('Search clicked')}>
@@ -141,6 +146,10 @@ function PublicationPage() {
                                         {/* <button className="reject" data-tooltip="Supprimer" onClick={() => handleReject(publication.id_publication)}>
                                             <FaTrash />
                                         </button> */}
+                                        {/* Uncomment if needed */}
+                                        {/* <button className="reject" data-tooltip="Supprimer" onClick={() => handleReject(publication.id_publication)}>
+                                            <FaTrash />
+                                        </button> */}
                                     </div>
                                 </td>
                             </tr>
@@ -155,6 +164,7 @@ function PublicationPage() {
                     onSave={(updatedPublication) => {
                         console.log('Updated Publication:', updatedPublication);
                         setShowPopup(false);
+                        fetchPublications();  // Refresh the list after saving
                         fetchPublications();  // Refresh the list after saving
                     }}
                 />
