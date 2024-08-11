@@ -19,7 +19,7 @@ function PublicationPage() {
     useEffect(() => {
         getUser();
         // Initial fetch only on mount
-    }, []);
+    }, [showPopup]);
 
     const getUser = async () => {
         const token = localStorage.getItem('token');
