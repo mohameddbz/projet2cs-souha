@@ -13,35 +13,32 @@ function FablabInscriptionPage() {
     fetchInscriptions();
   }, []);
 
-  const fetchInscriptions = () => {
-    axios.get('http://127.0.0.1:8000/inscriptions/')
-      .then(response => {
-        setInscriptions(response.data);
-        setFilteredInscriptions(response.data);
-      })
-      .catch(error => {
-        console.error('Erreur lors de la récupération des inscriptions:', error);
-      });
+  const fetchInscriptions = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/inscriptions/`);
+      setInscriptions(response.data);
+      setFilteredInscriptions(response.data);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des inscriptions:', error);
+      alert('Erreur lors de la récupération des inscriptions. Veuillez réessayer plus tard.');
+    }
   };
 
-  const handleDateFilter = () => {
+  const handleDateFilter = async () => {
     if (!selectedDate) {
       alert('Veuillez sélectionner une date.');
       return;
     }
 
-    console.log('Date sélectionnée pour le filtrage:', selectedDate);
-
-    axios.get('http://127.0.0.1:8000/filter-inscriptions-by-date/', {
-      params: { date: selectedDate }
-    })
-    .then(response => {
-      console.log('Données de filtrage reçues:', response.data);
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/filter-inscriptions-by-date/`, {
+        params: { date: selectedDate }
+      });
       setFilteredInscriptions(response.data);
-    })
-    .catch(error => {
+    } catch (error) {
       console.error('Erreur lors du filtrage des inscriptions:', error);
-    });
+      alert('Erreur lors du filtrage des inscriptions. Veuillez réessayer.');
+    }
   };
 
   const updateInscriptionsList = (id) => {
@@ -49,26 +46,26 @@ function FablabInscriptionPage() {
     setInscriptions(inscriptions.filter(inscription => inscription.id !== id));
   };
 
-  const handleValidation = (id) => {
-    axios.post(`http://127.0.0.1:8000/inscriptions/${id}/valider/`)
-      .then(() => {
-        alert('Inscription validée!');
-        updateInscriptionsList(id);
-      })
-      .catch(error => {
-        console.error('Erreur lors de la validation de l\'inscription:', error);
-      });
+  const handleValidation = async (id) => {
+    try {
+      await axios.post(`${process.env.REACT_APP_API_URL}/inscriptions/${id}/valider/`);
+      alert('Inscription validée!');
+      updateInscriptionsList(id);
+    } catch (error) {
+      console.error('Erreur lors de la validation de l\'inscription:', error);
+      alert('Erreur lors de la validation de l\'inscription. Veuillez réessayer.');
+    }
   };
 
-  const handleRejection = (id) => {
-    axios.post(`http://127.0.0.1:8000/inscriptions/${id}/rejeter/`)
-      .then(() => {
-        alert('Inscription rejetée!');
-        updateInscriptionsList(id);
-      })
-      .catch(error => {
-        console.error('Erreur lors du rejet de l\'inscription:', error);
-      });
+  const handleRejection = async (id) => {
+    try {
+      await axios.post(`${process.env.REACT_APP_API_URL}/inscriptions/${id}/rejeter/`);
+      alert('Inscription rejetée!');
+      updateInscriptionsList(id);
+    } catch (error) {
+      console.error('Erreur lors du rejet de l\'inscription:', error);
+      alert('Erreur lors du rejet de l\'inscription. Veuillez réessayer.');
+    }
   };
 
   return (

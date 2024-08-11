@@ -15,7 +15,7 @@ function PublicationModal({ publication, onClose, onSave }) {
     const [datePublication, setDatePublication] = useState(publication.date_publication);
     const [selectedFile, setSelectedFile] = useState(null);
      // Ajustez ici pour inclure l'URL de base si nécessaire
-     const baseUrl = 'http://127.0.0.1:8000';
+     const baseUrl = `${process.env.REACT_APP_API_URL}`;
      const [imagePreview, setImagePreview] = useState(baseUrl + publication.image); // Assurez-vous que l'URL est complète
     const [newImagePreview, setNewImagePreview] = useState(null); // URL pour la nouvelle image sélectionnée
    
@@ -50,7 +50,7 @@ function PublicationModal({ publication, onClose, onSave }) {
         
         const token = localStorage.getItem('token');
         console.log(publication);
-        axios.put(`http://127.0.0.1:8000/publication/${publication.id_publication}/`, formData, {
+        axios.put(`${process.env.REACT_APP_API_URL}/publication/${publication.id_publication}/`, formData, {
             headers: {
                 'Authorization': `token ${token}`,
                 'Content-Type': 'multipart/form-data'

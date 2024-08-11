@@ -28,7 +28,8 @@ function Auth() {
         email,
         password
       });
-      const { token, is_adminstrateur, is_editeur } = response.data;
+      const { token, is_adminstrateur, is_editeur , Categorie , is_chercheur } = response.data;
+  
       if (token) {
         localStorage.setItem('token', token);
         localStorage.setItem('is_adminstrateur', is_adminstrateur);

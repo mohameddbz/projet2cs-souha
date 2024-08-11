@@ -1,3 +1,6 @@
+
+/* mohamed amine integration  */
+
 import React, { useState, useEffect } from 'react';
 import './Equipe.css';
 import { GoMail } from "react-icons/go";
@@ -20,7 +23,7 @@ function Equipe() {
     useEffect(() => {
         const fetchEquipes = async () => {
             try {
-                const response = await fetch('http://127.0.0.1:8000/laboratoire/lcsi/equipes/');
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/laboratoire/lmcs/equipes/`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -38,7 +41,7 @@ function Equipe() {
     useEffect(() => {
         const fetchMembers = async (equipeId) => {
             try {
-                const response = await fetch(`http://127.0.0.1:8000/equipe/${equipeId}/members/`);
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/equipe/${equipeId}/members/`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -100,7 +103,7 @@ function Equipe() {
                                                 return (
                                                     <div key={member.id} className='lmcs-card'>
                                                         <img
-                                                            src={member.photo ? `http://127.0.0.1:8000${member.photo}` : 'default-image.png'}
+                                                            src={member.photo ? `${process.env.REACT_APP_API_URL}${member.photo}` : 'default-image.png'}
                                                             alt={`${member.nom} ${member.prenom}`}
                                                         />
                                                         <div className='annuaire-card-details'>

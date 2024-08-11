@@ -11,7 +11,9 @@ import Annuaire from './pages/Annuaire/Annuaire';
 import Enseignants from'./pages/Annuaire/Enseignants'
 import Alumni from './pages/Annuaire/Alumni';
 import Projets from './pages/Lmcs/Projets';
+import ProjectsLcsi from './pages/LCSI/Lcsiprojets';
 import Equipe from './pages/Lmcs/Equipe';
+import EquipeLCSI from './pages/LCSI/Lcsieqequipe';
 // import Historique from './pages/Admin/Historique'
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -86,9 +88,10 @@ function App() {
         < Route path ="/Annuaire/Administration" element ={<Annuaire/>}/>
         < Route path ="/Annuaire/Enseignants" element={<Enseignants/> }/>
         < Route path ="/Annuaire/Alumni" element ={<Alumni/>}/>
-        <Route path='/LCSI' elemennpmt={<Lcsi/>}></Route>
+        <Route path='/LCSI' element={<Lcsi/>}></Route>
         <Route path='/Contact' element={<Contact/>}></Route>
         < Route path ="/LMCSProjects" element ={<Projets/>}/>
+        < Route path ="/LCSIProjects" element ={<ProjectsLcsi/>}/>
         < Route path ="/Admin" allowedRoles={['administrateur']}  element ={<PrivateRoute><Principal /></PrivateRoute>}/>
 
         < Route path ="/Admin" allowedRoles={['administrateur']} element ={<PrivateRoute><Principal /></PrivateRoute>}/>
@@ -106,6 +109,7 @@ function App() {
             < Route path ="/ProjetLabo" element ={<ProjetLabo/>}/>
             < Route path ="/admchercheur" element ={<Admchercheur/>}/>
         < Route path ="/LMCSTeams" element ={<Equipe/>}/>
+        < Route path ="/LCSITeams" element ={<EquipeLCSI/>}/>
         < Route path ="/lmcs" element ={<Lmcs/>}/>
         < Route path ="/postraduation" element ={<Post/>}/>
         < Route path ="/chercheur" element ={<Chercheur/>}/>
