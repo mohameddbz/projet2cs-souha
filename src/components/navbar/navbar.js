@@ -72,7 +72,7 @@ function Navbar () {
                                                             ...subItem,
                                                             items: subItem.items.map(linkItem => ({
                                                                 ...linkItem,
-                                                                lien: linkItem.item === 'Forum' ? (isAdmin ? linkItem.adminLink : linkItem.lien) : linkItem.lien  // Condition pour le lien d'administration du forum
+                                                                lien: linkItem.item === 'Forum' ? /*(isAdmin ? linkItem.adminLink : linkItem.lien)*/ linkItem.lien : linkItem.lien  // Condition pour le lien d'administration du forum
                                                             }))
                                                         }))}
                                                         hoveredIndex={hoveredIndex}

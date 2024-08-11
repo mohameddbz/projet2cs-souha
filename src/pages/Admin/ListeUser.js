@@ -5,42 +5,41 @@ import axios from 'axios';
 import styles from './ListeUser.module.css';
 
 function ListeUser() {
-    const [publications, setPublications] = useState([]);
+    const [users, setUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [error, setError] = useState('');
 
-    // Définir fetchPublications en dehors mais à l'intérieur de PublicationAdmin
-    const fetchPublications = async () => {
+    const fetchUsers = async () => {
         const token = localStorage.getItem('token');
         try {
-            const response = await axios.get('http://127.0.0.1:8000/publication/search/?etat=valide', {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/`, {
                 headers: { 'Authorization': `token ${token}` }
             });
-            setPublications(response.data);
+            setUsers(response.data);
         } catch (error) {
-            console.error('Erreur lors de la récupération des publications:', error);
-            setError('Failed to fetch publications. Please try again later.');
+            console.error('Erreur lors de la récupération des utilisateurs:', error);
+            setError('Failed to fetch users. Please try again later.');
         }
     };
 
     useEffect(() => {
-        fetchPublications();
+        fetchUsers();
     }, []);
 
     function handleReject(id) {
         const token = localStorage.getItem('token');
-        axios.put(`http://127.0.0.1:8000/publication/annuler/${id}/`, {}, {
+        axios.delete(`${process.env.REACT_APP_API_URL}/users/delete/${id}/`, {
             headers: {
                 'Authorization': `token ${token}`
             }
         })
         .then(response => {
-            console.log('Publication rejected successfully:', response);
-            fetchPublications(); // Refresh publications list
+            console.log('User deleted successfully:', response);
+            fetchUsers(); // Refresh users list
         })
         .catch(error => {
-            console.error('Failed to reject publication:', error);
-            alert('Failed to reject the publication. Please try again.');
+            console.error('Failed to delete user:', error);
+            alert('Failed to delete the user. Please try again.');
         });
     }
 
@@ -48,15 +47,25 @@ function ListeUser() {
         setSearchTerm(event.target.value.toLowerCase());
     };
 
-    const filteredPublications = publications.filter(
-        publication =>
-            publication.titre?.toLowerCase().includes(searchTerm) ||
-            publication.etat?.toLowerCase().includes(searchTerm) ||
-            publication.date_publication?.includes(searchTerm)
+    const getRole = (user) => {
+        if (user.is_administrateur) return 'Administrateur';
+        if (user.is_editeur) return 'Éditeur';
+        if (user.is_chercheur) return 'Chercheur';
+        if (user.is_responsable_fablab) return 'Responsable FabLab';
+        if (user.is_directeur_relex) return 'Directeur Relex';
+        return 'Utilisateur';
+    };
+
+    const filteredUsers = users.filter(
+        user =>
+            user.family_name?.toLowerCase().includes(searchTerm) ||
+            user.first_name?.toLowerCase().includes(searchTerm) ||
+            user.email?.toLowerCase().includes(searchTerm) ||
+            getRole(user).toLowerCase().includes(searchTerm)
     );
 
     if (error) {
-        return <div>Error loading publications. Please try again later.</div>;
+        return <div>Error loading users. Please try again later.</div>;
     }
 
     return (
@@ -86,20 +95,20 @@ function ListeUser() {
                             <th>Nom</th>
                             <th>Prénom</th>
                             <th>Rôle</th>
-                            <th>@mail</th>
+                            <th>Email</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {filteredPublications.map(publication => (
-                            <tr key={publication.id_publication}>
-                                <td>{publication.titre || 'No Title'}</td>
-                                <td>{publication.publisher || 'No Publisher'}</td>
-                                <td>{publication.etat || 'No Status'}</td>
-                                <td>{publication.date_publication || 'No Date'}</td>
+                        {filteredUsers.map(user => (
+                            <tr key={user.id}>
+                                <td>{user.family_name || 'No Family Name'}</td>
+                                <td>{user.first_name || 'No First Name'}</td>
+                                <td>{getRole(user)}</td>
+                                <td>{user.email || 'No Email'}</td>
                                 <td>
                                     <div className={styles.actionButtons}>
-                                        <button className={styles.reject} data-tooltip="Supprimer" onClick={() => handleReject(publication.id_publication)}><FaTrash/></button>
+                                        <button className={styles.reject} data-tooltip="Supprimer" onClick={() => handleReject(user.id)}><FaTrash/></button>
                                     </div>
                                 </td>
                             </tr>

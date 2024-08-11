@@ -71,7 +71,7 @@ const listItem=[
                         },{
                             item:'Forum',
                             lien:'/Ebachelier/Forum',
-                            adminLink: '/Ebachelier/BachelierAdmin'
+                            // adminLink: '/Ebachelier/BachelierAdmin'
                         }]
                 }
             ]

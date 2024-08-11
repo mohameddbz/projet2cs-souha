@@ -10,7 +10,7 @@ const BachelierAdmin = () => {
   const [selectedQuestion, setSelectedQuestion] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:8000/questions/')
+    fetch(`${process.env.REACT_APP_API_URL}/questions/`)
       .then(response => response.json())
       .then(data => {
         setQuestions(data);
