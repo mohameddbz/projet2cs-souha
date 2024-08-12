@@ -1,0 +1,7 @@
+FROM python:latest
+ENV PYTHONUNBUFFERED 1
+RUN mkdir /NewEsi
+WORKDIR /NewEsi
+COPY requirements.txt /NewEsi/
+RUN pip install -r requirements.txt
+COPY . /NewEsi/

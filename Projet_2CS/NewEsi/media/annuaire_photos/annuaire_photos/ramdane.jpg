@@ -1,0 +1,676 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title> ESI Talents </title>
+<link rel="icon" type="image/png" href="/media/admin/Logo_ESI_talents.png" />
+<link rel="stylesheet" href="/static/css/bootstrap-4.3.1.min.css">
+<script src="/static/js/jquery-3.3.1.min.js"></script>
+<script src="/static/js/popper-1.14.7.min.js"></script>
+<script src="/static/js/bootstrap-4.3.1.min.js"></script>
+
+<link href="/static/bootstrap_datepicker_plus/css/bootstrap-datetimepicker.css" type="text/css" media="all" rel="stylesheet">
+<link href="/static/bootstrap_datepicker_plus/css/datepicker-widget.css" type="text/css" media="all" rel="stylesheet">
+<script type="text/javascript" src="/static/bootstrap_datepicker_plus/js/moment-with-locales.min.js"></script>
+<script type="text/javascript" src="/static/bootstrap_datepicker_plus/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="/static/bootstrap_datepicker_plus/js/datepicker-widget.js"></script>
+
+<link href="/static/django_select2/css/select2.min.css" type="text/css" media="all" rel="stylesheet">
+<script type="text/javascript" src="/static/django_select2/js/select2.js"></script>
+<script type="text/javascript" src="/static/django_select2/js/select2.min.js"></script>
+
+<link rel="stylesheet" href="/static/fonts/css/all.min.css">
+<link rel="stylesheet" href="/static/fonts/css/all.css">
+<script src="/static/chart/Chart.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style type="text/css">
+  	#sidebar-wrapper {
+    	border-right: 1px solid gray;
+	}
+	h2.a {
+  		line-height: 0.01;
+	}
+	h1.a {
+  		line-height: 0.01;
+	}
+	
+	#content {
+    	display: block;
+    }
+
+	#loading {
+	    top: 150px;
+	    left: 100px;
+	    margin: auto;
+	    position: relative;
+	    z-index: 1000;
+	    width: 900px;
+	    height: 240px;
+	    background: url('/media/loading.gif') no-repeat;
+	    background-size: 500px;
+	    cursor: wait;
+    }
+
+	.custombgcolor {
+		background-color: #343A40;
+	}
+
+
+  </style>
+<body>
+<script type="text/javascript">
+        function preloader(){
+            document.getElementById("loading").style.display = "block";
+            document.getElementById("content").style.display = "none";
+        }
+        function postloader(){
+            document.getElementById("loading").style.display = "none";
+            document.getElementById("content").style.display = "block";
+        }
+
+        window.onbeforeunload = preloader;
+        window.onload = postloader;
+        window.onblur = postloader;
+	</script>
+<div class="container-fluid">
+<style>
+.nombre-notification{
+    background:red;
+    border-radius:50%;
+    height: 26px;
+    width: 26px;
+    line-height: 26px;
+    display: inline-block;
+    text-align: center;
+    margin-right: 6px;
+}
+
+.custombgcolor {
+	background-color: #343A40;
+}
+
+</style>
+<script>
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
+</script>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top custombgcolor">
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon">
+</span>
+</button>
+<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+<ul class="navbar-nav mr-auto">
+<li class="nav-item active">
+<a class="nav-link" href="/scolar/home">Accueil</a>
+</li>
+</ul>
+<ul class="navbar-nav mr-left">
+<li class="nav-item" style="margin-right:0.5em;">
+<a class="nav-link my-2 my-sm-1">Connecté(e) en tant que <span class="__cf_email__" data-cfemail="a7cccef8cfc6ced4d4c6cae7c2d4ce89c3dd">[email&#160;protected]</span></a>
+</li>
+</ul>
+<ul class="navbar-nav mr-right d-flex flex-row">
+<li class="nav-item">
+<a class="btn btn-outline-light my-2 my-sm-1" href="/scolar/notifications"><i class="fa fa-bell"></i></a>
+</li>
+<li class="nav-item">
+<a class="btn btn-outline-light my-2 my-sm-1" data-toggle="tooltip" data-placement="bottom" title="Paramètres de sécurité" href="/scolar/mon_compte"><i class="fa fa-fa fa-user-lock"></i></a>
+</li>
+<li>
+<a class="btn btn-outline-light my-2 my-sm-1" href="/accounts/logout" data-toggle="tooltip" data-placement="bottom" title="Déconnexion" style="color:rgb(255, 128, 128); margin-left:1em;"><i class="fa fa-fa fa-sign-out-alt"></i></a>
+</li>
+</ul>
+</div>
+</nav>
+<br><br><br>
+<header class="row">
+<style>
+		@media screen and (max-width: 1000px) {
+		    .mobilelogo {
+		        width: 150px;
+		    }
+		}
+		</style>
+<div class="col-lg-2 d-none d-md-block">
+<center><img src="/media/admin/ESI_Logo.png" alt="Logo" class="mobilelogo" width="100%"></center>
+</div>
+<div class="col-lg-7 offset-lg-1 d-none d-md-block">
+<img src="/media/admin/banniere.png" alt="Bannière" width="100%">
+</div>
+<div class="col-lg-1 offset-lg-1">
+<center><img src="/media/admin/Logo_ESI_talents.png" alt="Logo Talents" width="100%" class="mobilelogo"></center>
+</div>
+</header>
+<div class="row">
+<div class="col-lg-2">
+<p>
+Bienvenue <strong> IMANE </strong>
+</p>
+</div>
+</div>
+<div class="row">
+<div id="sidebar-wrapper" class="col-lg-2">
+<div id="sidebar">
+<style>
+.btn-sidebar {
+	width:100%;
+    background-color: #343A40 !important;
+	font-weight: bold;
+	margin-top:10px;
+	text-align:left;
+}
+
+.btn-sidebar:hover {
+	width:100%;
+    background-color: #343A4090 !important;
+	font-weight: bold;
+	text-aligh:left;
+}
+
+.nombre-offres{
+    border-radius:20%;
+    height: 24px;
+    line-height: 20px;
+    display: inline-block;
+    text-align: center;
+    padding: 2px;
+	padding-right: 6px;
+	padding-left: 6px;
+}
+
+
+</style>
+<ul class="nav list-group">
+<li>
+<button class="btn btn-primary btn-sidebar" data-toggle="collapse" data-target="#menu_monespace_etudiant"><i class="fa fa-fa fa-user"></i> Mon espace Étudiant</button>
+</li>
+<div id="menu_monespace_etudiant" class="collapse">
+<li class="list-group-item">
+<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-tasks"></i> Planification</a>
+<div class="dropdown-menu">
+<a class="dropdown-item" href="/scolar/edt_etudiant"><i class="fa fa-calendar"></i> Mon EDT</a>
+<a class="dropdown-item" href="/scolar/examen_etudiant_list/"><i class="fa fa-calendar-check"></i> Mes examens</a>
+</div>
+</li>
+<li>
+<a class="list-group-item" href="/scolar/etudiant_activite"><i class="fa fa-book"></i> Mes Modules</a>
+</li>
+<li class="list-group-item">
+<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-list"></i> Stages</a>
+<div class="dropdown-menu">
+<a class="dropdown-item" href="/scolar/organisme_select_for_pfe_create"><i class="fa fa-plus"></i> Nouveau dépôt de stage</a>
+<a class="dropdown-item" href="/scolar/etudiant_pfe_list"><i class="fa fa-fa fa-suitcase"></i> Mes Sujets de Stages</a>
+</div>
+</li>
+<li class="list-group-item">
+<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-chart-bar"></i> Feedback Live!</a>
+<div class="dropdown-menu">
+<a class="dropdown-item" href="/scolar/feedback_etudiant_update/11/12381/"><i class="fa fa-chart-bar"></i> Mon Feedback sur 2ST S1</a>
+<a class="dropdown-item" href="/scolar/feedback_etudiant_update/12/12381/"><i class="fa fa-chart-bar"></i> Mon Feedback sur 2ST S2</a>
+</div>
+</li>
+<li class="list-group-item">
+<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-magic"></i> Mon Compte</a>
+<div class="dropdown-menu">
+<a class="dropdown-item" href="/scolar/preinscription_create"><i class="fa fa-folder-open"></i> Inscription</a>
+<a class="dropdown-item" href="/scolar/etudiant_detail/20/0283/"><i class="fa fa-graduation-cap"></i> Mon Parcours</a>
+<a class="dropdown-item" href="/scolar/etudiant_documents_list/20/0283/"><i class="fa fa-folder-open"></i> Mes Documents</a>
+<a class="dropdown-item" href="/scolar/etudiant_profile_update/20/0283/"><i class="fa fa-cog"></i> Préférences</a>
+</div>
+</li>
+</div>
+</ul>
+<ul class="nav list-group">
+<li>
+<button class="btn btn-primary btn-sidebar" data-toggle="collapse" data-target="#menu_dashboards"><i class="fa fa-fa fa-chart-pie"></i> Dashboards</button>
+</li>
+<div id="menu_dashboards" class="collapse">
+<li>
+<a class="list-group-item" href="/scolar/dashboard_etudiant"><i class="fa fa-users"></i> Étudiants</a>
+</li>
+<li>
+<a class="list-group-item" href="/scolar/dashboard_enseignant"><i class="fa fa-user-friends"></i> Enseignants</a>
+</li>
+<li>
+<a class="list-group-item" href="/scolar/dashboard_formation"><i class="fa fa-graduation-cap"></i> Formations</a>
+</li>
+<li>
+<a class="list-group-item" href="/scolar/dashboard_stages"><i class="fa fa-fa fa-suitcase"></i> Stages</a>
+</li>
+</div>
+</ul>
+<ul class="nav list-group">
+<li>
+<button class="btn btn-primary btn-sidebar" data-toggle="collapse" data-target="#menu_enseignants"><i class="fa fa-fa fa-user-friends"></i> Enseignants</button>
+</li>
+<div id="menu_enseignants" class="collapse">
+<li class="list-group-item">
+<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-user-friends"></i> Annuaire</a>
+<div class="dropdown-menu">
+<a class="dropdown-item" href="/scolar/public_enseignant_list"><i class="fa fa-user-friends"></i> Annuaire public</a>
+</div>
+</li>
+</div>
+</ul>
+<ul class="nav list-group">
+<li>
+<button class="btn btn-primary btn-sidebar" data-toggle="collapse" data-target="#menu_etudiants"><i class="fa fa-users"></i> Étudiants</button>
+</li>
+<div id="menu_etudiants" class="collapse">
+<li class="list-group-item">
+<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-user-friends"></i> Annuaire</a>
+<div class="dropdown-menu">
+<a class="dropdown-item" href="/scolar/public_etudiant_list"><i class="fa fa-users"></i> Annuaire public</a>
+</div>
+</li>
+</div>
+</ul>
+<ul class="nav list-group">
+<li>
+<button class="btn btn-primary btn-sidebar" data-toggle="collapse" data-target="#menu_pedagogie"><i class="fa fa-fa fa-graduation-cap"></i> Pédagogie</button>
+</li>
+<div id="menu_pedagogie" class="collapse">
+<li class="list-group-item">
+<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-university"></i> Programmes</a>
+<div class="dropdown-menu">
+<a class="dropdown-item" href="/scolar/programme_list/"><i class="fa fa-list"></i> Catalogue</a>
+</div>
+</li>
+<li>
+<a class="list-group-item" href="/scolar/competence_list/"><i class="fa fa-check"></i> Compétences</a>
+</li>
+<li>
+<a class="list-group-item" href="/scolar/module_list/"><i class="fa fa-chart-bar"></i> Feedback</a>
+</li>
+<li>
+<a class="list-group-item" href="/scolar/edt_list"><i class="fa fa-calendar-check"></i> Emplois du temps</a>
+</li>
+</div>
+</ul>
+<ul class="nav list-group">
+<li>
+<button class="btn btn-primary btn-sidebar" data-toggle="collapse" data-target="#menu_stages"><i class="fa fa-search"></i> Stages de fin d'études</button>
+</li>
+<div id="menu_stages" class="collapse">
+<li>
+<a class="list-group-item" href="/scolar/pfe_list"><i class="fa fa-search"></i> Liste des stages</a>
+</li>
+<li class="list-group-item">
+<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-handshake"></i> Organismes </a>
+<div class="dropdown-menu">
+<a class="dropdown-item" href="/scolar/organisme_list"><i class="fa fa-handshake"></i> Organismes </a>
+</div>
+</li>
+</div>
+</ul>
+<ul class="nav list-group">
+<li>
+<button class="btn btn-primary btn-sidebar" data-toggle="collapse" data-target="#menu_postgraduation"><i class="fa fa-fa fa-project-diagram"></i> Post-Graduation & Recherche</button>
+</li>
+<div id="menu_postgraduation" class="collapse">
+<li>
+<a class="list-group-item" href="/scolar/projet_list"><i class="fa fa-fa fa-project-diagram"></i> Projets de recherche</a>
+</li>
+<li>
+<a class="list-group-item" href="/scolar/equiperecherche_list"><i class="fa fa-user-friends"></i> Équipes de recherche</a>
+</li>
+</div>
+</ul>
+<br><br>
+</div>
+</div>
+<section class="col-lg-10 pull-right">
+<div id="loading"></div>
+<div id="content">
+<br><br>
+<div class="row">
+<div class="col-lg-4">
+<div class="row">
+<h3 class="text-center">
+<strong> </strong>
+</h3>
+<div class="col-lg-12" alt"Photo">
+<center><img src="/media/photos/image20190127Ramdane.jpg" width="180"></center>
+<p></p>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12">
+<table class="table table-sm table-striped">
+<tr>
+<td><strong> Nom : </strong> MAHIOU
+<td><strong> Prénom : </strong> Ramdane
+</tr>
+<tr>
+<td colspan="2"><strong>Grade :</strong> Maître de Conférences B</td>
+</tr>
+<tr>
+<td colspan="2"><strong>Institution :</strong> Ecole nationale Supérieure d&#x27;Informatique</td>
+</tr>
+<tr>
+<td colspan="2"><strong>Adresse de l'institution :</strong> BPM68 16270, Oued Smar, Alger</td>
+</tr>
+<tr>
+<td colspan="2"><strong>Tél de l'institution :</strong> 023939132</td>
+</tr>
+<tr>
+<td colspan="2"><strong>Bureau :</strong> 76LMCS-ESI</td>
+</tr>
+<tr>
+<td colspan="2"><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="05775a68646d6c6a704560766c2b617f">[email&#160;protected]</a></td>
+</tr>
+<tr>
+<td colspan="2"><strong> Profil Talents : </strong> <a href="https://talents.esi.dz/ens/mahiou/ramdane/">https://talents.esi.dz/ens/mahiou/ramdane/</a></td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="col-lg-8">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item">
+<a class="nav-link active" data-toggle="tab" href="#enseignements">Enseignements</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-toggle="tab" href="#encadrements">Encadrements</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-toggle="tab" href="#projets">Projets de recherche</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-toggle="tab" href="#equiperecherche">Équipe de recherche</a>
+</li>
+</ul>
+
+<div class="tab-content">
+<div id="enseignements" class="container tab-pane active"><br>
+<div class="row">
+<div class="col-lg-6">
+<h5><strong>Enseignements</strong></h5>
+</div>
+<div class="col-lg-12">
+<br>
+<div class="table-container">
+<table class="table">
+<thead>
+<tr>
+<th class="orderable">
+<a href="?sort=formation__annee_univ">Annee univ</a>
+</th>
+<th class="orderable">
+<a href="?sort=matiere__code">Code</a>
+</th>
+<th class="orderable">
+<a href="?sort=matiere__titre">Titre</a>
+</th>
+<th>
+Types
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="even">
+<td>2023</td>
+<td><a href="/scolar/matiere_detail/34/" target="_blank"><b>ALG1</b></a></td>
+<td>Algèbre 1</td>
+<td><b> | Travail Dirigé</b></td>
+</tr>
+<tr class="odd">
+<td>2023</td>
+<td><a href="/scolar/matiere_detail/41/" target="_blank"><b>ALG2</b></a></td>
+<td>Algèbre 2</td>
+<td><b> | Travail Dirigé</b></td>
+</tr>
+<tr class="even">
+<td>2023</td>
+<td><a href="/scolar/matiere_detail/89/" target="_blank"><b>ALG3</b></a></td>
+<td>Algèbre 3</td>
+<td><b> | Travail Dirigé</b></td>
+</tr>
+<tr class="odd">
+<td>2022</td>
+<td><a href="/scolar/matiere_detail/89/" target="_blank"><b>ALG3</b></a></td>
+<td>Algèbre 3</td>
+<td><b> | Travail Dirigé</b></td>
+</tr>
+<tr class="even">
+<td>2022</td>
+<td><a href="/scolar/matiere_detail/41/" target="_blank"><b>ALG2</b></a></td>
+<td>Algèbre 2</td>
+<td><b> | Travail Dirigé</b></td>
+</tr>
+<tr class="odd">
+<td>2021</td>
+<td><a href="/scolar/matiere_detail/99/" target="_blank"><b>RO</b></a></td>
+<td>Recherche Opérationnelle: graphes et algorithmes</td>
+<td><b> | Cours</b></td>
+</tr>
+<tr class="even">
+<td>2021</td>
+<td><a href="/scolar/matiere_detail/34/" target="_blank"><b>ALG1</b></a></td>
+<td>Algèbre 1</td>
+<td><b> | Travail Dirigé</b></td>
+</tr>
+<tr class="odd">
+<td>2021</td>
+<td><a href="/scolar/matiere_detail/41/" target="_blank"><b>ALG2</b></a></td>
+<td>Algèbre 2</td>
+<td><b> | Travail Dirigé</b></td>
+</tr>
+<tr class="even">
+<td>2021</td>
+<td><a href="/scolar/matiere_detail/89/" target="_blank"><b>ALG3</b></a></td>
+<td>Algèbre 3</td>
+<td><b> | Travail Dirigé</b></td>
+</tr>
+<tr class="odd">
+<td>2020</td>
+<td><a href="/scolar/matiere_detail/34/" target="_blank"><b>ALG1</b></a></td>
+<td>Algèbre 1</td>
+<td><b> | Travail Dirigé</b></td>
+</tr>
+<tr class="even">
+<td>2020</td>
+<td><a href="/scolar/matiere_detail/41/" target="_blank"><b>ALG2</b></a></td>
+<td>Algèbre 2</td>
+<td><b> | Travail Dirigé</b></td>
+</tr>
+<tr class="odd">
+<td>2020</td>
+<td><a href="/scolar/matiere_detail/99/" target="_blank"><b>RO</b></a></td>
+<td>Recherche Opérationnelle: graphes et algorithmes</td>
+<td><b> | Cours</b></td>
+</tr>
+<tr class="even">
+<td>2019</td>
+<td><a href="/scolar/matiere_detail/34/" target="_blank"><b>ALG1</b></a></td>
+<td>Algèbre 1</td>
+<td><b> | Travail Dirigé</b></td>
+</tr>
+<tr class="odd">
+<td>2019</td>
+<td><a href="/scolar/matiere_detail/41/" target="_blank"><b>ALG2</b></a></td>
+<td>Algèbre 2</td>
+<td><b> | Travail Dirigé</b></td>
+</tr>
+<tr class="even">
+<td>2019</td>
+<td><a href="/scolar/matiere_detail/99/" target="_blank"><b>RO</b></a></td>
+<td>Recherche Opérationnelle: graphes et algorithmes</td>
+<td><b> | Cours | Travail Dirigé</b></td>
+</tr>
+<tr class="odd">
+<td>2018</td>
+<td><a href="/scolar/matiere_detail/34/" target="_blank"><b>ALG1</b></a></td>
+<td>Algèbre 1</td>
+<td><b> | Travail Dirigé</b></td>
+</tr>
+<tr class="even">
+<td>2018</td>
+<td><a href="/scolar/matiere_detail/41/" target="_blank"><b>ALG2</b></a></td>
+<td>Algèbre 2</td>
+<td><b> | Travail Dirigé</b></td>
+</tr>
+<tr class="odd">
+<td>2018</td>
+<td><a href="/scolar/matiere_detail/99/" target="_blank"><b>RO</b></a></td>
+<td>Recherche Opérationnelle: graphes et algorithmes</td>
+<td><b> | Cours | Travail Dirigé</b></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="encadrements" class="container tab-pane fade"><br>
+<div class="row">
+<div class="col-lg-6">
+<h5> <strong>Encadrements PFE</strong></h5>
+</div>
+<div class="col-lg-12">
+<br>
+<div class="table-container">
+<table class="table">
+<thead>
+<tr>
+<th>
+Annee univ
+</th>
+<th>
+Intitule
+</th>
+<th>
+Etudiants
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="even">
+<td>2021</td>
+<td><a href="/scolar/pfe_detail/620/" target="_blank"><b>Autoscaling Proactif dans un Cluster Kubernetes.</b></a></td>
+<td><b>Code : 3SX 21/620<br>- DADOUN MOHAMED LAMINE FOUAD<br>- TIAIBA NABIL</b></td>
+</tr>
+<tr class="odd">
+<td>2020</td>
+<td><a href="/scolar/pfe_detail/345/" target="_blank"><b>Utilisation des champs aléatoires de Markov caches et de la métaheuristique d’optimisation d’élevage d’éléphants « Elephant Herding Optimization ; EHO » pour la segmentation d’images médicales.</b></a></td>
+<td><b>Code : 3SQ 20/345<br>- SANNEF MOHAMMED ELHADI</b></td>
+</tr>
+<tr class="even">
+<td>2019</td>
+<td><a href="/scolar/pfe_detail/63/" target="_blank"><b>La segmentation des images médicales en utilisant les champs de Markov cachés et la technique Deep Learning</b></a></td>
+<td><b>Code : 3SQ PSQ34<br>- MELOUK ANFEL<br>- HARMALI INES</b></td>
+</tr>
+<tr class="odd">
+<td>2019</td>
+<td><a href="/scolar/pfe_detail/79/" target="_blank"><b>Segmentation des images médicales IRM-3D en utilisant les champs aléatoires de Markov cachés et Cuckoo search technique</b></a></td>
+<td><b>Code : 3SQ PSQ51<br>- BOUKABENE RANDA <br>- OUALI ASSIA</b></td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+</div>
+</div>
+</div>
+<div id="projets" class="container tab-pane fade"><br>
+<div class="row">
+<div class="col-lg-6">
+<h5> <strong>Projets de recherche</strong></h5>
+</div>
+<div class="col-lg-12">
+<br>
+<div class="table-container">
+<table class="table">
+<thead>
+<tr>
+<th>
+Type
+</th>
+<th>
+Titre
+</th>
+<th>
+Annee debut
+</th>
+<th>
+Annee fin
+</th>
+<th>
+Rôle
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="even">
+<td>PRFU</td>
+<td><a href="/scolar/projet_detail/7/" target="_blank"><b>Techniques d&#x27;apprentissage profond pour la segmentation automatique des gliomes HGG et LGG et des structures intra-tumorales dans IRM-3D cérébrales mulimodales.</b></a></td>
+<td>2021</td>
+<td>2024</td>
+<td>Membre</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+</div>
+</div>
+</div>
+<div id="equiperecherche" class="container tab-pane fade"><br>
+<div class="row">
+<div class="col-lg-6">
+<h5> <strong>Équipe de recherche</strong></h5>
+</div>
+<div class="col-lg-12">
+<br>
+<div class="table-container">
+<table class="table">
+<thead>
+<tr>
+<th>
+Code/Sigle
+</th>
+<th>
+Nom
+</th>
+<th>
+Rôle
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="even">
+<td><a href="/scolar/equiperecherche_detail/3/" target="_blank"><b>TIIMA</b></a></td>
+<td><a href="/scolar/equiperecherche_detail/3/" target="_blank"><b>Traitement et Interprétation des IMAges</b></a></td>
+<td>Membre</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<br><br><br><br>
+<footer class="row"><small><small>
+<div class="fixed-bottom text-center text-white custombgcolor col-lg-12">
+<address>
+<strong>Ecole nationale Supérieure d&#x27;Informatique المدرسة الوطنية العليا للإعلام الآلي</strong><br>
+BPM68 16270, Oued Smar, Alger. Tél : 023939132 ; Fax : 023939142 ; http://www.esi.dz
+</address>
+</div>
+</small></small></footer>
+</div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>

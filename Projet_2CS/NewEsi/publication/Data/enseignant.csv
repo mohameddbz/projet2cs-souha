@@ -1,0 +1,16 @@
+nom,prenom,contact,email,photo,linkedin,mot_cle,grade,CATEGORY
+ARIES,Abdelkrime,123456789,ab_aries@esi.dz,annuaire_photos\abdelkrime.jpg,linkedin.com/in/amarballa,Data Science,Maître de Conférences B,enseignant
+BALLA,Amar,234567890,a_balla@esi.dz,annuaire_photos\amar.jpg,linkedin.com/in/amarballa,Algorithmique,Professeur,enseignant
+BOUMAHDI,Rachid,456789012,r_boumehdi@esi.dz,annuaire_photos\rachidBOUMAHDI.jpg,linkedin.com/in/rachidboumahdi,Sécurité Informatique,Maître de Conférences A,enseignant
+CHALAL,Rachid,678901234,r_chalal@esi.dz,annuaire_photos\rachid2.jpg,linkedin.com/in/rachidchalal,Réseaux,Professeur,enseignant
+CHALLAL,Yacine,789012345,y_challal@esi.dz,annuaire_photos\yacine.jpg,linkedin.com/in/yacinechallal,Développement Web,Professeur,enseignant
+CHEBIEB,Abdelkrim,890123456,k_chebieb@esi.dz,annuaire_photos\abdelkrim.jpg,linkedin.com/in/abdelkrimchebieb,Systèmes Embarqués,Maître de Conférences B,enseignant
+GHOMARI,Abdessamed Reda,901234567,a_ghomari@esi.dz,annuaire_photos\abdessamed.jpg,linkedin.com/in/abdessamedghomari,Cloud Computing,Professeur,enseignant
+GUERROUT,Elhachemi,123409876,e_guerrout@esi.dz,annuaire_photos\elhachemi.jpg,linkedin.com/in/elhachemiguerrout,Big Data,Maître de Conférences B,enseignant
+HAMANI,Nacer,340987654,n_hamani@esi.dz,annuaire_photos\nacer.jpg,linkedin.com/in/nacerhamani,Cryptographie,Maître de Conférences B,enseignant
+KERMI,Adel,409876543,a_kermi@esi.dz,annuaire_photos\adel.jpg,linkedin.com/in/adelkermi,Ingénierie Logicielle,Maître de Conférences A,enseignant
+KHOURI,Selma,987654321,s_khouri@esi.dz,annuaire_photos\selma.jpg,linkedin.com/in/selmakhouri,Vision par Ordinateur,Maître de Conférences A,enseignant
+KOUDIL,Mouloud,876543210,m_koudil@esi.dz,annuaire_photos\mouloud.jpg,linkedin.com/in/mouloudkoudil,Traitement du Signal,Professeur,enseignant
+MAHIOU,Ramdane,654321098,r_mahiou@esi.dz,annuaire_photos\ramdane.jpg,linkedin.com/in/ramdanemahiou,Robotique,Maître de Conférences B,enseignant
+NADER,Fahima,543210987,f_nader@esi.dz,annuaire_photos\fahima.jpg,linkedin.com/in/fahimanader,Informatique Médicale,Professeur,enseignant
+SADEG,Souhila,432109876,s_sadeg@esi.dz,annuaire_photos\souhila.jpg,linkedin.com/in/sou

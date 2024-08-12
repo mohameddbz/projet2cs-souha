@@ -1,0 +1,15 @@
+[
+    {
+        "model": "publication.Utilisateur",
+        "pk": 1,
+        "fields": {
+            "id_utilisateur": 1,
+            "nom": "John Doe",
+            "contact": 1234567890,
+            "email": "john@example.com",
+            "mot_de_passe": "hashedpassword",
+            "type": "admin"
+        }
+    }
+    
+]
