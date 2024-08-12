@@ -55,7 +55,7 @@ function QuestionList({onSelect, selectedQuestionId }) {
             <FaPlusCircle />
           </button>
         </div>
-        <div className="sort-dropdown">
+        <div className="sortt-dropdown">
           <p>Trier par</p>
           <select onChange={(e) => setSortType(e.target.value)}>
             <option value="recent">Récents</option>
@@ -80,7 +80,7 @@ function QuestionList({onSelect, selectedQuestionId }) {
           </div>
         ))}
       </div>
-      <div className="pagination">
+      <div className="pagination-bachelier">
         <button onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1}>
           <FaChevronLeft /> Prec
         </button>

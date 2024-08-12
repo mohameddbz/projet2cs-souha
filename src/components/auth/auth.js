@@ -28,19 +28,21 @@ function Auth() {
         email,
         password
       });
-      const { token, is_adminstrateur, is_editeur , Categorie , is_chercheur } = response.data;
+      const { token, is_adminstrateur, is_editeur , Categorie , is_chercheur , is_superuser } = response.data;
   
       if (token) {
         localStorage.setItem('token', token);
         localStorage.setItem('is_adminstrateur', is_adminstrateur);
         localStorage.setItem('is_editeur', is_editeur);
 
-        if (is_adminstrateur) {
+        if (is_superuser) {
           navigate('/Admin/publications');
         } else if (is_editeur) {
           navigate('/Publieur/publications');
-        } else {
-          navigate('/');
+        } else if (is_chercheur) {
+          navigate('/chercheur/articles');
+        } else if (is_adminstrateur){
+          navigate('/Vaidateur')
         }
       } else {
         setError('Connexion échouée : aucun token reçu');

@@ -8,16 +8,34 @@ import QuestionListAdm from '../../components/QuestionListAdm/QuestionListAdm';
 const BachelierAdmin = () => {
   const [questions, setQuestions] = useState([]);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
+  // const token = localStorage('token')
+  // useEffect(() => {
+  //   fetch(`${process.env.REACT_APP_API_URL}/admin/questions/`)
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       setQuestions(data);
+  //       setSelectedQuestion(data[0]); // Pré-sélectionner la première question si disponible
+  //     })
+  //     .catch(error => console.error('Error fetching questions:', error));
+  // }, []);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/questions/`)
+    const token = localStorage.getItem('token'); 
+
+    fetch(`${process.env.REACT_APP_API_URL}/admin/questions/`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`, // Ajouter le token dans les en-têtes
+        'Content-Type': 'application/json' // Assurez-vous que le type de contenu est correct
+      }
+    })
       .then(response => response.json())
       .then(data => {
         setQuestions(data);
-        setSelectedQuestion(data[0]); // Pré-sélectionner la première question si disponible
+        setSelectedQuestion(data[0]); 
       })
       .catch(error => console.error('Error fetching questions:', error));
-  }, []);
+  }, []); //
 
   const handleSelectQuestion = (id) => {
     const question = questions.find(q => q.id === id);

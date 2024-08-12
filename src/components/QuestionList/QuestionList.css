@@ -134,6 +134,7 @@
   color: #61B100;
 }
 .sortt-dropdown {
+  position: relative;
   width: 80%;
   display: flex;
   flex-direction: row;
@@ -147,6 +148,7 @@
 }
 
 .sortt-dropdown svg {
+  position: absolute;
   right: 10px; /* Positionnez l'icône à 10px du bord droit du `select` */
   top: 50%; /* Centrer verticalement l'icône */
   transform: translateY(-50%);
@@ -181,3 +183,4 @@
   background: white; /* Fond blanc pour une meilleure lisibilité */
   color: #333; /* Définir une couleur de texte explicite pour assurer la cohérence */
 }
+

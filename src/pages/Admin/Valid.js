@@ -2,14 +2,37 @@ import React, { useState, useEffect } from 'react';
 import { FaHourglassHalf, FaSearch } from 'react-icons/fa';
 import axios from 'axios';
 import './Admin.css';
-import SidebarAdm from '../../components/Sidebar/SidebarAdmin/SidebarAdm';
+import SidebarAdm from '../../components/Sidebar/SidebarAdmin/SidebarValidateur';
 
-function AdminPage() {
+function Valid() {
     const [publications, setPublications] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [error, setError] = useState('');
-    const [reload,setReload]= useState(0);
-    const [userMap,setUserMap]= useState({})
+    const [reload,setReload]=useState(0);
+    const [userMap, setUserMap] = useState({});
+
+const incrementReload = () => {
+
+    setReload(preReload => preReload + 1)
+}
+
+    // Déplacez fetchPublications ici pour la rendre accessible dans tout le composant
+    const fetchPublications = async () => {
+        const token = localStorage.getItem('token');
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/publication/searchall/?etat=en attente`, {
+                headers: { 'Authorization': `token ${token}` }
+            });
+            const filteredPublications = response.data.filter(
+                pub => pub.type_publication !== 'article' && pub.type_publication !== 'success story' 
+            );
+            setPublications(filteredPublications); 
+        } catch (error) {
+            console.error('Erreur lors de la récupération des publications:', error);
+            setError('Failed to fetch publications. Please try again later.');
+        }
+    };
+
     const getUser = async (id) => {
         const token = localStorage.getItem('token');
         try {
@@ -21,7 +44,7 @@ function AdminPage() {
             console.error('Error fetching user:', error);
             return null; // Optionally return null or an error object
         }
-    }; 
+    };
     const fetchUserDetails = async (publications) => {
         const newUserMap = {};
         await Promise.all(
@@ -32,31 +55,8 @@ function AdminPage() {
         );
         setUserMap(newUserMap);
     };
-    const incrementReload = () => {
-        setReload(prevReload => prevReload + 1);
-      };
-   
 
     useEffect(() => {
-         // Déplacez fetchPublications ici pour la rendre accessible dans tout le composant
-    const fetchPublications = async () => {
-        const token = localStorage.getItem('token');
-        try {
-            const response = await axios.get(`${process.env.REACT_APP_API_URL}/publication/searchall/?etat=en attente`, {
-                headers: { 'Authorization': `token ${token}` }
-            });
-            const filtrerdpublication = response.data.filter(
-                pub => pub.type_publication !== "article"
-            );
-            setPublications(filtrerdpublication); // Vérifiez ici la structure exacte attendue.
-            fetchUserDetails(response.data)
-            console.log('ca marche la fonction ')
-        } catch (error) {
-            console.error('Erreur lors de la récupération des publications:', error);
-            setError('Failed to fetch publications. Please try again later.');
-        }
-    };
-
         fetchPublications();
     }, [reload]);
 
@@ -67,8 +67,8 @@ function AdminPage() {
                 headers: { 'Authorization': `token ${token}` }
             });
             console.log('Publication approved successfully:', response);
-           incrementReload()  ;
-            // fetchPublications(); // Refresh publications list
+           // fetchPublications(); // Refresh publications list
+            incrementReload()
         } catch (error) {
             console.error('Failed to approve publication:', error);
             alert('Failed to approve the publication. Please try again.');
@@ -82,8 +82,8 @@ function AdminPage() {
                 headers: { 'Authorization': `token ${token}` }
             });
             console.log('Publication rejected successfully:', response);
+            incrementReload()
             //  fetchPublications(); // Refresh publications list
-            incrementReload() ; 
         } catch (error) {
             console.error('Failed to reject publication:', error);
             alert('Failed to reject the publication. Please try again.');
@@ -139,7 +139,7 @@ function AdminPage() {
                     {filteredPublications.map(publication => (
                         <tr key={publication.id_publication}>
                             <td>{publication.titre || 'No Title'}</td>
-                            <td>{userMap[publication.id_publication]?.family_name || 'No Publisher'}</td>
+                            <td>{userMap[publication.id_publication]?.family_name || 'null'}</td>
                             <td>{publication.date_publication || 'No Date'}</td>
                             <td>
                                 <div className="action-buttons">
@@ -156,4 +156,4 @@ function AdminPage() {
     );
 }
 
-export default AdminPage;
+export default Valid;

@@ -68,6 +68,9 @@ import PublicationDetail from './pages/SuccessStories/PublicationDetail';
 import ProgrammeFinal from './pages/Programme/ProgrammeFinal';
 import AjouterUser from './pages/Admin/AjouterUser';
 import ListUser from './pages/Admin/ListeUser';
+import Valid from './pages/Admin/Valid';
+import PublicationValidateur from './pages/Admin/Validateur_pub'
+import PrincipalValidateur from './pages/Admin/PrincipalValid'
       
 // ======= page historique pas integrer les 2 
 // ======= page chercheur pas integrer 
@@ -146,6 +149,12 @@ function App() {
         <Route path='/Ebachelier/Forum' element={<ForumPage/>}></Route>
         <Route path='/Presentation' element={<Presentation/>}></Route>
         <Route path='/ProgrammeFinal' element={<ProgrammeFinal/>}></Route>
+
+
+         mohamed verification 
+         < Route path ="/Vaidateur" allowedRoles={['administrateur']} element ={<PrivateRoute><PrincipalValidateur /></PrivateRoute>}/>
+        <Route path="/Validateur/publications" allowedRoles={['administrateur']} element={<PrivateRoute><PublicationValidateur /></PrivateRoute>} />
+        <Route path="/Valid/publications_en_attente" allowedRoles={['administrateur']} element={<PrivateRoute><Valid/></PrivateRoute>} />
         
 
 
