@@ -10,8 +10,7 @@ colorama==0.4.6
 dataclasses-json==0.6.7
 distro==1.9.0
 dj-database-url==2.2.0
-Django==4.2.4
-
+Django==5.0.6
 django-cors-headers==4.4.0
 djangorestframework==3.15.2
 filelock==3.15.4
@@ -34,12 +33,11 @@ langsmith==0.1.83
 marshmallow==3.21.3
 multidict==6.0.5
 mypy-extensions==1.0.0
-numpy==1.24.4
-
+numpy==1.26.4
 openai==1.35.8
 orjson==3.10.6
 packaging==24.1
-pandas==2.0.3
+pandas==2.2.2
 pillow==10.4.0
 pydantic==2.8.0
 pydantic_core==2.20.0
