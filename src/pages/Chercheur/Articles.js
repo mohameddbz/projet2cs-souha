@@ -280,7 +280,7 @@ function PublicationPage() {
             </div>
             <div className="admin-container">
                 <div className="admin-header">
-                    <h1><FaList /> Publications </h1>
+                    <h1><FaList /> Articles </h1>
                     <div className="search-box">
                         <button className="search-button" onClick={() => console.log('Search clicked')}>
                             <FaSearch />

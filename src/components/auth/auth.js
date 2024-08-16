@@ -34,16 +34,18 @@ function Auth() {
         localStorage.setItem('token', token);
         localStorage.setItem('is_adminstrateur', is_adminstrateur);
         localStorage.setItem('is_editeur', is_editeur);
-
-        if (is_superuser) {
+        
+        if (is_adminstrateur){
+          navigate('/Vaidateur')
+        } else if (is_superuser) {
           navigate('/Admin/publications');
-        } else if (is_editeur) {
-          navigate('/Publieur/publications');
+        } else if (Categorie.nom === "alumni"){
+          navigate('/alumni/publications')
         } else if (is_chercheur) {
           navigate('/chercheur/articles');
-        } else if (is_adminstrateur){
-          navigate('/Vaidateur')
-        }
+        } else if (is_editeur){
+          navigate("/Publieur/publications")
+        } 
       } else {
         setError('Connexion échouée : aucun token reçu');
       }

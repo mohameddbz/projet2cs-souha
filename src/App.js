@@ -6,6 +6,7 @@ import PiecesPage from './pages/Admin/PiecesPage';
 import PieceModal from './pages/Admin/PieceModal';
 import CategoriesPage from './pages/Admin/CategoriesPage';
 import FablabInscriptionPage from './pages/Admin/FablabInscriptionPage';
+import Articles from './pages/Chercheur/Articles';
 
 import Annuaire from './pages/Annuaire/Annuaire';
 import Enseignants from'./pages/Annuaire/Enseignants'
@@ -21,7 +22,7 @@ import LandingPage from './pages/LandingPage/LandingPage';
 import Evenements from './pages/EventsPage/Evenements';
 import Authentification from './pages/Authentification/Authentification';
 import Clubs from './pages/Clubs/Clubs';
-
+import ProfileEdit from './pages/Admin/ProfileEditeur'
 
 import AvantPromo from './pages/AvantPromo/index'
 import CatalogueFormation from './pages/CatalogueFormations/index'
@@ -38,8 +39,10 @@ import Chercheur from './pages/Chercheur/Chercheur';
 import Publication from './pages/Chercheur/Publications'
 import Publications from './pages/Chercheur/Publications';
 import Publier from './pages/Admin/Publier';
+import PublierArticle from './pages/Admin/PublierArticle'
 import Historique from './pages/Admin/Historique';
 import Lcsi from './pages/LCSI/Lcsi';
+import ProfileValid from './pages/Admin/ProfileValid'
 
 import PublicationPage from './pages/Admin/Publication';
 import PublicationAdmin from './pages/Admin/Admin_pub';
@@ -71,7 +74,9 @@ import ListUser from './pages/Admin/ListeUser';
 import Valid from './pages/Admin/Valid';
 import PublicationValidateur from './pages/Admin/Validateur_pub'
 import PrincipalValidateur from './pages/Admin/PrincipalValid'
-      
+import PubStory from './pages/Admin/PubStory'  
+import AlumniPublier from './pages/Admin/AlumniPublier'  
+import AlumniProfile from './pages/Admin/ProfileAlumni'
 // ======= page historique pas integrer les 2 
 // ======= page chercheur pas integrer 
 // ======= page Publications
@@ -100,10 +105,12 @@ function App() {
         < Route path ="/Admin" allowedRoles={['administrateur']} element ={<PrivateRoute><Principal /></PrivateRoute>}/>
         <Route path="/Admin/publications" allowedRoles={['administrateur']} element={<PrivateRoute><PublicationAdmin /></PrivateRoute>} />
             <Route path="/Publieur/publications" allowedRoles={['editeur']} element={<PrivateRoute><PublicationPage /></PrivateRoute>} />
+            <Route path="/alumni/publications" allowedRoles={['editeur']} element={<PrivateRoute><PubStory /></PrivateRoute>} />
             <Route path="/Admin/publications_en_attente" allowedRoles={['administrateur']} element={<PrivateRoute><AdminPage /></PrivateRoute>} />
             <Route path="/Admin/profile" allowedRoles={['administrateur']} element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
             <Route path="/Admin/historique" allowedRoles={['administrateur']} element={<PrivateRoute><HistoriquePage /></PrivateRoute>} /> 
             <Route path="/Publieur/publier" allowedRoles={['editeur']} element={<PrivateRoute><Publier/></PrivateRoute>} />
+            <Route path="/chercheur/publier" allowedRoles={['editeur']} element={<PrivateRoute><PublierArticle/></PrivateRoute>} />
 
             <Route path="/Publieur/profile" allowedRoles={['editeur']} element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
             <Route path="/Publieur/historique" allowedRoles={['editeur']} element={<PrivateRoute><HistoriquePage /></PrivateRoute>} />
@@ -152,9 +159,14 @@ function App() {
 
 
          mohamed verification 
+         <Route path='/Valid/profile' element={<ProfileValid/>} ></Route>
+         <Route path='/alumni/publier' element={<AlumniPublier/>} ></Route>
+         <Route path='/alumni/profile' element={<AlumniProfile/>} ></Route>
+         <Route path='/chercheur/articles' element={<Articles/>} ></Route>
          < Route path ="/Vaidateur" allowedRoles={['administrateur']} element ={<PrivateRoute><PrincipalValidateur /></PrivateRoute>}/>
         <Route path="/Validateur/publications" allowedRoles={['administrateur']} element={<PrivateRoute><PublicationValidateur /></PrivateRoute>} />
         <Route path="/Valid/publications_en_attente" allowedRoles={['administrateur']} element={<PrivateRoute><Valid/></PrivateRoute>} />
+        <Route path="/editeur/profile" allowedRoles={['editeur']} element={<PrivateRoute><ProfileEdit/></PrivateRoute>} />
         
 
 

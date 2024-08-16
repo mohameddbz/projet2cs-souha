@@ -61,7 +61,7 @@ export default function SidebarAdm() {
             <MenuItem className={styles.widthMenu}><Link to="/Valid/publications_en_attente">{textMenu(hourGlass,'Publications en attente')}</Link></MenuItem>
           </SubMenu>
           <SubMenu label="Paramètres" className={styles.SubMenu}>
-            <MenuItem className={styles.widthMenu}><Link to="/Admin/profile">{textMenu(profile,'Profile')}</Link></MenuItem>
+            <MenuItem className={styles.widthMenu}><Link to="/Valid/profile">{textMenu(profile,'Profile')}</Link></MenuItem>
             <MenuItem className={styles.widthMenu} onClick={logout}>{textMenu(deconnect,'Se Deconnecter')}</MenuItem>
           </SubMenu>
         </Menu>
