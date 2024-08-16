@@ -77,6 +77,7 @@ import PrincipalValidateur from './pages/Admin/PrincipalValid'
 import PubStory from './pages/Admin/PubStory'  
 import AlumniPublier from './pages/Admin/AlumniPublier'  
 import AlumniProfile from './pages/Admin/ProfileAlumni'
+import ProfileFablab from './pages/Fablab/ProfileFablab'
 // ======= page historique pas integrer les 2 
 // ======= page chercheur pas integrer 
 // ======= page Publications
@@ -117,7 +118,7 @@ function App() {
             Ajoutez d'autres routes ici selon les liens de votre sideba
             <Route path="/Ebachelier/BachelierAdmin" allowedRoles={['administrateur']} element={<PrivateRoute><BachelierAdmin /></PrivateRoute>} />
             < Route path ="/ProjetLabo" element ={<ProjetLabo/>}/>
-            < Route path ="/admchercheur" element ={<Admchercheur/>}/>
+            < Route path ="/admchercheur" element ={<Admchercheur/>}/> /* role de this page */
         < Route path ="/LMCSTeams" element ={<Equipe/>}/>
         < Route path ="/LCSITeams" element ={<EquipeLCSI/>}/>
         < Route path ="/lmcs" element ={<Lmcs/>}/>
@@ -167,6 +168,7 @@ function App() {
         <Route path="/Validateur/publications" allowedRoles={['administrateur']} element={<PrivateRoute><PublicationValidateur /></PrivateRoute>} />
         <Route path="/Valid/publications_en_attente" allowedRoles={['administrateur']} element={<PrivateRoute><Valid/></PrivateRoute>} />
         <Route path="/editeur/profile" allowedRoles={['editeur']} element={<PrivateRoute><ProfileEdit/></PrivateRoute>} />
+        <Route path="/fablab/profile"  element={<ProfileFablab/>} />
         
 
 
