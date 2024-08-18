@@ -139,7 +139,8 @@ def login_user(request):
                 "is_editeur": user.is_editeur,
                 "Categorie": categorie_serialized,
                 "is_chercheur":user.is_chercheur,
-                "is_superuser":user.is_superuser
+                "is_superuser":user.is_superuser,
+                "is_responsable_fablab": user.is_responsable_fablab
             }, status=status.HTTP_200_OK)
         
         if Utilisateur.objects.filter(email=email).exists():
@@ -930,6 +931,14 @@ def equipe_members(request, equipe_id):
         })
 
     return Response(contacts)
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_enseignant_annuaire(request, nom, prenom):
+    enseignant = get_object_or_404(Enseignant_Annuaire, nom=nom, prenom=prenom)
+    serializer = EnseignantAnnuaireSerializer(enseignant)
+    return Response(serializer.data)
+
 
 @api_view(['GET'])
 @permission_classes([AllowAny])

@@ -98,7 +98,7 @@ class Utilisateur(AbstractBaseUser, PermissionsMixin):
     Categorie=models.ForeignKey(Categorie,  related_name="categorie", on_delete=models.SET_NULL, null=True)
     is_club = models.BooleanField(default=False)
     club = models.ForeignKey(Club, related_name="club", on_delete=models.CASCADE, null=True)
-
+    
 
 
 
@@ -148,6 +148,13 @@ class Utilisateur(AbstractBaseUser, PermissionsMixin):
    
 
 #club
+
+
+
+
+
+
+
 
 
     

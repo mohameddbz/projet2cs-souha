@@ -108,6 +108,8 @@ path('equipe_recherche/add',add_equipe_recherche,name='add_equipe_recherche'),
     path('annuaire/grades/', get_all_grades, name='get_all_grades'),
     path('annuaire/promotions/', get_all_promotions, name='get_all_promotions'),
     path('annuaire/services/', get_all_services, name='get_all_services'),
+    path('annuaire/enseignant/<str:nom>/<str:prenom>/', get_enseignant_annuaire, name='get_enseignant_annuaire'),
+    
     path('publication1/<int:id>/', get_publication, name='get_publication'),
     path('publication/annuler/<int:pk>/',annuler_publication, name='annuler_publication'),
 
