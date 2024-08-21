@@ -668,6 +668,7 @@ def add_partenaire(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_all_partenaire(request):
@@ -678,18 +679,10 @@ def get_all_partenaire(request):
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
-def get_partenaire(request):
-    partenaire_id = request.query_params.get('id')
-    if partenaire_id is None:
-        return Response("ID du partenaire manquant dans les paramètres de requête", status=status.HTTP_400_BAD_REQUEST)
-   
-    try:
-        partenaire = Partenaire.objects.get(pk=partenaire_id)
-        serializer = PartenaireSerializer(partenaire)
-        return Response(serializer.data)
-    except Partenaire.DoesNotExist:
-        return Response("Partenaire introuvable", status=status.HTTP_404_NOT_FOUND)
-
+def get_partenaire_byid(request, id):
+    partenaire = get_object_or_404(Partenaire, id=id)
+    serializer = PartenaireSerializer(partenaire)
+    return Response(serializer.data)
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
@@ -1405,6 +1398,7 @@ def get_user_info(request):
         "is_responsable_fablab": user.is_responsable_fablab,
         "is_directeur_relex": user.is_directeur_relex,
         "is_superuser":user.is_superuser,
+        
         "Categorie": {
             "id_categorie": user.Categorie.id_categorie,
             "nom": user.Categorie.nom
@@ -1414,7 +1408,7 @@ def get_user_info(request):
             "nom": user.equipeRecherche.nom
         } if user.equipeRecherche else None,
         "club": {
-            "id": user.club.id,
+            "id_club": user.club.id_club,
             "nom": user.club.nom
         } if user.club else None
     }

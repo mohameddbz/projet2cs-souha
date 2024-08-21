@@ -24,7 +24,7 @@ urlpatterns = [
    
     path('partenaire/add',add_partenaire,name='add_partenaire'),
     path('partenaires',get_all_partenaire,name='get_all_partenaire'),
-    path('partenaire',get_partenaire,name='get_partenaire'),
+    path('partenaire/<int:id>/',get_partenaire_byid,name='get_partenaire'),
     path('demande_partenariat',post_demande_partenariat,name='demande_partenariat'),
     path('demande_partenariat/all',get_all_demande_partenariat,name='get_all_demande_partenariat'),
     path('demande_partenariat/accepter',accepter_demande_partenariat,name='accepter_demande_partenariat'),
