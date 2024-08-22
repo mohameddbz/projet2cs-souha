@@ -1,7 +1,6 @@
 # serializers.py
 from rest_framework import serializers
-from .models import Categorie, Utilisateur,Publication , Token ,MembreClub,Club , Partenaire , Demande_Partenariat, Devis, Partenaire_labo, Laboratoire, Equipe_Recherche, Equipe_Projet, Projet, Theme_Recherche , Administration_Annuaire , Annuaire , Alumnie_Annuaire , Enseignant_Annuaire , Question, Reponse, event_inscription, section
-
+from .models import *
 class UtilisateurSerializer(serializers.ModelSerializer):
     class Meta:
         model = Utilisateur
@@ -161,4 +160,34 @@ class PublicationQuerySerializer(serializers.Serializer):
     query = serializers.CharField(max_length=255)
     results = serializers.CharField()
        
+class SessionSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Session
+        fields = '__all__' 
 
+class PlaningSerializer(serializers.ModelSerializer):
+    sessions = serializers.PrimaryKeyRelatedField(
+        many=True, queryset=Session.objects.all()
+    )
+
+    class Meta:
+        model = Planing
+        fields = '__all__'  
+
+
+
+
+class FormationSerializer(serializers.ModelSerializer):
+    Planing = serializers.PrimaryKeyRelatedField(queryset=Planing.objects.all())
+    Module = serializers.PrimaryKeyRelatedField(many=True, queryset=Module.objects.all())
+
+    class Meta:
+        model = Formation
+        fields = ['titre', 'description', 'Planing', 'Module']
+
+
+class ModuleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Module
+        fields = '__all__'            

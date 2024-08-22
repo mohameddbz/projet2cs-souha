@@ -23,12 +23,16 @@ urlpatterns = [
     path('publications/bycategory/', get_publications_by_category_admin, name='get_publications_by_category_admin'),
    
     path('partenaire/add',add_partenaire,name='add_partenaire'),
+   path('partenaire/<int:id>/update/', update_partenaire, name='update_partenaire'),
+    path('partenaire/<int:id>/delete/', delete_partenaire, name='delete_partenaire'),
+
+
     path('partenaires',get_all_partenaire,name='get_all_partenaire'),
     path('partenaire/<int:id>/',get_partenaire_byid,name='get_partenaire'),
     path('demande_partenariat',post_demande_partenariat,name='demande_partenariat'),
     path('demande_partenariat/all',get_all_demande_partenariat,name='get_all_demande_partenariat'),
-    path('demande_partenariat/accepter',accepter_demande_partenariat,name='accepter_demande_partenariat'),
-    path('demande_partenariat/refuser',refuser_demande_partenariat,name='refuser_demande_partenariat'),
+        path('demande-partenariat/accepter/<int:id>/', accepter_demande_partenariat, name='accepter_demande_partenariat'),
+ path('demande_partenariat/refuser/<int:id>/',refuser_demande_partenariat,name='refuser_demande_partenariat'),
     path('Devis/valider',valider_devis,name='valider_devis'),
     path('Devis/demande',add_devis,name='add_devis'),
     path('Devis',get_all_devis,name='get_all_devis'),
@@ -124,6 +128,23 @@ path('equipe_recherche/add',add_equipe_recherche,name='add_equipe_recherche'),
 
     
     path('user/',get_user_info,name='get_user_infos'),
+
+
+
+    path('add-formation/', add_formation, name='add_formation'),
+    path('add-planing/', add_planing, name='add_planing'),
+    path('add-session/', add_session, name='add_session'),
+    path('add_module/', add_module, name='add_module'),
+      path('formations/', get_formation, name='formation-list'),
+
+        path('formation/<int:formation_id>/planing/', get_planing_by_formation, name='formation-planing'),
+    path('formation/<int:formation_id>/modules/', get_modules_by_formation, name='formation-modules'),
+      path('planing/<int:planing_id>/sessions/', get_sessions_by_planing, name='planing-sessions'),
+       path('formations/<int:formation_id>/', get_formation_by_id, name='get_formation_by_id'),
+
+  
+   
+
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

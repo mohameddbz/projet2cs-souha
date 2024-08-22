@@ -304,14 +304,46 @@ class Devis(models.Model):
     def __str__(self):
         return self.montant
 
-class Formation(models.Model):
-    id_formation = models.IntegerField(primary_key=True)
+
+class Session(models.Model):
+    date = models.DateField()
+    heure_debut = models.TimeField()
+    heure_fin = models.TimeField()
+    sujet = models.CharField(max_length=255)
+    formateur = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f'{self.sujet} - {self.date}'
+
+
+
+
+class Planing(models.Model):
+    sessions = models.ManyToManyField(Session, related_name='sessions')
     titre = models.CharField(max_length=255)
-    description = models.TextField()
-    type = models.CharField(max_length=50) #a la carte/avant promo
-    prix = models.FloatField(null=True, blank=True) 
+    date_debut = models.DateField()
+    date_fin = models.DateField()
+
+
+    def __str__(self):
+        return self.titre       
+
+class Module(models.Model):
+    titre = models.CharField(max_length=255)
     def __str__(self):
         return self.titre
+
+
+class Formation(models.Model):
+    titre = models.CharField(max_length=255)
+    Module=models.ManyToManyField(Module, related_name='modules')
+    description = models.TextField()
+    Planing=models.ForeignKey(Planing, on_delete=models.CASCADE, related_name='planning')
+    def __str__(self):
+        return self.titre
+
+
+
 
 
 

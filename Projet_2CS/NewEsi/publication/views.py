@@ -668,6 +668,30 @@ def add_partenaire(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['PUT'])
+@user_types_required('directeur_relex')  # Remplacez par le décorateur ou la permission nécessaire
+def update_partenaire(request, id):
+    try:
+        partenaire = Partenaire.objects.get(pk=id)
+    except Partenaire.DoesNotExist:
+        return Response("Partenaire introuvable", status=status.HTTP_404_NOT_FOUND)
+
+    serializer = PartenaireSerializer(partenaire, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+@user_types_required('directeur_relex')  # Remplacez par le décorateur ou la permission nécessaire
+def delete_partenaire(request, id):
+    try:
+        partenaire = Partenaire.objects.get(pk=id)
+    except Partenaire.DoesNotExist:
+        return Response("Partenaire introuvable", status=status.HTTP_404_NOT_FOUND)
+
+    partenaire.delete()
+    return Response("Partenaire supprimé avec succès", status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
@@ -705,40 +729,37 @@ def get_all_demande_partenariat(request):
 
 @api_view(['PUT'])
 @user_types_required('directeur_relex')
-def accepter_demande_partenariat(request):
-    demande_id = request.query_params.get('id')
-    if demande_id is None:
-        return Response("ID de la demande de partenariat manquant", status=status.HTTP_400_BAD_REQUEST)
+def accepter_demande_partenariat(request, id):
     try:
-        demande = Demande_Partenariat.objects.get(pk=demande_id)
-        demande.etat = 'Acceptée'
-        demande.save()
-        nom_partenaire = demande.nom
-        description_partenaire = demande.description
-        contact_partenaire = demande.contact
-        email_partenaire = demande.email
-        partenaire = Partenaire.objects.create(nom=nom_partenaire, description=description_partenaire, contact=contact_partenaire, email=email_partenaire)
-
-        return Response("Demande de partenariat acceptée et le partenaire ajouté", status=status.HTTP_200_OK)
+        demande = Demande_Partenariat.objects.get(pk=id)
     except Demande_Partenariat.DoesNotExist:
         return Response("Demande de partenariat introuvable", status=status.HTTP_404_NOT_FOUND)
 
+    demande.etat = 'Acceptée'
+    demande.save()
+
+    partenaire = Partenaire.objects.create(
+        nom=demande.organisme,
+        description=demande.country,
+        contact=demande.phoneNumber,
+        email=demande.email
+    )
+
+    return Response("Demande de partenariat acceptée et le partenaire ajouté", status=status.HTTP_200_OK)
 
 
 @api_view(['PUT'])
 @user_types_required('directeur_relex')
-def refuser_demande_partenariat(request):
-    demande_id = request.query_params.get('id')
-    if demande_id is None:
-        return Response("ID de la demande de partenariat manquant", status=status.HTTP_400_BAD_REQUEST)
+def refuser_demande_partenariat(request, id):
     try:
-        demande = Demande_Partenariat.objects.get(pk=demande_id)
-        demande.etat = 'Refusée'
-        demande.save()
-        return Response("Demande de partenariat refusée", status=status.HTTP_200_OK)
+        demande = Demande_Partenariat.objects.get(pk=id)
     except Demande_Partenariat.DoesNotExist:
         return Response("Demande de partenariat introuvable", status=status.HTTP_404_NOT_FOUND)
 
+    demande.etat = 'Refusée'
+    demande.save()
+    return Response("Demande de partenariat refusée", status=status.HTTP_200_OK)
+   
 
 
 
@@ -1436,3 +1457,102 @@ def get_all_categories(request):
     categories = Categorie.objects.all()
     serializer = CategorieSerializer(categories, many=True)
     return Response(serializer.data)    
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def add_formation(request):
+    if request.method == 'POST':
+        serializer = FormationSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def add_planing(request):
+    if request.method == 'POST':
+        serializer = PlaningSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def add_session(request):
+    if request.method == 'POST':
+        serializer = SessionSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def add_module(request):
+    if request.method == 'POST':
+        serializer = ModuleSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_formation(request):
+    formations = Formation.objects.all()
+    serializer = FormationSerializer(formations, many=True)
+    return Response(serializer.data)      
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_planing_by_formation(request, formation_id):
+  
+        formation = Formation.objects.get(id=formation_id)
+        planing = formation.Planing
+        serializer = PlaningSerializer(planing)
+        return Response(serializer.data)
+  
+ 
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_modules_by_formation(request, formation_id):
+   
+        formation = Formation.objects.get(id=formation_id)
+        modules = formation.Module.all()
+        serializer = ModuleSerializer(modules, many=True)
+        return Response(serializer.data)
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_sessions_by_planing(request, planing_id):
+ 
+        planing = Planing.objects.get(id=planing_id)
+        sessions = planing.sessions.all()
+        serializer = SessionSerializer(sessions, many=True)
+        return Response(serializer.data)
+         
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_sessions(request):
+    sessions = Session.objects.all()
+    serializer = SessionSerializer(sessions, many=True)
+    return Response(serializer.data)   
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_formation_by_id(request, formation_id):
+    try:
+        # Récupérer la formation par son ID
+        formation = Formation.objects.get(id=formation_id)
+    except Formation.DoesNotExist:
+        return Response({'error': 'Formation not found'}, status=404)
+
+    # Sérialiser la formation et retourner les données
+    serializer = FormationSerializer(formation)
+    return Response(serializer.data, status=200)    
