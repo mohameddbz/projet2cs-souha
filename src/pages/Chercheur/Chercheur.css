@@ -289,6 +289,10 @@
   height: 24px;
   border-radius: 12px 12px 12px 12px;
 }
+.cf{
+  position:absolute;
+  top:1750px;
+}
 .chercheur-image8 {
   position: absolute;
   top: 231px;

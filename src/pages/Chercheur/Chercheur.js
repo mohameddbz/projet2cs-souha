@@ -118,7 +118,9 @@ function Chercheur(props) {
 </section>
 
     </div>
-    {/* <Footer/> */}
+    <div className='cf'>
+    <Footer/>
+    </div>
     </div>
   );
 }

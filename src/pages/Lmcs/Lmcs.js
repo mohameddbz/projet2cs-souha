@@ -21,11 +21,13 @@ import cardData1 from '../../db/blog.json';
 
 import Navbar from '../../components/navbar/navbar'
 import Footer from '../../components/Footer/Footer'
+import {  GoChevronRight } from "react-icons/go";
+import {  GoChevronLeft } from "react-icons/go";
 const Lmcs= () => {
   const pageSize = 4;
   const [currentPage, setCurrentPage] = useState(0);
   const [activeBox, setActiveBox] = useState(null);
-
+  const [serviceCardIndex, setServiceCardIndex] = useState(0);
   const getCurrentPageCards = () => {
     const startIndex = currentPage * pageSize;
     const endIndex = startIndex + pageSize;
@@ -52,9 +54,11 @@ const Lmcs= () => {
        handleBoxClick={handleBoxClick} 
        activeBox={activeBox} 
     />
-    <ServiceCard
-      getCurrentPageCard={getCurrentPageCard}
-    />
+   <ServiceCard
+      cardData1={cardData1}
+      serviceCardIndex={serviceCardIndex}
+      setServiceCardIndex={setServiceCardIndex} 
+       />
     <Partenaire/>
     <Footer/>
    </div>
@@ -162,36 +166,59 @@ const Presentation = ({ getCurrentPageCards, handleBoxClick, activeBox }) => (
     </div>
   </div>
 );
-const ServiceCard = ({ getCurrentPageCard }) => (
-  <div className='lcsi-blog_container'>
-    <h1 className='lcsi-hero_title_blog'>
-      <span className='lcsi-hero_title_b'>
-        <span className='lcsi-hero_title_blog0'>Derniers conseils</span>
-        <span className='lcsi-hero_title_blog1'> sur notre blog</span>
-      </span>
-    </h1>
-    <div className='containerblog'>
-      {getCurrentPageCard().map((product, index) => (
-        <div key={index} className='lcsi-blog'>
-          <div className='lcsi-blog-content'>
-            <h3 className='lcsi-blog_subtitle'>{product.title}</h3>
-            <h5 className='lcsi-blog_highlight'>{product.desc}</h5>
-            <div className='lcsi-blog-meta'>
-            <img className='lcsi-blog_images' src={aplaude} alt="alt text" />
-              <span className='lcsi-blog-like'>{product.like}</span>
-              <img className='lcsi-blog_images' src={vue} alt="alt text" />
-              <span className='lcsi-blog_vues'>{product.vues}</span>
-              <img className='lcsi-blog_images' src={clock} alt="alt text" />
-              <span className='lcsi-blog_temps'>{product.temps}</span>
+const ServiceCard = ({ cardData1, serviceCardIndex, setServiceCardIndex }) => {
+  const cardsPerPage = 2;
+
+  const handlePrevClick = () => {
+    setServiceCardIndex(Math.max(0, serviceCardIndex - cardsPerPage));
+  };
+
+  const handleNextClick = () => {
+    setServiceCardIndex(Math.min(cardData1.length - cardsPerPage, serviceCardIndex + cardsPerPage));
+  };
+
+  return (
+    <div className='lcsi-blog_container'>
+      <h1 className='lcsi-hero_title_blog'>
+        <span className='lcsi-hero_title_b'>
+          <span className='lcsi-hero_title_blog0'>Derniers conseils</span>
+          <span className='lcsi-hero_title_blog1'> sur notre blog</span>
+        </span>
+      </h1>
+      <div className='containerblog'>
+        {cardData1.slice(serviceCardIndex, serviceCardIndex + cardsPerPage).map((product, index) => (
+          <div key={serviceCardIndex +index} className='lcsi-blog'>
+            <div className='lcsi-blog-content'>
+              <h3 className='lcsi-blog_subtitle'>{product.title}</h3>
+              <h5 className='lcsi-blog_highlight'>{product.desc}</h5>
+              <div className='lcsi-blog-meta'>
+                <img className='lcsi-blog_images' src={aplaude} alt="alt text" />
+                <span className='lcsi-blog-like'>{product.like}</span>
+                <img className='lcsi-blog_images' src={vue} alt="alt text" />
+                <span className='lcsi-blog_vues'>{product.vues}</span>
+                <img className='lcsi-blog_images' src={clock} alt="alt text" />
+                <span className='lcsi-blog_temps'>{product.temps}</span>
+              </div>
+              <a href="lien-vers-votre-page" className='lcsi-blog_more'>Read More...</a>
             </div>
-            <a href="lien-vers-votre-page" className='lcsi-blog_more'>Read More...</a>
+            <img className='lcsi-blog_image' src={blog_image} alt="alt text" />
           </div>
-          <img className='lcsi-blog_image' src={blog_image} alt="alt text" />
-        </div>
-      ))}
+        ))}
+      </div>
+      <div className='carousel-controls'>
+        <button 
+        onClick={handlePrevClick} disabled={serviceCardIndex === 0}>
+        <GoChevronLeft style={{color:'white',fontSize: '40px'}}/>
+
+        </button>
+        <button onClick={handleNextClick} disabled={serviceCardIndex >= cardData1.length - cardsPerPage}>
+        <GoChevronRight style={{ color:'white',fontSize: '40px' }} />
+          </button>
+      </div>
     </div>
-  </div>
-);
+  );
+};
+
 
 const Partenaire=()=>(
   <div className='lcsiparten'>

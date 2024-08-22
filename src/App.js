@@ -37,6 +37,8 @@ import Publications from './pages/Chercheur/Publications';
 import Publier from './pages/Admin/Publier';
 import Historique from './pages/Admin/Historique';
 import Lcsi from './pages/LCSI/Lcsi';
+import LCSIProjects from './pages/LCSI/Lcsiprojets';
+import LCSITeams from './pages/LCSI/Lcsieqequipe';
 
 import PublicationPage from './pages/Admin/Publication';
 import PublicationAdmin from './pages/Admin/Admin_pub';
@@ -104,7 +106,9 @@ function App() {
         < Route path ="/publication" element ={<Publications/>}/>
         < Route path ="/Historique" element ={<Historique/>}/>
         < Route path ="/ProjetsInter" element ={<ProjetsInter/>}/>
-        
+        < Route path ="/LCSIProjects" element ={<LCSIProjects/>}/>
+        < Route path ="/LCSITeams" element ={<LCSITeams/>}/>
+      
       
       
         < Route path ="/AvantPromo" element ={<AvantPromo/>}/>

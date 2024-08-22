@@ -169,8 +169,8 @@ const listItem=[
                                     item:'Inscription',
                                     lien:''
                                 },{
-                                    item:'Guide doctoratns',
-                                    lien:''
+                                    item:'Chercheur',
+                                    lien:'/Chercheur'
                                 }]
                         },
                     ]
