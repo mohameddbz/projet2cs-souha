@@ -194,7 +194,7 @@ function PublicationPage() {
         const token = localStorage.getItem('token');
         try {
             const res = await axios.get(`${process.env.REACT_APP_API_URL}/user/`, {
-                headers: { 'Authorization': `Token ${token}` }  // Correct 'Token' instead of 'token'
+                headers: { 'Authorization': `token ${token}` }  // Correct 'Token' instead of 'token'
             });
             fetchPublications(res.data);
         } catch (error) {
@@ -204,8 +204,6 @@ function PublicationPage() {
     };
 
     const fetchPublications = async (userInfo) => {
-        if (!userInfo || !userInfo.Categorie) return;
-
         const token = localStorage.getItem('token');
         try {
             const response = await axios.get(`${process.env.REACT_APP_API_URL}/publication/searchall/?type_publication=article&publisher=${userInfo.id}`, {

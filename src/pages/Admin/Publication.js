@@ -175,8 +175,6 @@
 
 // export default PublicationPage;
 
-
-
 import React, { useState, useEffect } from 'react';
 import { FaList, FaSearch, FaPen, FaTrash } from 'react-icons/fa';
 import axios from 'axios';
@@ -205,7 +203,6 @@ function PublicationPage() {
             const res = await axios.get(`${process.env.REACT_APP_API_URL}/user/`, {
                 headers: { 'Authorization': `Token ${token}` }  // Correct 'Token' instead of 'token'
             });
-            // setUserInfo(res.data);
             fetchPublications(res.data);
         } catch (error) {
             console.error('Error fetching user:', error);
@@ -214,8 +211,6 @@ function PublicationPage() {
     };
 
     const fetchPublications = async (userInfo) => {
-        if (!userInfo || !userInfo.Categorie) return;
-
         const token = localStorage.getItem('token');
         try {
             const response = await axios.get(`${process.env.REACT_APP_API_URL}/publication/searchall/?publisher=${userInfo.id}&etat=valid`, {

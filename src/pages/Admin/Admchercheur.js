@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Admchercheur.css';
-import SidebarPub from '../../components/Sidebar/SidebarAdmin/SidebarPub';
+import SidebarPub from '../../components/Sidebar/SidebarAdmin/SidebarChercheur';
 
 function Admin2(props) {
   const [subject, setSubject] = useState('');
@@ -31,6 +31,37 @@ function Admin2(props) {
       );
     }
     return years;
+  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append('subject', subject);
+    formData.append('description', description);
+    formData.append('type', type);
+    formData.append('researchStartYear', researchStartYear);
+    formData.append('email', email);
+    formData.append('linkedin', linkedin);
+    formData.append('twitter', twitter);
+
+    if (selectedFile) {
+      formData.append('file', selectedFile);
+    }
+
+    try {
+      const response = await fetch('', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        console.log('Form submitted successfully');
+      } else {
+        console.error('Error submitting form');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   };
 
   return (

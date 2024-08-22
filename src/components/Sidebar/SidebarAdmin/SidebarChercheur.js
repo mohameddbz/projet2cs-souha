@@ -41,6 +41,9 @@ export default function SidebarPub() {
                         <MenuItem className={styles.widthMenu}><Link to="/chercheur/articles">{textMenu(pubIcon,'Articles')}</Link></MenuItem>
                         <MenuItem className={styles.widthMenu}><Link to="/chercheur/publier">{textMenu(pubilerIcon,'Publier')}</Link></MenuItem>
                     </SubMenu>
+                    <SubMenu label="Page chercheur" className={styles.SubMenu}>
+                        <MenuItem className={styles.widthMenu}><Link to="/admchercheur">{textMenu(pubIcon,'Ajouter')}</Link></MenuItem>
+                    </SubMenu>
                     <SubMenu label="Paramètres" className={styles.SubMenu}>
                         <MenuItem className={styles.widthMenu}><Link to="/editeur/profile">{textMenu(profile,'Profile')}</Link></MenuItem>
                         {/* <MenuItem className={styles.widthMenu}><Link to="/Admin/Ajouter_user">{textMenu(pubilerIcon,'Profile')}</Link></MenuItem> */}

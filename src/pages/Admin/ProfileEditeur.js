@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './ProfilePage.css';
-import SidebarAdm from '../../components/Sidebar/SidebarAdmin/SidebarChercheur';
+import SidebarAdm from '../../components/Sidebar/SidebarAdmin/SidebarPub';
 import './Admin.css';
 import axios  from 'axios';
 

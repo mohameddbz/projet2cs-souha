@@ -36,7 +36,6 @@ import EsiFinal from './pages/EsiFinal/EsiFinal';
 import Lmcs from './pages/Lmcs/Lmcs'
 import Post from './pages/Postgraduation/Post';
 import Chercheur from './pages/Chercheur/Chercheur';
-import Publication from './pages/Chercheur/Publications'
 import Publications from './pages/Chercheur/Publications';
 import Publier from './pages/Admin/Publier';
 import PublierArticle from './pages/Admin/PublierArticle'
@@ -50,7 +49,6 @@ import AdminPage from './pages/Admin/Admin';
 import HistoriquePage from './pages/Admin/Historique';
 import Principal from './pages/Admin/Principal';
 import ProfilePage from './pages/Admin/Profile';
-import Historique_p from './pages/Admin/Historique_p';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 import FabLabPage from './pages/Fablab/PagePres';
@@ -78,6 +76,12 @@ import PubStory from './pages/Admin/PubStory'
 import AlumniPublier from './pages/Admin/AlumniPublier'  
 import AlumniProfile from './pages/Admin/ProfileAlumni'
 import ProfileFablab from './pages/Fablab/ProfileFablab'
+import RelexPage from './pages/Relex/relex'
+import RelexProfile from './pages/Relex/relexProfil'
+import Partenaire from './pages/Relex/partenaire'
+import PartenaireDemende from './pages/Relex/partenaireDemende'
+import HistoriqueDemende from './pages/Relex/historiqueDemende'
+import AjouterPartenaire from './pages/Relex/Ajouter'
 // ======= page historique pas integrer les 2 
 // ======= page chercheur pas integrer 
 // ======= page Publications
@@ -118,7 +122,7 @@ function App() {
             Ajoutez d'autres routes ici selon les liens de votre sideba
             <Route path="/Ebachelier/BachelierAdmin" allowedRoles={['administrateur']} element={<PrivateRoute><BachelierAdmin /></PrivateRoute>} />
             < Route path ="/ProjetLabo" element ={<ProjetLabo/>}/>
-            < Route path ="/admchercheur" element ={<Admchercheur/>}/> /* role de this page */
+            < Route path ="/admchercheur" allowedRoles={['chercheur']} element ={<PrivateRoute><Admchercheur/></PrivateRoute>}/> /* role de this page */
         < Route path ="/LMCSTeams" element ={<Equipe/>}/>
         < Route path ="/LCSITeams" element ={<EquipeLCSI/>}/>
         < Route path ="/lmcs" element ={<Lmcs/>}/>
@@ -159,7 +163,13 @@ function App() {
         <Route path='/ProgrammeFinal' element={<ProgrammeFinal/>}></Route>
 
 
-         mohamed verification 
+         mohamed verification
+         <Route path='/relex/AjouterPartenaire' element={<AjouterPartenaire/>} ></Route> 
+         <Route path='/relex/historiqueDemnde' element={<HistoriqueDemende/>} ></Route> 
+         <Route path='/relex/partenaireDemende' element={<PartenaireDemende/>} ></Route> 
+         <Route path='/relex/partenaire' element={<Partenaire/>} ></Route>
+         <Route path='/relex' element={<RelexPage/>} ></Route>
+         <Route path='/relex/profile' element={<RelexProfile/>} ></Route>
          <Route path='/Valid/profile' element={<ProfileValid/>} ></Route>
          <Route path='/alumni/publier' element={<AlumniPublier/>} ></Route>
          <Route path='/alumni/profile' element={<AlumniProfile/>} ></Route>

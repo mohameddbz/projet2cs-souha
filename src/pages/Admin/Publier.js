@@ -432,12 +432,11 @@ function Admin2(props) {
     const token = localStorage.getItem('token');
     try {
       const res = await axios.get(`${process.env.REACT_APP_API_URL}/user/`, {
-        headers: { 'Authorization': `Token ${token}` }
+        headers: { 'Authorization': `token ${token}` }
       });
       setUserInfo(res.data);
       setCategorie(res.data.Categorie.nom);
     } catch (error) {
-      console.error('Error fetching user:', error);
     }
   };
 
@@ -528,8 +527,8 @@ function Admin2(props) {
             value={type}
             onChange={(e) => setType(e.target.value)}
           >
-            <option value="event">Événement</option>
             <option value="actualité">Actualité</option>
+            <option value="event"> Événement</option>
           </select>
         </div>
 

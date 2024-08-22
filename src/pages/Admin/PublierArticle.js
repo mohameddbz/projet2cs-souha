@@ -302,20 +302,7 @@ function Admin2() {
           value={type}
           onChange={(e) => setType(e.target.value)}
         >
-          {userInfo.is_editeur && categorie !== "alumni" && (
-            <>
-              <option value="event">Événement</option>
-              <option value="actualité">Actualité</option>
-            </>
-          )}
-
-          {userInfo.is_chercheur && (
             <option value="article">Article</option>
-          )}
-
-          {userInfo.is_editeur && categorie === "alumni" && (
-            <option value="Success Story">Success Story</option>
-          )}
         </select>
 
         {type === 'event' && (

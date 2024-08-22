@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import './ProfilePage.css';
-import SidebarAdm from '../../components/Sidebar/SidebarAdmin/SidebarValidateur';
-import './Admin.css';
+import './profil.css';
+import SidebarRelex from '../../components/Sidebar/SidebarAdmin/SidebarRelex';
 import axios  from 'axios';
 
 const ProfilePage = () => {
  
+  
+
   const [currentUser,setCurrentUser]= useState('')
   const [rolee, setRole] = useState('');
 
@@ -33,8 +34,8 @@ const ProfilePage = () => {
             const res = await axios.get(`${process.env.REACT_APP_API_URL}/user/`, {
                 headers: { 'Authorization': `Token ${token}` }  // Correct 'Token' instead of 'token'
             });
-            setCurrentUser(res.data)
             console.log(res.data)
+            setCurrentUser(res.data)
         } catch (error) {
             console.error('Error fetching user:', error);
         }
@@ -47,7 +48,7 @@ const ProfilePage = () => {
   return (
     <div className='admin-page-container'>
     <div className='sidebar'>
-        <SidebarAdm />
+        <SidebarRelex />
     </div>
     <div className="admin-container">
     <div className="profile-card">

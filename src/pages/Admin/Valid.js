@@ -43,7 +43,7 @@ const fetchUserDetails = async (publications) => {
     const fetchPublications = async () => {
         const token = localStorage.getItem('token');
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API_URL}/publication/searchall/?etat=en attente`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/publication/search/?etat=en attente`, {
                 headers: { 'Authorization': `token ${token}` }
             });
             const filteredPublications = response.data.filter(
