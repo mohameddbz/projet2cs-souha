@@ -147,7 +147,9 @@ path('equipe_recherche/add',add_equipe_recherche,name='add_equipe_recherche'),
     path('formation/update/<int:pk>/', update_formation, name='update_formation'),
     path('module/<int:module_id>/competences/', get_competences_by_module, name='get_competences_by_module'),
     path('module/<int:module_id>/formateur/', get_formateur_by_module, name='get_formateur_by_module'),
-
+     path('formateur/delete/<int:pk>/', delete_formateur, name='delete_formateur'),
+     path('competence/delete/<int:pk>/', delete_competence, name='delete_competence'),
+     
 
 
      

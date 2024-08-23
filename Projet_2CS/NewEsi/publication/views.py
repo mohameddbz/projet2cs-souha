@@ -140,7 +140,9 @@ def login_user(request):
                 "Categorie": categorie_serialized,
                 "is_chercheur":user.is_chercheur,
                 "is_superuser":user.is_superuser,
-                "is_responsable_fablab": user.is_responsable_fablab
+                "is_responsable_fablab": user.is_responsable_fablab,
+                "is_directeur_relex": user.is_directeur_relex,
+
             }, status=status.HTTP_200_OK)
         
         if Utilisateur.objects.filter(email=email).exists():
@@ -1566,20 +1568,6 @@ def add_competence(request):
         return Response(serializer.errors, status=400)
 
 
-@api_view(['PUT'])
-@permission_classes([AllowAny])
-def update_competence(request, pk):
-    try:
-        competence = Competence.objects.get(pk=pk)
-    except Competence.DoesNotExist:
-        return Response({'error': 'Competence not found'}, status=404)
-
-    serializer = CompetenceSerializer(competence, data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data)
-    return Response(serializer.errors, status=400)
-
 
 
 @api_view(['PUT'])
@@ -1666,3 +1654,29 @@ def get_formateur_by_module(request, module_id):
     formateur = module.formateur
     serializer = FormateurSerializer(formateur)
     return Response(serializer.data)            
+
+
+@api_view(['DELETE'])
+@permission_classes([AllowAny])
+def delete_formateur(request, pk):
+    try:
+        formateur = Formateur.objects.get(pk=pk)
+    except Formateur.DoesNotExist:
+        return Response("formateur not found", status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'DELETE':
+        formateur.delete()
+        return Response("formateur deleted successfully", status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['DELETE'])
+@permission_classes([AllowAny])
+def delete_competence(request, pk):
+    try:
+        competence = Competence.objects.get(pk=pk)
+    except Competence.DoesNotExist:
+        return Response("competence not found", status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'DELETE':
+        competence.delete()
+        return Response("competence deleted successfully", status=status.HTTP_204_NO_CONTENT)
