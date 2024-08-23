@@ -1,3 +1,4 @@
+import datetime
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 from django.utils import timezone
@@ -305,31 +306,28 @@ class Devis(models.Model):
         return self.montant
 
 
-class Session(models.Model):
-    date = models.DateField()
-    heure_debut = models.TimeField()
-    heure_fin = models.TimeField()
-    sujet = models.CharField(max_length=255)
-    formateur = models.CharField(max_length=255)
+
+class Competence(models.Model):
+    nom = models.CharField(max_length=100)
+    def __str__(self):
+        return self.nom
+
+class Formateur(models.Model):
+    nom = models.CharField(max_length=100)
+    prenom = models.CharField(max_length=100)
+    email = models.EmailField()
+    specialites = models.TextField()
 
     def __str__(self):
-        return f'{self.sujet} - {self.date}'
-
-
-
-
-class Planing(models.Model):
-    sessions = models.ManyToManyField(Session, related_name='sessions')
-    titre = models.CharField(max_length=255)
-    date_debut = models.DateField()
-    date_fin = models.DateField()
-
-
-    def __str__(self):
-        return self.titre       
+        return f"{self.prenom} {self.nom}"
 
 class Module(models.Model):
     titre = models.CharField(max_length=255)
+    description = models.TextField(default='Aucune description fournie')
+    competences = models.ManyToManyField(Competence, related_name='competences')
+    volume_horaire=models.IntegerField()
+    formateur = models.ForeignKey(Formateur, on_delete=models.CASCADE, related_name='cours')
+
     def __str__(self):
         return self.titre
 
@@ -338,7 +336,8 @@ class Formation(models.Model):
     titre = models.CharField(max_length=255)
     Module=models.ManyToManyField(Module, related_name='modules')
     description = models.TextField()
-    Planing=models.ForeignKey(Planing, on_delete=models.CASCADE, related_name='planning')
+    date_debut = models.DateField(default=datetime.date.today)
+    date_fin = models.DateField(default=datetime.date.today)
     def __str__(self):
         return self.titre
 

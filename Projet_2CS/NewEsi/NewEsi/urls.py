@@ -132,16 +132,26 @@ path('equipe_recherche/add',add_equipe_recherche,name='add_equipe_recherche'),
 
 
     path('add-formation/', add_formation, name='add_formation'),
-    path('add-planing/', add_planing, name='add_planing'),
-    path('add-session/', add_session, name='add_session'),
     path('add_module/', add_module, name='add_module'),
-      path('formations/', get_formation, name='formation-list'),
+      path('formations/', get_formations, name='formation-list'),
 
-        path('formation/<int:formation_id>/planing/', get_planing_by_formation, name='formation-planing'),
-    path('formation/<int:formation_id>/modules/', get_modules_by_formation, name='formation-modules'),
-      path('planing/<int:planing_id>/sessions/', get_sessions_by_planing, name='planing-sessions'),
+      path('formation/<int:formation_id>/modules/', get_modules_by_formation, name='formation-modules'),
        path('formations/<int:formation_id>/', get_formation_by_id, name='get_formation_by_id'),
+     path('formation/delete/<int:pk>/', delete_formation, name='delete_formation'),
+     path('module/delete/<int:pk>/', delete_module, name='delete_module'),
+      path('formateur/add/', add_formateur, name='add_formateur'),
+      path('competence/add/', add_competence, name='add_competence'),
+      path('competence/update/<int:pk>/', update_competence, name='update_competence'),
+     path('formateur/update/<int:pk>/', update_formateur, name='update_formateur'),
+    path('module/update/<int:pk>/', update_module, name='update_module'),
+    path('formation/update/<int:pk>/', update_formation, name='update_formation'),
+    path('module/<int:module_id>/competences/', get_competences_by_module, name='get_competences_by_module'),
+    path('module/<int:module_id>/formateur/', get_formateur_by_module, name='get_formateur_by_module'),
 
+
+
+     
+   
   
    
 

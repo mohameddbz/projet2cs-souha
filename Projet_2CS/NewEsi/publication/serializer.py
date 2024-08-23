@@ -160,34 +160,29 @@ class PublicationQuerySerializer(serializers.Serializer):
     query = serializers.CharField(max_length=255)
     results = serializers.CharField()
        
-class SessionSerializer(serializers.ModelSerializer):
-    
-    class Meta:
-        model = Session
-        fields = '__all__' 
-
-class PlaningSerializer(serializers.ModelSerializer):
-    sessions = serializers.PrimaryKeyRelatedField(
-        many=True, queryset=Session.objects.all()
-    )
-
-    class Meta:
-        model = Planing
-        fields = '__all__'  
 
 
 
 
 class FormationSerializer(serializers.ModelSerializer):
-    Planing = serializers.PrimaryKeyRelatedField(queryset=Planing.objects.all())
     Module = serializers.PrimaryKeyRelatedField(many=True, queryset=Module.objects.all())
 
     class Meta:
         model = Formation
-        fields = ['titre', 'description', 'Planing', 'Module']
+        fields = '__all__'  
 
 
 class ModuleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Module
-        fields = '__all__'            
+        fields = '__all__'    
+
+class CompetenceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Competence
+        fields = '__all__'  
+
+class FormateurSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Formateur
+        fields = '__all__'                  

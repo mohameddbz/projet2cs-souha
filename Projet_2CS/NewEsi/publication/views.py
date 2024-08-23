@@ -1468,25 +1468,6 @@ def add_formation(request):
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
 
-@api_view(['POST'])
-@permission_classes([AllowAny])
-def add_planing(request):
-    if request.method == 'POST':
-        serializer = PlaningSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=201)
-        return Response(serializer.errors, status=400)
-
-@api_view(['POST'])
-@permission_classes([AllowAny])
-def add_session(request):
-    if request.method == 'POST':
-        serializer = SessionSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=201)
-        return Response(serializer.errors, status=400)
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
@@ -1500,22 +1481,12 @@ def add_module(request):
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
-def get_formation(request):
+def get_formations(request):
     formations = Formation.objects.all()
     serializer = FormationSerializer(formations, many=True)
     return Response(serializer.data)      
 
 
-@api_view(['GET'])
-@permission_classes([AllowAny])
-def get_planing_by_formation(request, formation_id):
-  
-        formation = Formation.objects.get(id=formation_id)
-        planing = formation.Planing
-        serializer = PlaningSerializer(planing)
-        return Response(serializer.data)
-  
- 
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
@@ -1526,22 +1497,7 @@ def get_modules_by_formation(request, formation_id):
         serializer = ModuleSerializer(modules, many=True)
         return Response(serializer.data)
 
-
-@api_view(['GET'])
-@permission_classes([AllowAny])
-def get_sessions_by_planing(request, planing_id):
- 
-        planing = Planing.objects.get(id=planing_id)
-        sessions = planing.sessions.all()
-        serializer = SessionSerializer(sessions, many=True)
-        return Response(serializer.data)
-         
-@api_view(['GET'])
-@permission_classes([AllowAny])
-def get_sessions(request):
-    sessions = Session.objects.all()
-    serializer = SessionSerializer(sessions, many=True)
-    return Response(serializer.data)   
+    
 
 
 @api_view(['GET'])
@@ -1556,3 +1512,157 @@ def get_formation_by_id(request, formation_id):
     # Sérialiser la formation et retourner les données
     serializer = FormationSerializer(formation)
     return Response(serializer.data, status=200)    
+
+
+
+@api_view(['DELETE'])
+@permission_classes([AllowAny])
+def delete_module(request, pk):
+    try:
+        module = Module.objects.get(pk=pk)
+    except Module.DoesNotExist:
+        return Response("module not found", status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'DELETE':
+        module.delete()
+        return Response("module deleted successfully", status=status.HTTP_204_NO_CONTENT)
+
+
+
+
+@api_view(['DELETE'])
+@permission_classes([AllowAny])
+def delete_formation(request, pk):
+    try:
+        formation = Formation.objects.get(pk=pk)
+    except Formation.DoesNotExist:
+        return Response("formation not found", status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'DELETE':
+        formation.delete()
+        return Response("formation deleted successfully", status=status.HTTP_204_NO_CONTENT)
+
+
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def add_formateur(request):
+    if request.method == 'POST':
+        serializer = FormateurSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def add_competence(request):
+    if request.method == 'POST':
+        serializer = CompetenceSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
+
+@api_view(['PUT'])
+@permission_classes([AllowAny])
+def update_competence(request, pk):
+    try:
+        competence = Competence.objects.get(pk=pk)
+    except Competence.DoesNotExist:
+        return Response({'error': 'Competence not found'}, status=404)
+
+    serializer = CompetenceSerializer(competence, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=400)
+
+
+
+@api_view(['PUT'])
+@permission_classes([AllowAny])
+def update_competence(request, pk):
+    try:
+        competence = Competence.objects.get(pk=pk)
+    except Competence.DoesNotExist:
+        return Response({'error': 'Competence not found'}, status=404)
+
+    serializer = CompetenceSerializer(competence, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=400)
+
+
+@api_view(['PUT'])
+@permission_classes([AllowAny])
+def update_formateur(request, pk):
+    try:
+        formateur = Formateur.objects.get(pk=pk)
+    except Formateur.DoesNotExist:
+        return Response({'error': 'Formateur not found'}, status=404)
+
+    serializer = FormateurSerializer(formateur, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=400)
+
+
+@api_view(['PUT'])
+@permission_classes([AllowAny])
+def update_module(request, pk):
+    try:
+        module = Module.objects.get(pk=pk)
+    except Module.DoesNotExist:
+        return Response({'error': 'Module not found'}, status=404)
+
+    serializer = ModuleSerializer(module, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=400)
+
+
+@api_view(['PUT'])
+@permission_classes([AllowAny])
+def update_formation(request, pk):
+    try:
+        formation = Formation.objects.get(pk=pk)
+    except Formation.DoesNotExist:
+        return Response({'error': 'Formation not found'}, status=404)
+
+    serializer = FormationSerializer(formation, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=400)   
+
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_competences_by_module(request, module_id):
+    try:
+        module = Module.objects.get(pk=module_id)
+    except Module.DoesNotExist:
+        return Response({'error': 'Module not found'}, status=404)
+
+    competences = module.competences.all()
+    serializer = CompetenceSerializer(competences, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_formateur_by_module(request, module_id):
+    try:
+        module = Module.objects.get(pk=module_id)
+    except Module.DoesNotExist:
+        return Response({'error': 'Module not found'}, status=404)
+
+    formateur = module.formateur
+    serializer = FormateurSerializer(formateur)
+    return Response(serializer.data)            
