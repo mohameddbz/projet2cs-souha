@@ -82,6 +82,8 @@ import Partenaire from './pages/Relex/partenaire'
 import PartenaireDemende from './pages/Relex/partenaireDemende'
 import HistoriqueDemende from './pages/Relex/historiqueDemende'
 import AjouterPartenaire from './pages/Relex/Ajouter'
+import AddFormateur from './pages/Relex/AddFormateur'
+import FormateurList from './pages/Relex/FormateurLists'
 // ======= page historique pas integrer les 2 
 // ======= page chercheur pas integrer 
 // ======= page Publications
@@ -164,6 +166,8 @@ function App() {
 
 
          mohamed verification
+         <Route path='/relex/FormateurList' element={<FormateurList/>} ></Route>
+         <Route path='/relex/AddFormateur' element={<AddFormateur/>} ></Route>
          <Route path='/relex/AjouterPartenaire' element={<AjouterPartenaire/>} ></Route> 
          <Route path='/relex/historiqueDemnde' element={<HistoriqueDemende/>} ></Route> 
          <Route path='/relex/partenaireDemende' element={<PartenaireDemende/>} ></Route> 

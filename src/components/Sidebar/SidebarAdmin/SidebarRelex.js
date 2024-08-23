@@ -66,6 +66,8 @@ export default function SidebarAdm() {
             <MenuItem className={styles.widthMenu}><Link to="">{textMenu(hourGlass,'Ajouter formation')}</Link></MenuItem>
           </SubMenu>
           <SubMenu label="Formation avant promo" className={styles.SubMenu}>
+            <MenuItem className={styles.widthMenu}><Link to="/relex/FormateurList">{textMenu(pubIcon,'Liste des formateurs')}</Link></MenuItem>
+            <MenuItem className={styles.widthMenu}><Link to="/relex/AddFormateur">{textMenu(pubIcon,'Add formateur')}</Link></MenuItem>
             <MenuItem className={styles.widthMenu}><Link to="">{textMenu(pubIcon,'Liste des formations')}</Link></MenuItem>
             <MenuItem className={styles.widthMenu}><Link to="">{textMenu(hourGlass,'Ajouter formation')}</Link></MenuItem>
           </SubMenu>
