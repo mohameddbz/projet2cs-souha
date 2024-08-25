@@ -33,7 +33,6 @@ function AddFormateur(props) {
           'Authorization': `token ${token}`
         }
       });
-      console.log('Réponse du serveur:', response.data);
       alert('Formateur ajoutée avec succès!');
       setNom('');
       setPrenom('');

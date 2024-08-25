@@ -16,7 +16,6 @@ function FormateurModal({ formateur, onClose, onSave }) {
         formData.append('prenom',prenom);
         formData.append('email', email);
         formData.append('specialites', specialites);
-        console.log(formData)
         const token = localStorage.getItem('token');
         axios.put(`${process.env.REACT_APP_API_URL}/formateur/update/${formateur.id}/`, formData, {
             headers: {
@@ -25,7 +24,6 @@ function FormateurModal({ formateur, onClose, onSave }) {
             }
         })
         .then(response => {
-            console.log('Formateur updated successfully:', response.data);
             onSave(response.data); // Déclenchez le rafraîchissement avec les nouvelles données
             onClose(); // Fermez la modale après le succès
         })

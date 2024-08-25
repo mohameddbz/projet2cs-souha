@@ -67,9 +67,12 @@ export default function SidebarAdm() {
           </SubMenu>
           <SubMenu label="Formation avant promo" className={styles.SubMenu}>
             <MenuItem className={styles.widthMenu}><Link to="/relex/FormateurList">{textMenu(pubIcon,'Liste des formateurs')}</Link></MenuItem>
-            <MenuItem className={styles.widthMenu}><Link to="/relex/AddFormateur">{textMenu(pubIcon,'Add formateur')}</Link></MenuItem>
-            <MenuItem className={styles.widthMenu}><Link to="">{textMenu(pubIcon,'Liste des formations')}</Link></MenuItem>
-            <MenuItem className={styles.widthMenu}><Link to="">{textMenu(hourGlass,'Ajouter formation')}</Link></MenuItem>
+            <MenuItem className={styles.widthMenu}><Link to="/relex/AddFormateur">{textMenu(hourGlass,'Add formateur')}</Link></MenuItem>
+            <MenuItem className={styles.widthMenu}><Link to="/relex/ModuleList">{textMenu(pubIcon,'Liste des modules')}</Link></MenuItem>
+            <MenuItem className={styles.widthMenu}><Link to="/relex/AddModule">{textMenu(hourGlass,'Ajouter Module')}</Link></MenuItem>
+            <MenuItem className={styles.widthMenu}><Link to="/relex/AddFormation">{textMenu(pubIcon,'Ajouter une formation')}</Link></MenuItem>
+            <MenuItem className={styles.widthMenu}><Link to="/relex/formationList">{textMenu(pubIcon,'Liste des formations')}</Link></MenuItem>
+            
           </SubMenu>
           <SubMenu label="Paramètres" className={styles.SubMenu}>
             <MenuItem className={styles.widthMenu}><Link to="/relex/profile">{textMenu(profile,'Profile')}</Link></MenuItem>
