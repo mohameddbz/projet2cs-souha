@@ -149,6 +149,39 @@ path('equipe_recherche/add',add_equipe_recherche,name='add_equipe_recherche'),
     path('module/<int:module_id>/formateur/', get_formateur_by_module, name='get_formateur_by_module'),
      path('formateur/delete/<int:pk>/', delete_formateur, name='delete_formateur'),
      path('competence/delete/<int:pk>/', delete_competence, name='delete_competence'),
+      path('competences/', get_competences, name='competences-list'),
+    path('module/<int:id>/', get_module_by_id, name='get_module_by_id'),
+
+
+
+
+# Chapitre URLs
+     path('add_chapitre/', add_chapitre, name='add_chapitre'),
+      
+     path('chapitre/update/<int:pk>/', update_chapitre, name='update_chapitre'),
+    path('chapitre/delete/<int:pk>/', delete_chapitre, name='delete_chapitre'),
+    path('chapitres/', get_chapitres, name='get_chapitres'),
+    path('chapitre/<int:id>/', get_chapitre_by_id, name='get_chapitre_by_id'),
+
+    # Cours URLs
+    path('add_cours/', add_cours, name='add_cours'),
+    path('cour/update/<int:pk>/', update_cours, name='update_cours'),
+    path('cours/delete/<int:pk>/', delete_cours, name='delete_cours'),
+    path('cours/', get_cours, name='get_cours'),
+    path('cours/<int:id>/', get_cours_by_id, name='get_cours_by_id'),
+
+    # Theme Formation URLs
+    path('add_theme-formation/', add_theme_formation, name='add_theme_formation'),
+    path('theme-formation/update/<int:pk>/', update_theme_formation, name='update_theme_formation'),
+    path('theme-formation/delete/<int:pk>/', delete_theme_formation, name='delete_theme_formation'),
+    path('themes-formation/', get_theme_formation, name='get_theme_formation'),
+    path('theme-formation/<int:id>/', get_theme_formation_by_id, name='get_theme_formation_by_id'),
+
+   
+
+
+
+
      
 
 

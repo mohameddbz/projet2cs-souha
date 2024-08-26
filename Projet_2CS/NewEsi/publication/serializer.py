@@ -171,18 +171,72 @@ class FormationSerializer(serializers.ModelSerializer):
         model = Formation
         fields = '__all__'  
 
-
-class ModuleSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Module
-        fields = '__all__'    
-
 class CompetenceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Competence
         fields = '__all__'  
 
+
+
 class FormateurSerializer(serializers.ModelSerializer):
     class Meta:
         model = Formateur
-        fields = '__all__'                  
+        fields = '__all__'            
+
+class ModuleSerializer(serializers.ModelSerializer):
+    competences = CompetenceSerializer(many=True, required=False)
+    formateur = FormateurSerializer(required=False)
+   
+    class Meta:
+        model = Module
+        fields = ['id', 'titre', 'description', 'competences', 'volume_horaire', 'formateur']
+
+class ChapitreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Chapitre
+        fields = '__all__'  
+
+class CoursSerializer(serializers.ModelSerializer):
+    chapitres = ChapitreSerializer(many=True, required=False)
+    competences = CompetenceSerializer(many=True, required=False)
+   
+    class Meta:
+        model = Cours
+        fields = ['id', 'titre', 'description', 'competences', 'chapitres']    
+
+
+class CoursidSerializer(serializers.ModelSerializer):
+   
+    class Meta:
+        model = Cours
+        fields = '__all__' 
+
+
+class ModuleidSerializer(serializers.ModelSerializer):
+   
+    class Meta:
+        model = Module
+        fields = '__all__'
+
+
+
+
+
+
+class ThemeFormationSerializer(serializers.ModelSerializer):
+    cours = CoursidSerializer(many=True, required=False)
+   
+    class Meta:
+        model = Module
+        fields = ['id', 'titre', 'cours']    
+
+
+
+
+
+class ThemeFormationidSerializer(serializers.ModelSerializer):
+   
+    class Meta:
+        model = Theme_formation
+        fields = '__all__'
+

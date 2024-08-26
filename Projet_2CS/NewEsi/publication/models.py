@@ -299,11 +299,6 @@ class Demande_Partenariat(models.Model):
         return self.nom
     
 
-class Devis(models.Model):
-    etat = models.CharField(max_length=50 , default="en attente")
-    montant = models.FloatField(null=True, blank=True) 
-    def __str__(self):
-        return self.montant
 
 
 
@@ -321,13 +316,17 @@ class Formateur(models.Model):
     def __str__(self):
         return f"{self.prenom} {self.nom}"
 
+
+
+   
+
 class Module(models.Model):
     titre = models.CharField(max_length=255)
     description = models.TextField(default='Aucune description fournie')
-    competences = models.ManyToManyField(Competence, related_name='competences')
+    competences = models.ManyToManyField(Competence, related_name='competences',blank=True)
     volume_horaire=models.IntegerField()
-    formateur = models.ForeignKey(Formateur, on_delete=models.CASCADE, related_name='cours')
-
+    formateur = models.ForeignKey(Formateur, on_delete=models.CASCADE, related_name='cours',blank=True)
+   
     def __str__(self):
         return self.titre
 
@@ -340,6 +339,45 @@ class Formation(models.Model):
     date_fin = models.DateField(default=datetime.date.today)
     def __str__(self):
         return self.titre
+
+class Chapitre(models.Model):
+    titre = models.CharField(max_length=255)
+    contenu = models.TextField()
+    duree=models.IntegerField()
+
+    def __str__(self):
+        return self.titre     
+
+
+class Cours(models.Model):
+    titre = models.CharField(max_length=255)
+    description = models.TextField(default='Aucune description fournie')
+    competences = models.ManyToManyField(Competence, related_name='competences_theme',blank=True)
+    chapitres = models.ManyToManyField(Chapitre, related_name='chapitres',blank=True)
+
+   
+    def __str__(self):
+        return self.titre
+
+
+
+class Theme_formation(models.Model):
+    titre = models.CharField(max_length=255)
+    cours=models.ManyToManyField(Cours, related_name='cours')
+
+    
+    
+    
+    def __str__(self):
+        return self.titre
+
+
+
+class Devis(models.Model):
+    etat = models.CharField(max_length=50 , default="en attente")
+    montant = models.FloatField(null=True, blank=True) 
+    def __str__(self):
+        return self.montant
 
 
 

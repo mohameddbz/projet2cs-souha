@@ -1460,6 +1460,13 @@ def get_all_categories(request):
     serializer = CategorieSerializer(categories, many=True)
     return Response(serializer.data)    
 
+
+
+
+
+#vues de formations avant promotion
+
+
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def add_formation(request):
@@ -1475,7 +1482,7 @@ def add_formation(request):
 @permission_classes([AllowAny])
 def add_module(request):
     if request.method == 'POST':
-        serializer = ModuleSerializer(data=request.data)
+        serializer = ModuleidSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=201)
@@ -1680,3 +1687,236 @@ def delete_competence(request, pk):
     if request.method == 'DELETE':
         competence.delete()
         return Response("competence deleted successfully", status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_competences(request):
+    competences = Competence.objects.all()
+    serializer = CompetenceSerializer(competences, many=True)
+    return Response(serializer.data)      
+
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_module_by_id(request, id):
+    try:
+        module = Module.objects.get(pk=id)
+        serializer = ModuleSerializer(module)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    except Module.DoesNotExist:
+        return Response({"error": "Module not found"}, status=status.HTTP_404_NOT_FOUND)
+
+
+
+
+
+
+
+
+
+
+
+
+#ici les vues de formation à la carte
+
+
+#Vues de chapitre
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def add_chapitre(request):
+    if request.method == 'POST':
+        serializer = ChapitreSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
+
+
+
+@api_view(['PUT'])
+@permission_classes([AllowAny])
+def update_chapitre(request, pk):
+    try:
+        chapitre = Chapitre.objects.get(pk=pk)
+    except Chapitre.DoesNotExist:
+        return Response({'error': 'Chapitre not found'}, status=404)
+
+    serializer = ChapitreSerializer(chapitre, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=400)
+
+
+@api_view(['DELETE'])
+@permission_classes([AllowAny])
+def delete_chapitre(request, pk):
+    try:
+        chapitre = Chapitre.objects.get(pk=pk)
+    except Chapitre.DoesNotExist:
+        return Response("chapitre not found", status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'DELETE':
+        chapitre.delete()
+        return Response("chapitre deleted successfully", status=status.HTTP_204_NO_CONTENT)
+
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_chapitres(request):
+    chapitre = Chapitre.objects.all()
+    serializer = ChapitreSerializer(chapitre, many=True)
+    return Response(serializer.data)      
+
+
+
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_chapitre_by_id(request, id):
+    try:
+        chapitre = Chapitre.objects.get(id=id)
+        serializer = ChapitreSerializer(chapitre)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    except Chapitre.DoesNotExist:
+        return Response({"error": "Chapitre not found"}, status=status.HTTP_404_NOT_FOUND)
+
+
+
+#vues de cours
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def add_cours(request):
+    if request.method == 'POST':
+        serializer = CoursidSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
+
+
+
+@api_view(['PUT'])
+@permission_classes([AllowAny])
+def update_cours(request, pk):
+    try:
+        cours = Cours.objects.get(pk=pk)
+    except Cours.DoesNotExist:
+        return Response({'error': 'Cours not found'}, status=404)
+
+    serializer = CoursidSerializer(cours, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=400)
+
+
+@api_view(['DELETE'])
+@permission_classes([AllowAny])
+def delete_cours(request, pk):
+    try:
+        cours = Cours.objects.get(pk=pk)
+    except Cours.DoesNotExist:
+        return Response("cours not found", status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'DELETE':
+        cours.delete()
+        return Response("cours deleted successfully", status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_cours(request):
+    cours = Cours.objects.all()
+    serializer = CoursSerializer(cours, many=True)
+    return Response(serializer.data)   
+
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_cours_by_id(request, id):
+    try:
+        cours = Cours.objects.get(pk=id)
+        serializer = CoursSerializer(cours)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    except Cours.DoesNotExist:
+        return Response({"error": "cours not found"}, status=status.HTTP_404_NOT_FOUND)
+
+
+
+
+
+#vues de theme_formation
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def add_theme_formation(request):
+    if request.method == 'POST':
+        serializer = ThemeFormationidSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
+
+
+
+@api_view(['PUT'])
+@permission_classes([AllowAny])
+def update_theme_formation(request, pk):
+    try:
+        theme_formation = Theme_formation.objects.get(pk=pk)
+    except Theme_formation.DoesNotExist:
+        return Response({'error': 'theme formation not found'}, status=404)
+
+    serializer = ThemeFormationidSerializer(theme_formation, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=400)
+
+
+@api_view(['DELETE'])
+@permission_classes([AllowAny])
+def delete_theme_formation(request, pk):
+    try:
+        theme_formation = Theme_formation.objects.get(pk=pk)
+    except Theme_formation.DoesNotExist:
+        return Response("theme formation not found", status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'DELETE':
+        theme_formation.delete()
+        return Response("theme formation deleted successfully", status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_theme_formation(request):
+    theme_formation = Theme_formation.objects.all()
+    serializer = ThemeFormationSerializer(theme_formation, many=True)
+    return Response(serializer.data)   
+
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_theme_formation_by_id(request, id):
+    try:
+        theme_formation = Theme_formation.objects.get(id=id)
+        serializer = ThemeFormationSerializer(theme_formation)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    except Theme_formation.DoesNotExist:
+        return Response({"error": "theme formation not found"}, status=status.HTTP_404_NOT_FOUND)
+
+
+
+
