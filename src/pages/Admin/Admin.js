@@ -77,6 +77,7 @@ function AdminPage() {
     
     const handleReject = async (id) => {
         const token = localStorage.getItem('token');
+        console.log(id)
         try {
             const response = await axios.put(`${process.env.REACT_APP_API_URL}/publication/refuse/${id}/`, {}, {
                 headers: { 'Authorization': `token ${token}` }

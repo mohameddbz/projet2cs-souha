@@ -233,39 +233,33 @@ function Admin2() {
       return;
     }
 
-    if (type === 'event' && new Date(dateFin) < new Date(dateDebut)) {
-      alert(`La date de fin (${dateFin}) ne peut pas être antérieure à la date de début (${dateDebut}).`);
-      return;
-    }
-
-    if (new Date(datePublication) >= new Date(dateDebut)) {
-      alert(`La date de validation (${datePublication}) doit être avant la date de début (${dateDebut}).`);
-      return;
-    }
-
     const formData = new FormData();
-    formData.append('titre', subject);
-    formData.append('description', description);
-    formData.append('etat', 'en attente');
-    formData.append('image', selectedFile);
-    formData.append('type_publication', type);
-    formData.append('date_debut', dateDebut);
-    formData.append('date_fin', dateFin);
-    formData.append('date_publication', datePublication);
+      formData.append('titre', subject);
+      formData.append('description', description);
+      formData.append('etat', 'valid');
+      formData.append('type_publication', 'article');
+      formData.append('date_debut', dateDebut);
+      formData.append('date_fin', dateFin);
+      formData.append('date_publication', datePublication);
+    console.log(formData)
 
     const token = localStorage.getItem('token');
+
     try {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/publication/add/`, formData, {
         headers: {
-          'Authorization': `Token ${token}`,
-          'Content-Type': 'application/json'
+          'Content-Type': 'multipart/form-data',
+          'Authorization': `token ${token}`
         }
       });
-      console.log(response)
       console.log('Réponse du serveur:', response.data);
       alert('Publication ajoutée avec succès!');
+      handleCancel();
     } catch (error) {
       console.error('Il y a eu une erreur!', error);
+      alert('Erreur lors de l’envoi des données');
+    } finally {
+      
     }
   };
 
@@ -302,31 +296,8 @@ function Admin2() {
           value={type}
           onChange={(e) => setType(e.target.value)}
         >
-            <option value="article">Article</option>
+            <option value="">Article</option>
         </select>
-
-        {type === 'event' && (
-          <>
-            <div className="AdminInputContainer">
-              <label className="AdminLabel">Date de début*</label>
-              <input
-                type="datetime-local"
-                className="AdminInput"
-                value={dateDebut}
-                onChange={(e) => setDateDebut(e.target.value)}
-              />
-            </div>
-            <div className="AdminInputContainer">
-              <label className="AdminLabel">Date de fin*</label>
-              <input
-                type="datetime-local"
-                className="AdminInput"
-                value={dateFin}
-                onChange={(e) => setDateFin(e.target.value)}
-              />
-            </div>
-          </>
-        )}
 
         <div className="AdminInputContainer">
           <label className="AdminLabel">Sujet*</label>
