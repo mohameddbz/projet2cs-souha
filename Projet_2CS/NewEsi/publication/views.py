@@ -25,13 +25,13 @@ def query_publications(request):
     query = request.GET.get('query', '')
     results = []
     HUGGINGFACEHUB_API_TOKEN = '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'
-    
+   
     if query:
         try:
             df = pd.read_csv(r'C:\Users\Dell\Desktop\Projet_2CS\Projet_2CS\NewEsi\publication\Data\events.csv')
             df.rename(columns={'Concatenated': 'events'}, inplace=True)
             df_json = df.to_json(orient='records')
-            
+           
             llm = HuggingFaceEndpoint(
                 huggingfacehub_api_token=HUGGINGFACEHUB_API_TOKEN,
                 repo_id="mistralai/Mistral-7B-Instruct-v0.2",
@@ -54,12 +54,12 @@ def query_publications(request):
         except Exception as e:
             print(f"Error invoking LLM: {e}")
             return Response({"error": "Internal server error"}, status=500)
-    
+   
     data = {
         'query': query,
         'results': results[:-4] if results else "There was an error processing your request."
     }
-    
+   
     serializer = PublicationQuerySerializer(data=data)
     if serializer.is_valid():
         return Response(serializer.data)
@@ -128,7 +128,7 @@ def login_user(request):
             return Response({"error": "Password is required"}, status=status.HTTP_400_BAD_REQUEST)
         if not email:
             return Response({"error": "Email is required"}, status=status.HTTP_400_BAD_REQUEST)
-        
+       
         if Utilisateur.objects.filter(email=email, password=password).exists():
             user = Utilisateur.objects.get(email=email)
             token = Token.objects.get(user=user)
@@ -141,10 +141,9 @@ def login_user(request):
                 "is_chercheur":user.is_chercheur,
                 "is_superuser":user.is_superuser,
                 "is_responsable_fablab": user.is_responsable_fablab,
-                "is_directeur_relex": user.is_directeur_relex,
-
+                "is_directeur_relex":user.is_directeur_relex
             }, status=status.HTTP_200_OK)
-        
+       
         if Utilisateur.objects.filter(email=email).exists():
             return Response({"error": "Incorrect password"}, status=status.HTTP_404_NOT_FOUND)
         else:
@@ -401,7 +400,7 @@ def search_publication(request):
             publications = Publication.objects.filter(publisher_id=publisher, **filters)
         if user.is_adminstrateur:
             publications = Publication.objects.filter(publisher__Categorie=user.Categorie, **filters)
-            
+           
         serializer = PublicationSerializer(publications, many=True)
         return Response(serializer.data)
     else:
@@ -1006,10 +1005,10 @@ def projets_par_laboratoire(request, nom_laboratoire):
     projets = Projet.objects.filter(equipe_projet__laboratoire=laboratoire)
     if type_projet:
         projets = projets.filter(type__iexact=type_projet)
-    
+   
     if theme:
         projets = projets.filter(themes__nom =theme)
-    
+   
     if annee:
         projets = projets.filter(annee=annee)
     serializer = ProjetSerializer(projets, many=True)
@@ -1107,17 +1106,17 @@ def GetQuestionById(request, question_id):
     except Question.DoesNotExist:
         print(f"Question avec l'ID {question_id} non trouvée")
         return Response({'error': 'Question not found.'}, status=status.HTTP_404_NOT_FOUND)
-    
+   
     reponses = Reponse.objects.filter(question=question)
     print(f"Nombre de réponses trouvées: {reponses.count()}")
-    
+   
     reponses_data = []
     for reponse in reponses:
         reponses_data.append({
             'reponse_texte': reponse.contenu,
             'date_creation': reponse.date_creation
         })
-    
+   
     question_data = {
         'id': question.id,
         'category': question.category,
@@ -1126,7 +1125,7 @@ def GetQuestionById(request, question_id):
         'date_creation': question.date_creation,
         'reponses': reponses_data
     }
-    
+   
     print(f"Data retournée: {question_data}")
 
     return Response(question_data)
@@ -1408,7 +1407,7 @@ def delete_event_publications(request):
 def get_user_info(request):
    
     user = request.user
-    
+   
     user_data = {
         "id":user.id,
         "email": user.email,
@@ -1421,7 +1420,7 @@ def get_user_info(request):
         "is_responsable_fablab": user.is_responsable_fablab,
         "is_directeur_relex": user.is_directeur_relex,
         "is_superuser":user.is_superuser,
-        
+       
         "Categorie": {
             "id_categorie": user.Categorie.id_categorie,
             "nom": user.Categorie.nom
@@ -1435,11 +1434,11 @@ def get_user_info(request):
             "nom": user.club.nom
         } if user.club else None
     }
-    
+   
     return Response(user_data, status=status.HTTP_200_OK)
-    
-    
-    
+   
+   
+   
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_responses_by_question(request, question_id):
@@ -1450,22 +1449,15 @@ def get_responses_by_question(request, question_id):
         'question': question_id,
         'responses': serializer.data
     })
-    
-    
-    
+   
+   
+   
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_all_categories(request):
     categories = Categorie.objects.all()
     serializer = CategorieSerializer(categories, many=True)
     return Response(serializer.data)    
-
-
-
-
-
-#vues de formations avant promotion
-
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
@@ -1488,11 +1480,45 @@ def add_module(request):
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
 
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_module_by_id(request, id):
+    try:
+        module = Module.objects.get(pk=id)
+        serializer = ModuleSerializer(module)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    except Module.DoesNotExist:
+        return Response({"error": "Module not found"}, status=status.HTTP_404_NOT_FOUND)
+
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_formations(request):
     formations = Formation.objects.all()
-    serializer = FormationSerializer(formations, many=True)
+    serializer = FormationidSerializer(formations, many=True)
+    return Response(serializer.data)  
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_module(request):
+    modules = Module.objects.all()
+    serializer = FormationidSerializer(modules, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_competances(request):
+    competances = Competence.objects.all()
+    serializer = CompetenceSerializer(competances, many=True)
+    return Response(serializer.data)  
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_formateur(request):
+    fromateur = Formateur.objects.all()
+    serializer = FormateurSerializer(fromateur, many=True)
     return Response(serializer.data)      
 
 
@@ -1506,7 +1532,7 @@ def get_modules_by_formation(request, formation_id):
         serializer = ModuleSerializer(modules, many=True)
         return Response(serializer.data)
 
-    
+   
 
 
 @api_view(['GET'])
@@ -1519,9 +1545,48 @@ def get_formation_by_id(request, formation_id):
         return Response({'error': 'Formation not found'}, status=404)
 
     # Sérialiser la formation et retourner les données
-    serializer = FormationSerializer(formation)
+    serializer = FormationidSerializer(formation)
     return Response(serializer.data, status=200)    
 
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_formateur_by_id(request, formateur_id):
+    try:
+        # Récupérer la formation par son ID
+        formateur = Formateur.objects.get(id=formateur_id)
+    except Formateur.DoesNotExist:
+        return Response({'error': 'formateur not found'}, status=404)
+
+    # Sérialiser la formation et retourner les données
+    serializer = FormateurSerializer(formateur)
+    return Response(serializer.data, status=200)    
+
+
+@api_view(['DELETE'])
+@permission_classes([AllowAny])
+def delete_formateur(request, pk):
+    try:
+        formateur = Formateur.objects.get(pk=pk)
+    except Formateur.DoesNotExist:
+        return Response("formateur not found", status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'DELETE':
+        formateur.delete()
+        return Response("formateur deleted successfully", status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['DELETE'])
+@permission_classes([AllowAny])
+def delete_competence(request, pk):
+    try:
+        competence = Competence.objects.get(pk=pk)
+    except Competence.DoesNotExist:
+        return Response("competence not found", status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'DELETE':
+        competence.delete()
+        return Response("competence deleted successfully", status=status.HTTP_204_NO_CONTENT)
 
 
 @api_view(['DELETE'])
@@ -1575,6 +1640,20 @@ def add_competence(request):
         return Response(serializer.errors, status=400)
 
 
+@api_view(['PUT'])
+@permission_classes([AllowAny])
+def update_competence(request, pk):
+    try:
+        competence = Competence.objects.get(pk=pk)
+    except Competence.DoesNotExist:
+        return Response({'error': 'Competence not found'}, status=404)
+
+    serializer = CompetenceSerializer(competence, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=400)
+
 
 
 @api_view(['PUT'])
@@ -1615,7 +1694,7 @@ def update_module(request, pk):
     except Module.DoesNotExist:
         return Response({'error': 'Module not found'}, status=404)
 
-    serializer = ModuleSerializer(module, data=request.data)
+    serializer = ModuleidSerializer(module, data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)
@@ -1634,7 +1713,7 @@ def update_formation(request, pk):
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)
-    return Response(serializer.errors, status=400)   
+    return Response(serializer.errors, status=400)  
 
 
 
@@ -1660,63 +1739,7 @@ def get_formateur_by_module(request, module_id):
 
     formateur = module.formateur
     serializer = FormateurSerializer(formateur)
-    return Response(serializer.data)            
-
-
-@api_view(['DELETE'])
-@permission_classes([AllowAny])
-def delete_formateur(request, pk):
-    try:
-        formateur = Formateur.objects.get(pk=pk)
-    except Formateur.DoesNotExist:
-        return Response("formateur not found", status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'DELETE':
-        formateur.delete()
-        return Response("formateur deleted successfully", status=status.HTTP_204_NO_CONTENT)
-
-
-@api_view(['DELETE'])
-@permission_classes([AllowAny])
-def delete_competence(request, pk):
-    try:
-        competence = Competence.objects.get(pk=pk)
-    except Competence.DoesNotExist:
-        return Response("competence not found", status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'DELETE':
-        competence.delete()
-        return Response("competence deleted successfully", status=status.HTTP_204_NO_CONTENT)
-
-
-@api_view(['GET'])
-@permission_classes([AllowAny])
-def get_competences(request):
-    competences = Competence.objects.all()
-    serializer = CompetenceSerializer(competences, many=True)
-    return Response(serializer.data)      
-
-
-
-@api_view(['GET'])
-@permission_classes([AllowAny])
-def get_module_by_id(request, id):
-    try:
-        module = Module.objects.get(pk=id)
-        serializer = ModuleSerializer(module)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-    except Module.DoesNotExist:
-        return Response({"error": "Module not found"}, status=status.HTTP_404_NOT_FOUND)
-
-
-
-
-
-
-
-
-
-
+    return Response(serializer.data)
 
 
 #ici les vues de formation à la carte
@@ -1837,7 +1860,7 @@ def delete_cours(request, pk):
 def get_cours(request):
     cours = Cours.objects.all()
     serializer = CoursSerializer(cours, many=True)
-    return Response(serializer.data)   
+    return Response(serializer.data)  
 
 
 
@@ -1903,7 +1926,7 @@ def delete_theme_formation(request, pk):
 def get_theme_formation(request):
     theme_formation = Theme_formation.objects.all()
     serializer = ThemeFormationSerializer(theme_formation, many=True)
-    return Response(serializer.data)   
+    return Response(serializer.data)  
 
 
 
@@ -1916,7 +1939,3 @@ def get_theme_formation_by_id(request, id):
         return Response(serializer.data, status=status.HTTP_200_OK)
     except Theme_formation.DoesNotExist:
         return Response({"error": "theme formation not found"}, status=status.HTTP_404_NOT_FOUND)
-
-
-
-

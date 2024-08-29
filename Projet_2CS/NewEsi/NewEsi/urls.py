@@ -133,32 +133,30 @@ path('equipe_recherche/add',add_equipe_recherche,name='add_equipe_recherche'),
 
     path('add-formation/', add_formation, name='add_formation'),
     path('add_module/', add_module, name='add_module'),
-      path('formations/', get_formations, name='formation-list'),
-
-      path('formation/<int:formation_id>/modules/', get_modules_by_formation, name='formation-modules'),
-       path('formations/<int:formation_id>/', get_formation_by_id, name='get_formation_by_id'),
-     path('formation/delete/<int:pk>/', delete_formation, name='delete_formation'),
-     path('module/delete/<int:pk>/', delete_module, name='delete_module'),
-      path('formateur/add/', add_formateur, name='add_formateur'),
-      path('competence/add/', add_competence, name='add_competence'),
-      path('competence/update/<int:pk>/', update_competence, name='update_competence'),
-     path('formateur/update/<int:pk>/', update_formateur, name='update_formateur'),
+    path('formations/', get_formations, name='formation-list'),
+    path('modules/', get_module, name='module-list'),
+    path('module/<int:id>/', get_module_by_id, name='get_module_by_id'),
+    path('competances/', get_competances, name='module-list'),
+    path('formateur/', get_formateur, name='formateur-list'),
+    path('formation/<int:formation_id>/modules/', get_modules_by_formation, name='formation-modules'),
+    path('formations/<int:formation_id>/', get_formation_by_id, name='get_formation_by_id'),
+    path('formateur/<int:formateur_id>/', get_formateur_by_id, name='get_formateur_by_id'),
+    path('formation/delete/<int:pk>/', delete_formation, name='delete_formation'),
+    path('module/delete/<int:pk>/', delete_module, name='delete_module'),
+    path('formateur/delete/<int:pk>/', delete_formateur, name='delete_formateur'),
+    path('competence/delete/<int:pk>/', delete_competence, name='delete_competence'),
+    path('formateur/add/', add_formateur, name='add_formateur'),
+    path('competence/add/', add_competence, name='add_competence'),
+    path('competence/update/<int:pk>/', update_competence, name='update_competence'),
+    path('formateur/update/<int:pk>/', update_formateur, name='update_formateur'),
     path('module/update/<int:pk>/', update_module, name='update_module'),
     path('formation/update/<int:pk>/', update_formation, name='update_formation'),
     path('module/<int:module_id>/competences/', get_competences_by_module, name='get_competences_by_module'),
     path('module/<int:module_id>/formateur/', get_formateur_by_module, name='get_formateur_by_module'),
-     path('formateur/delete/<int:pk>/', delete_formateur, name='delete_formateur'),
-     path('competence/delete/<int:pk>/', delete_competence, name='delete_competence'),
-      path('competences/', get_competences, name='competences-list'),
-    path('module/<int:id>/', get_module_by_id, name='get_module_by_id'),
 
-
-
-
-# Chapitre URLs
-     path('add_chapitre/', add_chapitre, name='add_chapitre'),
-      
-     path('chapitre/update/<int:pk>/', update_chapitre, name='update_chapitre'),
+    # Chapitre URLs
+    path('add_chapitre/', add_chapitre, name='add_chapitre'),
+    path('chapitre/update/<int:pk>/', update_chapitre, name='update_chapitre'),
     path('chapitre/delete/<int:pk>/', delete_chapitre, name='delete_chapitre'),
     path('chapitres/', get_chapitres, name='get_chapitres'),
     path('chapitre/<int:id>/', get_chapitre_by_id, name='get_chapitre_by_id'),
@@ -177,14 +175,6 @@ path('equipe_recherche/add',add_equipe_recherche,name='add_equipe_recherche'),
     path('themes-formation/', get_theme_formation, name='get_theme_formation'),
     path('theme-formation/<int:id>/', get_theme_formation_by_id, name='get_theme_formation_by_id'),
 
-   
-
-
-
-
-     
-
-
      
    
   
@@ -192,4 +182,3 @@ path('equipe_recherche/add',add_equipe_recherche,name='add_equipe_recherche'),
 
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

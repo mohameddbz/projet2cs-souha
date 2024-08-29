@@ -178,7 +178,7 @@ class Publication(models.Model):
    
     # image = CloudinaryField('image', null=True, blank=True)
     image = models.ImageField(upload_to='publications/', null=True, blank=True)
-    etat = models.CharField(max_length=50)  # valide, en attente, rejeté
+    etat = models.CharField(max_length=50,default="en attente")  # valide, en attente, rejeté
     type_publication = models.CharField(max_length=50)  # event/actualité/article
     date_debut = models.DateTimeField(null=True, blank=True)
     date_fin = models.DateTimeField(null=True, blank=True)
@@ -301,7 +301,6 @@ class Demande_Partenariat(models.Model):
 
 
 
-
 class Competence(models.Model):
     nom = models.CharField(max_length=100)
     def __str__(self):
@@ -316,17 +315,13 @@ class Formateur(models.Model):
     def __str__(self):
         return f"{self.prenom} {self.nom}"
 
-
-
-   
-
 class Module(models.Model):
     titre = models.CharField(max_length=255)
     description = models.TextField(default='Aucune description fournie')
-    competences = models.ManyToManyField(Competence, related_name='competences',blank=True)
+    competences = models.ManyToManyField(Competence, related_name='competences')
     volume_horaire=models.IntegerField()
-    formateur = models.ForeignKey(Formateur, on_delete=models.CASCADE, related_name='cours',blank=True)
-   
+    formateur = models.ForeignKey(Formateur, on_delete=models.CASCADE, related_name='formateur')
+
     def __str__(self):
         return self.titre
 
@@ -339,6 +334,7 @@ class Formation(models.Model):
     date_fin = models.DateField(default=datetime.date.today)
     def __str__(self):
         return self.titre
+    
 
 class Chapitre(models.Model):
     titre = models.CharField(max_length=255)
@@ -355,7 +351,6 @@ class Cours(models.Model):
     competences = models.ManyToManyField(Competence, related_name='competences_theme',blank=True)
     chapitres = models.ManyToManyField(Chapitre, related_name='chapitres',blank=True)
 
-   
     def __str__(self):
         return self.titre
 
@@ -365,25 +360,15 @@ class Theme_formation(models.Model):
     titre = models.CharField(max_length=255)
     cours=models.ManyToManyField(Cours, related_name='cours')
 
-    
-    
-    
     def __str__(self):
         return self.titre
-
-
 
 class Devis(models.Model):
     etat = models.CharField(max_length=50 , default="en attente")
     montant = models.FloatField(null=True, blank=True) 
+    
     def __str__(self):
         return self.montant
-
-
-
-
-
-
 
 
 class Partenaire(models.Model):
@@ -449,4 +434,3 @@ class Enseignant_Annuaire(Annuaire):
 class Alumnie_Annuaire(Annuaire):
     CATEGORY = 'alumnie'
     promotion = models.CharField(max_length=200, blank=True, null=True)
-

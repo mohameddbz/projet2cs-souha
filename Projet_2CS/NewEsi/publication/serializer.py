@@ -162,34 +162,42 @@ class PublicationQuerySerializer(serializers.Serializer):
        
 
 
-
-
 class FormationSerializer(serializers.ModelSerializer):
     Module = serializers.PrimaryKeyRelatedField(many=True, queryset=Module.objects.all())
-
     class Meta:
         model = Formation
-        fields = '__all__'  
+        fields = '__all__' 
 
+ 
 class CompetenceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Competence
-        fields = '__all__'  
-
-
+        fields = '__all__' 
 
 class FormateurSerializer(serializers.ModelSerializer):
     class Meta:
         model = Formateur
-        fields = '__all__'            
+        fields = '__all__'  
 
 class ModuleSerializer(serializers.ModelSerializer):
-    competences = CompetenceSerializer(many=True, required=False)
+    competences = CompetenceSerializer(many=True,required=False)
     formateur = FormateurSerializer(required=False)
-   
     class Meta:
         model = Module
-        fields = ['id', 'titre', 'description', 'competences', 'volume_horaire', 'formateur']
+        fields = '__all__' 
+
+
+class ModuleidSerializer(serializers.ModelSerializer):  
+    class Meta:
+        model = Module
+        fields = '__all__'
+
+class FormationidSerializer(serializers.ModelSerializer):
+    Module = ModuleSerializer(many=True,required=False)
+    class Meta:
+        model = Formation
+        fields = '__all__'  
+
 
 class ChapitreSerializer(serializers.ModelSerializer):
     class Meta:
@@ -211,18 +219,6 @@ class CoursidSerializer(serializers.ModelSerializer):
         model = Cours
         fields = '__all__' 
 
-
-class ModuleidSerializer(serializers.ModelSerializer):
-   
-    class Meta:
-        model = Module
-        fields = '__all__'
-
-
-
-
-
-
 class ThemeFormationSerializer(serializers.ModelSerializer):
     cours = CoursidSerializer(many=True, required=False)
    
@@ -239,4 +235,3 @@ class ThemeFormationidSerializer(serializers.ModelSerializer):
     class Meta:
         model = Theme_formation
         fields = '__all__'
-
