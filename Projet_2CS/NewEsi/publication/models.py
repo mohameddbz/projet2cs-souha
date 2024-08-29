@@ -320,8 +320,8 @@ class Module(models.Model):
     description = models.TextField(default='Aucune description fournie')
     competences = models.ManyToManyField(Competence, related_name='competences')
     volume_horaire=models.IntegerField()
-    formateur = models.ForeignKey(Formateur, on_delete=models.CASCADE, related_name='formateur')
-
+    formateur = models.ForeignKey(Formateur, on_delete=models.CASCADE, related_name='formateur',blank=True)
+   
     def __str__(self):
         return self.titre
 
