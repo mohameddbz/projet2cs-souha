@@ -1,46 +1,138 @@
-.publications {
-    position: relative;
-    display: flex;
+.pub-container {
+  position: relative; /* Position relative for nested absolute positioning */
+  padding: 10px; /* Padding added for better spacing */
+}
+
+.pub-section2 {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-left: 10%;
+}
+
+.pub-evenement {
+  width: 800px;
+  margin-bottom: 25px;
+  height: auto; /* Height adjusted based on content */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
+  padding: 20px; /* Internal padding */
+  background-color: #ffffff; /* Background color */
+  overflow: hidden; /* Prevent overflow */
+}
+
+.pub-evenement-s2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pub-content {
+  flex: 1;
+  margin-right: 20px; /* Space between text and image */
+}
+
+.pub-title {
+  color: #0061B1;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-family: "Open Sans", Helvetica, Arial, serif;
+}
+
+.pub-description {
+  font-size: 14px;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+  font-family: "Open Sans", Helvetica, Arial, serif;
+}
+
+.pub-img {
+  width: 100px;
+  height: auto;
+  flex-shrink: 0;
+  margin-left: 20px;
+}
+
+.chercheur-menu {
+  display: flex;
+}
+
+.chercheur-menu a {
+  margin-right: 20px; /* Space between links */
+  text-decoration: none; /* Remove default underline */
+  color: rgb(130, 130, 130); /* Default color */
+}
+
+.chercheur-menu a:last-child {
+  margin-right: 0; /* Remove margin from the last link */
+}
+
+.chercheur-menu a:hover {
+  text-decoration: underline; /* Add underline on hover */
+  color: #0061B1;
+}
+
+/* Media Queries */
+@media (max-width: 830px) {
+  .pub-rect3,
+  .pub-image4,
+  .pub-image41 {
+    display: none; /* Hide these elements for small screens */
+  }
+
+  .pub-medium_title,
+  .pub-text2,
+  .pub-highlight {
+    font-size: 17px;
+    left: 20px;
+    width: 100%; /* Adjust width */
+  }
+
+  .pub-subtitle,
+  .pub-medium_title1 {
+    left: 20px;
+    width: 90%;
+    font-size: 18px;
+    text-align: center; /* Center text */
+  }
+
+  .pub-menu {
+    flex-direction: row; /* Arrange links in a row */
+    align-items: center;
+  }
+
+  .pub-menu a {
+    margin-right: 0;
+  }
+
+  .pub-medium_title1 {
+    display: none; /* Hide for small screens */
+  }
+
+  .pub-container {
+    padding: 10px;
+  }
+
+  .pub-buttons {
     flex-direction: column;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.149);
-    top:260px;
+    left: 10px;
   }
-  .pub_image {
-    position: absolute;
-    top: 10px;
-   left:780px;
-    width: 157px;
-    height: 165px;
-    object-fit: cover;
+
+  .pub-evenement {
+    width: 90%;
+    left: 10px;
   }
-  .pub_highlight1 {
-    /* position: absolute; */
-    top: 58px;
-    left: 20px;
-    width: 568px;
-    height: 36px;
-    font: 400 15px/1.2 "Roboto", Helvetica, Arial, serif;
-    color: rgb(0, 0, 0);
+
+  .pub-title {
+    font-size: 1.1em;
   }
-  .pub_highlight {
-    /* position: absolute; */
-    top: 26px;
-    left: 20px;
-    width: 372px;
-    height: 21px;
-    font: 700 18px/1.16 "Roboto", Helvetica, Arial, serif;
-    color: rgb(0, 97, 177);
-   
+
+  .pub-description {
+    font-size: 0.8em;
   }
-  .pub_info {
-    /* position: absolute; */
-    top: 50%;
-    left: 20px;
-    width: 79px;
-    height: 8px;
-    font: 400 7px/1.14 "Roboto", Helvetica, Arial, serif;
-    color: rgb(130, 130, 130);
-    transform: translate(0, -50%);
+
+  .f {
+    position: relative;
   }
- 
+}

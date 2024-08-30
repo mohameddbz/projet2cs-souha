@@ -36,6 +36,7 @@ import EsiFinal from './pages/EsiFinal/EsiFinal';
 import Lmcs from './pages/Lmcs/Lmcs'
 import Post from './pages/Postgraduation/Post';
 import Chercheur from './pages/Chercheur/Chercheur';
+import ChercheurProfile from './pages/Chercheur/ChercheurProfile';
 import Publications from './pages/Chercheur/Publications';
 import Publier from './pages/Admin/Publier';
 import PublierArticle from './pages/Admin/PublierArticle'
@@ -133,8 +134,10 @@ function App() {
         <Route path ="/LCSITeams" element ={<EquipeLCSI/>}/>
         <Route path ="/lmcs" element ={<Lmcs/>}/>
         <Route path ="/postraduation" element ={<Post/>}/>
-        <Route path ="/chercheur" element ={<Chercheur/>}/>
-        <Route path ="/publication" element ={<Publications/>}/>
+        <Route path="/chercheur/:Idchercheur" element={<ChercheurProfile />}>
+          <Route path="cv/:publicationId" element={<Chercheur />} />
+          <Route path="publication" element={<Publications />} />
+        </Route>
         <Route path ="/Historique" element ={<Historique/>}/>
         <Route path ="/ProjetsInter" element ={<ProjetsInter/>}/>
         <Route path="/Admin/Ajouter_user" allowedRoles={['administrateur']} element={<PrivateRoute><AjouterUser /></PrivateRoute>} />

@@ -1,311 +1,257 @@
+/* Base CSS for larger screens */
+
+/* Container padding */
 .chercheur-container {
-  margin-top: 150px; /* Déplace tout le contenu vers le bas de 150px */
+  padding: 0 0px;
 }
 
+/* Contact section */
+.chercheur-contact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #0061B1;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.chercheur-contact svg {
+  font-size: 20px;
+}
+
+/* Highlight text */
+.chercheur-highlight5 {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Section layout */
 .chercheur-section2 {
+  display: flex;
   flex-direction: column;
   width: 100%;
+  margin: 0 auto;
 }
 
-.chercheur-section2 .child-element {
-  width: 100%;
-}
-
+/* Rectangular section */
 .chercheur-rect3 {
-  position: absolute;
-  top: 135px;
-  right: 0;
-  left: 0;
+  position: relative;
   width: 100%;
   height: 182px;
   background-color: rgb(0, 97, 177);
-  /* z-index: 9999; */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
-.chercheur-image4 {
-  position: absolute;
-  top: 44px;
-  right: 810px;
-  bottom: 1457px;
-  left: 28px;
-  width: 186px;
-  height: 189px;
+
+/* Image styling */
+.chercheur-image4, .chercheur-image41 {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  padding: 8% 2%;
+  border-radius: 50%; 
+  
 }
-.chercheur-image41 {
-  position: absolute;
-  top: 587px;
-  right: 782px;
-  bottom: 914px;
-  left: 56px;
-  width: 186px;
-  height: 189px;
+
+.chercheur-info {
+  color: rgb(250, 250, 250);
+  margin-left: 20px;
 }
+
+/* Titles and text */
 .chercheur-medium_title {
-  position: absolute;
-  top: 220px;
-  right: 491px;
-  bottom: 1642px;
-  left: 30px;
-  width: 210px;
-  height: 28px;
+  color: rgb(250, 250, 250);
   font: 700 25px/1.15 "Roboto", Helvetica, Arial, serif;
-  color: rgb(0, 97, 177);
 }
-.chercheur-text2 {
-  position: absolute;
-  top: 280px;
-  right: 838px;
-  bottom: 1390px;
-  left: 45px;
-  width: 166px;
-  height: 15px;
+
+.chercheur-text2, .chercheur-highlight {
   font: 500 14px/1.17 "Roboto", Helvetica, Arial, serif;
-  color: rgb(169, 206, 244);
 }
-.chercheur-highlight {
-  position: absolute;
-  top: 280px;
-  right: 782px;
-  bottom: 1361px;
-  left: 30px;
-  width: 202px;
-  height: 18px;
-  font: 400 15px/1.2 "Roboto", Helvetica, Arial, serif;
-  color: rgb(0, 0, 0);
-}
-.chercheur-image5 {
-  position: absolute;
-  top: 220px;
-  right: 319px;
-  bottom: 1364px;
-  left: 715px;
-  width: 23px;
-  height: 24px;
-  color: rgb(0, 97, 177);
-}
-.chercheur-image9 {
-  position: absolute;
-  top: 260px;
-  right: 318px;
-  bottom: 1475px;
-  left: 715px;
-  width: 21px;
-  height: 25px;
-  color: rgb(0, 97, 177);
-}
-.chercheur-image7 {
-  position: absolute;
-  top: 300px;
-  right: 323px;
-  bottom: 1408px;
-  left: 715px;
-  width: 24px;
-  height: 25px;
-  color: rgb(0, 97, 177);
-}
-.chercheur-medium_title1 {
-  position: relative;
-  top: 400px;
-  /* right: 775px; */
-  bottom: 1416px;
-  left: 320px;
-  width: 210px;
-  height: 29px;
-  font: 700 25px/1.15 "Roboto", Helvetica, Arial, serif;
-  color: rgb(0, 97, 177);
-}
+
+/* Menu */
 .chercheur-menu {
   display: flex;
+  gap: 20%;
+  margin: 3% 9%;
 }
+
 .chercheur-menu a {
-  margin-right: 20px; /* Espace entre les liens */
-  text-decoration: none; /* Supprimer les soulignements par défaut des liens */
-  color: rgb(130, 130, 130); /* Couleur par défaut */
+  text-decoration: none;
+  color: rgb(130, 130, 130);
+  font: 700 20px/1.2 "Roboto", Helvetica, Arial, serif;
 }
-.chercheur-menu a:last-child {
-  margin-right: 0; /* Pour supprimer la marge à droite du dernier élément */
-}
+
 .chercheur-menu a:hover {
-  text-decoration: none; /* Ajouter une soulignement lorsqu'on survole les liens */
   color: #0061B1;
 }
-.chercheur-highlight1 {
-  position: relative;
-  top: 380px;
-  right: 863px;
-  bottom: 1241px;
-  left: 64px;
-  width: 197px;
-  height: 18px;
-  font: 700 15px/1.2 "Roboto", Helvetica, Arial, serif;
-  color: rgb(130, 130, 130);
+
+/* Publication section */
+.chercheur-publication {
+  margin: 0% 8%;
+  padding: 20px;
+  border: 2px solid #cccccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
 }
-.chercheur-highlight5 {
-  margin-bottom: 20px; /* Espace entre les éléments avec la classe highlight5 */
-  position: relative;
-  top: 200px;
-  right: 93px;
-  bottom: 1441px;
-  left: 759px;
-  width: 202px;
-  height: 18px;
-  font: 400 15px/1.2 "Roboto", Helvetica, Arial, serif;
-  color: rgb(0, 0, 0);
+
+.chercheur-medium_title1 {
+  font: 700 25px/1.15 "Roboto", Helvetica, Arial, serif;
+  color: rgb(0, 97, 177);
+  margin-top: 20px;
 }
-.chercheur-rect4 {
-  position: absolute;
-  top: 455px;
-  right: 924px;
-  bottom: 1230px;
-  left: 64px;
-  width: 36px;
-  height: 5px;
-  background-color: rgb(0, 97, 177);
-  border-radius: 2px 2px 2px 2px;
-}
+
 .chercheur-line {
-  position: absolute;
-  top: 532px;
-  right: 40px;
-  bottom: 1237px;
-  left: 40px;
-  width: auto;
+  width: 100%;
   height: 1px;
   background-color: rgb(230, 230, 230);
+  margin: 20px 0;
 }
-.chercheur-highlight21 {
-  position: absolute;
-  top: 431px;
-  right: 342px;
-  bottom: 1241px;
-  left: 534px;
-  width: 148px;
-  height: 18px;
-  font: 400 15px/1.2 "Roboto", Helvetica, Arial, serif;
-  color: rgb(130, 130, 130);
+
+.chercheur-profile_ens {
+  margin-top: 20px;
 }
+
+.chercheur-subtitle1 {
+  font: 700 20px/1.5 "Poppins", Helvetica, Arial, serif;
+  color: rgb(0, 0, 0);
+  padding: 0%;
+  margin: 0%;
+}
+
 .chercheur-subtitle {
-  position: absolute;
-  top: 666px;
-  right: 43px;
-  bottom: 904px;
-  left: 325px;
-  width: 656px;
-  height: 180px;
   font: 400 20px/1.5 "Poppins", Helvetica, Arial, serif;
   color: rgb(0, 0, 0);
   text-align: justify;
 }
-.chercheur-subtitle1 {
-  position: absolute;
-  top: 631px;
-  right: 549px;
-  bottom: 1089px;
-  left: 323px;
-  width: 152px;
-  height: 30px;
-  font: 700 20px/1.5 "Poppins", Helvetica, Arial, serif;
-  color: rgb(0, 0, 0);
-}
-.chercheur-rect5 {
-  position: absolute;
-  top: 609px;
-  right: 593px;
-  bottom: 1142px;
-  left: 205px;
-  width: 200px;
-  height: -1px;
+
+.chercheur-rect4 {
+  width: 36px;
+  height: 5px;
   background-color: rgb(0, 97, 177);
-  border-radius: 2px 2px 2px 2px;
+  border-radius: 2px;
 }
+
+.chercheur-section-item {
+  padding: 0% 5%;
+}
+
+.chercheur-medium_title11_box {
+  margin-top: 20px;
+}
+
 .chercheur-medium_title11 {
   font: 700 25px/1.52 "Poppins", Helvetica, Arial, serif;
   color: rgb(0, 0, 0);
   text-align: justify;
 }
-.chercheur-medium_title11_box {
-  position: absolute;
-  top: 860px;
-  right: 49px;
-  bottom: 110px;
-  left: 50px;
-  width: 925px;
-  height: 720px;
-}
+
 .chercheur-medium_title11_span0 {
   font: 700 1em/1.52 "Poppins", Helvetica, Arial, serif;
   color: rgb(0, 97, 177);
 }
-.chercheur-medium_title11_span1 {
-  font: 700 0.8em/1.5 "Poppins", Helvetica, Arial, serif;
-}
+
 .chercheur-medium_title11_span2 {
   font: 0.8em/1.5 "Poppins", Helvetica, Arial, serif;
 }
-.chercheur-medium_title11_span3 {
-  font: 700 1em/1.52 "Poppins", Helvetica, Arial, serif;
-  color: rgb(0, 97, 177);
+
+/* Publication content */
+.chercheur-publication-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 50px;
 }
-.chercheur-medium_title11_span4 {
-  font: 0.8em/1.5 "Poppins", Helvetica, Arial, serif;
+
+.chercheur-image41 {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
 }
-.chercheur-medium_title11_span5 {
-  font: 700 1em/1.52 "Poppins", Helvetica, Arial, serif;
-  color: rgb(0, 97, 177);
+
+/* Coordinates section */
+.chercheur-coordonnes {
+  display: flex;
+  align-items: center;
+  gap: 50px;
 }
-.chercheur-medium_title11_span6 {
-  font: 700 0.8em/1.5 "Poppins", Helvetica, Arial, serif;
+
+.chercheur-coordonnes h5 {
+  margin: 0;
+  font-size: 16px;
 }
-.chercheur-medium_title11_span7 {
-  font: 0.8em/1.5 "Poppins", Helvetica, Arial, serif;
+
+.chercheur-image9, .chercheur-image7 {
+  font-size: 20px;
+  color: rgb(255, 255, 255);
 }
-.chercheur-medium_title11_span8 {
-  font: 1em/1.52 "Poppins", Helvetica, Arial, serif;
-  color: rgb(0, 97, 177);
+
+.chercheur-image9:hover, .chercheur-image7:hover {
+  color: rgb(0, 150, 250);
 }
-.chercheur-medium_title11_span9 {
-  font: 700 1em/1.52 "Poppins", Helvetica, Arial, serif;
-  color: rgb(0, 97, 177);
+
+/* Media Queries */
+
+/* For tablets and smaller screens */
+@media (max-width: 768px) {
+  .chercheur-container {
+    padding: 0 10px; /* Add padding for smaller screens */
+  }
+
+  .chercheur-contact {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .chercheur-menu {
+    flex-direction: column;
+    gap: 10px;
+    margin: 3% 5%;
+  }
+
+  .chercheur-publication {
+    margin: 0% 5%;
+    padding: 15px;
+  }
+
+  .chercheur-publication-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .chercheur-image41 {
+    width: 100px;
+    height: 100px;
+  }
 }
-.chercheur-medium_title11_span10 {
-  font: 0.8em/1.5 "Poppins", Helvetica, Arial, serif;
-}
-.chercheur-image6 {
-  position: absolute;
-  top: 264px;
-  right: 317px;
-  bottom: 1402px;
-  left: 683px;
-  width: 24px;
-  height: 24px;
-  border-radius: 12px 12px 12px 12px;
-}
-.chercheur-image61 {
-  position: absolute;
-  top: 226px;
-  right: 317px;
-  bottom: 1440px;
-  left: 683px;
-  width: 24px;
-  height: 24px;
-  border-radius: 12px 12px 12px 12px;
-}
-.chercheur-image8 {
-  position: absolute;
-  top: 231px;
-  right: 321px;
-  bottom: 1445px;
-  left: 688px;
-  width: 15px;
-  height: 14px;
-}
-.chercheur-highlight6 {
-  position: absolute;
-  top: 194px;
-  right: 93px;
-  bottom: 1478px;
-  left: 729px;
-  width: 202px;
-  height: 18px;
-  font: 400 15px/1.2 "Roboto", Helvetica, Arial, serif;
-  color: rgb(0, 0, 0);
+
+/* For mobile phones */
+@media (max-width: 480px) {
+  .chercheur-contact {
+    font-size: 14px;
+  }
+
+  .chercheur-medium_title {
+    font-size: 20px;
+  }
+
+  .chercheur-publication {
+    margin: 0% 2%;
+    padding: 10px;
+  }
+
+  .chercheur-publication-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .chercheur-image41 {
+    width: 80px;
+    height: 80px;
+  }
 }
