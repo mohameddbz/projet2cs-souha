@@ -94,3 +94,14 @@
     }
     
 }
+@media only screen and (max-width: 920px) {
+    .ftrImg {
+        width: 90%; /* Ajuste la largeur pour les écrans moyens */
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .ftrImg {
+        width: 80%; /* Ajuste la largeur pour les petits écrans */
+    }
+}
