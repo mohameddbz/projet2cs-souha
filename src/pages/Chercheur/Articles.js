@@ -194,7 +194,7 @@ function PublicationPage() {
         const token = localStorage.getItem('token');
         try {
             const res = await axios.get(`${process.env.REACT_APP_API_URL}/user/`, {
-                headers: { 'Authorization': `Token ${token}` }  // Correct 'Token' instead of 'token'
+                headers: { 'Authorization': `token ${token}` }  // Correct 'Token' instead of 'token'
             });
             fetchPublications(res.data);
         } catch (error) {
@@ -204,8 +204,6 @@ function PublicationPage() {
     };
 
     const fetchPublications = async (userInfo) => {
-        if (!userInfo || !userInfo.Categorie) return;
-
         const token = localStorage.getItem('token');
         try {
             const response = await axios.get(`${process.env.REACT_APP_API_URL}/publication/searchall/?type_publication=article&publisher=${userInfo.id}`, {
@@ -280,7 +278,7 @@ function PublicationPage() {
             </div>
             <div className="admin-container">
                 <div className="admin-header">
-                    <h1><FaList /> Publications </h1>
+                    <h1><FaList /> Articles </h1>
                     <div className="search-box">
                         <button className="search-button" onClick={() => console.log('Search clicked')}>
                             <FaSearch />
@@ -298,9 +296,7 @@ function PublicationPage() {
                     <thead>
                         <tr>
                             <th>Titre</th>
-                            <th>État</th>
                             <th>Date Creation</th>
-                            <th>Date Publication</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -308,9 +304,7 @@ function PublicationPage() {
                         {filteredPublications.map(publication => (
                             <tr key={publication.id_publication}>
                                 <td>{publication.titre || 'No Title'}</td>
-                                <td>{publication.etat || 'No Status'}</td>
                                 <td>{publication.date_creation || ' / '}</td>
-                                <td>{publication.date_publication || ' / '}</td>
                                 <td>
                                     <div className="action-buttons">
                                         <button className="approve" data-tooltip="Modifier" onClick={() => handleApprove(publication.id_publication)}>

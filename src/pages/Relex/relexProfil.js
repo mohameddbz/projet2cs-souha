@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import './ProfilePage.css';
-import SidebarAdm from '../../components/Sidebar/SidebarAdmin/SidebarAdm';
-import './Admin.css';
+import './profil.css';
+import SidebarRelex from '../../components/Sidebar/SidebarAdmin/SidebarRelex';
 import axios  from 'axios';
 
 const ProfilePage = () => {
@@ -49,7 +48,7 @@ const ProfilePage = () => {
   return (
     <div className='admin-page-container'>
     <div className='sidebar'>
-        <SidebarAdm />
+        <SidebarRelex />
     </div>
     <div className="admin-container">
     <div className="profile-card">

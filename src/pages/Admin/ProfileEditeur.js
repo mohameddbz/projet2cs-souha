@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './ProfilePage.css';
-import SidebarAdm from '../../components/Sidebar/SidebarAdmin/SidebarAdm';
+import SidebarAdm from '../../components/Sidebar/SidebarAdmin/SidebarPub';
 import './Admin.css';
 import axios  from 'axios';
 
@@ -35,7 +35,6 @@ const ProfilePage = () => {
             const res = await axios.get(`${process.env.REACT_APP_API_URL}/user/`, {
                 headers: { 'Authorization': `Token ${token}` }  // Correct 'Token' instead of 'token'
             });
-            console.log(res.data)
             setCurrentUser(res.data)
         } catch (error) {
             console.error('Error fetching user:', error);

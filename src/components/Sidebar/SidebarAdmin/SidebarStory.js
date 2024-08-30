@@ -35,17 +35,16 @@ export default function SidebarPub() {
             <img src={im} alt="logo" className={styles.logo} style={{ cursor: 'pointer' }} />
           </Link>
                     <SubMenu label="Main Boards" className={styles.SubMenu}>
-                        <MenuItem className={styles.widthMenu}><Link to="/Publieur/dashboard">{textMenu(Dashboard,'Dashboard')}</Link></MenuItem>
+                        <MenuItem className={styles.widthMenu}><Link to="">{textMenu(Dashboard,'Dashboard')}</Link></MenuItem>
                     </SubMenu>
-                    <SubMenu label="Articles" className={styles.SubMenu}>
-                        <MenuItem className={styles.widthMenu}><Link to="/chercheur/articles">{textMenu(pubIcon,'Articles')}</Link></MenuItem>
-                        <MenuItem className={styles.widthMenu}><Link to="/chercheur/publier">{textMenu(pubilerIcon,'Publier')}</Link></MenuItem>
-                    </SubMenu>
-                    <SubMenu label="Page chercheur" className={styles.SubMenu}>
-                        <MenuItem className={styles.widthMenu}><Link to="/admchercheur">{textMenu(pubIcon,'Ajouter')}</Link></MenuItem>
+                    <SubMenu label="Story" className={styles.SubMenu}>
+                        <MenuItem className={styles.widthMenu}><Link to="/alumni/publications">{textMenu(pubIcon,'Story')}</Link></MenuItem>
+                        <MenuItem className={styles.widthMenu}><Link to="/alumni/publier">{textMenu(pubilerIcon,'Publier')}</Link></MenuItem>
+                        {/* <MenuItem className={styles.widthMenu}><Link to="/Publieur/demande_suppression">{textMenu(trash,'Demande suppression')}</Link></MenuItem> */}
+                        {/* <MenuItem className={styles.widthMenu}><Link to="/Publieur/historique">{textMenu(history,'Historique de publication')} </Link></MenuItem> */}
                     </SubMenu>
                     <SubMenu label="Paramètres" className={styles.SubMenu}>
-                        <MenuItem className={styles.widthMenu}><Link to="/editeur/profile">{textMenu(profile,'Profile')}</Link></MenuItem>
+                        <MenuItem className={styles.widthMenu}><Link to="/alumni/profile">{textMenu(profile,'Profile')}</Link></MenuItem>
                         {/* <MenuItem className={styles.widthMenu}><Link to="/Admin/Ajouter_user">{textMenu(pubilerIcon,'Profile')}</Link></MenuItem> */}
                         <MenuItem className={styles.widthMenu} onClick={logout}>{textMenu(deconnect,'Se Deconnecter')}</MenuItem>
                     </SubMenu>

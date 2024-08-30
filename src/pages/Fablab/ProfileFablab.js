@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import './ProfilePage.css';
-import SidebarAdm from '../../components/Sidebar/SidebarAdmin/SidebarAdm';
-import './Admin.css';
+import SidebarAdm from '../../components/SidebarAdmin/SidebarFablab';
+import '../Admin/Admin.css';
 import axios  from 'axios';
 
 const ProfilePage = () => {
@@ -85,6 +84,7 @@ const ProfilePage = () => {
           {currentUser.is_directeur_relex && (
             <p>Directeur Relax</p>
             )}
+
         </div>
       </div>
     </div>

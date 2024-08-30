@@ -44,7 +44,7 @@ export default function SidebarPub() {
                         {/* <MenuItem className={styles.widthMenu}><Link to="/Publieur/historique">{textMenu(history,'Historique de publication')} </Link></MenuItem> */}
                     </SubMenu>
                     <SubMenu label="Paramètres" className={styles.SubMenu}>
-                        <MenuItem className={styles.widthMenu}><Link to="/Admin/profile">{textMenu(profile,'Profile')}</Link></MenuItem>
+                        <MenuItem className={styles.widthMenu}><Link to="/editeur/profile">{textMenu(profile,'Profile')}</Link></MenuItem>
                         {/* <MenuItem className={styles.widthMenu}><Link to="/Admin/Ajouter_user">{textMenu(pubilerIcon,'Profile')}</Link></MenuItem> */}
                         <MenuItem className={styles.widthMenu} onClick={logout}>{textMenu(deconnect,'Se Deconnecter')}</MenuItem>
                     </SubMenu>

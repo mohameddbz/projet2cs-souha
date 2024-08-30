@@ -77,6 +77,7 @@ function AdminPage() {
     
     const handleReject = async (id) => {
         const token = localStorage.getItem('token');
+        console.log(id)
         try {
             const response = await axios.put(`${process.env.REACT_APP_API_URL}/publication/refuse/${id}/`, {}, {
                 headers: { 'Authorization': `token ${token}` }
@@ -131,7 +132,7 @@ function AdminPage() {
                         <tr>
                             <th>Titre</th>
                             <th>Auteur</th>
-                            <th>Date</th>
+                            <th>type_publication</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -140,7 +141,7 @@ function AdminPage() {
                         <tr key={publication.id_publication}>
                             <td>{publication.titre || 'No Title'}</td>
                             <td>{userMap[publication.id_publication]?.family_name || 'No Publisher'}</td>
-                            <td>{publication.date_publication || 'No Date'}</td>
+                            <td>{publication.type_publication }</td>
                             <td>
                                 <div className="action-buttons">
                                     <button className="approve" data-tooltip="Approuver" onClick={() => handleApprove(publication.id_publication)}>&#10004;</button>

@@ -16,44 +16,45 @@ const incrementReload = () => {
     setReload(preReload => preReload + 1)
 }
 
+const getUser = async (id) => {
+    const token = localStorage.getItem('token');
+    try {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/user/${id}`, {
+            headers: { 'Authorization': `Token ${token}` }
+        });
+        return res.data;  // Return the response data
+    } catch (error) {
+        console.error('Error fetching user:', error);
+        return null; // Optionally return null or an error object
+    }
+};
+const fetchUserDetails = async (publications) => {
+    const newUserMap = {};
+    await Promise.all(
+        publications.map(async (publication) => {
+            const userData = await getUser(publication.publisher);
+            newUserMap[publication.id_publication] = userData;
+        })
+    );
+    setUserMap(newUserMap);
+};
+
     // Déplacez fetchPublications ici pour la rendre accessible dans tout le composant
     const fetchPublications = async () => {
         const token = localStorage.getItem('token');
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API_URL}/publication/searchall/?etat=en attente`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/publication/search/?etat=en attente`, {
                 headers: { 'Authorization': `token ${token}` }
             });
             const filteredPublications = response.data.filter(
                 pub => pub.type_publication !== 'article' && pub.type_publication !== 'success story' 
             );
-            setPublications(filteredPublications); 
+            setPublications(filteredPublications);
+            fetchUserDetails(filteredPublications);
         } catch (error) {
             console.error('Erreur lors de la récupération des publications:', error);
             setError('Failed to fetch publications. Please try again later.');
         }
-    };
-
-    const getUser = async (id) => {
-        const token = localStorage.getItem('token');
-        try {
-            const res = await axios.get(`${process.env.REACT_APP_API_URL}/user/${id}`, {
-                headers: { 'Authorization': `Token ${token}` }
-            });
-            return res.data;  // Return the response data
-        } catch (error) {
-            console.error('Error fetching user:', error);
-            return null; // Optionally return null or an error object
-        }
-    };
-    const fetchUserDetails = async (publications) => {
-        const newUserMap = {};
-        await Promise.all(
-            publications.map(async (publication) => {
-                const userData = await getUser(publication.publisher);
-                newUserMap[publication.id_publication] = userData;
-            })
-        );
-        setUserMap(newUserMap);
     };
 
     useEffect(() => {
@@ -131,7 +132,7 @@ const incrementReload = () => {
                         <tr>
                             <th>Titre</th>
                             <th>Auteur</th>
-                            <th>Date</th>
+                            <th>type_publication</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -140,7 +141,7 @@ const incrementReload = () => {
                         <tr key={publication.id_publication}>
                             <td>{publication.titre || 'No Title'}</td>
                             <td>{userMap[publication.id_publication]?.family_name || 'null'}</td>
-                            <td>{publication.date_publication || 'No Date'}</td>
+                            <td>{publication.type_publication }</td>
                             <td>
                                 <div className="action-buttons">
                                     <button className="approve" data-tooltip="Approuver" onClick={() => handleApprove(publication.id_publication)}>&#10004;</button>

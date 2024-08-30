@@ -5,13 +5,12 @@ import styles from './SidebarAdm.module.scss';
 import im from '../../../assets/logoSidebar.svg'; 
 import Dashboard from'../../../assets/dashoard.svg';
 import hourGlass from'../../../assets/hourglass.svg';
-import trash from'../../../assets/trash.svg';
 import pubIcon from'../../../assets/pubIcon.svg';
+// import question from '../../../assets/question.svg';
 import deconnect from '../../../assets/deconnect.svg'
 import profile from '../../../assets/profile.svg'
-import history from '../../../assets/history.svg'
-import pubilerIcon from'../../../assets/publierIcon.svg';
 import { FaBars } from 'react-icons/fa'; // Import hamburger icon from react-icons if needed
+
 
 function textMenu(icon, text) {
   return (
@@ -54,14 +53,29 @@ export default function SidebarAdm() {
             <img src={im} alt="logo" className={styles.logo} style={{ cursor: 'pointer' }} />
           </Link>
           <SubMenu label="Main Boards" className={styles.SubMenu}>
-            <MenuItem className={styles.widthMenu}><Link to="/Admin/dashboard">{textMenu(Dashboard,'Dashboard')}</Link></MenuItem>
+            <MenuItem className={styles.widthMenu}><Link to="">{textMenu(Dashboard,'Dashboard')}</Link></MenuItem>
           </SubMenu>
-          <SubMenu label="Publication" className={styles.SubMenu}>
-            <MenuItem className={styles.widthMenu}><Link to="/Validateur/publications">{textMenu(pubIcon,'Publication')}</Link></MenuItem>
-            <MenuItem className={styles.widthMenu}><Link to="/Valid/publications_en_attente">{textMenu(hourGlass,'Publications en attente')}</Link></MenuItem>
+          <SubMenu label="Partenaire" className={styles.SubMenu}>
+            <MenuItem className={styles.widthMenu}><Link to="/relex/partenaire">{textMenu(pubIcon,'Liste des Partenaires')}</Link></MenuItem>
+            <MenuItem className={styles.widthMenu}><Link to="/relex/partenaireDemende">{textMenu(hourGlass,'Demende partenariat')}</Link></MenuItem>
+            <MenuItem className={styles.widthMenu}><Link to="/relex/historiqueDemnde">{textMenu(hourGlass,'Historique Demende')}</Link></MenuItem>
+            <MenuItem className={styles.widthMenu}><Link to="/relex/AjouterPartenaire">{textMenu(pubIcon,'Ajouter partenaire')}</Link></MenuItem>
+          </SubMenu>
+          <SubMenu label="Formation a la carte" className={styles.SubMenu}>
+            <MenuItem className={styles.widthMenu}><Link to="">{textMenu(pubIcon,'Liste des formations')}</Link></MenuItem>
+            <MenuItem className={styles.widthMenu}><Link to="">{textMenu(hourGlass,'Ajouter formation')}</Link></MenuItem>
+          </SubMenu>
+          <SubMenu label="Formation avant promo" className={styles.SubMenu}>
+            <MenuItem className={styles.widthMenu}><Link to="/relex/FormateurList">{textMenu(pubIcon,'Liste des formateurs')}</Link></MenuItem>
+            <MenuItem className={styles.widthMenu}><Link to="/relex/AddFormateur">{textMenu(hourGlass,'Add formateur')}</Link></MenuItem>
+            <MenuItem className={styles.widthMenu}><Link to="/relex/ModuleList">{textMenu(pubIcon,'Liste des modules')}</Link></MenuItem>
+            <MenuItem className={styles.widthMenu}><Link to="/relex/AddModule">{textMenu(hourGlass,'Ajouter Module')}</Link></MenuItem>
+            <MenuItem className={styles.widthMenu}><Link to="/relex/AddFormation">{textMenu(pubIcon,'Ajouter une formation')}</Link></MenuItem>
+            <MenuItem className={styles.widthMenu}><Link to="/relex/formationList">{textMenu(pubIcon,'Liste des formations')}</Link></MenuItem>
+            
           </SubMenu>
           <SubMenu label="Paramètres" className={styles.SubMenu}>
-            <MenuItem className={styles.widthMenu}><Link to="/Valid/profile">{textMenu(profile,'Profile')}</Link></MenuItem>
+            <MenuItem className={styles.widthMenu}><Link to="/relex/profile">{textMenu(profile,'Profile')}</Link></MenuItem>
             <MenuItem className={styles.widthMenu} onClick={logout}>{textMenu(deconnect,'Se Deconnecter')}</MenuItem>
           </SubMenu>
         </Menu>

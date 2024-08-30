@@ -43,7 +43,7 @@ function PublicationAdmin() {
     const fetchPublications = async () => {
         const token = localStorage.getItem('token');
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API_URL}/publication/searchall/?etat=valid`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/publication/search/?etat=valid`, {
                 headers: { 'Authorization': `token ${token}` }
             });
             const filteredPublications = response.data.filter(

@@ -1,0 +1,87 @@
+/* Style général de l'overlay pour le fond flouté */
+.overlayy {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Couleur de fond sombre avec transparence */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Assurez-vous que l'overlay est au-dessus du contenu */
+    backdrop-filter: blur(3px); /* Applique un flou de 3px en arrière-plan */
+}
+
+/* Style du modal */
+.modall {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 400px;
+    max-width: 90%;
+    text-align: center;
+    position: relative;
+    z-index: 1001; /* Assurez-vous que le modal est au-dessus de l'overlay */
+}
+
+/* Style du bouton Retour */
+.returnn-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: blue;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease; 
+    z-index: 1002; /* Assurez-vous que le bouton est au-dessus du modal */
+}
+
+.returnn-button:hover {
+    background: darkblue;
+}
+
+/* Style du champ de question */
+.questionn {
+    font-size: 18px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    max-height: 200px; /* Hauteur maximale pour le champ de question */
+    overflow-y: auto; /* Affiche une barre de défilement verticale si le contenu dépasse la hauteur maximale */
+}
+
+
+.responsee-inputt {
+    width: calc(100% - 20px); /* Prend toute la largeur disponible */
+    height: auto; /* La hauteur sera ajustée automatiquement */
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* Assure que le padding et la bordure sont inclus dans la largeur totale */
+    resize: none; /* Empêche l'utilisateur de redimensionner manuellement le textarea */
+    overflow-y: auto; /* Masque les barres de défilement */
+    min-height: 35px; /* Hauteur minimale pour le textarea */
+}
+
+/* Style du bouton Répondre */
+.submitt {
+    background: white;
+    color: blue;
+    border: 1px solid blue;
+    border-radius: 12px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transitions douces pour le changement de couleur */
+}
+
+.submitt:hover {
+    background: blue;
+    color: white;
+}
