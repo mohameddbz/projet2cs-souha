@@ -79,8 +79,7 @@ function ModuleList() {
     const filteredModule = module.filter(
         mod =>
             mod.titre.toLowerCase().includes(searchTerm) ||
-            mod.description.toLowerCase().includes(searchTerm) ||
-            mod.volume_horaire.includes(searchTerm)
+            mod.description.toLowerCase().includes(searchTerm)
     );
 
     if (error) {

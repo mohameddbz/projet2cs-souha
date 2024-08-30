@@ -342,6 +342,7 @@ function AjouterModule(props) {
           <label className='AdminLabel'>Volume horaire *</label>
           <input
             type='number'
+            placeholder=" nombre d'heur "
             className='AdminInput'
             value={volume_horaire}
             onChange={(e) => setVolumeHoraire(e.target.value)}
@@ -365,7 +366,7 @@ function AjouterModule(props) {
         </div>
 
         <div>
-          <label className='AdminLabel'>Compétences *</label>
+          <label className='AdminLabel'>Compétences * (Sélectionnez un ou plusieur )</label>
           <select
             className='AdminInput'
             multiple={true} // Allows multiple selections

@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from "react";
 import PropTypes from "prop-types";
+import axios from "axios"; // Import axios
 import countryList from "react-select-country-list";
 import styles from "./DemandePartenariatFinale.module.scss";
 import "react-phone-number-input/style.css";
@@ -46,17 +47,15 @@ function FormPartenariat(props) {
     };
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/demande_partenariat`, {
-        method: 'POST',
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/demande_partenariat`, formData, {
         headers: {
           'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+        }
       });
-      if (response.ok) {
+      if (response.status === 201) { // Assuming 201 status for success
         navigate('/DemandeEnregistree');
       } else {
-        console.error('Error submitting the form');
+        console.error('Error submitting the form:', response.data);
       }
     } catch (error) {
       console.error('Error:', error);

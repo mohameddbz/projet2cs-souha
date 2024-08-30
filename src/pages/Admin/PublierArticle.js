@@ -240,7 +240,6 @@ function Admin2() {
       formData.append('type_publication', 'article');
       formData.append('date_debut', dateDebut);
       formData.append('date_fin', dateFin);
-      formData.append('date_publication', datePublication);
     console.log(formData)
 
     const token = localStorage.getItem('token');
@@ -317,16 +316,6 @@ function Admin2() {
             placeholder="Ecrire la description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-          />
-        </div>
-
-        <div className="AdminInputContainer">
-          <label className="AdminLabel">Deadline de validation*</label>
-          <input
-            type="datetime-local"
-            className="AdminInput"
-            value={datePublication}
-            onChange={(e) => setDatePublication(e.target.value)}
           />
         </div>
 

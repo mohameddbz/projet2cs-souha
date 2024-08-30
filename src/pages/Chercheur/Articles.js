@@ -296,9 +296,7 @@ function PublicationPage() {
                     <thead>
                         <tr>
                             <th>Titre</th>
-                            <th>État</th>
                             <th>Date Creation</th>
-                            <th>Date Publication</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -306,9 +304,7 @@ function PublicationPage() {
                         {filteredPublications.map(publication => (
                             <tr key={publication.id_publication}>
                                 <td>{publication.titre || 'No Title'}</td>
-                                <td>{publication.etat || 'No Status'}</td>
                                 <td>{publication.date_creation || ' / '}</td>
-                                <td>{publication.date_publication || ' / '}</td>
                                 <td>
                                     <div className="action-buttons">
                                         <button className="approve" data-tooltip="Modifier" onClick={() => handleApprove(publication.id_publication)}>

@@ -24,6 +24,7 @@ function PartenaireDemende() {
                 headers: { 'Authorization': `Token ${token}` }  // Correct 'Token' instead of 'token'
 
             });
+            console.log(response.data)
             const filteredPublications = response.data.filter(
                 partenaire => partenaire.etat !== 'Acceptée' && partenaire.etat !== 'Refusée'
             );
@@ -37,20 +38,17 @@ function PartenaireDemende() {
 
     const handleApprove = async (id) => {
         const token = localStorage.getItem('token');
-        try {
-            const response = await axios.put(
-                `${process.env.REACT_APP_API_URL}/demande_partenariat/accepter/${id}/`,
-                {},  // Empty object for the body
-                {
-                    headers: { 'Authorization': `Token ${token}` }  // Authorization header with token
-                }
-            );
-            alert('Action completed successfully.');
+        axios.put(`${process.env.REACT_APP_API_URL}/demande_partenariat/accepter/${id}/`, {},
+        {
+            headers: { 'Authorization': `Token ${token}` }  // Authorization header with token
+        })
+        .then(response => {
             fetchPartenaires();
-        } catch (error) {
-            console.error('Failed to perform the action:', error);
-            alert('Failed to complete the action. Please try again.');
-        }
+            console.log(response);
+        })
+        .catch(error => {
+            console.error(error);
+        });
         
     };
 
