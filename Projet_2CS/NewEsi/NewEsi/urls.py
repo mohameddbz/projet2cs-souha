@@ -38,6 +38,7 @@ urlpatterns = [
     path('Devis',get_all_devis,name='get_all_devis'),
     path('chercheur',chercheur_list,name='chercheur'),
      path('publication/<int:pk>/', edit_publication, name='edit_publication'),
+   
     path('publication/event_publications',get_event_publications,name='event_publications') , 
     path('publication/searchall/',search_publication_noauth,name='search_publication') , 
     path('publication/deleteEventsPublications/',delete_event_publications,name='delete_event_publications') , 
@@ -173,10 +174,12 @@ path('equipe_recherche/add',add_equipe_recherche,name='add_equipe_recherche'),
     path('theme-formation/update/<int:pk>/', update_theme_formation, name='update_theme_formation'),
     path('theme-formation/delete/<int:pk>/', delete_theme_formation, name='delete_theme_formation'),
     path('themes-formation/', get_theme_formation, name='get_theme_formation'),
-    path('theme-formation/<int:id>/', get_theme_formation_by_id, name='get_theme_formation_by_id'),
+    path('theme-formation/<int:laboratoire_id>/', get_theme_formation_by_id, name='get_theme_formation_by_id'),
 
      
-   
+    path('publication/labo/<int:laboratoire_id>/', publications_by_laboratory, name='publications_by_laboratory'),
+    path('publication/seminaire/<int:laboratoire_id>/', publications_seminaire_bylabo, name='publications_seminaire_bylabo'),
+    
   
    
 

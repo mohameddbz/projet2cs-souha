@@ -187,6 +187,9 @@ class Publication(models.Model):
     #I don't think it should be a class by it's own if we won't change the class frequently
     # category=models.CharField(max_length=50)
     publisher = models.ForeignKey(Utilisateur, on_delete=models.CASCADE, related_name='publications')
+    visiteur=models.CharField(max_length=50, default='Pr Jalil BOUKHOBZA')
+    lieu=models.CharField(max_length=50, default='salle conférence')
+
     def __str__(self):
         return self.titre
 

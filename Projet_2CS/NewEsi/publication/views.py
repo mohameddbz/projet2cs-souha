@@ -66,7 +66,7 @@ def query_publications(request):
     else:
         return Response(serializer.errors, status=400)
 @api_view(['GET'])
-@user_types_required('adminstrateur')
+@user_types_required('superuser')
 def get_all_users(request):
     if request.method == 'GET':
         queryset = Utilisateur.objects.all()
@@ -85,8 +85,8 @@ def get_user_by_id(request, user_id):
 
 
 @api_view(['POST'])
-# @user_types_required('adminstrateur')  
-@permission_classes([AllowAny])
+@user_types_required('superuser')  
+#@permission_classes([AllowAny])
 def add_user(request):
     if request.method == 'POST':
         data = request.data.copy()  # Create a copy of the request data
@@ -265,7 +265,7 @@ def get_publications_by_category_admin(request):
 
 # POST a new publication
 @api_view(['POST'])
-@user_types_required('editeur','chercheur')
+@user_types_required('editeur', 'chercheur')
 def add_publication(request):
     if request.method == 'POST':
         auth_header = request.headers.get('Authorization')
@@ -280,20 +280,21 @@ def add_publication(request):
                 return Response({"error": "Token format is invalid"}, status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response({"error": "Authorization header is missing"}, status=status.HTTP_400_BAD_REQUEST)
-        # Check if user is an editor
+       
+        # Check if request data is a list or single object
         if isinstance(request.data, list):  # If data is an array
-            data = request.data
-            for item in data:
-                item['publisher'] = user.id
+            data = [dict(item, publisher=user.id) for item in request.data]  # Create a mutable copy and add publisher
             serializer = PublicationSerializer(data=data, many=True)
         else:  # If data is a single object
-            data = request.data
+            data = request.data.copy()  # Create a mutable copy
             data['publisher'] = user.id
             serializer = PublicationSerializer(data=data)
+
         if serializer.is_valid():
-                serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 @user_types_required('editeur')
@@ -408,7 +409,7 @@ def search_publication(request):
 
 
 @api_view(['PUT'])
-@user_types_required('adminstrateur')
+@user_types_required('adminstrateur','superuser')
 def validate_publication(request, pk):
     try:
         publication = Publication.objects.get(pk=pk)
@@ -430,7 +431,7 @@ def validate_publication(request, pk):
 
 
 @api_view(['PUT'])
-@user_types_required('adminstrateur')
+@user_types_required('adminstrateur','superuser')
 def refuse_publication(request, pk):
     try:
         publication = Publication.objects.get(pk=pk)
@@ -1480,7 +1481,6 @@ def add_module(request):
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
 
-
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_module_by_id(request, id):
@@ -1503,8 +1503,9 @@ def get_formations(request):
 @permission_classes([AllowAny])
 def get_module(request):
     modules = Module.objects.all()
-    serializer = FormationidSerializer(modules, many=True)
+    serializer = ModuleSerializer(modules, many=True)
     return Response(serializer.data)
+
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
@@ -1921,6 +1922,7 @@ def delete_theme_formation(request, pk):
         return Response("theme formation deleted successfully", status=status.HTTP_204_NO_CONTENT)
 
 
+
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_theme_formation(request):
@@ -1939,3 +1941,89 @@ def get_theme_formation_by_id(request, id):
         return Response(serializer.data, status=status.HTTP_200_OK)
     except Theme_formation.DoesNotExist:
         return Response({"error": "theme formation not found"}, status=status.HTTP_404_NOT_FOUND)
+
+
+
+
+
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def publications_by_laboratory(request, laboratoire_id):
+    try:
+        laboratoire = Laboratoire.objects.get(id_laboratoire=laboratoire_id)
+        
+        researchers = Utilisateur.objects.filter(
+            equipeRecherche__laboratoire=laboratoire
+        )
+        
+        
+        publications = Publication.objects.filter(
+            publisher__in=researchers,
+            type_publication='article'  
+        )
+        
+        publication_data = [
+            {
+                'id': pub.id_publication,
+                'titre': pub.titre,
+                'description': pub.description,
+                'date_publication': pub.date_publication,
+                'image': pub.image.url if pub.image else None
+            }
+            for pub in publications
+        ]
+        
+        return Response(publication_data, status=status.HTTP_200_OK)
+    
+    except Laboratoire.DoesNotExist:
+        return Response({'error': 'Laboratoire not found'}, status=status.HTTP_404_NOT_FOUND)
+
+
+
+
+
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def publications_seminaire_bylabo(request, laboratoire_id):
+    try:
+        laboratoire = Laboratoire.objects.get(id_laboratoire=laboratoire_id)
+        
+        researchers = Utilisateur.objects.filter(
+            equipeRecherche__laboratoire=laboratoire
+        )
+        
+        
+        publications = Publication.objects.filter(
+            publisher__in=researchers,
+            type_publication='event',  
+            etat='valide'
+        )
+        
+        publication_data = [
+            {
+                'id': pub.id_publication,
+                'titre': pub.titre,
+                'description': pub.description,
+                'date_debut': pub.date_debut,
+                'image': pub.image.url if pub.image else None,
+                'visiteur':pub.visiteur,
+                'lieu':pub.lieu
+            }
+            for pub in publications
+        ]
+        
+        return Response(publication_data, status=status.HTTP_200_OK)
+    
+    except Laboratoire.DoesNotExist:
+        return Response({'error': 'Laboratoire not found'}, status=status.HTTP_404_NOT_FOUND)
+
+
+
+
+
+
+
