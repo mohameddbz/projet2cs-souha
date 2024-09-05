@@ -62,8 +62,12 @@ export default function SidebarAdm() {
             <MenuItem className={styles.widthMenu}><Link to="/relex/AjouterPartenaire">{textMenu(pubIcon,'Ajouter partenaire')}</Link></MenuItem>
           </SubMenu>
           <SubMenu label="Formation a la carte" className={styles.SubMenu}>
-            <MenuItem className={styles.widthMenu}><Link to="">{textMenu(pubIcon,'Liste des formations')}</Link></MenuItem>
-            <MenuItem className={styles.widthMenu}><Link to="">{textMenu(hourGlass,'Ajouter formation')}</Link></MenuItem>
+            <MenuItem className={styles.widthMenu}><Link to="/relex/ChapitreList">{textMenu(pubIcon,'Liste des chapitres')}</Link></MenuItem>
+            <MenuItem className={styles.widthMenu}><Link to="/relex/AddChapitre">{textMenu(hourGlass,'Ajouter chapitre')}</Link></MenuItem>
+            <MenuItem className={styles.widthMenu}><Link to="/relex/CourList">{textMenu(pubIcon,'Liste des cours')}</Link></MenuItem>
+            <MenuItem className={styles.widthMenu}><Link to="/relex/AjouterCour">{textMenu(hourGlass,'Ajouter cour')}</Link></MenuItem>
+            <MenuItem className={styles.widthMenu}><Link to="/relex/ThemeList">{textMenu(pubIcon,'Liste des formations')}</Link></MenuItem>
+            <MenuItem className={styles.widthMenu}><Link to="/relex/AjouterTheme">{textMenu(hourGlass,'Ajouter formation')}</Link></MenuItem>
           </SubMenu>
           <SubMenu label="Formation avant promo" className={styles.SubMenu}>
             <MenuItem className={styles.widthMenu}><Link to="/relex/FormateurList">{textMenu(pubIcon,'Liste des formateurs')}</Link></MenuItem>
