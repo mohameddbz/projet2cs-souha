@@ -85,8 +85,7 @@ def get_user_by_id(request, user_id):
 
 
 @api_view(['POST'])
-@user_types_required('superuser')  
-#@permission_classes([AllowAny])
+@permission_classes([AllowAny])
 def add_user(request):
     if request.method == 'POST':
         data = request.data.copy()  # Create a copy of the request data
