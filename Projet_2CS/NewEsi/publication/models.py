@@ -366,12 +366,23 @@ class Theme_formation(models.Model):
     def __str__(self):
         return self.titre
 
+class Demande_Devis(models.Model):
+    organisme = models.CharField((""), max_length=50)
+    email = models.EmailField()
+    Numero_telephone=models.IntegerField(null=True, blank=True)
+    Formations=models.ManyToManyField('Theme_formation', related_name='themes_devis')
+    Nombre_participants = models.IntegerField(null=True, blank=True)
+    
+    def __str__(self):
+        return self.organisme
+
 class Devis(models.Model):
-    etat = models.CharField(max_length=50 , default="en attente")
     montant = models.FloatField(null=True, blank=True) 
+    demande_devis = models.ForeignKey(Demande_Devis, on_delete=models.SET_NULL, null=True, blank=True)
     
     def __str__(self):
         return self.montant
+
 
 
 class Partenaire(models.Model):

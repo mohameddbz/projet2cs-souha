@@ -181,7 +181,23 @@ path('equipe_recherche/add',add_equipe_recherche,name='add_equipe_recherche'),
     path('publication/seminaire/<int:laboratoire_id>/', publications_seminaire_bylabo, name='publications_seminaire_bylabo'),
     
   
-   
+    path('section/<int:id>/', update_section, name='section_update'),
+
+      # Demande_Devis URLs
+    path('demande-devis/add/', add_demande_devis, name='add_demande_devis'),
+    path('demande-devis/', list_demande_devis, name='list_demande_devis'),
+    path('demande-devis/<int:pk>/', retrieve_demande_devis, name='retrieve_demande_devis'),
+    path('demande-devis/update/<int:pk>/', update_demande_devis, name='update_demande_devis'),
+    path('demande-devis/delete/<int:pk>/', delete_demande_devis, name='delete_demande_devis'),
+    
+    # Devis URLs
+    path('devis/add/', add_devis, name='add_devis'),
+    path('devis/', list_devis, name='list_devis'),
+    path('devis/<int:pk>/', retrieve_devis, name='retrieve_devis'),
+    path('devis/update/<int:pk>/', update_devis, name='update_devis'),
+    path('devis/delete/<int:pk>/', delete_devis, name='delete_devis'),
+     path('devis/by-demande-devis/<int:demande_devis_id>/', get_devis_by_demande_devis, name='get_devis_by_demande_devis'),
+
 
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

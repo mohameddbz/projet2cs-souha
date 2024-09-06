@@ -59,12 +59,19 @@ class PartenaireSerializer(serializers.ModelSerializer):
 class DemandePartenariatSerializer(serializers.ModelSerializer):
     class Meta:
         model = Demande_Partenariat
-        fields = '__all__'  # Sérialiser tous les champs du modèle
+        fields = '__all__'  
 
 class DevisSerializer(serializers.ModelSerializer):
     class Meta:
         model = Devis
-        fields = '__all__'  # Sérialiser tous les champs du modèle
+        fields = '__all__'  
+
+
+class DemandeDevisSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Demande_Devis
+        fields = '__all__'  
+
 
 
 

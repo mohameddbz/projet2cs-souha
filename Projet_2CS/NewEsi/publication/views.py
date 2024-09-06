@@ -102,7 +102,7 @@ def add_user(request):
    
 
 @api_view(['PUT'])
-@user_types_required('editeur')
+@user_types_required('editeur','chercheur')
 def edit_publication(request, pk):
     try:
         publication = Publication.objects.get(pk=pk)
@@ -214,7 +214,8 @@ def delete_user(request, pk):
 @permission_classes([AllowAny])
 def get_publications_by_category(request, category):
     try:
-        publications = Publication.objects.filter(publisher__Categorie= category)
+        publications = Publication.objects.filter(publisher__Categorie= category, etat='valide', type_publication='event')
+        
     except Publication.DoesNotExist:
         return Response("Publications not found for this category", status=status.HTTP_404_NOT_FOUND)
 
@@ -451,7 +452,7 @@ def refuse_publication(request, pk):
 
 # DELETE a publication by ID
 @api_view(['DELETE'])
-@user_types_required('adminstrateur')
+@user_types_required('adminstrateur','chercheur')
 def delete_publication(request, pk):
     try:
         publication = Publication.objects.get(pk=pk)
@@ -1163,7 +1164,7 @@ def GetValideQuestions(request):
 
 
 @api_view(['POST'])
-@user_types_required('adminstrateur')
+@user_types_required('adminstrateur','chercheur')
 def add_annuaire(request):
     if request.method == 'POST':
         category = request.data.get('category')
@@ -1205,7 +1206,7 @@ def get_Annuaire(request, pk):
 
 
 @api_view(['PUT'])
-@user_types_required('adminstrateur')
+@user_types_required('adminstrateur','chercheur')
 def edit_Annuaire(request, pk):
     try:
         entry = Annuaire.objects.get(pk=pk)
@@ -1220,7 +1221,7 @@ def edit_Annuaire(request, pk):
 
 
 @api_view(['DELETE'])
-@user_types_required('adminstrateur')
+@user_types_required('adminstrateur','chercheur')
 def delete_Annuaire(request, pk):
     try:
         entry = Annuaire.objects.get(pk=pk)
@@ -1943,7 +1944,112 @@ def get_theme_formation_by_id(request, id):
         return Response({"error": "theme formation not found"}, status=status.HTTP_404_NOT_FOUND)
 
 
+# -------------------------------------------------------------------------------------------------------------------
+# devis
+# -----------------------------------------------------------------------------------------------------------------
 
+# Create Demande_Devis
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def add_demande_devis(request):
+    if request.method == 'POST':
+        serializer = DemandeDevisSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
+# Create Devis
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def add_devis(request):
+    if request.method == 'POST':
+        serializer = DevisSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
+# List Demande_Devis
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def list_demande_devis(request):
+    demandes = Demande_Devis.objects.all()
+    serializer = DemandeDevisSerializer(demandes, many=True)
+    return Response(serializer.data)
+
+# List Devis
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def list_devis(request):
+    devis = Devis.objects.all()
+    serializer = DevisSerializer(devis, many=True)
+    return Response(serializer.data)
+
+# Retrieve Demande_Devis
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def retrieve_demande_devis(request, pk):
+    demande = get_object_or_404(Demande_Devis, pk=pk)
+    serializer = DemandeDevisSerializer(demande)
+    return Response(serializer.data)
+
+# Retrieve Devis
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def retrieve_devis(request, pk):
+    devis = get_object_or_404(Devis, pk=pk)
+    serializer = DevisSerializer(devis)
+    return Response(serializer.data)
+
+# Update Demande_Devis
+@api_view(['PUT'])
+@permission_classes([AllowAny])
+def update_demande_devis(request, pk):
+    demande = get_object_or_404(Demande_Devis, pk=pk)
+    serializer = DemandeDevisSerializer(demande, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=400)
+
+# Update Devis
+@api_view(['PUT'])
+@permission_classes([AllowAny])
+def update_devis(request, pk):
+    devis = get_object_or_404(Devis, pk=pk)
+    serializer = DevisSerializer(devis, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=400)
+
+# Delete Demande_Devis
+@api_view(['DELETE'])
+@permission_classes([AllowAny])
+def delete_demande_devis(request, pk):
+    demande = get_object_or_404(Demande_Devis, pk=pk)
+    demande.delete()
+    return Response(status=204)
+
+# Delete Devis
+@api_view(['DELETE'])
+@permission_classes([AllowAny])
+def delete_devis(request, pk):
+    devis = get_object_or_404(Devis, pk=pk)
+    devis.delete()
+    return Response(status=204)
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_devis_by_demande_devis(request, demande_devis_id):
+    try:
+        devis = Devis.objects.filter(demande_devis__id=demande_devis_id)
+        serializer = DevisSerializer(devis, many=True)
+        return Response(serializer.data)
+    except Devis.DoesNotExist:
+        return Response({"error": "No Devis found for this Demande_Devis"}, status=404)
 
 
 
@@ -2023,6 +2129,21 @@ def publications_seminaire_bylabo(request, laboratoire_id):
 
 
 
+
+
+@api_view(['PUT'])
+@permission_classes([AllowAny])
+def update_section(request, id):
+    try:
+        section_instance = section.objects.get(id=id)
+    except section.DoesNotExist:
+        return Response({"error": "Section not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    serializer = SectionSerializer(section_instance, data=request.data, partial=True)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 
