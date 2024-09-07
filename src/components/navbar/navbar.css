@@ -1,5 +1,5 @@
 .navbar-full-container{
-    height: 125px;
+    height:125px;
     position: relative;
 }
 .navbar-totale{
@@ -91,11 +91,13 @@
     font-family: "Open Sans", sans-serif;
 }
 .collapseNavbar-container{
+    
     width: 100%;
     display: flex;
     flex-direction: column;
     text-align: center;
     margin: auto;
+   
     font-family: "Open Sans", sans-serif;
 }
 .topSectionNav{
@@ -103,6 +105,8 @@
     flex-direction: row;
     justify-content: space-between;
     width: 94%;
+    position: relative;
+    height: 100%;
     align-items: center;
     padding: 2% 3%;
 }
@@ -268,16 +272,21 @@
         width: 92%;
     }
     .topNavLink{
-        font-size: 11px;
+        font-size: 15px;
     }
     .navItem{
-        font-size: 15px;
+        font-size: 16px;
     }
 }
 /* navbar Admin */
 .nabvarAdminContainer{
     width: 100%;
     box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.5);
+}
+.navlangues{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
 }
 .navbarAdminTotale{
     display: flex;
@@ -301,4 +310,103 @@
     width: 30px;
     height: auto;
     margin-left: 20px;
+}
+ /* .Nav-coll {
+    display: flex;          
+    justify-content: space-between;
+    align-items: center; 
+    padding: 10px;
+    flex-direction: column; 
+    cursor: pointer;
+}  */
+
+.nav-title {
+    flex: 1; /* Occupe tout l'espace disponible pour le titre */
+    margin-right: 10px; /* Espace entre le titre et l'icône */
+}
+
+.expand-icon {
+
+    transition: transform 0.3s;
+    margin-left: 95%;
+}
+
+.expand-icon.open {
+    transform: rotate(180deg); 
+}
+
+.sub-menu-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+.sub-menu-column {
+    flex: 1;
+    margin: 0 10px;
+}
+
+
+.section-title {
+    flex: 0 1 auto; 
+    margin: 0;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+.sub-menu {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    margin: 0;
+}
+
+.sub-menu li {
+    list-style-type: none;
+    margin: 5px 0;
+}
+
+
+.sub-menu a {
+    color: white;
+    text-decoration: none;
+}
+
+.sub-menu a:hover {
+    text-decoration: underline;
+}
+
+@media only screen and (max-width: 600px) {
+    .sub-menu-container {
+        flex-direction: column;
+    }
+
+    .sub-menu-column {
+        margin: 10px 0;
+    }
+}
+/* Ajoutez ceci à votre CSS */
+@media only screen and (max-width: 920px) {
+    .navbar-full-container {
+        height: 100%; 
+    }
+
+    .navbar-totale {
+        height: 100%;
+        box-shadow: none; /* Optionnel : retire l'ombre si nécessaire pour mobile */
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .navbar-full-container {
+        height: 100%;
+    }
+
+    .navbar-totale {
+        height: 100%; 
+    }
 }

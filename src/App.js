@@ -64,7 +64,7 @@ import ProjetsInter from './pages/Lmcs/ProjetsInter'
 // import Postgraduation from './Pages/Postgraduation/Postgraduation'
 import SuccessStories from './pages/SuccessStories/SuccessStories';
 
-
+import Program from './pages/pgm/Program'
   
   
     
@@ -139,7 +139,7 @@ function App() {
           <Route path='/Fablab/categories' element={<CategoriesPage />} />
           <Route path="/fablab-inscriptions" element={<FablabInscriptionPage/>} />
 
-
+          <Route path="/Program" element={<Program/>} />
 
 
       </Routes>
