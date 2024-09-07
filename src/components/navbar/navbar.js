@@ -8,6 +8,7 @@ import listItem from './NavbarItems'
 import DropdownNav from './DropdownNav'
 import { MdOutlineExpandMore } from 'react-icons/md';
 
+
 function Navbar() {
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const [navSmallSize, setNavSmallSize] = useState(false);
@@ -35,7 +36,10 @@ function Navbar() {
                 // Version desktop
                 <div className='navbar-totale'>
                     <div className='navbar-container'>
-                        <img className='navbarLogo' src={logo} alt=''></img>
+                    <Link to="/">
+               <img className='navbarLogo' src={logo} alt='Logo' />
+                   </Link>
+
                         <div className='navbar-links'>
                             <div className='navPart1'>
                                 <TopNav />
@@ -69,7 +73,9 @@ function Navbar() {
               // Version mobile
 <div className='collapseNavbar-container'>
     <div className='topSectionNav'>
-        <img className='navCollapLogo' src={logo} alt='Logo'></img>
+    <Link to="/">
+    <img className='navCollapLogo' src={logo} alt='Logo'></img>
+                   </Link>
         <div className='toggleIocnDiv' onClick={() => setOpenMenuSmallNav(!openMenuSmallNav)}>
             <FontAwesomeIcon icon={openMenuSmallNav ? faXmark : faBars} className="toggleIcon"/>
             {openMenuSmallNav ? 'CLOSE' : 'MENU'}
