@@ -6,6 +6,13 @@ from rest_framework.authtoken.models import Token
 import re
 
 class UserManager(BaseUserManager):
+    """
+    Gestionnaire personnalisé pour le modèle User.
+    
+    Méthodes :
+    - create_user(email, **extra_fields) : Crée un utilisateur avec l'email spécifié.
+    - create_superuser(email, password=None, **extra_fields) : Crée un superutilisateur avec l'email et le mot de passe spécifiés.
+    """
     def create_user(self, email, **extra_fields):
         if email is None:
             raise TypeError('Users should have an email')
@@ -24,6 +31,13 @@ class UserManager(BaseUserManager):
         user.save()
         return user
 class Laboratoire(models.Model):
+    """Modèle représentant un laboratoire de recherche.
+
+    Attributs :
+    - id_laboratoire : Identifiant unique du laboratoire (AutoField).
+    - nom : Nom du laboratoire (CharField).
+    - description : Description du laboratoire (TextField).
+    """
     id_laboratoire = models.AutoField(primary_key=True)
     nom = models.CharField(max_length=255)
     description = models.TextField()
@@ -33,6 +47,17 @@ class Laboratoire(models.Model):
     def __str__(self):
         return self.nom
 class Equipe_Recherche(models.Model):
+    """Modèle représentant une équipe de recherche.
+
+    Attributs :
+    - id_equipe_recherche : Identifiant unique de l'équipe (AutoField).
+    - nom : Nom de l'équipe (CharField).
+    - axe_recherche : Axe de recherche de l'équipe (TextField).
+    - problematique : Problématique de l'équipe (TextField).
+    - objectif : Objectif de l'équipe (TextField).
+    - laboratoire : Référence au laboratoire auquel l'équipe est associée (ForeignKey).
+    - theme : Thème de recherche de l'équipe (CharField).
+    """
     id_equipe_recherche = models.AutoField(primary_key=True)
     nom = models.CharField(max_length=255)
     axe_recherche=models.TextField(default='')
@@ -44,6 +69,16 @@ class Equipe_Recherche(models.Model):
         return self.nom
 
 class Club(models.Model):
+    """Modèle représentant un club.
+
+    Attributs :
+    - id_club : Identifiant unique du club (AutoField).
+    - nom : Nom du club (CharField).
+    - slogan : Slogan du club (CharField).
+    - description : Description du club (TextField).
+    - logo : Logo du club (ImageField).
+    - president : Nom du président du club (CharField).
+    """
     id_club = models.AutoField(primary_key=True)
     nom = models.CharField(max_length=255)
     slogan = models.CharField(max_length=255)
@@ -57,6 +92,16 @@ class Club(models.Model):
         return self.nom
 
 class event_inscription(models.Model):
+    """Modèle représentant une inscription à un événement.
+
+    Attributs :
+    - titre : Titre de l'événement (CharField).
+    - description : Description de l'événement (TextField).
+    - link : Lien vers plus d'informations sur l'événement (URLField).
+    - date_archivage : Date d'archivage de l'événement (DateTimeField).
+    - club : Référence au club organisateur de l'événement (ForeignKey).
+    - image : Image associée à l'événement (ImageField).
+    """
     titre = models.CharField(max_length=255)
     description = models.TextField()
     link = models.URLField(max_length=255)
@@ -72,6 +117,12 @@ class event_inscription(models.Model):
 # titre, contenu , id publication
 
 class Categorie(models.Model):
+    """Modèle représentant une catégorie.
+
+    Attributs :
+    - id_categorie : Identifiant unique de la catégorie (AutoField).
+    - nom : Nom de la catégorie (CharField).
+    """
     id_categorie = models.AutoField(primary_key=True)
     nom = models.CharField(max_length=255)
 
@@ -79,6 +130,28 @@ class Categorie(models.Model):
         return self.nom
 
 class Utilisateur(AbstractBaseUser, PermissionsMixin):
+    """Modèle représentant un utilisateur du système.
+
+    Attributs :
+    - email : L'email unique de l'utilisateur.
+    - family_name : Le nom de famille de l'utilisateur.
+    - first_name : Le prénom de l'utilisateur.
+    - type : Type d'utilisateur (ex. chercheur, éditeur).
+    - is_staff : Indique si l'utilisateur peut accéder à l'interface d'administration.
+    - is_superuser : Indique si l'utilisateur a tous les droits.
+    - is_active : Indique si le compte de l'utilisateur est actif.
+    - date_joined : Date à laquelle l'utilisateur a été créé.
+    - last_login : Date de la dernière connexion de l'utilisateur.
+    - is_chercheur : Indique si l'utilisateur est un chercheur.
+    - is_adminstrateur : Indique si l'utilisateur est un administrateur.
+    - is_editeur : Indique si l'utilisateur est un éditeur.
+    - is_responsable_fablab : Indique si l'utilisateur est responsable d'un fablab.
+    - is_directeur_relex : Indique si l'utilisateur est directeur Relex.
+    - equipeRecherche : Référence à l'équipe de recherche à laquelle l'utilisateur appartient.
+    - Categorie : Référence à la catégorie de l'utilisateur.
+    - is_club : Indique si l'utilisateur fait partie d'un club.
+    - club : Référence au club auquel l'utilisateur appartient.
+    """
     email = models.EmailField(max_length=254, default="", unique=True)
     family_name = models.CharField(max_length=254, null=True, blank=True)
     first_name = models.CharField(max_length=254, null=True, blank=True)
@@ -132,7 +205,7 @@ class Utilisateur(AbstractBaseUser, PermissionsMixin):
             super().save(*args, **kwargs)
     @staticmethod
     def validate_email(email):
-        # Check if email matches the pattern for esi.dz domain
+        """Valide l'email en vérifiant s'il correspond au domaine esi.dz."""
         if re.match(r'^[a-zA-Z0-9._%+-]+@esi\.dz$', email):
             return True
         else:
@@ -161,6 +234,16 @@ class Utilisateur(AbstractBaseUser, PermissionsMixin):
     
 
 class MembreClub(models.Model):
+    """Modèle représentant un membre d'un club.
+
+    Attributs :
+    - id_membre : Identifiant unique du membre (AutoField).
+    - nom : Nom du membre (CharField).
+    - prenom : Prénom du membre (CharField).
+    - post : Poste ou rôle du membre dans le club (TextField).
+    - club : Relation avec le modèle Club (ForeignKey). 
+             Chaque membre appartient à un club spécifique.
+    """
     id_membre=models.AutoField(primary_key=True)    
     nom = models.CharField(max_length=255)
     prenom= models.CharField(max_length=255)
@@ -330,6 +413,15 @@ class Module(models.Model):
 
 
 class Formation(models.Model):
+    """Modèle représentant une formation.
+
+    Attributs :
+    - titre : Le titre de la formation (CharField).
+    - Module : Liste des modules associés à la formation (ManyToManyField avec la relation Module).
+    - description : La description de la formation (TextField).
+    - date_debut : La date de début de la formation (DateField avec une valeur par défaut).
+    - date_fin : La date de fin de la formation (DateField avec une valeur par défaut).
+    """
     titre = models.CharField(max_length=255)
     Module=models.ManyToManyField(Module, related_name='modules')
     description = models.TextField()
@@ -340,6 +432,13 @@ class Formation(models.Model):
     
 
 class Chapitre(models.Model):
+    """Modèle représentant un chapitre.
+
+    Attributs :
+    - titre : Le titre du chapitre (CharField).
+    - contenu : Le contenu du chapitre (TextField).
+    - duree : La durée du chapitre en minutes (IntegerField).
+    """
     titre = models.CharField(max_length=255)
     contenu = models.TextField()
     duree=models.IntegerField()
@@ -349,6 +448,14 @@ class Chapitre(models.Model):
 
 
 class Cours(models.Model):
+    """Modèle représentant un cours.
+
+    Attributs :
+    - titre : Le titre du cours (CharField).
+    - description : La description du cours (TextField avec une valeur par défaut).
+    - competences : Les compétences associées au cours (ManyToManyField avec la relation Competence).
+    - chapitres : Les chapitres associés au cours (ManyToManyField avec la relation Chapitre).
+    """
     titre = models.CharField(max_length=255)
     description = models.TextField(default='Aucune description fournie')
     competences = models.ManyToManyField(Competence, related_name='competences_theme',blank=True)
@@ -367,6 +474,15 @@ class Theme_formation(models.Model):
         return self.titre
 
 class Demande_Devis(models.Model):
+    """Modèle représentant une demande de devis.
+
+    Attributs :
+    - organisme : Nom de l'organisme ou de l'entreprise qui fait la demande (CharField).
+    - email : Adresse email de contact pour la demande (EmailField).
+    - Numero_telephone : Numéro de téléphone de contact (IntegerField, facultatif).
+    - Formations : Liste des formations demandées dans le devis (ManyToManyField avec le modèle 'Theme_formation').
+    - Nombre_participants : Nombre de participants à la formation demandée (IntegerField, facultatif).
+    """
     organisme = models.CharField((""), max_length=50)
     email = models.EmailField()
     Numero_telephone=models.IntegerField(null=True, blank=True)
@@ -377,6 +493,12 @@ class Demande_Devis(models.Model):
         return self.organisme
 
 class Devis(models.Model):
+    """Modèle représentant un devis.
+
+    Attributs :
+    - montant : Le montant du devis (FloatField, facultatif).
+    - demande_devis : Référence à la demande de devis associée (ForeignKey vers Demande_Devis).
+    """
     montant = models.FloatField(null=True, blank=True) 
     demande_devis = models.ForeignKey(Demande_Devis, on_delete=models.SET_NULL, null=True, blank=True)
     
@@ -420,6 +542,19 @@ class Reponse(models.Model):
 
 
 class Annuaire(models.Model):
+    """
+    Modèle représentant une entrée dans l'annuaire.
+
+    Attributs :
+    - nom : Le nom de la personne (str).
+    - prenom : Le prénom de la personne (str).
+    - description : Une description de la personne (str).
+    - contact : Le numéro de contact de la personne (int, optionnel).
+    - email : L'adresse email de la personne (str).
+    - photo : Une photo de la personne (ImageField, optionnel).
+    - linkedin : L'URL du profil LinkedIn de la personne (str, optionnel).
+    - mot_cle : Des mots clés associés à la personne (str, optionnel).
+    """
     nom = models.CharField(max_length=255)
     prenom = models.CharField(max_length=255)  
     description = models.TextField()
@@ -433,10 +568,22 @@ class Annuaire(models.Model):
         return f"{self.nom} {self.prenom}"
 
 class Administration_Annuaire(Annuaire):
+    """
+    Modèle représentant une entrée dans l'annuaire pour l'administration.
+
+    Attributs :
+    - service : Le service de l'administration (str, optionnel).
+    """
     CATEGORY = 'admin'
     service = models.CharField(max_length=100, blank=True)
 
 class Enseignant_Annuaire(Annuaire):
+    """
+    Modèle représentant une entrée dans l'annuaire pour les enseignants.
+
+    Attributs :
+    - grade : Le grade de l'enseignant (str, avec des choix prédéfinis).
+    """
     CATEGORY = 'enseignant'
     GRADE_CHOICES = [
         ('professeur', 'Professeur'),
@@ -446,5 +593,11 @@ class Enseignant_Annuaire(Annuaire):
     grade = models.CharField(max_length=50, choices=GRADE_CHOICES, blank=True)
 
 class Alumnie_Annuaire(Annuaire):
+    """
+    Modèle représentant une entrée dans l'annuaire pour les anciens élèves.
+
+    Attributs :
+    - promotion : La promotion de l'alumni (str, optionnel).
+    """
     CATEGORY = 'alumnie'
     promotion = models.CharField(max_length=200, blank=True, null=True)

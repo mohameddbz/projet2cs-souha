@@ -65,9 +65,31 @@ def query_publications(request):
         return Response(serializer.data)
     else:
         return Response(serializer.errors, status=400)
+    
+    
 @api_view(['GET'])
 @user_types_required('superuser')
 def get_all_users(request):
+    """Vue pour récupérer tous les utilisateurs.
+
+    Cette vue permet aux super-utilisateurs de récupérer la liste de tous les utilisateurs dans le système.
+
+    Méthodes autorisées :
+    - GET : Récupère tous les utilisateurs.
+
+    Paramètres :
+    - request : Objet de requête contenant les informations de la requête HTTP.
+
+    Réponse :
+    - Si la requête est réussie, retourne une réponse contenant la liste des utilisateurs sérialisés sous forme de JSON avec un statut HTTP 200 OK.
+    - En cas d'erreur, retourne un statut HTTP approprié (non spécifié ici).
+     Autorisation :
+    - Accessible par superuser .
+    
+    tags:
+      - Utilisateurs
+
+    """
     if request.method == 'GET':
         queryset = Utilisateur.objects.all()
         serializer = UtilisateurSerializer(queryset, many=True)
@@ -76,6 +98,27 @@ def get_all_users(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_user_by_id(request, user_id):
+    """Vue pour récupérer un utilisateur par son identifiant.
+
+    Cette vue permet à quiconque de récupérer les informations d'un utilisateur spécifique en utilisant son identifiant unique.
+
+    Méthodes autorisées :
+    - GET : Récupère l'utilisateur correspondant à l'identifiant fourni.
+
+    Paramètres :
+    - request : Objet de requête contenant les informations de la requête HTTP.
+    - user_id : Identifiant unique de l'utilisateur à récupérer (doit être un entier).
+
+    Réponse :
+    - Si l'utilisateur est trouvé, retourne les données de l'utilisateur sérialisées sous forme de JSON avec un statut HTTP 200 OK.
+    - Si l'utilisateur n'est pas trouvé, retourne un message d'erreur avec un statut HTTP 404 Not Found.
+
+     Autorisation :
+    - Accessible par superuser.
+    
+    tags:
+      - Utilisateurs
+    """
     try:
         user = Utilisateur.objects.get(pk=user_id)
         serializer = UserSerializer(user)
@@ -87,6 +130,28 @@ def get_user_by_id(request, user_id):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def add_user(request):
+    """Vue pour ajouter un nouvel utilisateur.
+
+    Cette vue permet à quiconque d'ajouter un nouvel utilisateur dans le système en envoyant les données requises.
+
+    Méthodes autorisées :
+    - POST : Crée un nouvel utilisateur avec les données fournies dans la requête.
+
+    Paramètres :
+    - request : Objet de requête contenant les données à ajouter sous forme de JSON.
+
+    Corps de la requête (JSON) : les champs pertinents définis dans le modèle Utilisateur.
+
+    Réponse :
+    - Si l'utilisateur est ajouté avec succès, retourne les données de l'utilisateur nouvellement créé avec un statut HTTP 201 Created.
+    - Si les données ne sont pas valides, retourne une erreur avec les détails des erreurs de validation et un statut HTTP 400 Bad Request.
+     Autorisation :
+    - Accessible par administarateur.
+    
+    tags:
+      - Utilisateurs
+    
+    """
     if request.method == 'POST':
         data = request.data.copy()  # Create a copy of the request data
         data.pop('id', None)  # Remove 'id' field if present
@@ -119,6 +184,34 @@ def edit_publication(request, pk):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def login_user(request):
+    """Vue pour connecter un utilisateur.
+
+    Cette vue permet aux utilisateurs de se connecter en fournissant un email et un mot de passe. Si les informations d'identification sont valides, un jeton d'authentification est renvoyé.
+
+    Méthodes autorisées :
+    - POST : Authentifie un utilisateur avec les informations fournies dans la requête.
+
+    Paramètres :
+    - request : Objet de requête contenant les données d'authentification sous forme de JSON.
+
+    Corps de la requête (JSON) :
+    - email : L'email de l'utilisateur (obligatoire).
+    - password : Le mot de passe de l'utilisateur (obligatoire).
+
+    Réponse :
+    - Si l'authentification réussit, retourne un jeton d'authentification et des informations sur l'utilisateur avec un statut HTTP 200 OK.
+    - Si l'email est manquant, retourne une erreur avec un statut HTTP 400 Bad Request.
+    - Si le mot de passe est manquant, retourne une erreur avec un statut HTTP 400 Bad Request.
+    - Si l'email existe mais que le mot de passe est incorrect, retourne une erreur avec un statut HTTP 404 Not Found.
+    - Si l'email n'est pas trouvé dans la base de données, retourne une erreur avec un statut HTTP 404 Not Found.
+    
+     Autorisation :
+    - Accessible par tous les utilisateurs, y compris ceux qui ne sont pas authentifiés (AllowAny).
+    
+    tags:
+      - Utilisateurs
+
+    """
     if request.method == 'POST':
         email = request.data.get('email', None)
         password = request.data.get('password', None)
@@ -154,6 +247,33 @@ def login_user(request):
 @api_view(['PUT'])
 @user_types_required('adminstrateur')
 def edit_user(request, pk):
+    """Vue pour modifier les informations d'un utilisateur.
+
+    Cette vue permet à un administrateur de modifier les informations d'un utilisateur existant en fournissant un ID d'utilisateur (pk) et les nouvelles données.
+
+    Méthodes autorisées :
+    - PUT : Modifie les informations d'un utilisateur existant.
+
+    Paramètres :
+    - request : Objet de requête contenant les nouvelles données de l'utilisateur sous forme de JSON.
+    - pk : L'identifiant de l'utilisateur à modifier.
+
+    Corps de la requête (JSON) :
+    - Les champs à modifier de l'utilisateur (peuvent inclure des champs comme email, nom, etc.).
+
+    Réponse :
+    - Si l'utilisateur est trouvé et que la modification réussit, retourne les données mises à jour de l'utilisateur avec un statut HTTP 200 OK.
+    - Si l'utilisateur avec l'ID spécifié n'existe pas, retourne une erreur avec un statut HTTP 404 Not Found.
+    - Si les données fournies ne sont pas valides, retourne les erreurs de validation avec un statut HTTP 400 Bad Request.
+    
+    Autorisation :
+    - Accessible par tous les utilisateurs, y compris ceux qui ne sont pas authentifiés (AllowAny).
+    
+    tags:
+      - Utilisateurs
+
+    
+    """
     try:
         user = Utilisateur.objects.get(pk=pk)
     except Utilisateur.DoesNotExist:
@@ -171,6 +291,30 @@ def edit_user(request, pk):
 @api_view(['GET'])
 @user_types_required('adminstrateur')
 def search_user(request):
+    """Vue pour rechercher des utilisateurs en fonction des paramètres de requête.
+
+    Cette vue permet à un administrateur de rechercher des utilisateurs en fournissant des paramètres de requête. Les utilisateurs peuvent être filtrés par différents champs.
+
+    Méthodes autorisées :
+    - GET : Récupère les utilisateurs en fonction des filtres spécifiés.
+
+    Paramètres :
+    - request : Objet de requête contenant les paramètres de filtrage sous forme de query string.
+
+    Paramètres de requête (query string) :
+    - Divers champs (par exemple, email, nom) qui peuvent être utilisés pour filtrer les utilisateurs. .
+
+    Réponse :
+    - Retourne une liste d'utilisateurs correspondant aux critères de filtrage avec un statut HTTP 200 OK.
+    - Si aucun filtre n'est fourni, retourne tous les utilisateurs.
+    
+
+     Autorisation :
+    - Accessible par les administrateurs.
+    tags:
+      - Utilisateurs
+
+    """
     if request.method == 'GET':
         query_params = request.query_params
         filters = {}
@@ -199,6 +343,27 @@ def search_user(request):
 @api_view(['DELETE'])
 @user_types_required('adminstrateur')
 def delete_user(request, pk):
+    """Vue pour supprimer un utilisateur par son ID.
+
+    Cette vue permet à un administrateur de supprimer un utilisateur en fournissant l'ID de l'utilisateur.
+
+    Méthodes autorisées :
+    - DELETE : Supprime l'utilisateur spécifié.
+
+    Paramètres :
+    - request : Objet de requête pour la demande de suppression.
+    - pk : L'identifiant de l'utilisateur à supprimer.
+
+    Réponse :
+    - Si l'utilisateur est trouvé et supprimé, retourne un message de succès avec un statut HTTP 204 No Content.
+    - Si l'utilisateur avec l'ID spécifié n'existe pas, retourne une erreur avec un statut HTTP 404 Not Found.
+    
+    Autorisation :
+    - Accessible par les administrateurs.
+    
+    tags:
+      - Utilisateurs
+    """
     try:
         user = Utilisateur.objects.get(pk=pk)
     except Utilisateur.DoesNotExist:
@@ -345,6 +510,26 @@ def add_actualité(request):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def create_categorie(request):
+    """Créer une nouvelle catégorie.
+
+    Cette vue permet de créer une nouvelle catégorie en fournissant un nom de catégorie. 
+
+    Méthodes autorisées :
+    - POST : Crée une nouvelle catégorie avec les données fournies dans la requête.
+
+    Paramètres :
+    - request : Objet de requête contenant les données de la catégorie sous forme de JSON.
+
+    Corps de la requête (JSON) :
+    - nom : Le nom de la catégorie (obligatoire).
+
+    Réponse :
+    - Si la création est réussie, retourne les données de la catégorie créée avec un statut HTTP 201 Created.
+    - Si les données sont invalides, retourne les erreurs de validation avec un statut HTTP 400 Bad Request.
+
+    Tags :
+      - Catégories
+    """
     if request.method == 'POST':
         serializer = CategorieSerializer(data=request.data)
         if serializer.is_valid():
@@ -355,6 +540,23 @@ def create_categorie(request):
 
 @api_view(['DELETE'])
 def delete_categorie(request, categorie_id):
+    """Supprimer une catégorie par son ID.
+
+    Cette vue permet de supprimer une catégorie existante en fournissant son ID.
+
+    Méthodes autorisées :
+    - DELETE : Supprime la catégorie correspondante à l'ID fourni.
+
+    Paramètres :
+    - categorie_id : L'ID de la catégorie à supprimer (obligatoire).
+
+    Réponse :
+    - Si la catégorie est trouvée et supprimée, retourne un message de succès avec un statut HTTP 204 No Content.
+    - Si la catégorie n'est pas trouvée, retourne une erreur avec un statut HTTP 404 Not Found.
+
+    Tags :
+      - Catégories
+    """
     try:
         categorie = Categorie.objects.get(pk=categorie_id)
     except Categorie.DoesNotExist:
@@ -463,25 +665,48 @@ def delete_publication(request, pk):
         return Response("Publication deleted successfully", status=status.HTTP_204_NO_CONTENT)    
 
 
-#club
 # Get all members of a club
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_club_members(request, club_id):
+    """
+    Retrieve the list of members for a specific club.
+
+    Parameters:
+    - request: The HTTP request object containing the details of the request.
+    - club_id: The unique identifier of the club for which to obtain the members.
+
+    Returns:
+    - A JSON response containing the data of the club members if the club is found.
+    - A 404 Not Found response if the club does not exist.
+    """
     if request.method == 'GET':
         try:
             club = Club.objects.get(id_club=club_id)
         except Club.DoesNotExist:
             return Response("Club not found", status=status.HTTP_404_NOT_FOUND)
-       
+
         members = club.membres.all()
         serializer = MembreSerializer(members, many=True)
         return Response(serializer.data)
+
 
 # Add a member to a club
 @api_view(['POST'])
 @user_types_required('editeur')
 def add_club_member(request, club_id):
+    """
+    Add a new member to a specific club.
+
+    Parameters:
+    - request: The HTTP request object containing the details of the member to be added.
+    - club_id: The unique identifier of the club to which the member is being added.
+
+    Returns:
+    - A 201 Created response with the member data if the member is successfully added.
+    - A 404 Not Found response if the club does not exist.
+    - A 400 Bad Request response if the input data is invalid.
+    """
     if request.method == 'POST':
         try:
             club = Club.objects.get(id_club=club_id)
@@ -494,9 +719,26 @@ def add_club_member(request, club_id):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+
+
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def list_events_by_club(request, club_id):
+    """
+    Récupérer la liste des événements à venir pour un club spécifique.
+
+    Paramètres :
+    - request : L'objet de la requête HTTP contenant les détails de la demande.
+    - club_id : L'identifiant unique du club pour lequel on souhaite obtenir les événements.
+
+    Retourne :
+    - Une réponse contenant les données des événements à venir en format JSON.
+    - Les événements retournés seront ceux dont la date d'archivage est supérieure à la date actuelle.
+
+    Autorisation :
+    - Accessible par tous les utilisateurs, y compris ceux qui ne sont pas authentifiés (AllowAny).
+    """
     current_date = timezone.now()
     events = event_inscription.objects.filter(club_id=club_id, date_archivage__gt=current_date)
     serializer = EventInscriptionSerializer(events, many=True)
@@ -505,6 +747,20 @@ def list_events_by_club(request, club_id):
 @api_view(['POST'])
 @user_types_required('editeur')
 def create_event_inscription(request):
+    """Crée une nouvelle inscription à un événement.
+
+    Cette vue permet à un utilisateur ayant le rôle 'editeur' de créer 
+    une nouvelle inscription à un événement en fournissant les détails 
+    nécessaires dans le corps de la requête.
+
+    Retourne :
+    - Response :
+        - 201 Created : Détails de l'inscription créée.
+        - 400 Bad Request : Si les données fournies sont invalides.
+    
+     Autorisation :
+    - Accessible par les editeurs.
+    """
     serializer = EventInscriptionSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -550,6 +806,22 @@ def list_sections_by_publication(request, publication_id):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_all_clubs(request):
+    """Récupère tous les clubs.
+
+    Cette fonction traite une requête HTTP GET pour récupérer toutes les entrées
+    de clubs dans la base de données. Elle renvoie une liste de tous les clubs
+    sérialisés.
+
+    Paramètres :
+    - request : L'objet de la requête HTTP contenant les informations de la requête.
+
+    Retourne :
+    - Response : Une réponse contenant une liste de clubs sérialisés. 
+      En cas de succès, les données des clubs sont renvoyées avec un code d'état HTTP 200.
+    
+     Autorisation :
+    - Accessible par tous les utilisateurs, y compris ceux qui ne sont pas authentifiés (AllowAny).
+    """
     if request.method == 'GET':
         clubs = Club.objects.all()
         serializer = ClubSerializer(clubs, many=True)
@@ -559,6 +831,24 @@ def get_all_clubs(request):
 @api_view(['POST'])
 @user_types_required('adminstrateur')
 def create_club(request):
+    """Crée un nouveau club.
+
+    Cette fonction traite une requête HTTP POST pour créer un nouveau club dans 
+    la base de données. Elle attend que les données du club soient fournies dans 
+    le corps de la requête et les valide à l'aide du sérialiseur.
+
+    Paramètres :
+    - request : L'objet de la requête HTTP contenant les données du club à créer.
+
+    Retourne :
+    - Response : Une réponse contenant les données du club créé en cas de succès 
+      avec un code d'état HTTP 201. 
+      En cas d'erreur de validation, elle renvoie les erreurs avec un code d'état 
+      HTTP 400.
+    
+    Autorisation :
+    - Accessible par  les adminstrateur .
+    """
     if request.method == 'POST':
         serializer = ClubSerializer(data=request.data)
         if serializer.is_valid():
@@ -571,6 +861,24 @@ def create_club(request):
 @api_view(['PUT'])
 @user_types_required('editeur')
 def update_club(request, club_id):
+    """Met à jour un club existant.
+
+    Cette fonction traite une requête HTTP PUT pour mettre à jour les informations 
+    d'un club dans la base de données. Elle attend que les nouvelles données du 
+    club soient fournies dans le corps de la requête.
+
+    Paramètres :
+    - request : L'objet de la requête HTTP contenant les données du club à mettre à jour.
+    - club_id : L'identifiant unique du club à mettre à jour.
+
+    Retourne :
+    - Response : Une réponse contenant les données du club mis à jour en cas de succès 
+      avec un code d'état HTTP 200. 
+      En cas d'erreur de validation, elle renvoie les erreurs avec un code d'état 
+      HTTP 400.
+     Autorisation :
+    - Accessible par  les editeurs.
+    """
     club = get_object_or_404(Club, id_club=club_id)
     if request.method == 'PUT':
         serializer = ClubSerializer(club, data=request.data)
@@ -583,6 +891,21 @@ def update_club(request, club_id):
 @api_view(['DELETE'])
 @user_types_required('adminstrateur')
 def delete_club(request, club_id):
+    """Supprime un club existant.
+
+    Cette fonction traite une requête HTTP DELETE pour supprimer un club de la base de données.
+
+    Paramètres :
+    - request : L'objet de la requête HTTP.
+    - club_id : L'identifiant unique du club à supprimer.
+
+    Retourne :
+    - Response : Une réponse confirmant la suppression du club avec un code d'état 
+      HTTP 204.
+    
+     Autorisation :
+    - Accessible par les adminstrateur.
+    """
     club = get_object_or_404(Club, id_club=club_id)
     if request.method == 'DELETE':
         club.delete()
@@ -591,6 +914,19 @@ def delete_club(request, club_id):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_club_evenement_publications(request, club_id):
+    """Récupère toutes les publications d'un club.
+
+    Cette fonction traite une requête HTTP GET pour récupérer les publications 
+    associées à un club spécifique.
+
+    Paramètres :
+    - request : L'objet de la requête HTTP.
+    - club_id : L'identifiant unique du club dont on veut récupérer les publications.
+
+    Retourne :
+    - Response : Une réponse contenant les publications du club avec un code d'état 
+      HTTP 200.
+    """
     club = get_object_or_404(Club, id_club=club_id)
     if request.method == 'GET':
         publications = club.publications.all()
@@ -601,6 +937,25 @@ def get_club_evenement_publications(request, club_id):
 @api_view(['POST'])
 @user_types_required('editeur')
 def add_evenement_publication_to_club(request, club_id):
+    """Ajoute une publication de type 'evenement' à un club existant.
+
+    Cette fonction traite une requête HTTP POST pour ajouter une nouvelle publication
+    de type 'evenement' à un club spécifique. Elle s'assure que la publication est 
+    correctement associée au club et que le type de publication est valide.
+
+    Paramètres :
+    - request : L'objet de la requête HTTP contenant les données de la publication à ajouter.
+    - club_id : L'identifiant unique du club auquel la publication sera ajoutée.
+
+    Retourne :
+    - Response : 
+      - Si la publication est ajoutée avec succès, renvoie les données de la publication 
+        créée avec un code d'état HTTP 201.
+      - Si le type de publication n'est pas 'evenement', renvoie un message d'erreur 
+        avec un code d'état HTTP 400.
+      - Si les données de la publication sont invalides, renvoie les erreurs de validation 
+        avec un code d'état HTTP 400.
+    """
     club = get_object_or_404(Club, id_club=club_id)
     if request.method == 'POST':
         data = request.data.copy()
@@ -617,6 +972,23 @@ def add_evenement_publication_to_club(request, club_id):
 @api_view(['PUT'])
 @user_types_required('editeur')
 def update_member(request, member_id):
+    """Met à jour les informations d'un membre du club.
+
+    Cette vue permet aux utilisateurs ayant le type 'editeur' de mettre à jour
+    les détails d'un membre spécifique en utilisant son identifiant unique.
+
+    Paramètres :
+    - request : L'objet de requête contenant les nouvelles données du membre.
+    - member_id : L'identifiant unique du membre à mettre à jour.
+
+    Retourne :
+    - Response : 
+        - 200 OK : Si la mise à jour a réussi, avec les données du membre mises à jour.
+        - 400 Bad Request : Si les données fournies ne sont pas valides.
+        
+     Autorisation :
+    - Accessible par  les editeurs.
+    """
     member = get_object_or_404(MembreClub, id_membre=member_id)
     if request.method == 'PUT':
         serializer = MembreSerializer(member, data=request.data)
@@ -629,6 +1001,21 @@ def update_member(request, member_id):
 @api_view(['DELETE'])
 @user_types_required('adminstrateur')
 def delete_member(request, member_id):
+    """Supprime un membre du club.
+
+    Cette vue permet aux utilisateurs ayant le type 'adminstrateur' de supprimer
+    un membre spécifique en utilisant son identifiant unique.
+
+    Paramètres :
+    - request : L'objet de requête.
+    - member_id : L'identifiant unique du membre à supprimer.
+
+    Retourne :
+    - Response : 
+        - 204  : Si la suppression a réussi.
+         Autorisation :
+    - Accessible par tous les adminstrateurs .
+    """
     member = get_object_or_404(MembreClub, id_membre=member_id)
     if request.method == 'DELETE':
         member.delete()
@@ -638,6 +1025,22 @@ def delete_member(request, member_id):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_members_by_name(request, club_id, name):
+    """Récupère les membres d'un club par leur nom.
+
+    Cette vue permet à quiconque d'obtenir une liste de membres d'un club
+    dont le nom contient une chaîne spécifique.
+
+    Paramètres :
+    - request : L'objet de requête.
+    - club_id : L'identifiant unique du club dont on souhaite récupérer les membres.
+    - name : La chaîne à rechercher dans les noms des membres.
+
+    Retourne :
+    - Response : 
+        - 200 OK : Une liste de membres correspondant à la recherche.
+     Autorisation :
+    - Accessible par tous les utilisateurs, y compris ceux qui ne sont pas authentifiés (AllowAny).
+    """
     if request.method == 'GET':
         club = get_object_or_404(Club, id_club=club_id)
         members = club.membres.filter(nom__icontains=name)
@@ -648,6 +1051,19 @@ def get_members_by_name(request, club_id, name):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_clubs_by_name(request, name):
+    """Récupère les clubs par leur nom.
+
+    Cette vue permet à quiconque d'obtenir une liste de clubs
+    dont le nom contient une chaîne spécifique.
+
+    Paramètres :
+    - request : L'objet de requête.
+    - name : La chaîne à rechercher dans les noms des clubs.
+
+    Retourne :
+    - Response : 
+        - 200 OK : Une liste de clubs correspondant à la recherche.
+    """
     if request.method == 'GET':
         clubs = Club.objects.filter(nom__icontains=name)
         serializer = ClubSerializer(clubs, many=True)
@@ -778,6 +1194,17 @@ def add_devis(request):
 @api_view(['POST'])
 @user_types_required('directeur_relex')
 def valider_devis(request):
+    """
+    Valide un devis en changeant son état à "Validé".
+
+    Requête POST :
+    - Paramètre `devis_id` : L'identifiant unique du devis à valider.
+
+    Réponses :
+    - 200 : Succès, le devis a été validé.
+    - 400 : Le paramètre `devis_id` est manquant.
+    - 404 : Le devis n'existe pas.
+    """
     devis_id = request.query_params.get('devis_id')
     if devis_id is None:
         return Response("ID du devis manquant", status=status.HTTP_400_BAD_REQUEST)
@@ -795,6 +1222,20 @@ def valider_devis(request):
 @api_view(['GET'])
 @user_types_required('directeur_relex')
 def get_all_devis(request):
+    """
+    Récupère tous les devis.
+
+    Requête GET :
+    - Cette vue permet aux utilisateurs de type 'directeur_relex' de récupérer la liste complète des devis enregistrés.
+
+    Réponses :
+    - 200 : Succès, retourne la liste des devis sous forme de données sérialisées.
+    
+    Fonctionnement :
+    - Vérifie que l'utilisateur a les permissions requises (directeur_relex).
+    - Récupère tous les devis dans la base de données via une requête à l'objet `Devis`.
+    - Sérialise les données récupérées et les renvoie en réponse sous forme de liste JSON.
+    """
     if request.method == 'GET':
         queryset = Devis.objects.all()
         serializer = DevisSerializer(queryset, many=True)
@@ -822,6 +1263,20 @@ def partenaire_labo_list(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def laboratoire_list(request):
+    """Récupère la liste de tous les laboratoires.
+
+    Cette vue permet à quiconque d'obtenir une liste de tous les laboratoires de recherche.
+
+    Paramètres :
+    - request : L'objet de requête.
+
+    Retourne :
+    - Response : 
+        - 200 OK : Une liste de laboratoires avec leurs attributs.
+    
+    Autorisation :
+    - Accessible par tous les utilisateurs, y compris ceux qui ne sont pas authentifiés (AllowAny).
+    """
     if request.method == 'GET':
         queryset = Laboratoire.objects.all()
         serializer = LaboratoireSerializer(queryset, many=True)
@@ -831,6 +1286,18 @@ def laboratoire_list(request):
 @api_view([ 'POST'])
 @permission_classes([AllowAny])
 def add_laboratoire(request):
+    """Ajoute un nouveau laboratoire.
+
+    Cette vue permet à quiconque de créer un laboratoire de recherche en fournissant les données nécessaires.
+
+    Paramètres :
+    - request : L'objet de requête contenant les données du laboratoire.
+
+    Retourne :
+    - Response : 
+        - 201 Created : Les données du laboratoire créé.
+        - 400 Bad Request : Erreurs de validation des données fournies.
+    """
    
     if request.method == 'POST':
         serializer = LaboratoireSerializer(data=request.data)
@@ -843,7 +1310,25 @@ def add_laboratoire(request):
 @api_view(['POST'])
 @user_types_required('adminstrateur')
 def add_chercheur(request):
-   
+    """Vue pour ajouter un nouvel utilisateur de type chercheur.
+
+    Cette vue permet à un administrateur d'ajouter un nouvel utilisateur qui sera un chercheur dans le système.
+
+    Méthodes autorisées :
+    - POST : Crée un nouvel utilisateur en utilisant les données fournies.
+
+    Paramètres :
+    - request : Objet de requête contenant les données de l'utilisateur à ajouter.
+
+    Corps de la requête (request body) :
+    - Les données de l'utilisateur doivent être fournies sous forme d'objet JSON. Cela inclut les champs nécessaires pour créer un nouvel utilisateur :
+
+    Réponse :
+    - Si les données sont valides et l'utilisateur est créé avec succès, retourne les données de l'utilisateur nouvellement créé avec un statut HTTP 201 Created.
+    - Si les données fournies ne sont pas valides, retourne les erreurs de validation avec un statut HTTP 400 Bad Request.
+    Autorisation :
+    - Accessible par les administrateurs.
+   """
     if request.method == 'POST':
         serializer = UtilisateurSerializer(data=request.data)
         if serializer.is_valid():
@@ -856,6 +1341,23 @@ def add_chercheur(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def chercheur_list(request):
+    """Vue pour récupérer la liste des utilisateurs de type chercheur.
+
+    Cette vue permet de récupérer tous les utilisateurs qui sont marqués comme chercheurs dans le système.
+
+    Méthodes autorisées :
+    - GET : Récupère la liste des chercheurs.
+
+    Paramètres :
+    - request : Objet de requête contenant les informations de la demande.
+
+    Réponse :
+    - Retourne une liste d'utilisateurs qui sont des chercheurs avec un statut HTTP 200 OK.
+    - Si aucun chercheur n'est trouvé, retourne une liste vide.
+    
+    Autorisation :
+    - Accessible par les administrateurs.
+    """
     if request.method == 'GET':
         queryset = Utilisateur.objects.filter(is_chercheur=True)
         serializer = UtilisateurSerializer(queryset, many=True)
@@ -926,6 +1428,17 @@ def add_equipe_recherche(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def equipe_members(request, equipe_id):
+    """
+    Récupérer les membres d'une équipe de recherche spécifiée.
+
+    Paramètres :
+    - request : L'objet de la requête HTTP.
+    - equipe_id : L'identifiant de l'équipe de recherche.
+
+    Retourne :
+    - Une réponse contenant la liste des utilisateurs et leurs informations de contact,
+      ou une réponse vide si aucun membre n'est trouvé.
+    """
     # Fetch users in the specified research team
     users = Utilisateur.objects.filter(equipeRecherche_id=equipe_id)
    
@@ -951,6 +1464,17 @@ def equipe_members(request, equipe_id):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_enseignant_annuaire(request, nom, prenom):
+    """
+    Récupérer les informations d'un enseignant dans l'annuaire.
+
+    Paramètres :
+    - request : L'objet de la requête HTTP.
+    - nom : Le nom de l'enseignant.
+    - prenom : Le prénom de l'enseignant.
+
+    Retourne :
+    - Les données de l'enseignant si trouvé, sinon une erreur 404.
+    """
     enseignant = get_object_or_404(Enseignant_Annuaire, nom=nom, prenom=prenom)
     serializer = EnseignantAnnuaireSerializer(enseignant)
     return Response(serializer.data)
@@ -967,6 +1491,21 @@ def equipe_recherche_list(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_equipes_par_laboratoire(request, laboratoire_nom):
+    """Récupère toutes les équipes de recherche associées à un laboratoire donné.
+
+    Cette vue permet de récupérer les équipes de recherche en fonction du nom du laboratoire spécifié.
+
+    Paramètres :
+    - laboratoire_nom : Le nom du laboratoire pour lequel les équipes doivent être récupérées.
+
+    Retourne :
+    - Response : 
+        - 200 OK : Une liste d'équipes de recherche associées au laboratoire.
+        - 404 Not Found : Si le laboratoire avec le nom spécifié n'existe pas.
+    
+    Autorisation :
+    - Accessible par tous les utilisateurs, y compris ceux qui ne sont pas authentifiés (AllowAny).
+    """
     try:
         laboratoire = Laboratoire.objects.get(nom__iexact=laboratoire_nom)
         equipes = Equipe_Recherche.objects.filter(laboratoire=laboratoire)
@@ -998,6 +1537,27 @@ def projet_list(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def projets_par_laboratoire(request, nom_laboratoire):
+    """Récupère les projets associés à un laboratoire donné avec des options de filtrage.
+
+    Cette vue permet de récupérer les projets basés sur le laboratoire spécifié et de filtrer 
+    par type de projet, thème ou année.
+
+    Paramètres :
+    - nom_laboratoire : Le nom du laboratoire pour lequel les projets doivent être récupérés.
+
+    Filtrage (paramètres optionnels) :
+    - type : Filtre les projets par type.
+    - theme : Filtre les projets par thème.
+    - annee : Filtre les projets par année.
+
+    Retourne :
+    - Response :
+        - 200 OK : Une liste de projets associés au laboratoire, filtrée selon les critères fournis.
+        - 404 Not Found : Si le laboratoire avec le nom spécifié n'existe pas.
+    
+    Autorisation :
+    - Accessible par tous les utilisateurs, y compris ceux qui ne sont pas authentifiés (AllowAny).
+    """
     laboratoire = get_object_or_404(Laboratoire, nom=nom_laboratoire)
     type_projet = request.GET.get('type', None)
     theme = request.GET.get('theme', None)
@@ -1165,6 +1725,38 @@ def GetValideQuestions(request):
 @api_view(['POST'])
 @user_types_required('adminstrateur','chercheur')
 def add_annuaire(request):
+    """
+    Ajouter une nouvelle entrée dans l'annuaire.
+
+    Cette fonction traite les requêtes POST pour ajouter une entrée dans 
+    l'annuaire en fonction de la catégorie spécifiée. Elle prend en charge 
+    plusieurs types d'entrées : administrateurs, enseignants et anciens élèves.
+
+    Paramètres :
+    - request : 
+        - `data` (dict) : Un dictionnaire contenant les données de l'annuaire, 
+          incluant les champs requis selon la catégorie sélectionnée. 
+          Les champs suivants sont attendus :
+            - category (str) : La catégorie de l'entrée ('admin', 'enseignant', 'alumnie').
+            - nom (str) : Le nom de la personne.
+            - prenom (str) : Le prénom de la personne.
+            - description (str) : Une description de la personne.
+            - contact (str, optionnel) : Le numéro de contact de la personne.
+            - email (str) : L'adresse email de la personne.
+            - photo (file, optionnel) : Une photo de la personne.
+            - linkedin (str, optionnel) : L'URL du profil LinkedIn de la personne.
+            - mot_cle (str, optionnel) : Des mots clés associés à la personne.
+            - service (str, optionnel) : Le service de l'administration (pour les admins).
+            - grade (str, optionnel) : Le grade de l'enseignant (pour les enseignants).
+            - promotion (str, optionnel) : La promotion de l'alumni (pour les anciens élèves).
+
+    Retourne :
+    - Response : 
+        - En cas de succès : Les données de l'entrée créée (dict) et un code de statut 201 (Created).
+        - En cas d'erreur de validation : Les erreurs de validation (dict) et un code de statut 400 (Bad Request).
+        - En cas de catégorie invalide : Un message d'erreur et un code de statut 400 (Bad Request).
+        - En cas de méthode de requête invalide : Un message d'erreur et un code de statut 405 (Method Not Allowed).
+    """
     if request.method == 'POST':
         category = request.data.get('category')
         if category == 'admin':
@@ -1186,6 +1778,18 @@ def add_annuaire(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_all_annuaire(request):
+    """
+    Récupérer toutes les entrées de l'annuaire.
+
+    Cette fonction renvoie toutes les entrées de l'annuaire sous forme de liste.
+
+    Paramètres :
+    - request : L'objet de la requête HTTP.
+
+    Retourne :
+    - Response : Une liste de toutes les entrées de l'annuaire (list), 
+      ou une liste vide si aucune entrée n'est trouvée.
+    """
     annuaires = Annuaire.objects.all()
     serializer = AnnuaireSerializer(annuaires, many=True)
     return Response(serializer.data)
@@ -1193,6 +1797,19 @@ def get_all_annuaire(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_Annuaire(request, pk):
+    """
+    Récupérer une entrée spécifique de l'annuaire.
+
+    Cette fonction renvoie une entrée de l'annuaire basée sur l'identifiant (pk) fourni.
+
+    Paramètres :
+    - request : L'objet de la requête HTTP.
+    - pk (int) : L'identifiant de l'entrée à récupérer.
+
+    Retourne :
+    - Response : Les données de l'entrée (dict) si trouvée,
+      ou un message d'erreur et un code de statut 404 si l'entrée n'existe pas.
+    """
     try:
         entry = Annuaire.objects.get(pk=pk)
         serializer = AnnuaireSerializer(entry)
@@ -1207,6 +1824,21 @@ def get_Annuaire(request, pk):
 @api_view(['PUT'])
 @user_types_required('adminstrateur','chercheur')
 def edit_Annuaire(request, pk):
+    """
+    Modifier une entrée existante dans l'annuaire.
+
+    Cette fonction permet de mettre à jour les données d'une entrée de l'annuaire 
+    spécifiée par l'identifiant (pk).
+
+    Paramètres :
+    - request : L'objet de la requête HTTP contenant les nouvelles données.
+    - pk (int) : L'identifiant de l'entrée à modifier.
+
+    Retourne :
+    - Response : Les données mises à jour de l'entrée (dict) si la mise à jour est réussie,
+      ou les erreurs de validation et un code de statut 400 si la mise à jour échoue,
+      ou un message d'erreur et un code de statut 404 si l'entrée n'existe pas.
+    """
     try:
         entry = Annuaire.objects.get(pk=pk)
         if request.method == 'PUT':
@@ -1222,6 +1854,22 @@ def edit_Annuaire(request, pk):
 @api_view(['DELETE'])
 @user_types_required('adminstrateur','chercheur')
 def delete_Annuaire(request, pk):
+    """
+    Supprimer une entrée de l'annuaire.
+
+    Cette fonction permet de supprimer une entrée de l'annuaire spécifiée 
+    par l'identifiant (pk).
+
+    Paramètres :
+    - request : L'objet de la requête HTTP.
+    - pk (int) : L'identifiant de l'entrée à supprimer.
+
+    Retourne :
+    - Response : Un message de confirmation de suppression et un code de statut 204 
+      si la suppression réussit,
+      ou un message d'erreur et un code de statut 404 si l'entrée n'existe pas.
+    """
+
     try:
         entry = Annuaire.objects.get(pk=pk)
         if request.method == 'DELETE':
@@ -1233,6 +1881,21 @@ def delete_Annuaire(request, pk):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def filter_enseignant_by_grade_and_mot_cle(request):
+    """
+    Filtrer les enseignants par grade et mots-clés.
+
+    Cette fonction renvoie une liste d'enseignants qui correspondent aux critères de filtrage 
+    basés sur le grade et les mots-clés fournis.
+
+    Paramètres :
+    - request : L'objet de la requête HTTP contenant les paramètres de filtrage.
+      - grade (str) : Le grade de l'enseignant à filtrer.
+      - mot_cle (str) : Mots-clés à rechercher dans le champ 'mot_cle'.
+
+    Retourne :
+    - Response : Une liste d'enseignants correspondant aux critères de filtrage (list),
+      ou une liste vide si aucune correspondance n'est trouvée.
+    """
     grade = request.query_params.get('grade')
     mot_cle = request.query_params.get('mot_cle')
     if grade and mot_cle:
@@ -1250,6 +1913,21 @@ def filter_enseignant_by_grade_and_mot_cle(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def filter_administration_by_mot_cle_and_service(request):
+    """
+    Filtrer les entrées d'administration par mots-clés et service.
+
+    Cette fonction renvoie une liste d'entrées d'administration qui correspondent aux 
+    critères de filtrage basés sur le service et les mots-clés fournis.
+
+    Paramètres :
+    - request : L'objet de la requête HTTP contenant les paramètres de filtrage.
+      - service (str) : Le service de l'administration à filtrer.
+      - mot_cle (str) : Mots-clés à rechercher dans le champ 'mot_cle'.
+
+    Retourne :
+    - Response : Une liste d'entrées d'administration correspondant aux critères de filtrage (list),
+      ou une liste vide si aucune correspondance n'est trouvée.
+    """
     service= request.query_params.get('service')
     mot_cle = request.query_params.get('mot_cle')
     if service and mot_cle:
@@ -1268,6 +1946,21 @@ def filter_administration_by_mot_cle_and_service(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def filter_alumnie_by_promotion(request):
+    """
+    Filtrer les anciens élèves par promotion.
+
+    Cette fonction renvoie une liste d'anciens élèves qui correspondent aux critères de filtrage 
+    basés sur la promotion et les mots-clés fournis.
+
+    Paramètres :
+    - request : L'objet de la requête HTTP contenant les paramètres de filtrage.
+      - promotion (str) : La promotion de l'alumni à filtrer.
+      - mot_cle (str) : Mots-clés à rechercher dans le champ 'mot_cle'.
+
+    Retourne :
+    - Response : Une liste d'anciens élèves correspondant aux critères de filtrage (list),
+      ou une liste vide si aucune correspondance n'est trouvée.
+    """
     promotion= request.query_params.get('promotion')
     mot_cle = request.query_params.get('mot_cle')
     if promotion and mot_cle:
@@ -1286,6 +1979,17 @@ def filter_alumnie_by_promotion(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_all_grades(request):
+    """
+    Récupérer tous les grades disponibles pour les enseignants.
+
+    Cette fonction renvoie une liste des grades prédéfinis pour les enseignants.
+
+    Paramètres :
+    - request : L'objet de la requête HTTP.
+
+    Retourne :
+    - Response : Une liste des grades (list) disponibles pour les enseignants.
+    """
     grades_set = set(choice[1] for choice in Enseignant_Annuaire.GRADE_CHOICES)
     grades_list = list(grades_set)
     return Response({'grades': grades_list})
@@ -1294,12 +1998,34 @@ def get_all_grades(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_all_promotions(request):
+    """
+    Récupérer toutes les promotions d'anciens élèves disponibles.
+
+    Cette fonction renvoie une liste des promotions distinctes pour les anciens élèves.
+
+    Paramètres :
+    - request : L'objet de la requête HTTP.
+
+    Retourne :
+    - Response : Une liste des promotions (list) distinctes pour les anciens élèves.
+    """
     promotions = Alumnie_Annuaire.objects.values_list('promotion', flat=True).distinct()
     return Response({'promotions': promotions})
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_all_services(request):
+    """
+    Récupérer tous les services d'administration disponibles.
+
+    Cette fonction renvoie une liste des services distincts pour l'administration.
+
+    Paramètres :
+    - request : L'objet de la requête HTTP.
+
+    Retourne :
+    - Response : Une liste des services (list) distincts pour l'administration.
+    """
     services = Administration_Annuaire.objects.values_list('service', flat=True).distinct()
     return Response({'services': services})
 
@@ -1456,6 +2182,20 @@ def get_responses_by_question(request, question_id):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_all_categories(request):
+    """Récupérer toutes les catégories.
+
+    Cette vue permet de récupérer la liste de toutes les catégories existantes.
+
+    Méthodes autorisées :
+    - GET : Renvoie la liste de toutes les catégories.
+
+    Réponse :
+    - Retourne un tableau d'objets catégorie, chaque objet contenant les détails de la catégorie (id et nom), avec un statut HTTP 200 OK.
+    - Si aucune catégorie n'est trouvée, retourne un tableau vide.
+
+    Tags :
+      - Catégories
+    """
     categories = Categorie.objects.all()
     serializer = CategorieSerializer(categories, many=True)
     return Response(serializer.data)    
@@ -1474,6 +2214,31 @@ def add_formation(request):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def add_module(request):
+    """Ajouter un nouveau module.
+
+    Cette vue permet aux utilisateurs d'ajouter un nouveau module en fournissant un titre, une description, des compétences, 
+    un volume horaire et un formateur.
+
+    Méthodes autorisées :
+    - POST : Crée un nouveau module avec les données fournies dans la requête.
+
+    Paramètres :
+    - request : Objet de requête contenant les données du module sous forme de JSON.
+
+    Corps de la requête (JSON) :
+    - titre : Le titre du module (obligatoire).
+    - description : La description du module (facultatif).
+    - competences : Liste des ID des compétences liées (facultatif).
+    - volume_horaire : Le volume horaire du module (obligatoire).
+    - formateur : ID du formateur (facultatif).
+
+    Réponse :
+    - Si l'ajout du module réussit, retourne les données du module créé avec un statut HTTP 201 Created.
+    - Si des erreurs de validation se produisent, retourne les erreurs avec un statut HTTP 400 Bad Request.
+
+    Tags :
+      - Modules
+    """
     if request.method == 'POST':
         serializer = ModuleidSerializer(data=request.data)
         if serializer.is_valid():
@@ -1484,6 +2249,23 @@ def add_module(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_module_by_id(request, id):
+    """Obtenir les détails d'un module par son ID.
+
+    Cette vue permet de récupérer les informations d'un module spécifique en fournissant son ID.
+
+    Méthodes autorisées :
+    - GET : Récupère les données d'un module en fonction de son ID.
+
+    Paramètres :
+    - id : L'ID du module (obligatoire).
+
+    Réponse :
+    - Si le module est trouvé, retourne les données du module avec un statut HTTP 200 OK.
+    - Si le module n'est pas trouvé, retourne une erreur avec un statut HTTP 404 Not Found.
+
+    Tags :
+      - Modules
+    """
     try:
         module = Module.objects.get(pk=id)
         serializer = ModuleSerializer(module)
@@ -1494,6 +2276,20 @@ def get_module_by_id(request, id):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_formations(request):
+    
+    """Obtenir la liste des formations.
+
+    Cette vue permet de récupérer toutes les formations disponibles.
+
+    Méthodes autorisées :
+    - GET : Récupère la liste de toutes les formations.
+
+    Réponse :
+    - Retourne la liste des formations avec un statut HTTP 200 OK.
+
+    Tags :
+      - Formations
+    """
     formations = Formation.objects.all()
     serializer = FormationidSerializer(formations, many=True)
     return Response(serializer.data)  
@@ -1502,6 +2298,19 @@ def get_formations(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_module(request):
+    """Obtenir la liste de tous les modules.
+
+    Cette vue permet de récupérer tous les modules disponibles.
+
+    Méthodes autorisées :
+    - GET : Récupère la liste de tous les modules.
+
+    Réponse :
+    - Retourne la liste des modules avec un statut HTTP 200 OK.
+
+    Tags :
+      - Modules
+    """
     modules = Module.objects.all()
     serializer = ModuleSerializer(modules, many=True)
     return Response(serializer.data)
@@ -1510,6 +2319,15 @@ def get_module(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_competances(request):
+    """
+    Récupérer la liste de toutes les compétences.
+
+    Requête GET :
+    - Récupère toutes les compétences disponibles dans la base de données.
+
+    Réponse :
+    - 200 : Liste de toutes les compétences avec leurs détails.
+    """
     competances = Competence.objects.all()
     serializer = CompetenceSerializer(competances, many=True)
     return Response(serializer.data)  
@@ -1527,11 +2345,27 @@ def get_formateur(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_modules_by_formation(request, formation_id):
-   
-        formation = Formation.objects.get(id=formation_id)
-        modules = formation.Module.all()
-        serializer = ModuleSerializer(modules, many=True)
-        return Response(serializer.data)
+    """Obtenir les modules associés à une formation spécifique.
+
+    Cette vue permet de récupérer tous les modules liés à une formation donnée en fournissant l'ID de la formation.
+
+    Méthodes autorisées :
+    - GET : Récupère les modules associés à la formation spécifiée.
+
+    Paramètres :
+    - formation_id : L'ID de la formation (obligatoire).
+
+    Réponse :
+    - Si la formation est trouvée, retourne la liste des modules associés avec un statut HTTP 200 OK.
+    - Si la formation n'est pas trouvée, retourne une erreur avec un statut HTTP 404 Not Found.
+
+    Tags :
+      - Modules
+    """   
+    formation = Formation.objects.get(id=formation_id)
+    modules = formation.Module.all()
+    serializer = ModuleSerializer(modules, many=True)
+    return Response(serializer.data)
 
    
 
@@ -1580,6 +2414,16 @@ def delete_formateur(request, pk):
 @api_view(['DELETE'])
 @permission_classes([AllowAny])
 def delete_competence(request, pk):
+    """
+    Supprimer une compétence existante.
+
+    Requête DELETE :
+    - Supprime une compétence identifiée par son ID.
+
+    Réponse :
+    - 204 : Compétence supprimée avec succès.
+    - 404 : Compétence non trouvée.
+    """
     try:
         competence = Competence.objects.get(pk=pk)
     except Competence.DoesNotExist:
@@ -1593,6 +2437,23 @@ def delete_competence(request, pk):
 @api_view(['DELETE'])
 @permission_classes([AllowAny])
 def delete_module(request, pk):
+    """Supprimer un module par son ID.
+
+    Cette vue permet de supprimer un module spécifique en fournissant son ID.
+
+    Méthodes autorisées :
+    - DELETE : Supprime le module correspondant à l'ID fourni.
+
+    Paramètres :
+    - pk : L'ID du module à supprimer (obligatoire).
+
+    Réponse :
+    - Si le module est trouvé et supprimé avec succès, retourne un message de confirmation avec un statut HTTP 204 No Content.
+    - Si le module n'est pas trouvé, retourne une erreur avec un statut HTTP 404 Not Found.
+
+    Tags :
+      - Modules
+    """
     try:
         module = Module.objects.get(pk=pk)
     except Module.DoesNotExist:
@@ -1622,6 +2483,19 @@ def delete_formation(request, pk):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def add_formateur(request):
+    """
+    Ajouter un nouveau formateur.
+
+    Requête POST :
+    - Crée un nouveau formateur à partir des données fournies.
+
+    Corps de la requête :
+    - `nom` : nom du formateur (string).
+
+    Réponse :
+    - 201 : Formateur créé avec succès.
+    - 400 : Données invalides.
+    """
     if request.method == 'POST':
         serializer = FormateurSerializer(data=request.data)
         if serializer.is_valid():
@@ -1633,6 +2507,19 @@ def add_formateur(request):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def add_competence(request):
+    """
+    Ajouter une nouvelle compétence.
+
+    Requête POST :
+    - Crée une nouvelle compétence à partir des données fournies.
+
+    Corps de la requête :
+    - `nom` : nom de la compétence (string).
+
+    Réponse :
+    - 201 : Compétence créée avec succès.
+    - 400 : Données invalides.
+    """
     if request.method == 'POST':
         serializer = CompetenceSerializer(data=request.data)
         if serializer.is_valid():
@@ -1644,6 +2531,20 @@ def add_competence(request):
 @api_view(['PUT'])
 @permission_classes([AllowAny])
 def update_competence(request, pk):
+    """
+    Mettre à jour une compétence existante.
+
+    Requête PUT :
+    - Met à jour les informations d'une compétence identifiée par son ID.
+
+    Corps de la requête :
+    - `nom` : nouveau nom de la compétence (string).
+
+    Réponse :
+    - 200 : Compétence mise à jour avec succès.
+    - 404 : Compétence non trouvée.
+    - 400 : Données invalides.
+    """
     try:
         competence = Competence.objects.get(pk=pk)
     except Competence.DoesNotExist:
@@ -1660,6 +2561,20 @@ def update_competence(request, pk):
 @api_view(['PUT'])
 @permission_classes([AllowAny])
 def update_competence(request, pk):
+    """
+    Mettre à jour une compétence existante.
+
+    Requête PUT :
+    - Met à jour les informations d'une compétence identifiée par son ID.
+
+    Corps de la requête :
+    - `nom` : nouveau nom de la compétence (string).
+
+    Réponse :
+    - 200 : Compétence mise à jour avec succès.
+    - 404 : Compétence non trouvée.
+    - 400 : Données invalides.
+    """
     try:
         competence = Competence.objects.get(pk=pk)
     except Competence.DoesNotExist:
@@ -1675,6 +2590,17 @@ def update_competence(request, pk):
 @api_view(['PUT'])
 @permission_classes([AllowAny])
 def update_formateur(request, pk):
+    """
+    Mettre à jour un formateur existant.
+
+    Requête PUT :
+    - Met à jour les informations d'un formateur identifié par son ID.
+
+    Réponse :
+    - 200 : Formateur mis à jour avec succès.
+    - 404 : Formateur non trouvé.
+    - 400 : Données invalides.
+    """
     try:
         formateur = Formateur.objects.get(pk=pk)
     except Formateur.DoesNotExist:
@@ -1690,6 +2616,31 @@ def update_formateur(request, pk):
 @api_view(['PUT'])
 @permission_classes([AllowAny])
 def update_module(request, pk):
+    """Mettre à jour un module par son ID.
+
+    Cette vue permet de mettre à jour les informations d'un module spécifique en fournissant son ID et les nouvelles données.
+
+    Méthodes autorisées :
+    - PUT : Met à jour le module correspondant à l'ID fourni avec les données fournies dans la requête.
+
+    Paramètres :
+    - pk : L'ID du module à mettre à jour (obligatoire).
+
+    Corps de la requête (JSON) :
+    - titre : Nouveau titre du module (optionnel).
+    - description : Nouvelle description du module (optionnel).
+    - competences : Liste des compétences associées au module (optionnel).
+    - volume_horaire : Nouveau volume horaire du module (optionnel).
+    - formateur : ID du formateur associé au module (optionnel).
+
+    Réponse :
+    - Si le module est trouvé et mis à jour avec succès, retourne les données du module mis à jour avec un statut HTTP 200 OK.
+    - Si le module n'est pas trouvé, retourne une erreur avec un statut HTTP 404 Not Found.
+    - Si les données fournies sont invalides, retourne les erreurs de validation avec un statut HTTP 400 Bad Request.
+
+    Tags :
+      - Modules
+    """
     try:
         module = Module.objects.get(pk=pk)
     except Module.DoesNotExist:
@@ -1721,6 +2672,23 @@ def update_formation(request, pk):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_competences_by_module(request, module_id):
+    """Récupérer les compétences associées à un module par son ID.
+
+    Cette vue permet de récupérer la liste des compétences qui sont liées à un module spécifique en fournissant son ID.
+
+    Méthodes autorisées :
+    - GET : Récupère les compétences associées au module correspondant à l'ID fourni.
+
+    Paramètres :
+    - module_id : L'ID du module pour lequel les compétences doivent être récupérées (obligatoire).
+
+    Réponse :
+    - Si le module est trouvé, retourne une liste de compétences associées au module avec un statut HTTP 200 OK.
+    - Si le module n'est pas trouvé, retourne une erreur avec un statut HTTP 404 Not Found.
+
+    Tags :
+      - Modules
+    """
     try:
         module = Module.objects.get(pk=module_id)
     except Module.DoesNotExist:
@@ -1733,6 +2701,24 @@ def get_competences_by_module(request, module_id):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_formateur_by_module(request, module_id):
+    """Récupérer le formateur associé à un module par son ID.
+
+    Cette vue permet de récupérer les informations du formateur qui est lié à un module spécifique en fournissant son ID.
+
+    Méthodes autorisées :
+    - GET : Récupère le formateur associé au module correspondant à l'ID fourni.
+
+    Paramètres :
+    - module_id : L'ID du module pour lequel le formateur doit être récupéré (obligatoire).
+
+    Réponse :
+    - Si le module est trouvé, retourne les informations du formateur associé au module avec un statut HTTP 200 OK.
+    - Si le module n'est pas trouvé, retourne une erreur avec un statut HTTP 404 Not Found.
+    - Si aucun formateur n'est associé au module, retourne une réponse appropriée.
+
+    Tags :
+      - Formateurs
+    """
     try:
         module = Module.objects.get(pk=module_id)
     except Module.DoesNotExist:
@@ -1751,6 +2737,26 @@ def get_formateur_by_module(request, module_id):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def add_chapitre(request):
+    """Ajouter un chapitre.
+
+    Cette vue permet d'ajouter un nouveau chapitre en fournissant un titre, un contenu et une durée.
+
+    Méthodes autorisées :
+    - POST : Crée un nouveau chapitre avec les données fournies dans la requête.
+
+    Paramètres :
+    - request : Objet de requête contenant les données du chapitre sous forme de JSON.
+
+    Corps de la requête (JSON) :
+    - titre : Titre du chapitre (obligatoire).
+    - contenu : Contenu du chapitre (obligatoire).
+    - duree : Durée du chapitre en minutes (obligatoire).
+
+    Réponse :
+    - Si la création réussit, retourne les données du chapitre avec un statut HTTP 201 Created.
+    - Si des données invalides sont fournies, retourne une erreur avec un statut HTTP 400 Bad Request.
+    """
+
     if request.method == 'POST':
         serializer = ChapitreSerializer(data=request.data)
         if serializer.is_valid():
@@ -1764,6 +2770,22 @@ def add_chapitre(request):
 @api_view(['PUT'])
 @permission_classes([AllowAny])
 def update_chapitre(request, pk):
+    """Mettre à jour un chapitre existant.
+
+    Cette vue permet de modifier un chapitre existant en fournissant un titre, un contenu et une durée.
+
+    Méthodes autorisées :
+    - PUT : Met à jour un chapitre existant identifié par son ID.
+
+    Paramètres :
+    - request : Objet de requête contenant les nouvelles données du chapitre sous forme de JSON.
+    - pk : Identifiant du chapitre à mettre à jour.
+
+    Réponse :
+    - Si la mise à jour réussit, retourne les données mises à jour du chapitre.
+    - Si le chapitre n'est pas trouvé, retourne une erreur avec un statut HTTP 404 Not Found.
+    - Si des données invalides sont fournies, retourne une erreur avec un statut HTTP 400 Bad Request.
+    """
     try:
         chapitre = Chapitre.objects.get(pk=pk)
     except Chapitre.DoesNotExist:
@@ -1779,6 +2801,20 @@ def update_chapitre(request, pk):
 @api_view(['DELETE'])
 @permission_classes([AllowAny])
 def delete_chapitre(request, pk):
+    """Supprimer un chapitre.
+
+    Cette vue permet de supprimer un chapitre existant identifié par son ID.
+
+    Méthodes autorisées :
+    - DELETE : Supprime le chapitre spécifié.
+
+    Paramètres :
+    - pk : Identifiant du chapitre à supprimer.
+
+    Réponse :
+    - Si le chapitre est supprimé avec succès, retourne un message de confirmation avec un statut HTTP 204 No Content.
+    - Si le chapitre n'est pas trouvé, retourne une erreur avec un statut HTTP 404 Not Found.
+    """
     try:
         chapitre = Chapitre.objects.get(pk=pk)
     except Chapitre.DoesNotExist:
@@ -1793,6 +2829,16 @@ def delete_chapitre(request, pk):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_chapitres(request):
+    """Récupérer tous les chapitres.
+
+    Cette vue permet de récupérer la liste de tous les chapitres existants.
+
+    Méthodes autorisées :
+    - GET : Renvoie la liste de tous les chapitres.
+
+    Réponse :
+    - Retourne un tableau d'objets chapitre, chaque objet contenant les détails du chapitre (titre, contenu, durée).
+    """
     chapitre = Chapitre.objects.all()
     serializer = ChapitreSerializer(chapitre, many=True)
     return Response(serializer.data)      
@@ -1804,6 +2850,20 @@ def get_chapitres(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_chapitre_by_id(request, id):
+    """Récupérer un chapitre par ID.
+
+    Cette vue permet de récupérer un chapitre spécifique en fonction de son identifiant.
+
+    Méthodes autorisées :
+    - GET : Renvoie les détails du chapitre spécifié.
+
+    Paramètres :
+    - id : Identifiant du chapitre à récupérer.
+
+    Réponse :
+    - Si le chapitre est trouvé, retourne ses détails avec un statut HTTP 200 OK.
+    - Si le chapitre n'est pas trouvé, retourne une erreur avec un statut HTTP 404 Not Found.
+    """
     try:
         chapitre = Chapitre.objects.get(id=id)
         serializer = ChapitreSerializer(chapitre)
@@ -1818,6 +2878,26 @@ def get_chapitre_by_id(request, id):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def add_cours(request):
+    """Ajouter un nouveau cours.
+
+    Cette vue permet d'ajouter un nouveau cours en fournissant un titre, une description, des compétences, et des chapitres.
+
+    Méthodes autorisées :
+    - POST : Crée un nouveau cours avec les données fournies dans la requête.
+
+    Paramètres :
+    - request : Objet de requête contenant les données du cours sous forme de JSON.
+
+    Corps de la requête (JSON) :
+    - titre : Titre du cours (obligatoire).
+    - description : Description du cours (facultatif).
+    - competences : Liste des ID des compétences associées (facultatif).
+    - chapitres : Liste des ID des chapitres associés (facultatif).
+
+    Réponse :
+    - Si la création réussit, retourne les données du cours avec un statut HTTP 201 Created.
+    - Si des données invalides sont fournies, retourne une erreur avec un statut HTTP 400 Bad Request.
+    """
     if request.method == 'POST':
         serializer = CoursidSerializer(data=request.data)
         if serializer.is_valid():
@@ -1831,6 +2911,22 @@ def add_cours(request):
 @api_view(['PUT'])
 @permission_classes([AllowAny])
 def update_cours(request, pk):
+    """Mettre à jour un cours existant.
+
+    Cette vue permet de modifier un cours existant en fournissant un titre, une description, des compétences, et des chapitres.
+
+    Méthodes autorisées :
+    - PUT : Met à jour un cours existant identifié par son ID.
+
+    Paramètres :
+    - request : Objet de requête contenant les nouvelles données du cours sous forme de JSON.
+    - pk : Identifiant du cours à mettre à jour.
+
+    Réponse :
+    - Si la mise à jour réussit, retourne les données mises à jour du cours.
+    - Si le cours n'est pas trouvé, retourne une erreur avec un statut HTTP 404 Not Found.
+    - Si des données invalides sont fournies, retourne une erreur avec un statut HTTP 400 Bad Request.
+    """
     try:
         cours = Cours.objects.get(pk=pk)
     except Cours.DoesNotExist:
@@ -1846,6 +2942,20 @@ def update_cours(request, pk):
 @api_view(['DELETE'])
 @permission_classes([AllowAny])
 def delete_cours(request, pk):
+    """Supprimer un cours.
+
+    Cette vue permet de supprimer un cours existant identifié par son ID.
+
+    Méthodes autorisées :
+    - DELETE : Supprime le cours spécifié.
+
+    Paramètres :
+    - pk : Identifiant du cours à supprimer.
+
+    Réponse :
+    - Si le cours est supprimé avec succès, retourne un message de confirmation avec un statut HTTP 204 No Content.
+    - Si le cours n'est pas trouvé, retourne une erreur avec un statut HTTP 404 Not Found.
+    """
     try:
         cours = Cours.objects.get(pk=pk)
     except Cours.DoesNotExist:
@@ -1859,6 +2969,16 @@ def delete_cours(request, pk):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_cours(request):
+    """Récupérer tous les cours.
+
+    Cette vue permet de récupérer la liste de tous les cours existants.
+
+    Méthodes autorisées :
+    - GET : Renvoie la liste de tous les cours.
+
+    Réponse :
+    - Retourne un tableau d'objets cours, chaque objet contenant les détails du cours (titre, description, compétences, chapitres).
+    """
     cours = Cours.objects.all()
     serializer = CoursSerializer(cours, many=True)
     return Response(serializer.data)  
@@ -1868,6 +2988,21 @@ def get_cours(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_cours_by_id(request, id):
+    """Récupérer un cours par ID.
+
+    Cette vue permet de récupérer un cours spécifique en fonction de son identifiant.
+
+    Méthodes autorisées :
+    - GET : Renvoie les détails du cours spécifié.
+
+    Paramètres :
+    - id : Identifiant du cours à récupérer.
+
+    Réponse :
+    - Si le cours est trouvé, retourne ses détails avec un statut HTTP 200 OK.
+    - Si le cours n'est pas trouvé, retourne une erreur avec un statut HTTP 404 Not Found.
+    """
+
     try:
         cours = Cours.objects.get(pk=id)
         serializer = CoursSerializer(cours)
@@ -1884,6 +3019,27 @@ def get_cours_by_id(request, id):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def add_theme_formation(request):
+    """Ajouter un nouveau thème de formation.
+
+    Cette vue permet d'ajouter un nouveau thème de formation en fournissant les informations nécessaires.
+
+    Méthodes autorisées :
+    - POST : Crée un nouveau thème de formation avec les données fournies dans la requête.
+
+    Paramètres :
+    - request : Objet de requête contenant les données du thème de formation sous forme de JSON.
+
+    Corps de la requête (JSON) :
+    - titre : Le titre du thème de formation (obligatoire).
+    - description : La description du thème (facultatif).
+    - modules : Liste des ID des modules associés (facultatif).
+    - date_debut : Date de début de la formation (facultatif, par défaut aujourd'hui).
+    - date_fin : Date de fin de la formation (facultatif, par défaut aujourd'hui).
+
+    Réponse :
+    - Si la création réussit, retourne les données du thème de formation avec un statut HTTP 201 Created.
+    - Si des données invalides sont fournies, retourne une erreur avec un statut HTTP 400 Bad Request.
+    """
     if request.method == 'POST':
         serializer = ThemeFormationidSerializer(data=request.data)
         if serializer.is_valid():
@@ -1897,6 +3053,22 @@ def add_theme_formation(request):
 @api_view(['PUT'])
 @permission_classes([AllowAny])
 def update_theme_formation(request, pk):
+    """Mettre à jour un thème de formation existant.
+
+    Cette vue permet de modifier un thème de formation existant identifié par son ID.
+
+    Méthodes autorisées :
+    - PUT : Met à jour un thème de formation existant avec les nouvelles données fournies.
+
+    Paramètres :
+    - request : Objet de requête contenant les nouvelles données du thème de formation sous forme de JSON.
+    - pk : Identifiant du thème de formation à mettre à jour.
+
+    Réponse :
+    - Si la mise à jour réussit, retourne les données mises à jour du thème de formation.
+    - Si le thème de formation n'est pas trouvé, retourne une erreur avec un statut HTTP 404 Not Found.
+    - Si des données invalides sont fournies, retourne une erreur avec un statut HTTP 400 Bad Request.
+    """
     try:
         theme_formation = Theme_formation.objects.get(pk=pk)
     except Theme_formation.DoesNotExist:
@@ -1912,6 +3084,20 @@ def update_theme_formation(request, pk):
 @api_view(['DELETE'])
 @permission_classes([AllowAny])
 def delete_theme_formation(request, pk):
+    """Supprimer un thème de formation.
+
+    Cette vue permet de supprimer un thème de formation existant identifié par son ID.
+
+    Méthodes autorisées :
+    - DELETE : Supprime le thème de formation spécifié.
+
+    Paramètres :
+    - pk : Identifiant du thème de formation à supprimer.
+
+    Réponse :
+    - Si le thème de formation est supprimé avec succès, retourne un message de confirmation avec un statut HTTP 204 No Content.
+    - Si le thème de formation n'est pas trouvé, retourne une erreur avec un statut HTTP 404 Not Found.
+    """
     try:
         theme_formation = Theme_formation.objects.get(pk=pk)
     except Theme_formation.DoesNotExist:
@@ -1926,6 +3112,16 @@ def delete_theme_formation(request, pk):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_theme_formation(request):
+    """Récupérer tous les thèmes de formation.
+
+    Cette vue permet de récupérer la liste de tous les thèmes de formation existants.
+
+    Méthodes autorisées :
+    - GET : Renvoie la liste de tous les thèmes de formation.
+
+    Réponse :
+    - Retourne un tableau d'objets thème de formation, chaque objet contenant les détails du thème (titre, description, modules, date de début, date de fin).
+    """
     theme_formation = Theme_formation.objects.all()
     serializer = ThemeFormationSerializer(theme_formation, many=True)
     return Response(serializer.data)  
@@ -1935,6 +3131,20 @@ def get_theme_formation(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_theme_formation_by_id(request, id):
+    """Récupérer un thème de formation par ID.
+
+    Cette vue permet de récupérer un thème de formation spécifique en fonction de son identifiant.
+
+    Méthodes autorisées :
+    - GET : Renvoie les détails du thème de formation spécifié.
+
+    Paramètres :
+    - id : Identifiant du thème de formation à récupérer.
+
+    Réponse :
+    - Si le thème de formation est trouvé, retourne ses détails avec un statut HTTP 200 OK.
+    - Si le thème de formation n'est pas trouvé, retourne une erreur avec un statut HTTP 404 Not Found.
+    """
     try:
         theme_formation = Theme_formation.objects.get(id=id)
         serializer = ThemeFormationSerializer(theme_formation)
@@ -1951,6 +3161,20 @@ def get_theme_formation_by_id(request, id):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def add_demande_devis(request):
+    """
+    Crée une nouvelle demande de devis.
+
+    Requête POST :
+    - organisme : Nom de l'organisme (string).
+    - email : Adresse email de l'organisme (string).
+    - Numero_telephone : Numéro de téléphone de contact (integer, optionnel).
+    - Formations : Liste des IDs des formations liées (list d'entiers).
+    - Nombre_participants : Nombre de participants (integer, optionnel).
+
+    Réponses :
+    - 201 : Succès, retourne les données de la demande de devis créée.
+    - 400 : Erreur de validation des données.
+    """
     if request.method == 'POST':
         serializer = DemandeDevisSerializer(data=request.data)
         if serializer.is_valid():
@@ -1962,6 +3186,17 @@ def add_demande_devis(request):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def add_devis(request):
+    """
+    Crée un nouveau devis.
+
+    Requête POST :
+    - montant : Le montant du devis (float, optionnel).
+    - demande_devis : ID de la demande de devis associée (integer).
+
+    Réponses :
+    - 201 : Succès, retourne les données du devis créé.
+    - 400 : Erreur de validation des données.
+    """
     if request.method == 'POST':
         serializer = DevisSerializer(data=request.data)
         if serializer.is_valid():
@@ -1973,6 +3208,15 @@ def add_devis(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def list_demande_devis(request):
+    """
+    Récupère toutes les demandes de devis.
+
+    Requête GET :
+    - Pas de paramètres requis.
+
+    Réponses :
+    - 200 : Succès, retourne la liste de toutes les demandes de devis.
+    """
     demandes = Demande_Devis.objects.all()
     serializer = DemandeDevisSerializer(demandes, many=True)
     return Response(serializer.data)
@@ -1981,6 +3225,15 @@ def list_demande_devis(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def list_devis(request):
+    """
+    Récupère tous les devis.
+
+    Requête GET :
+    - Pas de paramètres requis.
+
+    Réponses :
+    - 200 : Succès, retourne la liste de tous les devis.
+    """
     devis = Devis.objects.all()
     serializer = DevisSerializer(devis, many=True)
     return Response(serializer.data)
@@ -1989,6 +3242,16 @@ def list_devis(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def retrieve_demande_devis(request, pk):
+    """
+    Récupère une demande de devis spécifique.
+
+    Requête GET :
+    - pk : L'identifiant unique de la demande de devis.
+
+    Réponses :
+    - 200 : Succès, retourne les détails de la demande de devis.
+    - 404 : La demande de devis n'existe pas.
+    """
     demande = get_object_or_404(Demande_Devis, pk=pk)
     serializer = DemandeDevisSerializer(demande)
     return Response(serializer.data)
@@ -1997,6 +3260,16 @@ def retrieve_demande_devis(request, pk):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def retrieve_devis(request, pk):
+    """
+    Récupère un devis spécifique.
+
+    Requête GET :
+    - pk : L'identifiant unique du devis.
+
+    Réponses :
+    - 200 : Succès, retourne les détails du devis.
+    - 404 : Le devis n'existe pas.
+    """
     devis = get_object_or_404(Devis, pk=pk)
     serializer = DevisSerializer(devis)
     return Response(serializer.data)
@@ -2004,7 +3277,19 @@ def retrieve_devis(request, pk):
 # Update Demande_Devis
 @api_view(['PUT'])
 @permission_classes([AllowAny])
-def update_demande_devis(request, pk):
+def update_demande_devis(request, pk):   
+    """
+    Met à jour une demande de devis existante.
+
+    Requête PUT :
+    - pk : L'identifiant unique de la demande de devis à mettre à jour.
+    - Corps de la requête : Les champs de la demande à mettre à jour.
+
+    Réponses :
+    - 200 : Succès, retourne les détails mis à jour de la demande de devis.
+    - 400 : Erreurs de validation.
+    - 404 : La demande de devis n'existe pas.
+    """
     demande = get_object_or_404(Demande_Devis, pk=pk)
     serializer = DemandeDevisSerializer(demande, data=request.data)
     if serializer.is_valid():
@@ -2016,6 +3301,18 @@ def update_demande_devis(request, pk):
 @api_view(['PUT'])
 @permission_classes([AllowAny])
 def update_devis(request, pk):
+    """
+    Met à jour un devis existant.
+
+    Requête PUT :
+    - pk : L'identifiant unique du devis à mettre à jour.
+    - Corps de la requête : Les champs du devis à mettre à jour.
+
+    Réponses :
+    - 200 : Succès, retourne les détails mis à jour du devis.
+    - 400 : Erreurs de validation.
+    - 404 : Le devis n'existe pas.
+    """
     devis = get_object_or_404(Devis, pk=pk)
     serializer = DevisSerializer(devis, data=request.data)
     if serializer.is_valid():
@@ -2027,6 +3324,17 @@ def update_devis(request, pk):
 @api_view(['DELETE'])
 @permission_classes([AllowAny])
 def delete_demande_devis(request, pk):
+    """
+    Supprime une demande de devis spécifique.
+
+    Requête DELETE :
+    - pk : L'identifiant unique de la demande de devis à supprimer.
+
+    Réponses :
+    - 204 : Succès, la demande de devis a été supprimée avec succès.
+    - 404 : La demande de devis n'existe pas.
+    
+    """
     demande = get_object_or_404(Demande_Devis, pk=pk)
     demande.delete()
     return Response(status=204)
@@ -2035,6 +3343,16 @@ def delete_demande_devis(request, pk):
 @api_view(['DELETE'])
 @permission_classes([AllowAny])
 def delete_devis(request, pk):
+    """
+    Supprime un devis spécifique.
+
+    Requête DELETE :
+    - pk : L'identifiant unique du devis à supprimer.
+
+    Réponses :
+    - 204 : Le devis a été supprimé avec succès.
+    - 404 : Le devis n'existe pas.
+    """
     devis = get_object_or_404(Devis, pk=pk)
     devis.delete()
     return Response(status=204)
@@ -2043,6 +3361,16 @@ def delete_devis(request, pk):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_devis_by_demande_devis(request, demande_devis_id):
+    """
+    Récupère tous les devis associés à une demande de devis spécifique.
+
+    Requête GET :
+    - demande_devis_id : L'identifiant unique de la demande de devis.
+
+    Réponses :
+    - 200 : Succès, retourne la liste des devis associés à la demande de devis.
+    - 404 : Aucun devis associé à cette demande de devis.
+    """
     try:
         devis = Devis.objects.filter(demande_devis__id=demande_devis_id)
         serializer = DevisSerializer(devis, many=True)
@@ -2056,6 +3384,22 @@ def get_devis_by_demande_devis(request, demande_devis_id):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def publications_by_laboratory(request, laboratoire_id):
+    """Récupère les publications associées à un laboratoire donné.
+
+    Cette vue permet de récupérer les publications de type 'article' 
+    qui ont été publiées par des chercheurs appartenant à un laboratoire spécifié.
+
+    Paramètres :
+    - laboratoire_id : L'identifiant unique du laboratoire pour lequel les publications doivent être récupérées.
+
+    Retourne :
+    - Response :
+        - 200 OK : Une liste de publications (articles) associées au laboratoire.
+        - 404 Not Found : Si le laboratoire avec l'identifiant spécifié n'existe pas.
+    
+    Autorisation :
+    - Accessible par tous les utilisateurs, y compris ceux qui ne sont pas authentifiés (AllowAny).
+    """
     try:
         laboratoire = Laboratoire.objects.get(id_laboratoire=laboratoire_id)
         
@@ -2094,6 +3438,23 @@ def publications_by_laboratory(request, laboratoire_id):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def publications_seminaire_bylabo(request, laboratoire_id):
+    """Récupère les publications de séminaires associées à un laboratoire donné.
+
+    Cette vue permet de récupérer les publications de type 'event' 
+    qui ont été publiées par des chercheurs appartenant à un laboratoire spécifié,
+    et qui ont un état validé.
+
+    Paramètres :
+    - laboratoire_id : L'identifiant unique du laboratoire pour lequel les publications doivent être récupérées.
+
+    Retourne :
+    - Response :
+        - 200 OK : Une liste de publications (séminaires) associées au laboratoire.
+        - 404 Not Found : Si le laboratoire avec l'identifiant spécifié n'existe pas.
+    
+     Autorisation :
+    - Accessible par tous les utilisateurs, y compris ceux qui ne sont pas authentifiés (AllowAny).
+    """
     try:
         laboratoire = Laboratoire.objects.get(id_laboratoire=laboratoire_id)
         

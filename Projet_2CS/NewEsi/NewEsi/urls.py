@@ -3,6 +3,23 @@ from django.urls import path,include
 from publication.views import *
 from django.conf import settings
 from django.conf.urls.static import static
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
+from drf_yasg import openapi
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="New Esi",
+        default_version='v1',
+        description="API documentation for refonte de site web de l'esi.",
+        terms_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(email="contact@esi.dz"),
+        license=openapi.License(name="esi License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', get_all_users, name='get_all_users'),  # URL for getting all users and creating new users
@@ -25,6 +42,7 @@ urlpatterns = [
     path('partenaire/add',add_partenaire,name='add_partenaire'),
    path('partenaire/<int:id>/update/', update_partenaire, name='update_partenaire'),
     path('partenaire/<int:id>/delete/', delete_partenaire, name='delete_partenaire'),
+    
 
 
     path('partenaires',get_all_partenaire,name='get_all_partenaire'),
@@ -197,6 +215,11 @@ path('equipe_recherche/add',add_equipe_recherche,name='add_equipe_recherche'),
     path('devis/update/<int:pk>/', update_devis, name='update_devis'),
     path('devis/delete/<int:pk>/', delete_devis, name='delete_devis'),
      path('devis/by-demande-devis/<int:demande_devis_id>/', get_devis_by_demande_devis, name='get_devis_by_demande_devis'),
+     
+    # Swagger UI documentation
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    # ReDoc documentation
+    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 
 
 
