@@ -186,20 +186,21 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CORS_ALLOW_ALL_ORIGINS=True
 
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Africa/Algiers'
 CELERY_BEAT_SCHEDULE = {
+    'update-expired-publications-every-day': {
+        'task': 'publication.tasks.update_expired_publications',
+        'schedule': timedelta(hours=12),  
+    },
     'remind-admins-every-day': {
         'task': 'publication.tasks.remind_admins_to_validate_publications',
         'schedule': timedelta(days=1),  
     },
+  
 }
 
-
-
-
- 

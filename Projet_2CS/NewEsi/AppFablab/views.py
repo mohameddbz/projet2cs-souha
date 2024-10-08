@@ -17,6 +17,16 @@ from rest_framework.authtoken.models import Token
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_all_categories(request):
+    """
+    Récupère toutes les catégories disponible  des Pieces .
+
+    Méthode HTTP : GET
+    Permissions :
+    - Autorisé à tous les utilisateurs (AllowAny).
+
+    Retourne :
+    - Une liste de catégories sérialisées au format JSON.
+    """
     categories = Category.objects.all()
     serializer = CategorySerializer(categories, many=True)
     return Response(serializer.data)
@@ -25,6 +35,21 @@ def get_all_categories(request):
 #@user_types_required('responsable_fablab')
 @permission_classes([AllowAny])
 def add_category(request):
+    """
+    Ajoute une nouvelle catégorie des Pieces.
+
+    Méthode HTTP : POST
+
+    Permissions :
+    - Autorisé à tous les utilisateurs (AllowAny).
+
+    Corps de la requête :
+    - `name` (str) : Nom de la catégorie.
+
+    Retourne :
+    - Les données de la catégorie nouvellement créée au format JSON, ou une erreur si la validation échoue.
+
+    """
     serializer = CategorySerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -35,6 +60,23 @@ def add_category(request):
 #@user_types_required('responsable_fablab')
 @permission_classes([AllowAny])
 def update_category(request, pk):
+    """
+    Met à jour une catégorie des Pieces existante.
+
+    Méthode HTTP : PUT
+
+    Permissions :
+    - Autorisé à tous les utilisateurs (AllowAny).
+
+    Paramètres :
+    - `pk` (int) : Identifiant de la catégorie à mettre à jour.
+
+    Corps de la requête :
+    - `name` (str) : Nouveau nom de la catégorie.
+
+    Retourne :
+    - Les données de la catégorie mise à jour au format JSON, ou une erreur si la validation échoue.
+    """
     try:
         category = Category.objects.get(pk=pk)
     except Category.DoesNotExist:
@@ -50,6 +92,19 @@ def update_category(request, pk):
 #@user_types_required('responsable_fablab')
 @permission_classes([AllowAny])
 def delete_category(request, pk):
+    """
+    Supprime une catégorie des pieces existante.
+
+    Méthode HTTP : DELETE
+    Permissions :
+    - Autorisé à tous les utilisateurs (AllowAny).
+
+    Paramètres :
+    - `pk` (int) : Identifiant de la catégorie à supprimer.
+
+    Retourne :
+    - Un statut 204 No Content si la suppression réussit, ou une erreur si la catégorie n'existe pas.
+    """
     try:
         category = Category.objects.get(pk=pk)
     except Category.DoesNotExist:
@@ -63,6 +118,25 @@ def delete_category(request, pk):
 #@user_types_required('responsable_fablab')
 @permission_classes([AllowAny])
 def ajouter_piece(request):
+    """
+    Ajoute une nouvelle pièce Fablab.
+
+    Méthode HTTP : POST
+
+    Permissions :
+    - Autorisé à tous les utilisateurs (AllowAny).
+
+    Corps de la requête :
+    - `nom` (str) : Nom de la pièce.
+    - `quantite_disponible` (int) : Quantité disponible.
+    - `etat` (bool) : État de la pièce (disponible ou non).
+    - `description` (str) : Description de la pièce.
+    - `photo` (fichier) : Photo de la pièce.
+    - `categorie_id` (int) : Identifiant de la catégorie associée.
+
+    Retourne :
+    - Les données de la pièce nouvellement créée au format JSON, ou une erreur si la validation échoue.
+    """
     if request.method == 'POST':
         
         categories = Category.objects.all()
@@ -70,7 +144,6 @@ def ajouter_piece(request):
         categorie_id = request.data.get('categorie_id', None)
         if categorie_id:
             try:
-              
                 categorie = Category.objects.get(pk=categorie_id)
             except Category.DoesNotExist:
                 return Response({"error": "La catégorie sélectionnée n'existe pas."}, status=status.HTTP_400_BAD_REQUEST)
@@ -90,6 +163,17 @@ def ajouter_piece(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_all_pieces(request):
+    """
+    Récupère toutes les pièces disponibles dans fablab .
+
+    Méthode HTTP : GET
+
+    Permissions :
+    - Autorisé à tous les utilisateurs (AllowAny).
+
+    Retourne :
+    - Une liste de pièces sérialisées au format JSON.
+    """
     if request.method == 'GET':
        
         pieces = Piece.objects.filter(quantite_disponible__gt=0)  
@@ -101,6 +185,20 @@ def get_all_pieces(request):
 #@user_types_required('responsable_fablab')
 @permission_classes([AllowAny])
 def supprimer_piece(request, piece_id):
+    """
+    Supprime une pièce existante dans Fablab.
+
+    Méthode HTTP : DELETE
+
+    Permissions :
+    - Autorisé à tous les utilisateurs (AllowAny).
+
+    Paramètres :
+    - `piece_id` (int) : Identifiant de la pièce à supprimer.
+
+    Retourne :
+    - Un statut 204 No Content si la suppression réussit.
+    """
     piece = get_object_or_404(Piece, id_piece=piece_id)
     if request.method == 'DELETE':
         piece.delete()
@@ -110,6 +208,21 @@ def supprimer_piece(request, piece_id):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_piece_detail(request, piece_id):
+    """
+    Récupère les détails d'une pièce.
+
+    Méthode HTTP : GET
+
+
+    Permissions :
+    - Autorisé à tous les utilisateurs (AllowAny).
+
+    Paramètres :
+    - `piece_id` (int) : Identifiant de la pièce à récupérer.
+
+    Retourne :
+    - Les données de la pièce au format JSON.
+    """
     piece = get_object_or_404(Piece, id_piece=piece_id)
     serializer = PieceSerializer(piece)
     return Response(serializer.data, status=status.HTTP_200_OK)
@@ -118,6 +231,24 @@ def get_piece_detail(request, piece_id):
 #@user_types_required('responsable_fablab')
 @permission_classes([AllowAny])
 def modifier_piece(request, piece_id):
+    """
+    Modifie une pièce existante.
+
+    Méthode HTTP : PUT ou PATCH
+    URL : /pieces/update/<int:piece_id>/
+
+    Permissions :
+    - Autorisé à tous les utilisateurs (AllowAny).
+
+    Paramètres :
+    - `piece_id` (int) : Identifiant de la pièce à modifier.
+
+    Corps de la requête :
+    - Les champs à modifier (nom, quantite_disponible, etat, description, photo).
+
+    Retourne :
+    - Les données de la pièce mise à jour au format JSON, ou une erreur si la validation échoue.
+    """
     piece = get_object_or_404(Piece, id_piece=piece_id)
 
     if request.method == 'PUT' or request.method == 'PATCH':
@@ -131,6 +262,14 @@ def modifier_piece(request, piece_id):
  
 @api_view(['GET'])
 def get_all_categories_fablab(request):
+    """
+    Récupère toutes les catégories  des pieces disponibles dans Fablab.
+
+    Méthode HTTP : GET
+
+    Retourne :
+    - Une liste de catégories sérialisées au format JSON.
+    """   
     if request.method == 'GET':
         categories = Category.objects.all()
         serializer = CategorySerializer(categories, many=True)
@@ -139,6 +278,15 @@ def get_all_categories_fablab(request):
 
 @api_view(['GET'])
 def pieces_by_category(request):
+    """
+    Récupère les pièces groupées par catégorie.
+
+    Méthode HTTP : GET
+
+    Retourne :
+    - Une liste d'objets contenant les catégories et les pièces associées.
+
+    """
     if request.method == 'GET':
       
         categories = Category.objects.all()
@@ -160,6 +308,17 @@ def pieces_by_category(request):
 
 @api_view(['GET'])
 def search_piece_by_name(request):
+    """
+    Recherche des pièces par leur nom.
+
+    Méthode HTTP : GET
+
+    Paramètres :
+    - `nom` (str) : Le nom de la pièce à rechercher.
+
+    Retourne :
+    - Une liste de pièces correspondant à la recherche.
+    """
     if request.method == 'GET':
       
         nom_piece = request.GET.get('nom', None)
@@ -178,6 +337,18 @@ def search_piece_by_name(request):
 
 @api_view(['GET'])
 def filter_pieces_by_category(request):
+    """
+    Filtre les pièces par catégorie.
+
+    Méthode HTTP : GET
+    URL : /filter_pieces_by_category/
+
+    Paramètres :
+    - `categorie` (int) : L'ID de la catégorie pour filtrer les pièces.
+
+    Retourne :
+    - Une liste de pièces appartenant à la catégorie spécifiée.
+    """
     if request.method == 'GET':
         
         categorie_id = request.GET.get('categorie', None)
@@ -197,6 +368,19 @@ def filter_pieces_by_category(request):
 
 @api_view(['GET'])
 def filter_pieces_by_state(request):
+    """
+    Filtre les pièces par état (disponible ou non).
+
+    Méthode HTTP : GET
+    URL : /filter_pieces_by_state/
+
+    Paramètres :
+    - `etat` (bool) : L'état des pièces ('true' pour disponible, 'false' pour indisponible).
+
+    Retourne :
+    - Une liste de pièces correspondant à l'état spécifié.
+
+    """
     if request.method == 'GET':
         
         etat_param = request.GET.get('etat', None)
@@ -270,6 +454,16 @@ def faire_demande_materiel(request):
 @api_view(['GET'])
 @user_types_required('responsable_fablab')
 def get_all_demandes_materiel(request):
+    """
+    Récupère toutes les demandes de matériel.
+
+    Méthode HTTP : GET
+
+    Autorisation : Nécessite que l'utilisateur soit de type 'responsable_fablab'.
+
+    Retourne :
+    - Une liste de demandes de matériel sérialisées au format JSON.
+    """
     if request.method == 'GET':
         demandes_materiel = DemandeMateriel.objects.all()
         serializer = DemandeMaterielSerializer(demandes_materiel, many=True)
@@ -280,6 +474,21 @@ def get_all_demandes_materiel(request):
 @api_view(['POST'])
 @user_types_required('responsable_fablab')
 def accepter_rejeter_demande(request, demande_id):
+    """
+    Accepte ou rejette une demande de matériel avec envoi d'un mail .
+
+    Méthode HTTP : POST
+
+    Autorisation : Nécessite que l'utilisateur soit de type 'responsable_fablab'.
+
+    Paramètres :
+    - `demande_id`: ID de la demande de matériel à accepter ou rejeter.
+    - `statut`: Le statut à attribuer à la demande, soit 'VALIDEE' soit 'REJETEE'.
+
+    Retourne :
+    - Un message confirmant l'acceptation ou le rejet de la demande au format JSON.
+
+    """
     try:
         demande = DemandeMateriel.objects.get(pk=demande_id)
     except DemandeMateriel.DoesNotExist:
@@ -344,6 +553,18 @@ def accepter_rejeter_demande(request, demande_id):
 
 @api_view(['GET'])
 def filtrer_demandes_par_statut(request, statut):
+    """
+    Filtre les demandes de matériel en fonction de leur statut.
+
+    Méthode HTTP : GET
+    URL : /demandes_materiel/filtrer/<statut>/
+
+    Paramètres :
+    - `statut`: Le statut des demandes à filtrer (par exemple, 'VALIDEE', 'REJETEE').
+
+    Retourne :
+    - Une liste des demandes de matériel correspondant au statut spécifié au format JSON.
+   """
     if request.method == 'GET':
         demandes = DemandeMateriel.objects.filter(status=statut)
         serializer = DemandeMaterielSerializer(demandes, many=True)
@@ -352,6 +573,18 @@ def filtrer_demandes_par_statut(request, statut):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def inscription_utilisateur(request):
+    """
+    Permet à un utilisateur de s'inscrire dans FabLab.
+
+    Méthode : POST
+
+    Paramètres :
+    - `request.data`: Données de l'utilisateur, incluant les champs requis par le modèle `FablabInscriptionUtilisateur`.
+
+    Réponses :
+    - 201 Created : Si l'inscription est réussie, retourne un message de confirmation.
+    - 400 Bad Request : Si les données fournies sont invalides, retourne les erreurs de validation.
+    """
     if request.method == 'POST':
         serializer = FablabInscriptionUtilisateurSerializer(data=request.data)
         if serializer.is_valid():
@@ -363,6 +596,14 @@ def inscription_utilisateur(request):
 #@user_types_required('responsable_fablab')
 @permission_classes([AllowAny])
 def get_all_inscriptions(request):
+    """
+    Récupère toutes les inscriptions des utilisateurs dans le FabLab.
+
+    Méthode : GET
+
+    Réponses :
+    - 200 OK : Retourne une liste de toutes les inscriptions, sérialisées.
+    """
     if request.method == 'GET':
         inscriptions = FablabInscriptionUtilisateur.objects.all()
         serializer = FablabInscriptionUtilisateurSerializer(inscriptions, many=True)
@@ -372,6 +613,22 @@ def get_all_inscriptions(request):
 
 @api_view(['POST'])
 def save_piece(request, id_piece):
+    """
+    Permet à un utilisateur de sauvegarder une pièce.
+
+    Méthode : POST
+
+    Paramètres d'URL :
+    - `id_piece` : ID de la pièce à sauvegarder.
+
+    Authentification : L'utilisateur doit être authentifié pour effectuer cette opération.
+
+    Réponses :
+    - 201 Created : La pièce a été sauvegardée avec succès.
+    - 200 OK : La pièce a déjà été sauvegardée par l'utilisateur.
+    - 404 Not Found : La pièce spécifiée n'existe pas.
+
+    """
     if request.method == 'POST':
         user = request.user
         piece = get_object_or_404(Piece, pk=id_piece)
@@ -386,6 +643,18 @@ def save_piece(request, id_piece):
 
 @api_view(['GET'])
 def piece_info(request, piece_id):
+    """
+    Récupère les informations d'une pièce spécifique.
+
+    Méthode : GET
+
+    Paramètres d'URL :
+    - `piece_id` : ID de la pièce à récupérer.
+
+    Réponses :
+    - 200 OK : Retourne les informations de la pièce.
+    - 404 Not Found : La pièce spécifiée n'existe pas.
+    """
     try:
         piece = Piece.objects.get(pk=piece_id)
     except Piece.DoesNotExist:
@@ -400,6 +669,19 @@ def piece_info(request, piece_id):
 #@user_types_required('responsable_fablab')
 @permission_classes([AllowAny])
 def filter_inscriptions_by_date(request):
+    """
+    Filtre les inscriptions des utilisateurs dans le FabLab en fonction d'une plage de dates.
+
+    Méthode : GET
+
+    Paramètres de requête :
+    - `start_date` (optionnel) : Date de début au format YYYY-MM-DD.
+    - `end_date` (optionnel) : Date de fin au format YYYY-MM-DD.
+
+    Réponses :
+    - 200 OK : Retourne une liste d'inscriptions correspondant à la plage de dates spécifiée.
+    - 400 Bad Request : Si les formats de dates fournis sont invalides, retourne un message d'erreur.
+    """
     if request.method == 'GET':
      
         start_date_str = request.query_params.get('start_date', None)

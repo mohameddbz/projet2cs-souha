@@ -15,6 +15,7 @@ def remind_admins_to_validate_publications():
 
     pending_publications = Publication.objects.filter(
         etat='en attente',
+        date_publication__gt=now,  
         date_publication__lte=reminder_threshold
     )
 
@@ -40,3 +41,20 @@ def remind_admins_to_validate_publications():
                 recipient_list=[admin.email],
                 fail_silently=True,
             )
+
+
+
+@shared_task
+def update_expired_publications():
+    print("This task checks for expired publications.")
+    now = timezone.now()
+
+    expired_publications = Publication.objects.filter(
+        etat='en attente',
+        date_publication__lt=now
+    )
+
+    for publication in expired_publications:
+    
+        publication.etat = 'expiré'  
+        publication.save()  

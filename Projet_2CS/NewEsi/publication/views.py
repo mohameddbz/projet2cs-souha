@@ -113,11 +113,10 @@ def get_user_by_id(request, user_id):
     - Si l'utilisateur est trouvé, retourne les données de l'utilisateur sérialisées sous forme de JSON avec un statut HTTP 200 OK.
     - Si l'utilisateur n'est pas trouvé, retourne un message d'erreur avec un statut HTTP 404 Not Found.
 
-     Autorisation :
+    Autorisation :
     - Accessible par superuser.
     
-    tags:
-      - Utilisateurs
+
     """
     try:
         user = Utilisateur.objects.get(pk=user_id)
@@ -145,11 +144,8 @@ def add_user(request):
     Réponse :
     - Si l'utilisateur est ajouté avec succès, retourne les données de l'utilisateur nouvellement créé avec un statut HTTP 201 Created.
     - Si les données ne sont pas valides, retourne une erreur avec les détails des erreurs de validation et un statut HTTP 400 Bad Request.
-     Autorisation :
+    Autorisation :
     - Accessible par administarateur.
-    
-    tags:
-      - Utilisateurs
     
     """
     if request.method == 'POST':
@@ -168,6 +164,21 @@ def add_user(request):
 @api_view(['PUT'])
 @user_types_required('editeur','chercheur')
 def edit_publication(request, pk):
+    """
+    Modifier une publication existante dans le système.
+
+    Permissions :
+    - Accessible uniquement aux utilisateurs ayant les rôles 'editeur' ou 'chercheur'.
+
+    Paramètres :
+    - request (Request) : Objet de la requête HTTP contenant les données mises à jour de la publication.
+    - pk (int) : Clé primaire de la publication à modifier.
+
+    Retourne :
+    - Response : Les données mises à jour de la publication si la requête est valide.
+    - Erreur 404 : Si la publication n'est pas trouvée.
+    - Erreur 400 : Si les données fournies sont invalides.
+     """
     try:
         publication = Publication.objects.get(pk=pk)
     except Publication.DoesNotExist:
@@ -377,6 +388,21 @@ def delete_user(request, pk):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_publications_by_category(request, category):
+    """
+    Vue permettant de récupérer toutes les publications valides de type 'event' et la catégorie de l'utilisateur qui les a publiées .
+
+    Paramètres :
+    - request : L'objet de la requête HTTP.
+    - category :  nom de la catégorie de publieur dont on souhaite obtenir les publications.
+
+
+    Retourne :
+    - Une réponse JSON avec les données des publications trouvées.
+    - Un message d'erreur "Publications not found for this category" avec un code HTTP 404 si aucune publication n'est trouvée.
+
+    Autorisation :
+    - Accessible à tous les utilisateurs, même ceux non authentifiés (AllowAny).
+    """
     try:
         publications = Publication.objects.filter(publisher__Categorie= category, etat='valide', type_publication='event')
         
@@ -391,6 +417,18 @@ def get_publications_by_category(request, category):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_all_publications(request):
+    """
+    Vue permettant de récupérer toutes les publications enregistrées dans la base de données.
+
+    Méthode HTTP :
+    - GET : Cette vue accepte uniquement les requêtes GET.
+
+    Retourne :
+    - Une réponse JSON contenant une liste de toutes les publications avec leurs données sérialisées.
+    
+    Autorisation :
+    - Accessible à tous les utilisateurs, même ceux non authentifiés (AllowAny).
+    """
     if request.method == 'GET':
         queryset = Publication.objects.all()
         serializer = PublicationSerializer(queryset, many=True)
@@ -401,6 +439,28 @@ def get_all_publications(request):
 @api_view(['GET'])
 @user_types_required('adminstrateur')
 def get_publications_by_category_admin(request):
+        """
+    Vue permettant à un administrateur de récupérer les publications en fonction de sa catégorie.
+
+    Méthode HTTP :
+    - GET : Cette vue accepte uniquement les requêtes GET pour récupérer des publications liées à la catégorie de l'utilisateur.
+
+    Fonctionnalité :
+    - Vérifie si l'en-tête d'autorisation contient un token valide.
+    - Si le token est valide, il récupère l'utilisateur associé à ce token.
+    - Filtre les publications en fonction de la catégorie de l'utilisateur récupéré.
+    - Si aucune publication n'est trouvée pour la catégorie de l'utilisateur, une réponse 404 (Publications not found) est retournée.
+    - Si le token est invalide ou absent, une réponse d'erreur 400 est retournée.
+
+    Retourne :
+    - Une réponse contenant les données sérialisées des publications de la catégorie de l'utilisateur, avec un statut HTTP 200 (OK).
+    - Une réponse d'erreur avec un statut HTTP 400 (Bad Request) si le token est invalide ou absent.
+    - Une réponse d'erreur avec un statut HTTP 404 (Not Found) si aucune publication n'est trouvée pour la catégorie de l'utilisateur.
+
+    Autorisation :
+    - Seuls les utilisateurs de type 'administrateur' sont autorisés à accéder à cette vue (via le décorateur `user_types_required`).
+
+        """
    
         auth_header = request.headers.get('Authorization')
 
@@ -432,6 +492,27 @@ def get_publications_by_category_admin(request):
 @api_view(['POST'])
 @user_types_required('editeur', 'chercheur')
 def add_publication(request):
+    """
+    Vue permettant de créer une nouvelle publication.
+
+    Méthode HTTP :
+    - POST : Cette vue accepte uniquement les requêtes POST pour ajouter une nouvelle publication.
+
+    Fonctionnalité :
+    - Vérifie si l'en-tête d'autorisation contient un token valide.
+    - Si le token est valide, il récupère l'utilisateur associé et ajoute son ID en tant que 'publisher' à la publication.
+    - Permet l'ajout d'une ou plusieurs publications à la fois :
+        - Si les données envoyées sont une liste, plusieurs publications seront ajoutées.
+        - Si les données envoyées sont un objet unique, une seule publication sera ajoutée.
+    - Si les données sont valides, les publications sont enregistrées dans la base de données.
+
+    Retourne :
+    - Une réponse contenant les données sérialisées des publications créées, avec un statut HTTP 201 (Created).
+    - Une réponse d'erreur avec un statut HTTP 400 (Bad Request) en cas de données invalides ou de problème avec le token.
+
+    Autorisation :
+    - Seuls les utilisateurs de type 'éditeur' ou 'chercheur' sont autorisés à accéder à cette vue (via le décorateur `user_types_required`).
+    """
     if request.method == 'POST':
         auth_header = request.headers.get('Authorization')
 
@@ -464,6 +545,25 @@ def add_publication(request):
 @api_view(['POST'])
 @user_types_required('editeur')
 def add_event(request):
+    """
+    Vue permettant à un utilisateur de type 'éditeur' de soumettre un nouvel publication de type événement.
+
+    Méthode HTTP :
+    - POST : Cette vue accepte uniquement les requêtes POST pour soumettre un nouvel événement.
+
+    Fonctionnalité :
+    - Ajoute automatiquement l'utilisateur en tant que publisher de l'événement.
+    - Récupère la catégorie spécifiée dans la requête (`categorie`).
+    - Vérifie si un administrateur existe pour cette catégorie. Si aucun administrateur n'est trouvé, une réponse 400 (Bad Request) est retournée.
+    - Définit le type de publication à 'event' et l'état à 'en attente'.
+    - Sérialise et valide les données de la requête avant de les sauvegarder dans la base de données.
+    - Envoie un email à l'administrateur de la catégorie pour l'informer qu'une nouvelle demande de publication est en attente de validation.
+
+    Retourne :
+    - Une réponse contenant les données sérialisées de l'événement en cas de succès, avec un statut HTTP 201 (Created).
+    - Une réponse contenant les erreurs de validation avec un statut HTTP 400 (Bad Request) si les données ne sont pas valides ou si aucun administrateur n'est trouvé pour la catégorie.
+
+    """
     if request.method == 'POST':
         request.data['publisher'] = request.user.id
         cat_id = request.data['categorie']
@@ -496,6 +596,20 @@ def add_event(request):
 @api_view(['POST'])
 @user_types_required('editeur')
 def add_actualité(request):
+    """
+    Vue permettant à un utilisateur de type 'éditeur' de soumettre une nouvelle publication de type actualité.
+
+    Méthode HTTP :
+    - POST : Cette vue accepte uniquement les requêtes POST pour soumettre une nouvelle actualité.
+
+    Fonctionnalité :
+    - Définit automatiquement le type de publication à 'actualité' et l'état à 'en attente'.
+    - Sérialise et valide les données de la requête avant de les sauvegarder dans la base de données.
+
+    Retourne :
+    - Une réponse contenant les données sérialisées de l'actualité en cas de succès, avec un statut HTTP 201 (Created).
+    - Une réponse contenant les erreurs de validation avec un statut HTTP 400 (Bad Request) si les données ne sont pas valides.
+    """
     if request.method == 'POST':
 
         request.data['type_publication'] = 'actualité'
@@ -569,6 +683,27 @@ def delete_categorie(request, categorie_id):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def search_publication(request):
+    """
+    Vue permettant de rechercher des publications en fonction de plusieurs filtres.
+
+    Méthode HTTP :
+    - GET : Recherche des publications en fonction des paramètres de requête.
+
+    Fonctionnalité :
+
+    - Les filtres incluent tous les champs spécifiés dans les paramètres de requête (par exemple, titre, description).
+     - Les administrateurs peuvent rechercher des publications par leur catégorie en plus , tandis que les éditeurs peuvent rechercher leurs propres publications.
+    - Si aucun filtre n'est fourni, toutes les publications sont renvoyées.
+
+    Paramètres de requête :
+    - `publisher` : Filtre les publications par éditeur (publisher).
+    - Tout autre paramètre sera utilisé pour filtrer les publications .
+
+    Retourne :
+    - Une liste de publications correspondant aux critères de recherche avec un statut HTTP 200 (OK).
+    - Un message d'erreur si le jeton est invalide ou manquant avec un statut HTTP 400 (Bad Request).
+
+    """
     if request.method == 'GET':
         query_params = request.query_params
         auth_header = request.headers.get('Authorization')
@@ -613,6 +748,23 @@ def search_publication(request):
 @api_view(['PUT'])
 @user_types_required('adminstrateur','superuser')
 def validate_publication(request, pk):
+    """
+    Vue permettant à un administrateur ou super utilisateur de valider une publication.
+
+    Méthode HTTP :
+    - PUT : Cette vue accepte uniquement les requêtes PUT pour valider une publication.
+
+    Fonctionnalité :
+    - Change l'état de la publication spécifiée en "valide".
+    - La publication est identifiée par son identifiant (`pk`).
+
+    Paramètre de requête :
+    - `pk` : L'ID de la publication à valider.
+
+    Retourne :
+    - Une réponse avec les détails de la publication mise à jour avec un statut HTTP 200 (OK).
+    - Un message d'erreur avec un statut HTTP 404 (Not Found) si la publication n'existe pas.
+    """
     try:
         publication = Publication.objects.get(pk=pk)
 
@@ -635,6 +787,24 @@ def validate_publication(request, pk):
 @api_view(['PUT'])
 @user_types_required('adminstrateur','superuser')
 def refuse_publication(request, pk):
+    """
+    Vue permettant à un administrateur ou super utilisateur de refuser une publication.
+
+    Méthode HTTP :
+    - PUT : Cette vue accepte uniquement les requêtes PUT pour refuser une publication.
+
+    Fonctionnalité :
+    - Change l'état de la publication spécifiée en "refuse".
+    - La publication est identifiée par son identifiant (`pk`).
+
+    Paramètre de requête :
+    - `pk` : L'ID de la publication à refuser.
+
+    Retourne :
+    - Une réponse avec les détails de la publication mise à jour avec un statut HTTP 200 (OK).
+    - Un message d'erreur avec un statut HTTP 404 (Not Found) si la publication n'existe pas.
+
+    """
     try:
         publication = Publication.objects.get(pk=pk)
     except Publication.DoesNotExist:
@@ -655,6 +825,23 @@ def refuse_publication(request, pk):
 @api_view(['DELETE'])
 @user_types_required('adminstrateur','chercheur')
 def delete_publication(request, pk):
+    """
+    Vue permettant à un administrateur ou un chercheur de supprimer une publication.
+
+    Méthode HTTP :
+    - DELETE : Cette vue accepte uniquement les requêtes DELETE pour supprimer une publication.
+
+    Fonctionnalité :
+    - Supprime la publication spécifiée par son identifiant (`pk`).
+
+    Paramètre de requête :
+    - `pk` : L'ID de la publication à supprimer.
+
+    Retourne :
+    - Une réponse avec un statut HTTP 204 (No Content) si la suppression est réussie.
+    - Un message d'erreur avec un statut HTTP 404 (Not Found) si la publication n'existe pas.
+
+    """
     try:
         publication = Publication.objects.get(pk=pk)
     except Publication.DoesNotExist:
@@ -770,6 +957,27 @@ def create_event_inscription(request):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def create_section(request):
+    """
+    Vue permettant de créer une nouvelle section liée à une publication existante.
+
+    Méthode HTTP :
+    - POST : Crée une nouvelle section et la lie à une publication spécifiée par l'utilisateur.
+
+    Fonctionnalité :
+    - L'utilisateur doit fournir un `publication_id` dans le corps de la requête pour lier la section à une publication existante.
+    - Si l'identifiant de la publication (`publication_id`) est manquant ou invalide, une réponse d'erreur est retournée.
+    - Si la publication est trouvée, la section est créée et associée à cette publication.
+
+    Paramètres de requête :
+    - `publication_id` : L'ID de la publication à laquelle la section doit être liée.
+    - Les autres champs pertinents pour la création de la section sont envoyés dans le corps de la requête.
+
+    Retourne :
+    - Les détails de la section créée avec un statut HTTP 201 (Created) en cas de succès.
+    - Un message d'erreur avec un statut HTTP 400 (Bad Request) si les données sont invalides.
+    - Un message d'erreur avec un statut HTTP 404 (Not Found) si la publication spécifiée n'existe pas.
+
+    """
     data = request.data.copy()
     publication_id = data.get('publication_id')
 
@@ -794,6 +1002,23 @@ def create_section(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def list_sections_by_publication(request, publication_id):
+    """
+    Vue permettant de lister toutes les sections liées à une publication spécifique.
+
+    Méthode HTTP :
+    - GET : Récupère et renvoie toutes les sections associées à une publication donnée.
+
+    Fonctionnalité :
+    - L'utilisateur doit fournir l'`id_publication` dans l'URL pour récupérer les sections correspondantes.
+    - Si aucune section n'est trouvée pour la publication donnée, une réponse d'erreur est retournée.
+
+    Paramètre de requête :
+    - `publication_id` : L'ID de la publication pour laquelle récupérer les sections.
+
+    Retourne :
+    - Une liste de sections avec un statut HTTP 200 (OK) si des sections sont trouvées.
+    - Un message d'erreur avec un statut HTTP 404 (Not Found) si aucune section n'est trouvée pour la publication spécifiée.
+    """
     try:
         sections = section.objects.filter(id_publication=publication_id)
     except section.DoesNotExist:
@@ -1075,7 +1300,25 @@ def get_clubs_by_name(request, name):
 
 @user_types_required('directeur_relex')
 def add_partenaire(request):
-   if request.method == 'POST':
+    """
+    Vue permettant d'ajouter un nouveau partenaire ou plusieurs partenaires .
+
+    Méthode HTTP :
+    - POST : Crée un ou plusieurs partenaires.
+
+    Fonctionnalité :
+    - Si le corps de la requête contient un tableau (liste), plusieurs partenaires sont ajoutés simultanément.
+    - Si le corps de la requête contient un seul objet, un partenaire unique est créé.
+    - L'utilisateur doit avoir les droits 'directeur_relex' pour utiliser cette fonction.
+
+    Paramètres de requête :
+    - Les détails du partenaire (ou des partenaires) sont envoyés dans le corps de la requête.
+
+    Retourne :
+    - Les détails des partenaires créés avec un statut HTTP 201 (Created) en cas de succès.
+    - Un message d'erreur avec un statut HTTP 400 (Bad Request) si les données sont invalides.
+    """
+    if request.method == 'POST':
         if isinstance(request.data, list):  # If data is an array
             serializer = PartenaireSerializer(data=request.data, many=True)
         else:  # If data is a single object
@@ -1089,6 +1332,25 @@ def add_partenaire(request):
 @api_view(['PUT'])
 @user_types_required('directeur_relex')  # Remplacez par le décorateur ou la permission nécessaire
 def update_partenaire(request, id):
+    """
+    Vue permettant de mettre à jour les informations d'un partenaire existant.
+
+    Méthode HTTP :
+    - PUT : Met à jour les informations du partenaire spécifié par l'ID.
+
+    Fonctionnalité :
+    - L'utilisateur doit avoir les droits 'directeur_relex' pour mettre à jour les informations.
+    - Si le partenaire n'existe pas, une réponse d'erreur est retournée.
+
+    Paramètres de requête :
+    - `id` : L'ID du partenaire à mettre à jour.
+    - Les nouvelles données pour mettre à jour le partenaire sont envoyées dans le corps de la requête.
+
+    Retourne :
+    - Les détails du partenaire mis à jour avec un statut HTTP 200 (OK) en cas de succès.
+    - Un message d'erreur avec un statut HTTP 404 (Not Found) si le partenaire n'est pas trouvé.
+    - Un message d'erreur avec un statut HTTP 400 (Bad Request) si les données sont invalides.
+    """
     try:
         partenaire = Partenaire.objects.get(pk=id)
     except Partenaire.DoesNotExist:
@@ -1103,6 +1365,23 @@ def update_partenaire(request, id):
 @api_view(['DELETE'])
 @user_types_required('directeur_relex')  # Remplacez par le décorateur ou la permission nécessaire
 def delete_partenaire(request, id):
+    """
+    Vue permettant de supprimer un partenaire existant.
+
+    Méthode HTTP :
+    - DELETE : Supprime le partenaire spécifié par l'ID.
+
+    Fonctionnalité :
+    - L'utilisateur doit avoir les droits 'directeur_relex' pour effectuer la suppression.
+    - Si le partenaire n'existe pas, une réponse d'erreur est retournée.
+
+    Paramètre de requête :
+    - `id` : L'ID du partenaire à supprimer.
+
+    Retourne :
+    - Un message confirmant la suppression avec un statut HTTP 204 (No Content).
+    - Un message d'erreur avec un statut HTTP 404 (Not Found) si le partenaire n'est pas trouvé.
+    """
     try:
         partenaire = Partenaire.objects.get(pk=id)
     except Partenaire.DoesNotExist:
@@ -1114,6 +1393,19 @@ def delete_partenaire(request, id):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_all_partenaire(request):
+    """
+    Vue permettant de récupérer la liste de tous les partenaires.
+
+    Méthode HTTP :
+    - GET : Renvoie la liste de tous les partenaires.
+
+    Fonctionnalité :
+    - Accessible à tous les utilisateurs (permission `AllowAny`).
+
+    Retourne :
+    - La liste des partenaires avec un statut HTTP 200 (OK).
+    """
+    
     if request.method == 'GET':
         queryset = Partenaire.objects.all()
         serializer = PartenaireSerializer(queryset, many=True)
@@ -1122,6 +1414,18 @@ def get_all_partenaire(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_partenaire_byid(request, id):
+    """
+    Vue permettant de récupérer la liste de tous les partenaires.
+
+    Méthode HTTP :
+    - GET : Renvoie la liste de tous les partenaires.
+
+    Fonctionnalité :
+    - Accessible à tous les utilisateurs (permission `AllowAny`).
+
+    Retourne :
+    - La liste des partenaires avec un statut HTTP 200 (OK).
+    """
     partenaire = get_object_or_404(Partenaire, id=id)
     serializer = PartenaireSerializer(partenaire)
     return Response(serializer.data)
@@ -1148,6 +1452,23 @@ def get_all_demande_partenariat(request):
 @api_view(['PUT'])
 @user_types_required('directeur_relex')
 def accepter_demande_partenariat(request, id):
+    """
+    Vue permettant d'accepter une demande de partenariat et de créer un partenaire associé.
+
+    Méthode HTTP :
+    - PUT : Change l'état de la demande à 'Acceptée' et crée un nouveau partenaire.
+
+    Fonctionnalité :
+    - L'utilisateur doit avoir les droits 'directeur_relex' pour accepter une demande.
+    - Si la demande n'existe pas, une réponse d'erreur est retournée.
+
+    Paramètre de requête :
+    - `id` : L'ID de la demande à accepter.
+
+    Retourne :
+    - Un message confirmant l'acceptation et la création du partenaire avec un statut HTTP 200 (OK).
+    - Un message d'erreur avec un statut HTTP 404 (Not Found) si la demande n'est pas trouvée.
+    """
     try:
         demande = Demande_Partenariat.objects.get(pk=id)
     except Demande_Partenariat.DoesNotExist:
@@ -1169,6 +1490,23 @@ def accepter_demande_partenariat(request, id):
 @api_view(['PUT'])
 @user_types_required('directeur_relex')
 def refuser_demande_partenariat(request, id):
+    """
+    Vue permettant de refuser une demande de partenariat.
+
+    Méthode HTTP :
+    - PUT : Change l'état de la demande à 'Refusée'.
+
+    Fonctionnalité :
+    - L'utilisateur doit avoir les droits 'directeur_relex' pour refuser une demande.
+    - Si la demande n'existe pas, une réponse d'erreur est retournée.
+
+    Paramètre de requête :
+    - `id` : L'ID de la demande à refuser.
+
+    Retourne :
+    - Un message confirmant le refus de la demande avec un statut HTTP 200 (OK).
+    - Un message d'erreur avec un statut HTTP 404 (Not Found) si la demande n'est pas trouvée.
+    """
     try:
         demande = Demande_Partenariat.objects.get(pk=id)
     except Demande_Partenariat.DoesNotExist:
@@ -1183,6 +1521,20 @@ def refuser_demande_partenariat(request, id):
 
 @api_view(['POST'])
 def add_devis(request):
+    """
+    Vue permettant d'ajouter un nouveau devis.
+
+    Méthode HTTP :
+    - POST : Crée un devis basé sur les données fournies dans la requête.
+
+    Fonctionnalité :
+    - Récupère les données envoyées, les valide et enregistre un devis.
+    - Utilise le `DevisSerializer` pour sérialiser les données.
+
+    Retourne :
+    - Les données du devis nouvellement créé avec un statut HTTP 201 (Created) si la requête est valide.
+    - Un message d'erreur avec un statut HTTP 400 (Bad Request) si la requête est invalide.
+    """
     if request.method == 'POST':
         serializer = DevisSerializer(data=request.data)
         if serializer.is_valid():
@@ -1244,6 +1596,20 @@ def get_all_devis(request):
 @api_view(['POST'])
 @user_types_required('adminstrateur')
 def add_partenaire_labo(request):
+    """
+    Vue permettant d'ajouter un partenaire de laboratoire.
+
+    Méthode HTTP :
+    - POST : Crée un nouveau partenaire en fonction des données fournies.
+
+    Fonctionnalité :
+    - Valide les données reçues à l'aide du `Partenaire_laboSerializer`.
+    - Sauvegarde un nouveau partenaire s'il n'y a pas d'erreurs.
+
+    Retourne :
+    - Les données du partenaire nouvellement créé avec un statut HTTP 201 (Created) en cas de succès.
+    - Un message d'erreur avec un statut HTTP 400 (Bad Request) si la validation échoue.
+    """
     if  request.method == 'POST':
         serializer = Partenaire_laboSerializer(data=request.data)
         if serializer.is_valid():
@@ -1254,6 +1620,18 @@ def add_partenaire_labo(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def partenaire_labo_list(request):
+    """
+    Vue permettant de lister tous les partenaires de laboratoire.
+
+    Méthode HTTP :
+    - GET : Récupère la liste complète des partenaires de laboratoire.
+
+    Fonctionnalité :
+    - Utilise le `Partenaire_laboSerializer` pour sérialiser et retourner les données de tous les partenaires.
+
+    Retourne :
+    - La liste des partenaires avec un statut HTTP 200 (OK) en cas de succès.
+    """
     if request.method == 'GET':
         queryset = Partenaire_labo.objects.all()
         serializer = Partenaire_laboSerializer(queryset, many=True)
@@ -1381,6 +1759,20 @@ def chercheur_list(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def equipe_projet_list(request):
+    """
+    Vue pour lister toutes les équipes de projet.
+
+    Méthode HTTP :
+    - GET : Récupère la liste complète des équipes de projet.
+
+    Fonctionnalité :
+    - Récupère toutes les équipes de projet via le modèle `Equipe_Projet`.
+    - Utilise le `Equipe_ProjetSerializer` pour sérialiser les données.
+
+    Retourne :
+    - La liste des équipes de projet avec un statut HTTP 200 (OK) en cas de succès.
+    - Un message d'erreur avec un statut HTTP 500 (Internal Server Error) si une exception est levée.
+    """
     if request.method == 'GET':
         # Assuming you want to filter equipe by authenticated Chercheur
         # if request.user.is_authenticated and request.user.is_chercheur:
@@ -1405,6 +1797,20 @@ def equipe_projet_list(request):
 @api_view([ 'POST'])
 @permission_classes([AllowAny])
 def add_equipe_projet(request):
+    """
+    Vue pour ajouter une nouvelle équipe de projet.
+
+    Méthode HTTP :
+    - POST : Crée une nouvelle équipe de projet en fonction des données fournies.
+
+    Fonctionnalité :
+    - Valide les données reçues à l'aide du `Equipe_ProjetSerializer`.
+    - Sauvegarde une nouvelle équipe de projet s'il n'y a pas d'erreurs.
+
+    Retourne :
+    - Les données de l'équipe de projet nouvellement créée avec un statut HTTP 201 (Created) en cas de succès.
+    - Un message d'erreur avec un statut HTTP 400 (Bad Request) si la validation échoue.
+    """
     if request.method == 'POST':
         # You can add authorization logic here if required
         serializer = Equipe_ProjetSerializer(data=request.data)
@@ -1417,7 +1823,21 @@ def add_equipe_projet(request):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def add_equipe_recherche(request):
-   if request.method == 'POST':
+    """
+    Vue pour ajouter une nouvelle équipe de recherche.
+
+    Méthode HTTP :
+    - POST : Crée une nouvelle équipe de recherche en fonction des données fournies.
+
+    Fonctionnalité :
+    - Valide les données reçues à l'aide du `Equipe_RechercheSerializer`.
+    - Sauvegarde une nouvelle équipe de recherche s'il n'y a pas d'erreurs.
+
+    Retourne :
+    - Les données de l'équipe de recherche nouvellement créée avec un statut HTTP 201 (Created) en cas de succès.
+    - Un message d'erreur avec un statut HTTP 400 (Bad Request) si la validation échoue.
+    """
+    if request.method == 'POST':
         serializer = Equipe_RechercheSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -1483,6 +1903,19 @@ def get_enseignant_annuaire(request, nom, prenom):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def equipe_recherche_list(request):
+    """
+    Vue pour lister toutes les équipes de recherche.
+
+    Méthode HTTP :
+    - GET : Récupère la liste complète des équipes de recherche.
+
+    Fonctionnalité :
+    - Récupère toutes les équipes de recherche via le modèle `Equipe_Recherche`.
+    - Utilise le `Equipe_RechercheSerializer` pour sérialiser les données.
+
+    Retourne :
+    - La liste des équipes de recherche avec un statut HTTP 200 (OK) en cas de succès.
+    """
     if request.method == 'GET':
         queryset = Equipe_Recherche.objects.all()
         serializer = Equipe_RechercheSerializer(queryset, many=True)
@@ -1517,7 +1950,20 @@ def get_equipes_par_laboratoire(request, laboratoire_nom):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def add_projet(request):
-   if request.method == 'POST':
+    """
+    Vue pour ajouter un nouveau projet.
+
+    Méthode HTTP :
+    - POST : Reçoit les données du projet à ajouter.
+
+    Fonctionnalité :
+    - Utilise le sérialiseur `ProjetSerializer` pour valider et sauvegarder les données dans la base de données.
+
+    Retourne :
+    - Les données du projet créé avec un statut HTTP 201 (CREATED) en cas de succès.
+    - En cas d'erreur de validation, retourne les erreurs avec un statut HTTP 400 (BAD REQUEST).
+    """   
+    if request.method == 'POST':
         serializer = ProjetSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -1527,6 +1973,18 @@ def add_projet(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def projet_list(request):
+    """
+    Vue pour lister tous les projets.
+
+    Méthode HTTP :
+    - GET : Récupère et retourne la liste complète des projets.
+
+    Fonctionnalité :
+    - Utilise le sérialiseur `ProjetSerializer` pour transformer les objets en format JSON.
+
+    Retourne :
+    - La liste des projets avec un statut HTTP 200 (OK) en cas de succès.
+    """
     if request.method == 'GET':
         queryset = Projet.objects.all()
         serializer = ProjetSerializer(queryset, many=True)
@@ -1582,6 +2040,15 @@ def projets_par_laboratoire(request, nom_laboratoire):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def annees_projets(request):
+    """
+    Vue pour obtenir la liste des années distinctes des projets.
+
+    Méthode HTTP :
+    - GET : Récupère les années de tous les projets et retourne une liste.
+
+    Retourne :
+    - Un dictionnaire contenant une liste d'années sous la clé 'annees' avec un statut HTTP 200 (OK).
+    """
     annees = Projet.objects.values_list('annee', flat=True).distinct()
     return Response({'annees': list(annees)})
 
@@ -1592,7 +2059,17 @@ def annees_projets(request):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def add_theme_recherche(request):
-   if request.method == 'POST':
+    """
+    Vue pour ajouter un nouveau thème de recherche.
+
+    Méthode HTTP :
+    - POST : Reçoit les données du thème de recherche à ajouter.
+
+    Retourne :
+    - Les données du thème de recherche créé avec un statut HTTP 201 (CREATED) en cas de succès.
+    - En cas d'erreur de validation, retourne les erreurs avec un statut HTTP 400 (BAD REQUEST).
+    """
+    if request.method == 'POST':
         serializer = Theme_RechercheSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -1603,6 +2080,15 @@ def add_theme_recherche(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def theme_recherche_list(request):
+    """
+    Vue pour lister tous les thèmes de recherche.
+
+    Méthode HTTP :
+    - GET : Récupère et retourne la liste complète des thèmes de recherche.
+
+    Retourne :
+    - La liste des thèmes de recherche avec un statut HTTP 200 (OK) en cas de succès.
+    """
     if request.method == 'GET':
         queryset = Theme_Recherche.objects.all()
         serializer = Theme_RechercheSerializer(queryset, many=True)
@@ -1613,6 +2099,20 @@ def theme_recherche_list(request):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def PoserQuestion( request):
+     """
+    Vue permettant à un utilisateur de poser une question.
+
+    Méthode : POST
+
+    Corps de la requête : 
+    - Doit contenir les données sérialisées pour créer une nouvelle question (ex. titre, contenu, catégorie).
+
+    Comportement :
+    - Si les données sont valides, la question est créée et enregistrée dans la base de données.
+    - Réponse : Renvoie les données de la question nouvellement créée avec le statut HTTP 201.
+    - En cas d'erreur de validation, renvoie les erreurs avec le statut HTTP 400.
+
+     """
      serializer = QuestionSerializer(data=request.data)
      if serializer.is_valid():
           #  serializer.save(auteur=request.user)  
@@ -1623,6 +2123,19 @@ def PoserQuestion( request):
 @api_view(['POST'])
 @user_types_required('superuser')
 def RepondreQuestion(request, question_id):
+    """
+    Vue permettant à un superutilisateur de répondre à une question.
+
+    Méthode : POST
+
+    Comportement :
+    - Cherche la question correspondante via l'ID (renvoie une erreur 404 si la question n'existe pas).
+    - Si les données de réponse sont valides, une réponse est créée pour la question.
+    - Marque la question comme validée (`question.valide = True`).
+    - Réponse : Renvoie les données de la réponse avec le statut HTTP 201.
+    - En cas d'erreur de validation, renvoie les erreurs avec le statut HTTP 400.
+
+    """
     question = get_object_or_404(Question, pk=question_id)
     serializer = ReponseSerializer(data=request.data)
     if serializer.is_valid():
@@ -1636,6 +2149,18 @@ def RepondreQuestion(request, question_id):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def GetQuestions(request, category):
+    """
+    Vue permettant de récupérer toutes les questions d'une catégorie spécifique.
+
+    Méthode : GET
+
+    Comportement :
+    - Récupère toutes les questions de la catégorie spécifiée.
+    - Pour chaque question, récupère ses réponses associées et les inclut dans la réponse.
+    
+    Réponse :
+    - Une liste d'objets JSON contenant les détails des questions (titre, contenu, date de création, etc.) et les réponses associées.
+    """
     questions = Question.objects.filter(category=category)
     data = []
     for question in questions:
@@ -1661,6 +2186,23 @@ def GetQuestions(request, category):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def GetQuestionById(request, question_id):
+    """
+    Vue permettant de récupérer une question par son ID ainsi que ses réponses associées.
+
+    Méthode : GET
+
+    Paramètre URL :
+    - `question_id` : L'ID de la question à récupérer.
+
+    Comportement :
+    - Recherche la question par son identifiant.
+    - Si la question est trouvée, récupère les réponses associées et les inclut dans la réponse.
+    - Si la question n'existe pas, retourne une erreur 404.
+    
+    Réponse :
+    - Un objet JSON contenant les détails de la question (titre, contenu, date de création, etc.) et ses réponses.
+    - Chaque réponse inclut le texte et la date de création.
+ """   
     try:
         question = Question.objects.get(pk=question_id)
         print(f"Question trouvée: {question}")
@@ -1695,6 +2237,17 @@ def GetQuestionById(request, question_id):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def GetAllQuestions(request):
+    """
+    Vue permettant de récupérer toutes les questions de la base de données.
+
+    Méthode : GET
+
+    Comportement :
+    - Récupère toutes les questions existantes dans la base de données, sans filtre.
+    
+    Réponse :
+    - Une liste d'objets JSON contenant les détails de chaque question : ID, catégorie, titre, contenu, date de création, et statut de validation.
+    """
     questions = Question.objects.all()
     questions_data = []
 
@@ -1717,6 +2270,18 @@ def GetAllQuestions(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def GetValideQuestions(request):
+    """
+    Vue permettant de récupérer toutes les questions validées.
+
+    Méthode : GET
+
+    Comportement :
+    - Filtre les questions pour ne récupérer que celles qui sont marquées comme `valide=True`.
+    
+    Réponse :
+    - Une liste d'objets JSON des questions validées, avec les détails tels que : ID, catégorie, titre, contenu, et date de création.
+    
+    """
     valide_questions = Question.objects.filter(valide=True)
     serializer = QuestionSerializer(valide_questions, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
@@ -2034,6 +2599,16 @@ def get_all_services(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_publication(request, id):
+    """
+    Récupère une publication par son ID.
+
+    Méthode : GET
+
+    Comportement :
+    - Tente de récupérer une publication en fonction de l'ID fourni dans l'URL.
+    - Si la publication existe, elle est sérialisée et les données sont retournées.
+    - Si la publication n'existe pas, une réponse d'erreur est renvoyée.
+    """
     try:
         publication = Publication.objects.get(pk=id)
         serializer = PublicationSerializer(publication)
@@ -2050,6 +2625,19 @@ def get_publication(request, id):
 @api_view(['PUT'])
 @user_types_required('adminstrateur')
 def annuler_publication(request, pk):
+    """
+    Annule une publication par son ID.
+
+    Méthode : PUT
+
+    Comportement :
+    - Tente de récupérer une publication en fonction de l'ID fourni dans l'URL.
+    - Si la publication existe, elle met à jour son état à 'annulée' et sauvegarde les modifications.
+    - Si la publication n'existe pas, une réponse d'erreur est renvoyée.
+
+    Paramètres d'URL :
+    - `pk` : ID de la publication à annuler.
+    """
     try:
         publication = Publication.objects.get(pk=pk)
 
@@ -2073,6 +2661,19 @@ def annuler_publication(request, pk):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def search_publication_noauth(request):
+    """
+    Recherche des publications en fonction des paramètres de requête.
+
+    Méthode : GET
+
+    Paramètres de requête :
+    - `query` : (optionnel) Texte à rechercher dans les publications.
+    - `publisher` : (optionnel) ID de l'éditeur des publications.
+    - Autres paramètres : Champs de la publication à filtrer, avec une recherche insensible à la casse.
+    
+    Autorisation :
+    - Accessible par tous les utilisateurs, y compris ceux qui ne sont pas authentifiés (AllowAny).
+    """
     if request.method == 'GET':
         query_params = request.query_params
 
@@ -2114,6 +2715,15 @@ status=status.HTTP_405_METHOD_NOT_ALLOWED)
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_event_publications(request):
+    """
+    Récupère toutes les publications de type 'event' ayant un état valide.
+
+    Méthode : GET
+    
+     
+    Autorisation :
+    - Accessible par tous les utilisateurs, y compris ceux qui ne sont pas authentifiés (AllowAny).
+    """
     if request.method == 'GET':
         queryset =Publication.objects.filter(type_publication='event',etat='valide')
         serializer = PublicationSerializer(queryset, many=True)
@@ -2123,6 +2733,14 @@ def get_event_publications(request):
 @api_view(['DELETE'])
 @permission_classes([AllowAny])
 def delete_event_publications(request):
+    """
+    Supprime toutes les publications de type 'event'.
+
+    Méthode : DELETE
+     
+    Autorisation :
+    - Accessible par tous les utilisateurs, y compris ceux qui ne sont pas authentifiés (AllowAny).
+    """
     if request.method == 'DELETE':
         # Filtrer et supprimer toutes les publications de type 'event'
         deleted_count, _ = Publication.objects.filter(type_publication='event').delete()
@@ -2132,7 +2750,14 @@ def delete_event_publications(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_user_info(request):
-   
+    """
+    Récupère les informations de l'utilisateur connecté.
+
+    Méthode : GET
+     
+    Autorisation :
+    - Accessible par tous les utilisateurs, y compris ceux qui ne sont pas authentifiés (AllowAny).
+    """
     user = request.user
    
     user_data = {
@@ -2169,6 +2794,18 @@ def get_user_info(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_responses_by_question(request, question_id):
+    """
+    Récupère les réponses associées à une question donnée.
+
+    Méthode : GET
+
+    Paramètres d'URL :
+    - `question_id` : ID de la question pour laquelle récupérer les réponses.
+    
+     
+    Autorisation :
+    - Accessible par tous les utilisateurs, y compris ceux qui ne sont pas authentifiés (AllowAny).
+    """
     question = get_object_or_404(Question, pk=question_id)
     responses = Reponse.objects.filter(question=question)
     serializer = ReponseSerializer(responses, many=True)
@@ -2203,6 +2840,18 @@ def get_all_categories(request):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def add_formation(request):
+    """
+    Ajoute une nouvelle formation.
+
+    Méthode : POST
+
+    Comportement :
+    - Reçoit les données d'une nouvelle formation via la requête.
+    - Tente de sérialiser les données fournies à l'aide de `FormationSerializer`.
+    - Si les données sont valides, la formation est enregistrée dans la base de données.
+    - Si les données ne sont pas valides, des erreurs de validation sont renvoyées.
+
+    """
     if request.method == 'POST':
         serializer = FormationSerializer(data=request.data)
         if serializer.is_valid():
@@ -2336,6 +2985,16 @@ def get_competances(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_formateur(request):
+    """
+    Récupère tous les formateurs enregistrés dans la base de données.
+
+    Méthode : GET
+
+    Comportement :
+    - Récupère tous les objets `Formateur` de la base de données.
+    - Sérialise les objets récupérés à l'aide du `FormateurSerializer`.
+    - Retourne la liste des formateurs sous forme de réponse JSON.
+    """
     fromateur = Formateur.objects.all()
     serializer = FormateurSerializer(fromateur, many=True)
     return Response(serializer.data)      
@@ -2373,6 +3032,17 @@ def get_modules_by_formation(request, formation_id):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_formation_by_id(request, formation_id):
+    """
+    Récupère une formation spécifique en fonction de son ID.
+
+    Méthode : GET
+
+    Comportement :
+    - Tente de récupérer l'objet `Formation` correspondant à l'ID fourni.
+    - Si la formation existe, elle est sérialisée et renvoyée.
+    - Si la formation n'existe pas, une erreur 404 est renvoyée.
+
+    """
     try:
         # Récupérer la formation par son ID
         formation = Formation.objects.get(id=formation_id)
@@ -2387,6 +3057,16 @@ def get_formation_by_id(request, formation_id):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_formateur_by_id(request, formateur_id):
+    """
+    Récupère un formateur spécifique en fonction de son ID.
+
+    Méthode : GET
+
+    Comportement :
+    - Tente de récupérer l'objet `Formateur` correspondant à l'ID fourni.
+    - Si le formateur existe, il est sérialisé et renvoyé.
+    - Si le formateur n'existe pas, une erreur 404 est renvoyée.
+    """
     try:
         # Récupérer la formation par son ID
         formateur = Formateur.objects.get(id=formateur_id)
@@ -2401,6 +3081,16 @@ def get_formateur_by_id(request, formateur_id):
 @api_view(['DELETE'])
 @permission_classes([AllowAny])
 def delete_formateur(request, pk):
+    """
+    Supprime un formateur en fonction de son ID.
+
+    Méthode : DELETE
+
+    Comportement :
+    - Tente de récupérer le formateur par son ID.
+    - Si le formateur existe, il est supprimé de la base de données.
+    - Si le formateur n'existe pas, une erreur 404 est renvoyée.
+    """
     try:
         formateur = Formateur.objects.get(pk=pk)
     except Formateur.DoesNotExist:
@@ -2469,6 +3159,18 @@ def delete_module(request, pk):
 @api_view(['DELETE'])
 @permission_classes([AllowAny])
 def delete_formation(request, pk):
+    """
+    Supprime une formation existante basée sur son identifiant (PK).
+
+    Méthode : DELETE
+
+    Paramètres :
+    - `pk` : L'ID de la formation à supprimer.
+
+    Réponses :
+    - Si la formation est trouvée, elle est supprimée et une réponse avec le statut HTTP 204 est retournée.
+    - Si la formation n'est pas trouvée, une réponse avec un message d'erreur et le statut HTTP 404 est renvoyée.
+    """
     try:
         formation = Formation.objects.get(pk=pk)
     except Formation.DoesNotExist:
@@ -2656,6 +3358,20 @@ def update_module(request, pk):
 @api_view(['PUT'])
 @permission_classes([AllowAny])
 def update_formation(request, pk):
+    """
+    Met à jour une formation existante basée sur son identifiant (PK).
+
+    Méthode : PUT
+
+    Paramètres :
+    - `pk` : L'ID de la formation à mettre à jour.
+
+    Comportement :
+    - Tente de récupérer la formation à partir de l'ID fourni.
+    - Si la formation n'existe pas, renvoie un message d'erreur avec le statut HTTP 404.
+    - Si les données envoyées sont valides, la formation est mise à jour avec les nouvelles informations.
+    - Si les données ne sont pas valides, renvoie une réponse avec les erreurs et le statut HTTP 400.
+    """
     try:
         formation = Formation.objects.get(pk=pk)
     except Formation.DoesNotExist:
@@ -3494,6 +4210,16 @@ def publications_seminaire_bylabo(request, laboratoire_id):
 @api_view(['PUT'])
 @permission_classes([AllowAny])
 def update_section(request, id):
+    """
+    Vue permettant de mettre à jour une section d'une publication existante par son ID.
+
+    Méthode : PUT
+
+    Réponse :
+    - Si l'opération réussit, renvoie les données de la section mise à jour avec un statut HTTP 200.
+    - Si la section n'est pas trouvée, renvoie une réponse d'erreur avec un statut HTTP 404.
+    - Si les données ne sont pas valides, renvoie une réponse avec les erreurs et un statut HTTP 400.
+    """
     try:
         section_instance = section.objects.get(id=id)
     except section.DoesNotExist:

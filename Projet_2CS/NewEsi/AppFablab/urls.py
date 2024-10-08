@@ -2,6 +2,7 @@ from django.urls import path
 from .views import *
 from django.conf import settings
 from django.conf.urls.static import static
+
 urlpatterns = [
     path('categories/', get_all_categories, name='get_all_categories'),
     path('categories/add/', add_category, name='add_category'),
@@ -29,5 +30,6 @@ urlpatterns = [
     path('filter-demandes-by-date/', filter_demandes_by_date, name='filter_demandes_by_date'),
    path('inscriptions/<int:inscription_id>/valider/', valider_inscription, name='valider_inscription'),
     path('inscriptions/<int:inscription_id>/rejeter/', rejeter_inscription, name='rejeter_inscription'),
+    
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

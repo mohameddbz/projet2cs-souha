@@ -255,6 +255,25 @@ class MembreClub(models.Model):
     
 #publications    
 class Publication(models.Model):
+    """
+    Modèle représentant une publication dans le système.
+
+    Attributs :
+    - id_publication (int) : Clé primaire, ID auto-incrémenté de la publication.
+    - titre (str) : Titre de la publication.
+    - description (str) : Description détaillée de la publication.
+    - image (ImageField) : Image optionnelle associée à la publication, stockée dans le dossier 'publications/'.
+    - etat (str) : État de la publication, par défaut 'en attente'. Peut aussi être 'valide' ou 'rejeté'.
+    - type_publication (str) : Type de la publication, tel que 'event', 'actualité' ou 'article'.
+    - date_debut (DateTime) : Date de début de l'événement ou de la publication, optionnelle.
+    - date_fin (DateTime) : Date de fin de l'événement ou de la publication, optionnelle.
+    - date_publication (DateTime) : Date à laquelle la publication devient publique, optionnelle.
+    - date_creation (DateTime) : Date de création automatique de la publication.
+    - publisher (ForeignKey) : L'utilisateur qui a créé ou possède la publication, lié au modèle `Utilisateur`.
+    - visiteur (str) : Nom du visiteur associé à la publication, par défaut 'Pr Jalil BOUKHOBZA'.
+    - lieu (str) : Lieu de la publication ou de l'événement, par défaut 'salle conférence'.
+    
+    """
     id_publication = models.AutoField(primary_key=True)
     titre = models.CharField(max_length=255)
     description = models.TextField()
@@ -277,6 +296,15 @@ class Publication(models.Model):
         return self.titre
 
 class section(models.Model):
+    """
+    Modèle représentant une section au sein d'une publication.
+
+    Attributs :
+    - titre (str) : Titre de la section.
+    - contenu (str) : Contenu de la section.
+    - id_publication (ForeignKey) : Référence à la publication liée, utilisant le modèle `Publication`.
+    
+    """
     titre = models.CharField(max_length=255)
     contenu = models.TextField()
     id_publication = models.ForeignKey(Publication, related_name="publication", on_delete=models.CASCADE, default=None)
@@ -289,6 +317,16 @@ class section(models.Model):
 
 
 class Partenaire_labo(models.Model):
+    """
+    Modèle représentant un partenaire associé à un laboratoire.
+
+    Attributs :
+    - `nom` : Nom du partenaire (CharField, longueur maximale 255).
+    - `description` : Description du partenaire (TextField).
+    - `contact` : Numéro de contact du partenaire (IntegerField, facultatif).
+    - `email` : Adresse email du partenaire (EmailField).
+    - `laboratoire` : Référence au laboratoire associé (ForeignKey vers le modèle `Laboratoire`, suppression en cascade possible).
+    """
     nom = models.CharField(max_length=255)
     description = models.TextField()
     contact = models.IntegerField(null=True, blank=True)
@@ -324,6 +362,15 @@ class Chercheur(Utilisateur):
 #         verbose_name_plural = 'Chercheurs'
 
 class Equipe_Projet(models.Model):
+    """
+    Modèle représentant une équipe de projet.
+
+    Attributs :
+    - `id_equipe_projet` : Identifiant unique de l'équipe de projet (AutoField).
+    - `nom` : Nom de l'équipe de projet (CharField).
+    - `Chercheur` : Relation Many-to-Many avec le modèle `Utilisateur`, représentant les chercheurs qui participent à cette équipe.
+    - `laboratoire` : Référence au laboratoire associé (ForeignKey vers le modèle `Laboratoire`, suppression en cascade possible).
+    """
     id_equipe_projet = models.AutoField(primary_key=True)
     nom = models.CharField(max_length=255)
     Chercheur=models.ManyToManyField('Utilisateur', related_name='equipe_projet')
@@ -333,6 +380,14 @@ class Equipe_Projet(models.Model):
         return self.nom
     
 class Theme_Recherche(models.Model):
+    """
+    Modèle représentant un thème de recherche.
+
+    Attributs :
+    - `id_theme` : Identifiant unique du thème (AutoField).
+    - `nom` : Nom du thème de recherche (CharField).
+    - `description` : Description détaillée du thème (TextField).
+    """
     id_theme = models.AutoField(primary_key=True)
     nom = models.CharField(max_length=255)
     description = models.TextField()
@@ -343,6 +398,18 @@ class Theme_Recherche(models.Model):
 
 
 class Projet(models.Model):
+    """
+    Modèle représentant un projet de recherche.
+
+    Attributs :
+    - `id_projet` : Identifiant unique du projet (AutoField).
+    - `nom` : Nom du projet (CharField).
+    - `description` : Description du projet (TextField).
+    - `equipe_projet` : Référence à l'équipe de projet associée (ForeignKey vers le modèle `Equipe_Projet`).
+    - `themes` : Référence au thème de recherche associé (ForeignKey vers le modèle `Theme_Recherche`).
+    - `type` : Type de projet (CharField).
+    - `annee` : Année de lancement ou de réalisation du projet (IntegerField).
+    """
     id_projet = models.AutoField(primary_key=True)
     nom = models.CharField(max_length=255)
     description = models.TextField()
@@ -371,6 +438,21 @@ class Projet(models.Model):
     
 
 class Demande_Partenariat(models.Model):
+    """
+    Modèle représentant une demande de partenariat soumise à l'organisation.
+
+    Attributs :
+    - `nom` : Le nom de la personne faisant la demande.
+    - `prenom` : Le prénom de la personne faisant la demande.
+    - `profession` : La profession de la personne.
+    - `country` : Le pays d'origine de la personne ou de l'organisation.
+    - `organisme` : Le nom de l'organisation faisant la demande de partenariat.
+    - `etat` : L'état actuel de la demande (e.g., 'Acceptée', 'Refusée').
+    - `tailleOrganisme` : La taille de l'organisation (facultatif).
+    - `phoneNumber` : Le numéro de téléphone associé à la demande (facultatif).
+    - `email` : L'adresse email pour contacter la personne ou l'organisation.
+    - `websiteUrl` : Le site web de l'organisation.
+    """
     nom = models.CharField(max_length=255)
     prenom=models.CharField(max_length=255)
     profession=models.CharField(max_length=255)
@@ -393,6 +475,15 @@ class Competence(models.Model):
         return self.nom
 
 class Formateur(models.Model):
+    """
+    Modèle représentant un formateur.
+
+    Attributs :
+    - nom (CharField) : Le nom de famille du formateur, limité à 100 caractères.
+    - prenom (CharField) : Le prénom du formateur, limité à 100 caractères.
+    - email (EmailField) : L'adresse e-mail du formateur.
+    - specialites (TextField) : Les spécialités du formateur, sous forme de texte libre.
+    """
     nom = models.CharField(max_length=100)
     prenom = models.CharField(max_length=100)
     email = models.EmailField()
@@ -402,6 +493,16 @@ class Formateur(models.Model):
         return f"{self.prenom} {self.nom}"
 
 class Module(models.Model):
+    """
+    Modèle représentant un module de formation.
+
+    Attributs :
+    - `titre` (CharField) : Le titre du module, avec une longueur maximale de 255 caractères.
+    - `description` (TextField) : Une description du module. Par défaut, il est défini sur "Aucune description fournie".
+    - `competences` (ManyToManyField) : Une relation de plusieurs à plusieurs avec le modèle `Competence`, permettant d'associer plusieurs compétences à un module.
+    - `volume_horaire` (IntegerField) : Indique le nombre d'heures de formation pour le module.
+    - `formateur` (ForeignKey) : Une clé étrangère vers le modèle `Formateur`, définissant le formateur responsable du module. La suppression d'un formateur entraînera la suppression de ses modules associés. Ce champ est optionnel (blank=True).
+    """
     titre = models.CharField(max_length=255)
     description = models.TextField(default='Aucune description fournie')
     competences = models.ManyToManyField(Competence, related_name='competences')
@@ -467,6 +568,14 @@ class Cours(models.Model):
 
 
 class Theme_formation(models.Model):
+    """
+    Modèle représentant un thème de formation.
+
+    Attributs :
+    - `titre` (CharField) : Le titre du thème, avec une longueur maximale de 255 caractères.
+    - `cours` (ManyToManyField) : Une relation de plusieurs à plusieurs avec le modèle `Cours`, permettant d'associer plusieurs cours à un thème de formation.
+
+    """
     titre = models.CharField(max_length=255)
     cours=models.ManyToManyField(Cours, related_name='cours')
 
@@ -508,6 +617,15 @@ class Devis(models.Model):
 
 
 class Partenaire(models.Model):
+    """
+    Modèle représentant un partenaire Relex.
+
+    Attributs :
+    - `nom` (CharField) : Le nom du partenaire, avec une longueur maximale de 255 caractères.
+    - `description` (TextField) : Une description détaillée du partenaire.
+    - `contact` (IntegerField, nullable) : Le numéro de contact du partenaire. Ce champ est optionnel.
+    - `email` (EmailField) : L'adresse email du partenaire, avec une longueur maximale de 255 caractères.
+    """
     nom = models.CharField(max_length=255)
     description = models.TextField()
     contact = models.IntegerField(null=True, blank=True)
@@ -523,6 +641,17 @@ class Partenaire(models.Model):
 
 #forum
 class Question(models.Model):
+    """
+    Modèle représentant une question dans le forum.
+
+    Attributs :
+    - category (CharField) : La catégorie à laquelle la question appartient (ex. 'général', 'technique'). Longueur maximale : 50 caractères.
+    - titre (CharField) : Le titre de la question, résumé en une phrase. Longueur maximale : 255 caractères.
+    - contenu (TextField) : Le contenu détaillé de la question.
+    - date_creation (DateTimeField) : Date et heure de création de la question. Assignée automatiquement lors de la création.
+    - valide (BooleanField) : Indicateur pour savoir si la question est validée par un administrateur/modérateur. Par défaut, `False`.
+    """
+    
     category=models.CharField(max_length=50)
   #  auteur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)
     titre = models.CharField(max_length=255)
@@ -534,6 +663,14 @@ class Question(models.Model):
 
 
 class Reponse(models.Model):
+    """
+    Modèle représentant une réponse à une question du forum.
+
+    Attributs :
+    - question (ForeignKey) : La question à laquelle cette réponse est liée. Supprimée en cascade si la question est supprimée.
+    - contenu (TextField) : Le contenu de la réponse.
+    - date_creation (DateTimeField) : Date et heure de création de la réponse. Assignée automatiquement lors de la création.
+    """
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     contenu = models.TextField()
     date_creation = models.DateTimeField(auto_now_add=True)
