@@ -123,7 +123,7 @@ function PublicationAdmin() {
                             <th>Titre</th>
                             <th>Acteur</th>
                             <th>État</th>
-                            <th>Validation</th>
+                            <th>type_publication</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -133,7 +133,7 @@ function PublicationAdmin() {
                                 <td>{publication.titre || 'No Title'}</td>
                                 <td>{userMap[publication.id_publication]?.family_name || 'null'}</td>
                                 <td>{publication.etat }</td>
-                                <td>{formatDate(publication.date_publication) || '/'}</td>
+                                <td>{publication.type_publication}</td>
                                 <td>
                                     <div className="action-buttons">
                                         <button className="reject" data-tooltip="Supprimer" onClick={() => handleReject(publication.id_publication)}><FaTrash/></button>

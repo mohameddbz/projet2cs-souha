@@ -62,6 +62,8 @@ export default function SidebarAdm() {
             <MenuItem className={styles.widthMenu}><Link to="/relex/AjouterPartenaire">{textMenu(pubIcon,'Ajouter partenaire')}</Link></MenuItem>
           </SubMenu>
           <SubMenu label="Formation a la carte" className={styles.SubMenu}>
+            <MenuItem className={styles.widthMenu}><Link to="/relex/DemendeList">{textMenu(pubIcon,'Liste des demendes')}</Link></MenuItem>
+            <MenuItem className={styles.widthMenu}><Link to="/relex/DevisList">{textMenu(pubIcon,'Liste des devis')}</Link></MenuItem>
             <MenuItem className={styles.widthMenu}><Link to="/relex/ChapitreList">{textMenu(pubIcon,'Liste des chapitres')}</Link></MenuItem>
             <MenuItem className={styles.widthMenu}><Link to="/relex/AddChapitre">{textMenu(hourGlass,'Ajouter chapitre')}</Link></MenuItem>
             <MenuItem className={styles.widthMenu}><Link to="/relex/CourList">{textMenu(pubIcon,'Liste des cours')}</Link></MenuItem>

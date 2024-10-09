@@ -5,9 +5,6 @@ import './Admin.css';
 import axios  from 'axios';
 
 const ProfilePage = () => {
- 
-  
-
   const [currentUser,setCurrentUser]= useState('')
   const [rolee, setRole] = useState('');
 

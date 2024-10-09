@@ -403,7 +403,6 @@
 // };
 
 // export default Admin2;
-
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './Publier.css';
@@ -432,7 +431,7 @@ function Admin2(props) {
     const token = localStorage.getItem('token');
     try {
       const res = await axios.get(`${process.env.REACT_APP_API_URL}/user/`, {
-        headers: { 'Authorization': `token ${token}` }
+        headers: { Authorization: `token ${token}` },
       });
       setUserInfo(res.data);
       setCategorie(res.data.Categorie.nom);
@@ -445,14 +444,19 @@ function Admin2(props) {
     const newErrors = {};
     if (!subject) newErrors.subject = 'Veuillez entrer un sujet.';
     if (!description) newErrors.description = 'Veuillez entrer une description.';
+    if (!type) newErrors.type = 'Veuillez choisir un type de publication.';
+    if(type === 'soutenance'){
+      setSelectedFile('');
+    }
     if (type === 'event') {
       if (new Date(dateFin) < new Date(dateDebut)) {
-        newErrors.dateFin = `La date de fin ne peut pas être antérieure à la date de début.`;
+        newErrors.dateFin = 'La date de fin ne peut pas être antérieure à la date de début.';
       }
       if (new Date(datePublication) >= new Date(dateDebut)) {
-        newErrors.datePublication = `La date de validation doit être avant la date de début.`;
+        newErrors.datePublication = 'La date de validation doit être avant la date de début.';
       }
     }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -464,24 +468,28 @@ function Admin2(props) {
     setIsLoading(true);
 
     const formData = new FormData();
-      formData.append('titre', subject);
-      formData.append('description', description);
-      formData.append('etat', 'en attente');
-      formData.append('type_publication', type);
-      formData.append('date_debut', dateDebut);
-      formData.append('date_fin', dateFin);
-      formData.append('date_publication', datePublication);
+    formData.append('titre', subject);
+    formData.append('description', description);
+    formData.append('etat', 'en attente');
+    formData.append('type_publication', type);
+    formData.append('date_debut', dateDebut);
+    formData.append('date_fin', dateFin);
+    formData.append('date_publication', datePublication);
+    formData.append('image', selectedFile);
     console.log(formData)
-
     const token = localStorage.getItem('token');
 
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/publication/add/`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          'Authorization': `token ${token}`
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/publication/add/`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `token ${token}`,
+          },
         }
-      });
+      );
       console.log('Réponse du serveur:', response.data);
       alert('Publication ajoutée avec succès!');
       handleCancel();
@@ -531,12 +539,55 @@ function Admin2(props) {
             value={type}
             onChange={(e) => setType(e.target.value)}
           >
-            <option value="">choise one </option>
+            <option value="">Choisir un type</option>
             <option value="actualité">Actualité</option>
-            <option value="event"> Événement</option>
+            <option value="event">Événement</option>
+            <option value="soutenance">Soutenance</option>
+            <option value="appel">Appel d'offre</option>
           </select>
           {errors.type && <span className="error-message">{errors.type}</span>}
         </div>
+            <div className="AdminInputContainer">
+              <label className="AdminLabel">Sujet*</label>
+              <input
+                type="text"
+                className={`AdminInput ${errors.subject ? 'error' : ''}`}
+                placeholder="Ecrire le sujet"
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
+              />
+              {errors.subject && <span className="error-message">{errors.subject}</span>}
+            </div>
+
+        {(type === 'event' || type === 'actualité') && (
+          <>
+            <div className="AdminInputContainer">
+              <label className="AdminLabel">Deadline de validation*</label>
+              <input
+                type="datetime-local"
+                className={`AdminInput ${errors.datePublication ? 'error' : ''}`}
+                value={datePublication}
+                onChange={(e) => setDatePublication(e.target.value)}
+              />
+              {errors.datePublication && <span className="error-message">{errors.datePublication}</span>}
+            </div>
+          </>
+        )}
+
+        {(type === 'appel' || type === 'soutenance') && (
+          <>
+            <div className="AdminInputContainer">
+              <label className="AdminLabel">Date de publication*</label>
+              <input
+                type="datetime-local"
+                className={`AdminInput ${errors.datePublication ? 'error' : ''}`}
+                value={datePublication}
+                onChange={(e) => setDatePublication(e.target.value)}
+              />
+              {errors.datePublication && <span className="error-message">{errors.datePublication}</span>}
+            </div> 
+          </>
+        )}
 
         {type === 'event' && (
           <>
@@ -550,6 +601,7 @@ function Admin2(props) {
               />
               {errors.dateDebut && <span className="error-message">{errors.dateDebut}</span>}
             </div>
+
             <div className="AdminInputContainer">
               <label className="AdminLabel">Date de fin*</label>
               <input
@@ -563,18 +615,6 @@ function Admin2(props) {
           </>
         )}
 
-        <div className="AdminInputContainer">
-          <label className="AdminLabel">Sujet*</label>
-          <input
-            type="text"
-            className={`AdminInput ${errors.subject ? 'error' : ''}`}
-            placeholder="Ecrire le sujet"
-            value={subject}
-            onChange={(e) => setSubject(e.target.value)}
-          />
-          {errors.subject && <span className="error-message">{errors.subject}</span>}
-        </div>
-
         <div className="AdminDescriptionContainer">
           <label className="AdminLabel">Description*</label>
           <textarea
@@ -582,36 +622,32 @@ function Admin2(props) {
             placeholder="Ecrire la description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-          />
+          />/
           {errors.description && <span className="error-message">{errors.description}</span>}
         </div>
-        <div className="AdminInputContainer">
-          <label className="AdminLabel">Deadline de validation*</label>
-          <input
-            type="datetime-local"
-            className={`AdminInput ${errors.datePublication ? 'error' : ''}`}
-            value={datePublication}
-            onChange={(e) => setDatePublication(e.target.value)}
-          />
-          {errors.datePublication && <span className="error-message">{errors.datePublication}</span>}
-        </div>
 
-        <div className="AdminFileContainer">
-          <div className="AdminHighlight">Joindre des fichiers</div>
-          <button className="file-upload-btn" onClick={handleIconClick} disabled={isLoading}>
-            <FaUpload style={{ marginRight: "8px" }} />
-            Cliquez ici pour ajouter des fichiers
-          </button>
-          <input type="file" id="fileInput" style={{ display: 'none' }} onChange={handleFileChange} />
-          {selectedFile && (
-            <div className="AdminFilePreview">
-              <span>Fichier choisi: {selectedFile.name}</span>
+        {(type === 'event' || type === 'actualité' || type === 'appel') && (
+          <>
+            <div className="AdminFileContainer">
+              <div className="AdminHighlight">Joindre des fichiers</div>
+              <button className="file-upload-btn" onClick={handleIconClick} disabled={isLoading}>
+                <FaUpload style={{ marginRight: '8px' }} />
+                Cliquez ici pour ajouter des fichiers
+              </button>
+              <input type="file" id="fileInput" style={{ display: 'none' }} onChange={handleFileChange} />
+              {selectedFile && (
+                <div className="AdminFilePreview">
+                  <span>Fichier choisi: {selectedFile.name}</span>
+                </div>
+              )}
             </div>
-          )}
-        </div>
+          </>
+        )}
 
         <div className="button-container">
-          <button onClick={handleCancel} className="cancel-button" disabled={isLoading}>Annuler</button>
+          <button onClick={handleCancel} className="cancel-button" disabled={isLoading}>
+            Annuler
+          </button>
           <button onClick={handleSubmit} className="submit-button" disabled={isLoading}>
             {isLoading ? 'Envoi en cours...' : 'Envoyer'}
           </button>

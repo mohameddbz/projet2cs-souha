@@ -10,36 +10,43 @@ function Valid() {
     const [error, setError] = useState('');
     const [reload,setReload]=useState(0);
     const [userMap, setUserMap] = useState({});
+    const [selectedPublication, setSelectedPublication] = useState(null); // For the selected publication
+    const [isModalOpen, setIsModalOpen] = useState(false); // Control modal visibility
 
-const incrementReload = () => {
+    const incrementReload = () => {
+        setReload(preReload => preReload + 1);
+    };
 
-    setReload(preReload => preReload + 1)
-}
+    const formatDate = (dateString) => {
+        if (!dateString) return null;
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    };
 
-const getUser = async (id) => {
-    const token = localStorage.getItem('token');
-    try {
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/user/${id}`, {
-            headers: { 'Authorization': `Token ${token}` }
-        });
-        return res.data;  // Return the response data
-    } catch (error) {
-        console.error('Error fetching user:', error);
-        return null; // Optionally return null or an error object
-    }
-};
-const fetchUserDetails = async (publications) => {
-    const newUserMap = {};
-    await Promise.all(
-        publications.map(async (publication) => {
-            const userData = await getUser(publication.publisher);
-            newUserMap[publication.id_publication] = userData;
-        })
-    );
-    setUserMap(newUserMap);
-};
+    const getUser = async (id) => {
+        const token = localStorage.getItem('token');
+        try {
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/user/${id}`, {
+                headers: { 'Authorization': `Token ${token}` }
+            });
+            return res.data;  // Return the response data
+        } catch (error) {
+            console.error('Error fetching user:', error);
+            return null; // Optionally return null or an error object
+        }
+    };
 
-    // Déplacez fetchPublications ici pour la rendre accessible dans tout le composant
+    const fetchUserDetails = async (publications) => {
+        const newUserMap = {};
+        await Promise.all(
+            publications.map(async (publication) => {
+                const userData = await getUser(publication.publisher);
+                newUserMap[publication.id_publication] = userData;
+            })
+        );
+        setUserMap(newUserMap);
+    };
+
     const fetchPublications = async () => {
         const token = localStorage.getItem('token');
         try {
@@ -67,13 +74,21 @@ const fetchUserDetails = async (publications) => {
             const response = await axios.put(`${process.env.REACT_APP_API_URL}/publication/validate/${id}/`, {}, {
                 headers: { 'Authorization': `token ${token}` }
             });
-            console.log('Publication approved successfully:', response);
-           // fetchPublications(); // Refresh publications list
-            incrementReload()
+            incrementReload();
         } catch (error) {
             console.error('Failed to approve publication:', error);
             alert('Failed to approve the publication. Please try again.');
         }
+    };
+
+    const openModal = (publication) => {
+        setSelectedPublication(publication); // Set the selected publication
+        setIsModalOpen(true); // Open the modal
+    };
+
+    const closeModal = () => {
+        setSelectedPublication(null);
+        setIsModalOpen(false); // Close the modal
     };
     
     const handleReject = async (id) => {
@@ -82,9 +97,7 @@ const fetchUserDetails = async (publications) => {
             const response = await axios.put(`${process.env.REACT_APP_API_URL}/publication/refuse/${id}/`, {}, {
                 headers: { 'Authorization': `token ${token}` }
             });
-            console.log('Publication rejected successfully:', response);
-            incrementReload()
-            //  fetchPublications(); // Refresh publications list
+            incrementReload();
         } catch (error) {
             console.error('Failed to reject publication:', error);
             alert('Failed to reject the publication. Please try again.');
@@ -138,7 +151,10 @@ const fetchUserDetails = async (publications) => {
                     </thead>
                     <tbody>
                     {filteredPublications.map(publication => (
-                        <tr key={publication.id_publication}>
+                        <tr key={publication.id_publication} 
+                            onClick={() => openModal(publication)} // Open the modal when a row is clicked
+                            style={{ cursor: 'pointer' }}
+                        >
                             <td>{publication.titre || 'No Title'}</td>
                             <td>{userMap[publication.id_publication]?.family_name || 'null'}</td>
                             <td>{publication.type_publication }</td>
@@ -152,6 +168,33 @@ const fetchUserDetails = async (publications) => {
                     ))}
                     </tbody>
                 </table>
+
+                {isModalOpen && selectedPublication && (
+                    <div className="modal">
+                        <div className="modal-content">
+                            <span id='cancel' onClick={closeModal}>&times;</span>
+                            <h2>{selectedPublication.titre}</h2>
+                            <p><strong>Titre:</strong> {selectedPublication.titre}</p>
+                            <p><strong>Acteur:</strong> {userMap[selectedPublication.id_publication]?.family_name || 'null'}</p>
+                            <p><strong>Type:</strong> {selectedPublication.type_publication}</p>
+                            <p><strong>Description:</strong> {selectedPublication.description || 'No description available.'}</p>
+                            <p><strong>Date de publication:</strong> {formatDate(selectedPublication.date_publication) || '/'}</p>
+                            {selectedPublication.type_publication === 'event' && 
+                                <>
+                                    <p><strong>Date debut:</strong> {formatDate(selectedPublication.date_debut) || '/'}</p>
+                                    <p><strong>Date fin :</strong> {formatDate(selectedPublication.date_fin) || '/'}</p>
+                                </>
+                            }
+                            {selectedPublication.image && (
+                                    <img 
+                                        src={`${process.env.REACT_APP_API_URL}${selectedPublication.image}`} 
+                                        alt={`Image of ${selectedPublication.titre}`} 
+                                        className="publication-image"
+                                    />
+                            )}
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );

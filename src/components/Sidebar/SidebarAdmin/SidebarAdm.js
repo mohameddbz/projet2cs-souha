@@ -29,10 +29,6 @@ function logout() {
   localStorage.removeItem('token'); // Supprime le token de l'utilisateur
   localStorage.removeItem('is_adminstrateur'); // Supprime l'indicateur de rôle d'administrateur
   localStorage.removeItem('is_editeur'); // Supprime l'indicateur de rôle d'éditeur
-
-  // Pour s'assurer que toutes les instances de l'application réagissent à la déconnexion,
-  // vous pouvez utiliser un événement de stockage ou simplement recharger la page
-  // qui nettoiera toutes les mémoires cachées et les états des composants.
   window.location.href = '/Auth'; // Redirige l'utilisateur vers la page de connexion
 }
 
