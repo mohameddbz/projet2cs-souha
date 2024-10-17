@@ -74,7 +74,7 @@ function QuestionList({ questions, onSelect, selectedQuestionId }) {
       </div>
       <div className="pagination">
         <button onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1}>
-          <FaChevronLeft /> Prec
+        Préc <FaChevronLeft /> 
         </button>
         {Array.from({ length: Math.ceil(totalQuestions / questionsPerPage) }, (_, index) => index + 1).map(number => (
           <button key={number} onClick={() => paginate(number)} className={currentPage === number ? 'active' : ''}>

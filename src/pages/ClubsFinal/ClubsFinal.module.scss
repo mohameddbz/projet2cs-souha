@@ -1,270 +1,265 @@
-.descContainer{
 
-width: 831px;
-height: 108px;
-
-font-family: 'Poppins';
-font-style: normal;
-font-weight: 400;
-font-size: 18px;
-display: flex;
-align-items: center;
-text-align: center;
-
-color: #000000;
-
-
+.descContainer {
+  width: 831px;
+  height: 108px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #000000;
+}
+.blueCardContainer{
+  width: 90%;
+  text-align: center;
+  margin: auto;
+  background-color: rgba(157, 204, 255, 0.16);
+  padding: 70px 50px;
+  display: flex;
+}
+.blueCard{
+  display: grid;
+  grid-template-columns: 35% 65%;
+}
+.clubDescContainer {
+  margin-left: 70px;
+  display: flex;
+  flex-direction: column;
 }
 
-.clubDescContainer{
-    margin-left: 70px;
-    display: flex;
-    flex-direction: column;
+.logoClub {
+  width: 100px;
+  height: 50px;
 }
 
-.clubSubtitle3{
-    /* Intelligence artificielle */
-
-margin-top:0px;
-font-family: 'Poppins';
-font-style: normal;
-font-weight: 400;
-font-size: 18px;
-/* identical to box height */
-display: flex;
-align-items: center;
-text-align: justify;
-
-color: #706F6F;
-
-
-}
-.subtitle3_box{
-    margin-top:0px;
-    margin-bottom:0px;
-}
-.descClub{
-    /* À ESI, vous avez de nombreuses opportunités de vous impliquer et d'être actif dans la vie sur le campus. L'engagement des étudiants souhaite que vous viviez pleinement l'expérience collégiale en profitant des événements et des activités tout au long de l'année, et nous rendons cela aussi facile que possible. */
-
-width: 450px;
-height: 235px;
-margin-top:0px;
-margin-bottom:0px;
-
-font-family: 'Poppins';
-font-style: normal;
-font-weight: 400;
-font-size: 18px;
-line-height: 27px;
-display: flex;
-align-items: center;
-text-align: justify;
-
-color: #000000;
-
-
+.clubSubtitle3 {
+  margin-top: 0px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  text-align: justify;
+  color: #706f6f;
 }
 
-.lineClub{
-    height:600px
+.subtitle3_box {
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
+.descClub {
+  width: 450px;
+  height: 235px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 27px;
+  display: flex;
+  align-items: center;
+  text-align: justify;
+  color: #000000;
+}
+
+.lineClub {
+  height: 600px;
+}
+.ImgClubEvent{
+  max-width:200px;
+  max-height:200px;
+}
+.titleClubEvent{
+  font-size: 50px;
+  font-weight: 600;
+  text-align: left;
+}
+.linkClubEvent{
+  text-decoration: none;
+  font-size: 17px;
+  color: white;
+  background-color: #0061b1;
+  padding: 10px 20px;
+  margin-top: 20px !important;
+  border-radius: 10px;
+}
+.btnClubEvent{
+  margin-top: 30px;
+}
+.noEvents{
+  text-align: center;
+  font-size: 18px;
+  margin-top: 20px;
+  text-align: left;
+}
+.paragClubEvent{
+  font-size: 18px;
+  margin-top: 20px;
+  text-align: left;
+}
+.spanClubEvent{
+  font-family: "Open Sans", sans-serif;
+  color: rgba(0, 97, 177, 1);
+  font-size: 45px;
+}
 .subtitle2_box {
-    margin-bottom: 15px;
-    margin-left: 40px;
-    z-index:2;
-    /* Découvrir Les Clubs Estudiantins */
+  margin-bottom: 15px;
+  margin-left: 40px;
+  z-index: 2;
+}
 
+.subtitle2_span0 {
+  font: 500 2em/1.52 "Poppins", Helvetica, Arial, serif;
+  color: rgb(0, 97, 177);
+}
 
+.subtitle2_span1 {
+  font: 500 2em/1.52 "Poppins", Helvetica, Arial, serif;
+}
 
+.subtitle3_span0 {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  color: #706f6f;
+}
 
-  }
-  
-  .subtitle2_span0 {
-    font: 500 2em/1.52 "Poppins", Helvetica, Arial, serif;
-    color: rgb(0, 97, 177);
-  }
-  .subtitle2_span1 {
-    font: 500 2em/1.52 "Poppins", Helvetica, Arial, serif;
-  }
+.subtitle3_span1 {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  color: #000000;
+}
 
-  .subtitle3_span0 {
-    /* Président : Nassim Iheb AOUADJ */
+.clickedSubtitle {
+  color: #0061b1;
+}
 
-
-font-family: 'Poppins';
-font-style: normal;
-font-weight: 400;
-font-size: 18px;
-
-color: #706F6F;
-
-
-  }
-  .subtitle3_span1 {
-    font-family: 'Poppins';
-font-style: normal;
-font-weight: 500;
-font-size: 18px;
-
-color: #000000;
-  }
-  .clickedSubtitle {
-    color:#0061B1
-  }
-  .clickedSubtitle1 {
-    color:#0061B1
-  }
-  .clickedSubtitle2 {
-    color:#0061B1
-  }
-  .clickedSubtitle3 {
-    color:#0061B1
-  }
-  .clickedSubtitle4 {
-    color:#0061B1
-  }
-  .clickedSubtitle5 {
-    color:#0061B1
-  }
-  .clickedSubtitle6 {
-    color:#0061B1
-  }
-  .clickedSubtitle7 {
-    color:#0061B1
-  }
-  .clickedSubtitle8 {
-    color:#0061B1
-  }
-
-  .icon{
-    width:25px;
-    height:25px;
-    cursor: pointer;
-  }
-
-  .iconsRow{
-    display: flex;
-    flex-direction: row;
-    width:179.13px;
-    justify-content: space-between;
-    margin-top:25px;
-    
-  }
-
-
-  .highlightContainer{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-
-
-  
-  .bleuImg{
-    margin-right: 70px;
-  }
-  .blueContainer{
-    margin-top:40px;
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(212, 230, 255);
-    width: 100%;
-    padding: 60px;
-    align-items: center;
-  }
-  .bleuImgContainer{
-    display: flex;
-    flex-direction: row;
-  }
-  .bleuButton{
-    /* Frame 1 */
-  
+.icon {
+  width: 25px;
+  height: 25px;
   cursor: pointer;
-  
+}
+
+.iconsRow {
+  display: flex;
+  flex-direction: row;
+  width: 179.13px;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+.highlightContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.bleuImg {
+  margin-right: 70px;
+}
+
+.blueContainer {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(212, 230, 255);
+  width: 100%;
+  padding: 60px;
+  align-items: center;
+}
+
+.bleuImgContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.bleuButton {
+  cursor: pointer;
   width: 105px;
   height: 48px;
-  
-  /* 2nd Primary/600 */
-  background: #2A4ECA;
+  background: #2a4eca;
   border-radius: 10px;
-  
-  border:none;
+  border: none;
   outline: none;
-  color:white;
-  
-  
-  /* Body/Regular/500 */
-  font-family: 'poppins';
+  color: white;
+  font-family: 'Poppins';
   font-style: normal;
   font-weight: 300;
   font-size: 16px;
-  }
+}
 
-  .clubTitle{
-    /* Les clubs scientifiques */
+.clubTitle {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  color: #000000;
+}
 
+.clubSubtitle {
+  cursor: pointer;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  display: flex;
+  align-items: flex-end;
+  text-transform: capitalize;
+}
 
+.clubSubtitle2 {
+  margin-bottom: 0px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  color: #0061b1;
+}
 
-font-family: 'Poppins';
-font-style: normal;
-font-weight: 500;
-font-size: 24px;
+.clubSubtitle:hover {
+  color: #0061b1;
+}
 
+.clubListContainer {
+  display: flex;
+  flex-direction: column;
+  margin-right: 70px;
+  align-items: flex-end;
+}
 
-color: #000000;
+.bigTextContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
 
+.ClubsFinalContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  }
+.contentContainer {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
 
-  .clubSubtitle{
-    /* School of AI Club */
+.clubListContainer {
+  width: 30%;
+  padding: 10px;
+}
 
-cursor: pointer;
-
-font-family: 'Poppins';
-font-style: normal;
-font-weight: 400;
-font-size: 18px;
-/* identical to box height, or 267% */
-display: flex;
-align-items: flex-end;
-text-transform: capitalize;
-
-
-
-  }
-
-  .clubSubtitle2{
-    /* School of AI Club */
-
-margin-bottom:0px;
-font-family: 'Poppins';
-font-style: normal;
-font-weight: 500;
-font-size: 24px;
-/* identical to box height */
-
-color: #0061B1;
-
-
-  }
-  .clubSubtitle:hover{
-    color: #0061B1
-  }
-
-  .clubListContainer{
-    display: flex;
-    flex-direction: column;
-    margin-right: 70px;
-    align-items: flex-end;
-
-  }
-
-  .bigTextContainer{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
-  }
+.clubDetailContainer {
+  width: 70%;
+  padding: 10px;
+}

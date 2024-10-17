@@ -5,6 +5,8 @@
     height: fit-content;
     border-radius: 5px;
     margin-bottom: 5%;
+    margin-top:20px;
+    margin-left: 20px;
 }
 .question-list {
     width: 100%;
@@ -66,6 +68,7 @@
     justify-content: center;
     padding: 10px 0;
   }
+ 
   
   .pagination button {
     border: 1px solid #ccc;
@@ -87,7 +90,7 @@
   .pagination button.active {
     color: #424242;
     border-bottom: 3px solid #424242; /* Ajoute un trait sous le bouton sélectionné */
-  padding-bottom: 2px; /* Réduit le padding en bas pour compenser l'ajout de la bordure */
+   padding-bottom: 2px; /* Réduit le padding en bas pour compenser l'ajout de la bordure */
   }
   
   .pagination button:disabled {
@@ -142,6 +145,13 @@
     margin: 0;
   }
   
+  @media (max-width: 600px) {
+    .sortt-dropdown p {
+      width: 40%;
+      margin-left: -10px;
+    }
+}
+
   .sortt-dropdown svg {
     position: absolute;
     right: 10px; /* Positionnez l'icône à 10px du bord droit du `select` */
