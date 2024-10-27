@@ -7,11 +7,13 @@ import Dashboard from'../../../assets/dashoard.svg';
 import hourGlass from'../../../assets/hourglass.svg';
 import trash from'../../../assets/trash.svg';
 import pubIcon from'../../../assets/pubIcon.svg';
+// import question from '../../../assets/question.svg';
 import deconnect from '../../../assets/deconnect.svg'
 import profile from '../../../assets/profile.svg'
 import history from '../../../assets/history.svg'
 import pubilerIcon from'../../../assets/publierIcon.svg';
 import { FaBars } from 'react-icons/fa'; // Import hamburger icon from react-icons if needed
+import { BsQuestionCircle, BsQuestionSquare } from 'react-icons/bs';
 
 function textMenu(icon, text) {
   return (
@@ -61,6 +63,7 @@ export default function SidebarAdm() {
             <MenuItem className={styles.widthMenu}><Link to="/Admin/publications_en_attente">{textMenu(hourGlass,'Publications en attente')}</Link></MenuItem>
             <MenuItem className={styles.widthMenu}><Link to="/Admin/demande_suppression">{textMenu(trash,'Demande suppression')}</Link></MenuItem>
             <MenuItem className={styles.widthMenu}><Link to="/Admin/historique">{textMenu(history,'Historique de publication')}</Link></MenuItem>
+            <MenuItem className={styles.widthMenu}><Link to="/Ebachelier/BachelierAdmin">{textMenu(BsQuestionSquare,'Questions')}</Link></MenuItem>
           </SubMenu>
           <SubMenu label="Paramètres" className={styles.SubMenu}>
             <MenuItem className={styles.widthMenu}><Link to="/Admin/profile">{textMenu(profile,'Profile')}</Link></MenuItem>

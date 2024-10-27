@@ -47,7 +47,6 @@ function PublicationModal({ publication, onClose, onSave }) {
         formData.append('image', selectedFile);
     }
         
-        
         const token = localStorage.getItem('token');
         console.log(publication);
         axios.put(`${process.env.REACT_APP_API_URL}/publication/${publication.id_publication}/`, formData, {

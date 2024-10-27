@@ -31,12 +31,20 @@ const testimonials = [
 
 function Ebachelier (){
   const [succesList,setSuccesList]=useState('')
+  const [succes,setSucces] = useState('')
+  var displayedTestimonials ;
+
   useEffect(() => {
     const fetchSuccesStories = async () => {
       try {
         const response = await fetch(`${process.env.REACT_APP_API_URL}/publication/searchall/?type_publication=success%20story&etat=valide`);
         const data = await response.json()
-        setSuccesList(data);
+        if (data.length > 1 ){
+          setSuccesList(data)
+         displayedTestimonials  = data.slice(index, index + 2);
+        }else{
+          setSucces(data[0]);
+        }
       } catch (error) {
         console.error('Error fetching succes stories details:', error);
       }
@@ -46,17 +54,14 @@ function Ebachelier (){
   const [index, setIndex] = useState(0);
 
   const handlePrev = () => {
-    setIndex((prevIndex) => prevIndex - 2 < 0 ? testimonials.length - (testimonials.length % 2 === 0 ? 2 : 1) : prevIndex - 2);
+    setIndex((prevIndex) => prevIndex - 2 < 0 ? succesList.length - (succesList.length % 2 === 0 ? 2 : 1) : prevIndex - 2);
   };
 
   const handleNext = () => {
-    setIndex((prevIndex) => (prevIndex + 2 >= testimonials.length ? 0 : prevIndex + 2));
+    setIndex((prevIndex) => (prevIndex + 2 >= succesList.length ? 0 : prevIndex + 2));
   };
 
-  const displayedTestimonials = succesList.slice(index, index + 2);
-  // if (displayedTestimonials.length < 2) {
-  //   displayedTestimonials.push(...succesList.slice(0, 2 - displayedTestimonials.length));
-  // }
+ 
 
   const initialNodes = [
     { id: 1, x: 553.78, y: 83.88, icon: <FaUser color='#0061B1' />, size: 72, color: '#FFFFFF' },
@@ -232,7 +237,7 @@ function Ebachelier (){
           </div>
         </div>
         <div className="testimonial-cards">
-          {displayedTestimonials.map((succes) => (
+          { displayedTestimonials && displayedTestimonials.map((succes) => (
             <div className="testimonial-card" key={succes.titre}>
               <div className="testimonial-text-container">
                 <div className="testimonial-image" style={{ backgroundImage: `url(${process.env.REACT_APP_API_URL}${succes.image})` }}></div>
@@ -242,6 +247,16 @@ function Ebachelier (){
               </div>
             </div>
           ))}
+          {
+            succes && <div className="testimonial-card" key={succes.titre}>
+            <div className="testimonial-text-container">
+              <div className="testimonial-image" style={{ backgroundImage: `url(${process.env.REACT_APP_API_URL}${succes.image})` }}></div>
+              <h3 className="testimonial-name">{succes.titre}</h3>
+              {/* <p className="testimonial-role">{succes.role}test</p> */}
+              <p className="testimonial-text">{succes.description}</p>
+            </div>
+          </div>
+          }
         </div>
       </div>
       </div>

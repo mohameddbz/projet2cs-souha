@@ -42,7 +42,7 @@ export default function SidebarFablab() {
                         <MenuItem className={styles.widthMenu}><Link to="/fablab-inscriptions">{textMenu(pubIcon, 'Inscription fablab')}</Link></MenuItem>
                     </SubMenu>
                     <SubMenu label="Paramètres" className={styles.SubMenu}>
-                        <MenuItem className={styles.widthMenu}><Link to="/Fablab/profile">{textMenu(profile, 'Profile')}</Link></MenuItem>
+                        <MenuItem className={styles.widthMenu}><Link to="/fablab/profile">{textMenu(profile, 'Profile')}</Link></MenuItem>
                         <MenuItem className={styles.widthMenu} onClick={logout}>{textMenu(deconnect, 'Se Déconnecter')}</MenuItem>
                     </SubMenu>
                 </Menu>

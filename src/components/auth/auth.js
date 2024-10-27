@@ -8,7 +8,24 @@ import { faEnvelope, faLock, faUser } from '@fortawesome/free-solid-svg-icons';
 import logoEsi from '../../assets/images/logo_esi1.svg';
 import axios from 'axios';
 
+function getTrueAttributes(user) {
+  const attributes = [
+    { name: 'Administrator', value: user.is_adminstrateur, route: '/Vaidateur' },
+    { name: 'Editor', value: user.is_editeur, route: '/Publieur/publications' },
+    { name: 'Researcher', value: user.is_chercheur, route: '/chercheur/articles' },
+    { name: 'Superuser', value: user.is_superuser, route: '/Admin/publications' },
+    { name: 'Fablab Manager', value: user.is_responsable_fablab, route: '/fablab/profile' },
+    { name: 'Responsable Relex', value:user.is_directeur_relex, route: '/relex'}
+  ];
+  const trueAttr = attributes.filter(attr => attr.value === true);
+  
+  return trueAttr.length === 2 ? trueAttr : [];
+
+}
+
 function Auth() {
+  const [showPopup, setShowPopup] = useState(false);
+  const [trueAttributes, setTrueAttributes] = useState([]);
   const [isSignUpMode, setIsSignUpMode] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,20 +45,29 @@ function Auth() {
         email,
         password
       });
-      const { token, is_adminstrateur, is_editeur , Categorie , is_chercheur } = response.data;
-  
-      if (token) {
-        localStorage.setItem('token', token);
-        localStorage.setItem('is_adminstrateur', is_adminstrateur);
-        localStorage.setItem('is_editeur', is_editeur);
-
-        if (is_adminstrateur) {
+      const { token, is_adminstrateur, is_editeur , Categorie , is_chercheur , is_superuser , is_responsable_fablab} = response.data;
+      const attributes = getTrueAttributes(response.data);
+      localStorage.setItem('token', token);
+      localStorage.setItem('is_adminstrateur', is_adminstrateur);
+      localStorage.setItem('is_editeur', is_editeur);
+      if (attributes.length > 0) {
+        setTrueAttributes(attributes);
+        setShowPopup(true);
+        console.log(attributes)
+      } else if (token) {
+        if (is_chercheur) {
+          navigate('/chercheur/articles');
+        } else if (is_responsable_fablab){
+          navigate('/fablab/profile')
+        } else if (is_adminstrateur){
+          navigate('/Vaidateur')
+        } else if (is_superuser) {
           navigate('/Admin/publications');
-        } else if (is_editeur) {
-          navigate('/Publieur/publications');
-        } else {
-          navigate('/');
-        }
+        } else if (Categorie.nom === "alumni"){
+          navigate('/alumni/publications')
+        } else if (is_editeur){
+          navigate("/Publieur/publications")
+        } 
       } else {
         setError('Connexion échouée : aucun token reçu');
       }
@@ -95,8 +121,27 @@ function Auth() {
     }
   };
 
+  const handleButtonClick = (route) => {
+    console.log(route)
+    setShowPopup(false);
+    navigate(`${route}`);
+  };
+
   return (
     <div className={`container ${isSignUpMode ? 'sign-up-mode' : ''}`}>
+      {showPopup && (
+        <div className="popup">
+          <div className="popup-content">
+            <h2>Choisir un Compte</h2>
+            {trueAttributes.map(attr => (
+              <button key={attr.name} onClick={() => handleButtonClick(attr.route)}>
+                {attr.name}
+              </button>
+            ))}
+            {/* <button onClick={() => setShowPopup(false)}>Close</button> */}
+          </div>
+        </div>
+      )}
       <div className="forms-container">
         <div className="signin-signup">
           <form action="#" className="sign-in-form" onSubmit={handleSignIn}>

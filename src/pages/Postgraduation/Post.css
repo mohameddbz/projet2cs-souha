@@ -1,418 +1,571 @@
 
-
-.post-lcsi-container {
-    display: flex;
-    align-items:center;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto; 
-   
-  }
-  .post-cover {
+.post-cover {
+  position: absolute;
+  top: 20px;
+  right: 0px;
+  bottom: 262px;
+  left: 0px;
+  width: 100%;
+  height: 357px;
+}
+.post-recherche {
     position: absolute;
-    top: 20px;
-    right: 0px;
-    bottom: 262px;
-    left: 0px;
-    width: 100%;
-    height: 357px;
+    top: 180px;
+    right: 408px;
+    bottom: 347px;
+    left: 35px;
+    width: 581px;
+    height: 195px;
+    font: 400 48px/1.35 "Open Sans", Helvetica, Arial, serif;
+    color: rgb(255, 255, 255);
   }
-  .post-recherche {
-      position: absolute;
-      top: 180px;
-      right: 408px;
-      bottom: 347px;
-      left: 35px;
-      width: 581px;
-      height: 195px;
-      font: 400 48px/1.35 "Open Sans", Helvetica, Arial, serif;
-      color: rgb(255, 255, 255);
-    }
-    .post-ep1 {
-      position: absolute;
-      right: 300px; 
-      top:100px;
-     
-    
-    }
-    .post-ep2{
-      position: absolute;
-      right: 180px; 
-      top:100px;
-      }
-     .post-ep3{
-      position: absolute;
-    right: 240px; 
-      top:195px;
-     }
-  
-    
-    .post-image {
-      position: relative;
-      width: 95%; /* Ajustement de la largeur */
-      height: auto; /* Hauteur automatique */
-      border-radius: 5px;
-      float: left; /* Alignement à gauche */
-    }
-    
-    .post-image1 {
-      position: absolute;
-      top: 12px;
-      left: 35px; 
-      width: 29px;
-      height: 35px;
-      color:#0061B1;
-    }
-    
-    .post-info {
-      position: absolute;
-      bottom: 35px; /* Ajustez selon votre besoin */
-      left: 20px; /* Ajustez selon votre besoin */
-      width: 61px;
-      height: 16px;
-      font: 600 12px/1.33 "Open Sans", Helvetica, Arial, serif;
-      color: rgb(0, 0, 0);
-    }
-    .post-info2 {
-      position: absolute;
-      top: 50px;
-      right: 26px;
-      bottom: 359px;
-      display: flex;
-      justify-content: center;
-      width: 59px;
-      height: 32px;
-      font: 600 12px/1.33 "Open Sans", Helvetica, Arial, serif;
-      color: rgb(0, 0, 0);
-      text-align: center;
-    }
-    
-     .post-rect {
-      position:absolute;
-      top: 490px;
-      display:flex;
-      bottom: 0px;
-      width: 100%;
-      height: 152px;
-      margin-left: -8px;
-      background-color: #0061B1;
-      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.247);
-    }
-    
+  .post-ep1 {
+    position: absolute;
+    right: 300px; 
+    top:100px;
    
   
-  .post-medium-title {
-    margin-right: 140px; 
-    font: 700 26px/1.37 "Open Sans", Helvetica, Arial, serif;
-    color: white;
-    display: inline-block;  
-    padding-left:77px;
-    padding-top:38px;
   }
-  
-  .soutenance-container {
-    display: flex;
-  }
-  
-  .soutenance-blog {
-    display: flex;
-    align-items: center;  /* Align items vertically */
-  }
-  
-  .soutenance-blog_subtitle {
-    font-size: 22px;
-    margin-right: 30px;
-    color:white;
-  }
-  
+  .post-ep2{
+    position: absolute;
+    right: 180px; 
+    top:100px;
+    }
+   .post-ep3{
+    position: absolute;
+  right: 240px; 
+    top:195px;
+   }
 
   
-  .soutenance-sidebar {
-    display: flex;
-    align-items: center;
-    margin-top: 550px;
-  }
-  
-  .soutenance-search {
-    display: flex;
-    margin-left: 80px; 
-    margin-right:80px;
-  }
-  
-  .soutenancesearch-button {
-    display: flex;
-    padding: 12px 26px;
-    background-color: #0061B1;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    font-family: 'Open Sans', sans-serif;
-    border-radius: 12px 0;
-  }
-  
-  .soutenance-evenements {
-    display: flex;
-  }
-  
-  .soutenance-evenements a {
-    display: flex;
-    padding: 10px 45px;
-    color: #0061B1;
-    text-align: center;
-    text-decoration: none;
-    /* font-size: 22px; */
-    font: 700 22px/1.37 "Open Sans", Helvetica, Arial, serif;
-  }
-  
-
-  .post-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-  
-  .post-evenement-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    margin: 20px 0;
-    margin-left:300px;
-  }
-  
-  .post-evenement {
-    width: 250px;
-    height: 340px;
-    display: flex;
-    flex-direction: column;
+  .post-image {
+    position: relative;
+    width: 95%; /* Ajustement de la largeur */
+    height: auto; /* Hauteur automatique */
     border-radius: 5px;
-    font-family: 'Open Sans', sans-serif;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
-    background-color: white;
+    float: left; /* Alignement à gauche */
   }
   
-  .post-evenement-s1 {
-    width: 100%;
-  }
-  
-  .post-evenement-title {
-    color: #0061B1;
-    font-size: 17px;
-    font-weight: 500;
-  }
-  
-  .post-evenement-type {
-    color: #0061B1;
-    font-weight: 200;
-  }
-  
-  .post-evenement-s2 {
-    padding: 7px;
-    font-size: 13px;
-    text-align: center;
-    width: 100%;
-    overflow-y: auto;
-  }
-  
-  .post-evenement-description {
-    font-size: 12px;
-    width: 90%;
-    text-align:left;
-    margin: auto;
-  }
-  
-  .post-evenement-date {
-    display: flex;
-    flex-direction: column;
+  .post-image1 {
     position: absolute;
-    font-size: 12px;
-    padding: 2px;
-    text-align: center;
-    border-radius: 5px 0px 5px 0px;
-    top: 0;
-    left: 0;
-    width: 55px;
-    height: 50px;
-    background-color: #0061B1;
-    color: white;
+    top: 12px;
+    left: 35px; 
+    width: 29px;
+    height: 35px;
+    color:#0061B1;
   }
   
-  .post-evenement-img-cont {
-    position: relative;
+  .post-info {
+    position: absolute;
+    bottom: 35px; /* Ajustez selon votre besoin */
+    left: 20px; /* Ajustez selon votre besoin */
+    width: 61px;
+    height: 16px;
+    font: 600 12px/1.33 "Open Sans", Helvetica, Arial, serif;
+    color: rgb(0, 0, 0);
   }
-  
-  .post-evenement-img {
-    width: 100%;
-    height: 160px;
-    border-radius: 5px 5px 0px 0px;
-  }
-
-
-
-
-
-
-  .poste-evenement-date {
+  .post-info2 {
+    position: absolute;
+    top: 50px;
+    right: 26px;
+    bottom: 359px;
     display: flex;
-    flex-direction: column;
-    position: relative;
-    font-size: 12px;
-    padding: 2px;
+    justify-content: center;
+    width: 59px;
+    height: 32px;
+    font: 600 12px/1.33 "Open Sans", Helvetica, Arial, serif;
+    color: rgb(0, 0, 0);
     text-align: center;
-    border-radius: 5px 0px 5px 0px;
-    top:0;
-    left: 0;
-    width: 55px;
-    height: 50px;
-    background-color: #0061B1;
-    color: white;
-
   }
   
-  .sout-evenement-buttons {
+   .post-rect {
     position:absolute;
-    display: flex;
-    top:755px;
-    left:40px;
-    flex-direction: column; /* Afficher les cartes en colonne */
-    gap: 25px; 
-    
-  }
-  
-  .sout-evenement {
-    width: 250px;
-    height: auto;
-    border-radius: 5px;
-    font-family: 'Open Sans', sans-serif;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    background-color: white;
-  }
-  
-  .sout-evenement-s2 {
-    padding: 7px;
-    font-size: 13px;
-    text-align: center;
-  }
-  
-  .sout-evenement-description {
-    font-size: 12px;
+    top: 525px;
+    display:flex;
+    bottom: 0px;
     width: 100%;
-    text-align: left;
-    margin: auto;
+    height: 152px;
+    /* margin-left: -8px; */
+    background-color: #0061B1;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.247);
+  }
+  
+ 
 
-  }
+.post-medium-title {
+  margin-right: 140px; 
+  font: 700 26px/1.37 "Open Sans", Helvetica, Arial, serif;
+  color: white;
+  display: inline-block;  
+  padding-left:77px;
+  padding-top:38px;
+}
 
-  
-  .sout-evenement-title {
-    color: #0061B1;
-    font-size: 17px;
-    font-weight: 500;
-    margin-bottom: 20px;
-    margin-top:-40px;
-    text-align: center; /* Centrer le titre */
-    
-  }
-  
-  .titles {
-    display: flex;
-    align-items: center;
-  }
-  
-  .title {
-    margin-right: 87px;
-    margin-left:50px;
-    margin-top:15px;
-    font: 700 22px/1.37 "Open Sans", Helvetica, Arial, serif;
-    color: #0061B1; /* Couleur bleue */
-  }
-  .contact-info {
-    /* margin-top: 20px;  */
-    display: flex;
-    margin-left:30px;
-    flex-direction: column;
-    width: 200px;
-    align-items: center; 
-    justify-content: center; 
-    padding: 15px; 
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
-   /* height: 100px; */
-    border-radius: 10px;
-  }
-  
-  .contact-info span {
-    font-size: 16px;
-    color: #333; /* Couleur du texte */
-    margin-bottom: 10px; /* Espacement entre le texte et le bouton */
-    font: 400 16px/1.35 "Open Sans", Helvetica, Arial, serif;
-  }
-  
-  .contact-info button {
-    background-color: #fff; /* Couleur de fond blanche */
-    color: #0061B1; /* Couleur du texte bleue */
-    border: none;
-    padding: 10px 20px;
-    font:  "Open Sans", Helvetica, Arial, serif;
-    border-radius: 5px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Ombre */
-  }
-  
-  .contact-info button:hover {
-    cursor: pointer;
-  }
+.soutenance-container {
+  display: flex;
+}
+
+.soutenance-blog {
+  display: flex;
+  align-items: center;  /* Align items vertically */
+}
+
+.soutenance-blog_subtitle {
+  font-size: 22px;
+  margin-right: 30px;
+  color:white;
+}
 
 
-  .appel-evenement-buttons-container {
-    position: relative; /* Position relative par rapport à son parent */
+
+.soutenance-sidebar {
+  display: flex;
+  align-items: center;
+  margin-top: 200px;
+}
+
+.soutenance-search {
+  display: flex;
+  margin-left: 80px; 
+  margin-right:80px;
+}
+
+.soutenancesearch-button {
+  display: flex;
+  padding: 12px 26px;
+  background-color: #0061B1;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 12px 0;
+}
+
+.soutenance-evenements {
+  display: flex;
+}
+
+.soutenance-evenements a {
+  display: flex;
+  padding: 10px 45px;
+  color: #0061B1;
+  text-align: center;
+  text-decoration: none;
+  /* font-size: 22px; */
+  font: 700 22px/1.37 "Open Sans", Helvetica, Arial, serif;
+}
+
+
+.post-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.post-evenement-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin: 20px 0;
+  margin-left:300px;
+}
+
+.post-evenement {
+  width: 250px;
+  height: 340px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  font-family: 'Open Sans', sans-serif;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+  background-color: white;
+}
+
+.post-evenement-s1 {
+  width: 100%;
+}
+
+.post-evenement-title {
+  color: #0061B1;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.post-evenement-type {
+  color: #0061B1;
+  font-weight: 200;
+}
+
+.post-evenement-s2 {
+  padding: 7px;
+  font-size: 13px;
+  text-align: center;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.post-evenement-description {
+  font-size: 12px;
+  width: 90%;
+  text-align:left;
+  margin: auto;
+}
+
+.post-evenement-date {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  font-size: 12px;
+  padding: 2px;
+  text-align: center;
+  border-radius: 5px 0px 5px 0px;
+  top: 0;
+  left: 0;
+  width: 55px;
+  height: 50px;
+  background-color: #0061B1;
+  color: white;
+}
+
+.post-evenement-img-cont {
+  position: relative;
+}
+
+.post-evenement-img {
+  width: 100%;
+  height: 160px;
+  border-radius: 5px 5px 0px 0px;
+}
+
+
+
+
+
+
+.poste-evenement-date {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  font-size: 12px;
+  padding: 2px;
+  text-align: center;
+  border-radius: 5px 0px 5px 0px;
+  top:0;
+  left: 0;
+  width: 55px;
+  height: 50px;
+  background-color: #0061B1;
+  color: white;
+
+}
+
+.sout-evenement-buttons {
+  position:absolute;
+  display: flex;
+  top:805px;
+  left:40px;
+  flex-direction: column; /* Afficher les cartes en colonne */
+  gap: 25px; 
+  
+}
+
+.sout-evenement {
+  width: 250px;
+  height: auto;
+  border-radius: 5px;
+  font-family: 'Open Sans', sans-serif;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  background-color: white;
+}
+
+.sout-evenement-s2 {
+  padding: 7px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.sout-evenement-description {
+  font-size: 12px;
+  width: 100%;
+  text-align: left;
+  margin: auto;
+
+}
+
+
+.sout-evenement-title {
+  color: #0061B1;
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  margin-top:-40px;
+  text-align: center; /* Centrer le titre */
+  
+}
+
+.post-titles {
+  display: flex;
+  align-items: center;
+  
+}
+
+.post-title {
+  margin-right: 87px;
+  margin-left:50px;
+  margin-top:30px;
+ margin-bottom: 30px ;
+  font: 700 22px/1.37 "Open Sans", Helvetica, Arial, serif;
+  color: #0061B1; /* Couleur bleue */
+}
+.contact-info {
+  /* margin-top: 20px;  */
+  display: flex;
+  margin-left:30px;
+  flex-direction: column;
+  width: 200px;
+  align-items: center; 
+  justify-content: center; 
+  padding: 15px; 
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+ /* height: 100px; */
+  border-radius: 10px;
+}
+
+.contact-info span {
+  font-size: 16px;
+  color: #333; /* Couleur du texte */
+  margin-bottom: 10px; /* Espacement entre le texte et le bouton */
+  font: 400 16px/1.35 "Open Sans", Helvetica, Arial, serif;
+}
+
+.contact-info button {
+  background-color: #fff; /* Couleur de fond blanche */
+  color: #0061B1; /* Couleur du texte bleue */
+  border: none;
+  padding: 10px 20px;
+  font:  "Open Sans", Helvetica, Arial, serif;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Ombre */
+}
+
+.contact-info button:hover {
+  cursor: pointer;
+}
+
+
+.appel-evenement-buttons-container {
+  position: relative; /* Position relative par rapport à son parent */
 }
 
 .appel-evenement-buttons {
-    position: absolute; /* Positionnement absolu */
-    top: -140px; /* Déplacement vers le haut */
-    left: 350px; /* Déplacement vers la droite */
+  position: absolute; /* Positionnement absolu */
+  top: -140px; /* Déplacement vers le haut */
+  left: 350px; /* Déplacement vers la droite */
 }
 
 .appel-evenement {
-    width: 780px; /* Largeur de la carte */
-    height: auto; /* Hauteur ajustée en fonction du contenu */
-    border-radius: 10px; /* Bord arrondi */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
-    padding: 20px; /* Espacement interne */
-    background-color: #ffffff; /* Couleur de fond */
-    overflow: hidden; /* Empêche le débordement du contenu */
+  width: 780px; /* Largeur de la carte */
+  height: auto; /* Hauteur ajustée en fonction du contenu */
+  border-radius: 10px; /* Bord arrondi */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  padding: 20px; /* Espacement interne */
+  background-color: #ffffff; /* Couleur de fond */
+  overflow: hidden; /* Empêche le débordement du contenu */
 }
 
 .appel-evenement-s2 {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .appel-evenement-content {
-    flex: 1;
-    margin-right: 20px; /* Espace entre le texte et l'image */
+  flex: 1;
+  margin-right: 20px; /* Espace entre le texte et l'image */
 }
 
 .appel-evenement-title {
-    color: #0061B1; 
-    font-size: 18px; 
-    font-weight: bold; 
-    margin-bottom: 10px; 
-    font:  "Open Sans", Helvetica, Arial, serif;
+  color: #0061B1; 
+  font-size: 18px; 
+  font-weight: bold; 
+  margin-bottom: 10px; 
+  font:  "Open Sans", Helvetica, Arial, serif;
 }
 
 .appel-evenement-description {
-    font-size: 14px; 
-    margin-bottom: 10px;
-    word-wrap: break-word; 
-    font: 400 16px/1.35 "Open Sans", Helvetica, Arial, serif;
+  font-size: 14px; 
+  margin-bottom: 10px;
+  word-wrap: break-word; 
+  font: 400 16px/1.35 "Open Sans", Helvetica, Arial, serif;
 }
 
 .appel-evenement-img {
-    width: 100px;
-    height: auto; 
-    flex-shrink: 0; 
-    margin-left: 20px; 
+  width: 100px;
+  height: auto; 
+  flex-shrink: 0; 
+  margin-left: 20px; 
+}
+@media (max-width: 830px) {
+.lcsi-cover {
+  height: auto;
+  width: 100%;
+}
+
+.post-recherche {
+  align-items: center;
+  width: 90%;
+  text-align: center;
+  font-size: 26px;
+  top: 180px;
+}
+
+.post-rect {
+  position:relative;
+  top:-10px;
+  width: 100%;
+  bottom: auto;
+  height: auto;
+  padding: 20px 10px;
+}
+
+.post-medium-title {
+  font-size: 13px;
+  margin: 0 auto;
+  padding: 20px 0;
+  text-align: center;
+  width: 100%;
+}
+
+.soutenance-sidebar {
+  position: relative;
+  
+
+  flex-direction: row;
+  width: 30%;
+  margin-top: 0px;
+}
+
+.soutenance-search, .soutenance-evenements {
+  margin: 60px 20px;
+}
+
+.post-container {
+  display: flex;
+  justify-content: center; /* Centrer horizontalement */
+  align-items: center; /* Centrer verticalement */
+  flex-direction: column;
+  position: relative;
+}
+
+.post-evenement-container {
+  position: relative;
+  top: 0px;
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Ajuster la largeur pour qu'elle soit de 100% */
+  max-width: 600px; 
+  margin-left: 0;
+  margin-right: 0;
+  align-items: center;
+ 
+}
+
+.sout-evenement-buttons {
+  position: relative;
+  top: 40px;
+ 
+}
+
+.sout-evenement {
+  width: 80%; /* Ajuster la largeur pour qu'elle soit de 100% */
+  max-width: 600px; /* Optionnel : Limiter la largeur maximale */
+  position: relative;
+  top: 40px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 0;
+  margin-right: 0;
+ 
+}
+
+.post-evn-span {
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.sout-evenement-s2 {
+  text-align: center;
+}
+
+.sout-evenement-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.sout-evenement-description {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.post-titles {
+  position: relative;
+  top:50px;
+  margin-bottom: 50px;
+  width: 200%;
+  flex-direction: row; /* Afficher les éléments verticalement */
+  align-items: center;
+  
+}
+.post-title{
+font-size: 16px;
+}
+
+
+.contact-info {
+  margin-bottom: 20px;
+  width: 80%; /* Ajuster la largeur pour qu'elle soit de 90% */
+  max-width: 100%; /* Supprimer la limite de largeur maximale */
+  left: -310px;
+}
+
+
+
+.appel-evenement {
+  width: 80%; 
+ 
+  left:-320px;
+  /* right: 310px; */
+/* align-items: center; */
+  top:150px;
+  position: absolute;
+
+}
+
+
+
+.appel-evenement-buttons {
+  display: flex;
+  flex-direction: column; /* Afficher les cartes verticalement */
+   margin-left: 0px;
+  width: 100%;
+}
+
+.pf{
+  position: relative;
+  top:230px;
+}
+
+.soutenance-blog_subtitle{
+  font-size:13px;
+}
+
+
+
+
 }

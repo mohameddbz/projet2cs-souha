@@ -1,0 +1,178 @@
+
+.sectionContainer{
+  
+    margin-top: 37px;
+    margin-left:33px;
+    display: flex;
+    flex-direction: column;
+  
+  }
+  .cardsContainer{
+  
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    grid-gap:3% 0; /* Espacement entre les cartes */
+    margin: 0 ;
+    max-width: 1200px; /* Limite la largeur maximale */
+    
+  }
+
+  .subtitle {
+    height: 32px;
+    font: 600 22px/1.45 "Poppins", Helvetica, Arial, serif;
+    color: rgb(0, 0, 0);
+  }
+  .imageButton{
+    cursor:pointer;
+    margin-top: 17px;
+    width: 69px;
+    height: 23px;
+    border-radius: 11.5px 11.5px 11.5px 11.5px;
+    border:none;
+    outline:none;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.247));
+    background-color: rgb(0, 97, 177);
+    font: 400 12px/1.5 "Poppins", Helvetica, Arial, serif;
+    color: rgb(255, 255, 255);
+  }
+
+
+  .partenaires{
+    display: flex; /* Use flexbox to arrange items in a single line */
+    justify-content: center; /* Center the items horizontally */
+    align-items: center; /* Center the items vertically */
+    gap: 5%; /* Optional: Adds space between the SVGs */
+    overflow: hidden; /* Prevents overflow if the SVGs exceed the container size */
+    margin: 7% 2%;
+}
+
+.svg-icon {
+    width: 9%; /* Set a fixed width for all SVGs */
+    height: 9%; /* Set a fixed height for all SVGs */
+}
+
+
+
+.testimonial-section {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f6f7fb;
+ 
+}
+
+
+.testimonials {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Keep the testimonials at their normal height */
+  flex-wrap: wrap;
+  margin:5% 12%;
+  /* gap: 20px; */
+}
+
+.testimonial {
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px; /* Fixed width */
+  height: 350px; /* Fixed height for all testimonials */
+  padding:  0;
+  margin: 5% 0px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Special style for the middle box to elevate it */
+.testimonial:nth-child(2) {
+  transform: translateY(-30px); /* Lift the middle testimonial */
+  transition: transform 0.3s ease-in-out;
+}
+
+.testimonial blockquote {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+.testimonial blockquote:before {
+  content: '';  /* Pas de contenu textuel, seulement pour la ligne */
+  position: absolute;
+  top: 0; /* Positionne le trait au-dessus des guillemets */
+  left:8.6%;
+  width: 17%; /* Longueur du trait */
+  height: 4.8px; /* Épaisseur du trait */
+  background-color: #0061B1; /* Couleur du trait */
+  transform: translateX(-50%); /* Centrer le trait horizontalement */
+}
+.testimonial blockquote:after {
+  content: '“';  /* Ajoute le guillemet ouvrant */
+  font-size: 150px;
+  color: #000000;
+  position: absolute;
+  left:15%;
+  top: -23%; /* Ajuste la position des guillemets */
+  /* transform: translateX(-50%); */
+  /* background-color: #fff; */
+  /* padding: 0 10px; */
+}
+/* .testimonial blockquote:before {
+  content: '“';
+  font-size: 150px;
+  color: #000000;
+  position: absolute;
+  
+  left: 10%;
+  top: -21%;
+} */
+
+.author {
+  display: flex;
+  align-items: center;
+  background-color: #0061B1;
+  margin: 5% 0;
+  padding: 5%;
+}
+
+.author img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.author p {
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffff;
+}
+
+
+
+
+.small-line{
+  padding: 0;
+  height: 3px;
+  background-color: #e6e6e6; 
+  border: none;
+ 
+  top: 0;
+  bottom: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .testimonials {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .testimonial {
+      max-width: 90%;
+      height: auto; /* Allow flexible height for smaller screens */
+  }
+
+  .testimonial:nth-child(2) {
+      transform: translateY(0); /* Reset the middle box position for smaller screens */
+  }
+}

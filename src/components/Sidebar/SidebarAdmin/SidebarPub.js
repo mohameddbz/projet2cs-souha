@@ -40,12 +40,12 @@ export default function SidebarPub() {
                     <SubMenu label="Publication" className={styles.SubMenu}>
                         <MenuItem className={styles.widthMenu}><Link to="/Publieur/publications">{textMenu(pubIcon,'Publication')}</Link></MenuItem>
                         <MenuItem className={styles.widthMenu}><Link to="/Publieur/publier">{textMenu(pubilerIcon,'Publier')}</Link></MenuItem>
-                        <MenuItem className={styles.widthMenu}><Link to="/Publieur/demande_suppression">{textMenu(trash,'Demande suppression')}</Link></MenuItem>
-                        <MenuItem className={styles.widthMenu}><Link to="/Publieur/historique">{textMenu(history,'Historique de publication')} </Link></MenuItem>
+                        {/* <MenuItem className={styles.widthMenu}><Link to="/Publieur/demande_suppression">{textMenu(trash,'Demande suppression')}</Link></MenuItem> */}
+                        {/* <MenuItem className={styles.widthMenu}><Link to="/Publieur/historique">{textMenu(history,'Historique de publication')} </Link></MenuItem> */}
                     </SubMenu>
                     <SubMenu label="Paramètres" className={styles.SubMenu}>
-                        <MenuItem className={styles.widthMenu}><Link to="/Admin/profile">{textMenu(profile,'Profile')}</Link></MenuItem>
-                        <MenuItem className={styles.widthMenu}><Link to="/Admin/Ajouter_user">{textMenu(pubilerIcon,'Profile')}</Link></MenuItem>
+                        <MenuItem className={styles.widthMenu}><Link to="/editeur/profile">{textMenu(profile,'Profile')}</Link></MenuItem>
+                        {/* <MenuItem className={styles.widthMenu}><Link to="/Admin/Ajouter_user">{textMenu(pubilerIcon,'Profile')}</Link></MenuItem> */}
                         <MenuItem className={styles.widthMenu} onClick={logout}>{textMenu(deconnect,'Se Deconnecter')}</MenuItem>
                     </SubMenu>
                 </Menu>

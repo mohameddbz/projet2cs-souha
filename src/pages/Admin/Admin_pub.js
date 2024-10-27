@@ -8,23 +8,61 @@ function PublicationAdmin() {
     const [publications, setPublications] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [error, setError] = useState('');
+    const [reload,setReload]=useState();
+    const [userMap,setUserMap]= useState({})
+    const incrementReload = () => {
+        setReload(prevReload => prevReload + 1);
+      };
 
-    const fetchPublications = async () => {
+      const getUser = async (id) => {
         const token = localStorage.getItem('token');
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API_URL}/publication/search/?etat=valide`, {
-                headers: { 'Authorization': `token ${token}` }
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/user/${id}`, {
+                headers: { 'Authorization': `Token ${token}` }
             });
-            setPublications(response.data);
+            return res.data;  // Return the response data
         } catch (error) {
-            console.error('Erreur lors de la récupération des publications:', error);
-            setError('Failed to fetch publications. Please try again later.');
+            console.error('Error fetching user:', error);
+            return null; // Optionally return null or an error object
         }
+    };
+    
+    const formatDate = (dateString) => {
+        if (!dateString) return null;
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    };
+    
+    const fetchUserDetails = async (publications) => {
+        const newUserMap = {};
+        await Promise.all(
+            publications.map(async (publication) => {
+                const userData = await getUser(publication.publisher);
+                newUserMap[publication.id_publication] = userData;
+            })
+        );
+        setUserMap(newUserMap);
     };
 
     useEffect(() => {
+        const fetchPublications = async () => {
+            const token = localStorage.getItem('token');
+            try {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/publication/searchall/?etat=valid`, {
+                    headers: { 'Authorization': `token ${token}` }
+                });
+                console.log(response.data)
+                setPublications(response.data);
+                fetchUserDetails(response.data)
+            } catch (error) {
+                console.error('Erreur lors de la récupération des publications:', error);
+                setError('Failed to fetch publications. Please try again later.');
+            }
+        };
+        
         fetchPublications();
-    }, []);
+      
+    }, [reload]);
 
     const handleReject = async (id) => {
         const token = localStorage.getItem('token');
@@ -35,7 +73,8 @@ function PublicationAdmin() {
                 }
             });
             console.log('Publication rejected successfully:', response);
-            fetchPublications(); // Refresh publications list
+            // fetchPublications(); // Refresh publications list
+            incrementReload()
         } catch (error) {
             console.error('Failed to reject publication:', error);
             alert('Failed to reject the publication. Please try again.');
@@ -92,9 +131,9 @@ function PublicationAdmin() {
                         {filteredPublications.map(publication => (
                             <tr key={publication.id_publication}>
                                 <td>{publication.titre || 'No Title'}</td>
-                                <td>{publication.publisher || 'No Publisher'}</td>
-                                <td>{publication.etat || 'No Status'}</td>
-                                <td>{publication.date_publication || 'No Date'}</td>
+                                <td>{userMap[publication.id_publication]?.family_name || 'null'}</td>
+                                <td>{publication.etat }</td>
+                                <td>{formatDate(publication.date_publication) || '/'}</td>
                                 <td>
                                     <div className="action-buttons">
                                         <button className="reject" data-tooltip="Supprimer" onClick={() => handleReject(publication.id_publication)}><FaTrash/></button>
