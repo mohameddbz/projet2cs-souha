@@ -1,0 +1,470 @@
+.line {
+    /* margin: 25px 4% 0 4%; */
+    margin-top: 25px;
+    margin-bottom: 0;
+    padding: 0;
+    height: 1px;
+    background-color: #E6E6E6; 
+    border: none;
+   
+    bottom: 0;
+}
+
+
+
+.titrediv {
+    display: grid;
+    grid-template-columns: 70% 25%; /* Left section 70%, right section 30% */
+    align-items: center;
+    max-width:  100%;
+    padding: 0;
+    gap: 5%; 
+
+    /* background-color: aqua; */
+}
+
+
+.titlediv{
+    /* background-color: cyan; */
+    text-align: left;
+    /* margin-left: 4%;
+    margin-right: 4%; */
+    /* font-size: 24px; */
+    max-width: 100%;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    /* padding: 20px; */
+}
+
+
+.title-formation{
+    font-size: 2.2rem;
+    color: #0061B1;
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 10px;
+    font-weight: 600;
+    padding: 0;
+
+}
+
+.buttondiv{
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-left: 4%;
+    margin-right: 4%; */
+    position: center;
+    /* display: flex;
+    flex-direction: column; */
+    height: 100%;
+    max-width: 100%;
+
+    padding: 0;
+    margin: 0;
+    border: none; /* Supprime la bordure par défaut de l'hr */
+    border-bottom: 1px solid #E6E6E6;
+}
+
+
+.container-formation-avant-promo{
+    margin-left: 5%;
+    margin-right: 5%;
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.description {
+
+    
+    display: grid;
+    grid-template-columns: 70% 25%; /* Two equal columns */
+    grid-template-rows: auto auto;  /* Two rows */
+    /* grid-gap: 20px; */
+    grid-template-areas: 
+    "intro contact"
+    "learn agenda";
+    max-width: 100%;
+    width: 100%;
+    margin: 0 ;
+    padding: 0;
+    /* padding: 20px; */
+    /* background-color: white; */
+    gap: 5%; 
+  }
+  
+  /* Introduction section (first column, first row) */
+  .intro-section {
+    grid-area: intro;
+    margin-right: 20%;
+  }
+  
+
+  
+  .intro-section p {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  
+  /* What you'll learn section (first column, second row) */
+  .learn-section {
+    grid-area: learn;
+    margin-right: 20%;
+  }
+  
+  .learn-section h2,
+  .dossier-container h2,
+  .coeur-formation h2 {
+      color: #0073b1;
+      font-size: 22px;
+      margin-top: 5%;
+      margin-bottom: 2%;
+  }
+  
+  .learn-section ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .learn-section ul li {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  
+  .learn-section ul li:before {
+    content: '✔️';
+    margin-right: 10px;
+    color: #0073b1;
+  }
+  
+  /* Sidebar styling (right column) */
+  
+  /* Contact Us section (second column, first row) */
+  .contact-section {
+    grid-area: contact;
+    background-color: #f0f4f8;
+    /* padding: 20px; */
+    border-radius: 8px;
+  }
+  
+
+  p.agenda-info{
+    color: #0073b1 !important;
+    
+  }
+
+  .contact-section h3 {
+    font-size: 20px;
+    color: #0073b1;
+    margin-bottom: 10px;
+  }
+  
+  .contact-section p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+ 
+  
+  /* Agenda section (second column, second row) */
+  .agenda-section {
+
+    grid-area: agenda;
+    
+    background-color: #f0f4f8;
+    
+    border-radius: 8px;
+  }
+  
+  .agenda-section h3 {
+    font-size: 20px;
+    color: #0073b1;
+    margin-bottom: 10px;
+  }
+  
+  .agenda-item {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .agenda-item p {
+    font-size: 16px;
+    color: #333;
+    margin: 5px 0;
+  }
+  
+  .agenda-item strong {
+    color: #004aad;
+    font-size: 18px;
+  }
+
+
+
+  /* .subtitle4 {
+  
+    font: 700 21px/0 "Poppins", Helvetica, Arial, serif;
+    color: rgb(255, 255, 255);
+    margin-bottom: 50%;
+  } */
+
+
+  .agenda-rect {
+    margin-right:5%;
+    margin-top:2%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 66px;
+    height: 62px;
+    background-color: rgb(0, 97, 177);
+  }
+
+  .agenda-date {
+    height: 20px;
+    font: 400 13px/1.53 "Poppins", Helvetica, Arial, serif;
+    margin-bottom: 30%;
+    color: rgb(255, 255, 255);
+  }
+
+
+.coeur-formation{
+  margin: 5% 0;
+}
+  
+  .programme-formation {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8%;
+    /* padding: 20px; */
+
+    margin: 5% 0;
+  }
+  
+  .modules-formation {
+    background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modules-formation:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  align-items: center;
+  
+}
+
+.course-image {
+  width: 100%;
+  height: 70%; /* Augmenter la hauteur de l'image pour mieux remplir l'espace */
+  object-fit: cover; /* Assure que l'image remplisse bien l'espace sans être déformée */
+  border-bottom: 1px solid #ddd;
+}
+
+.course-title {
+  /* padding: 15px; */
+  /* margin-bottom: 3%; */
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; 
+  
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #f9f9f9;
+  color: #333;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .programme-formation {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .programme-formation {
+    grid-template-columns: 1fr;
+  }
+}
+  
+@media (max-width: 768px) {
+  .description {
+      display: grid; /* Assurez-vous que c'est une grille */
+      grid-template-columns: 1fr; /* Une seule colonne */
+      grid-template-rows: auto auto auto auto; /* Chaque section occupe une ligne */
+      grid-template-areas: 
+          "intro"
+          "contact"
+          "learn"
+          "agenda";
+      gap: 20px; /* Espace entre les sections */
+  }
+
+  /* Les sections doivent toutes occuper une ligne entière */
+  .intro-section,
+  .learn-section,
+  .contact-section,
+  .agenda-section {
+      grid-column: 1; /* Chaque section occupe toute la largeur */
+      margin-right: 0; /* Supprimer la marge à droite */
+  }
+
+  /* Ajuster le style pour chaque section si nécessaire */
+  .contact-section,
+  .agenda-section {
+      background-color: #f0f4f8;
+      border-radius: 8px;
+      padding: 20px; /* Ajouter un padding pour améliorer la lisibilité */
+  }
+}
+
+
+
+
+
+
+
+.dossier-container {
+  font-family: 'Open Sans', sans-serif;
+  padding: 20px;
+}
+
+h2 {
+  color: #0061B1;
+}
+
+h3 {
+  color: #0061B1;
+  margin-top: 20px;
+}
+
+.dossier-item {
+  /* border-bottom: 1px solid #ccc; */
+  margin-top: 1%;
+  padding: 10px 0;
+}
+
+.dossier-header {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.dossier-title {
+  font-size: 16px;
+}
+
+.dossier-toggle {
+  font-size: 16px;
+}
+
+.documents-container {
+  
+  display: flex;
+  justify-content: center; /* Centre horizontalement */
+  align-items: center;  
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.document-card {
+  /* width: 150px; */
+  width: 25%;
+  background: #ffffff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);          
+}
+
+.document-header {
+  background-color: #0f52ba;
+  color: white;
+  padding: 5% 1% 1%;
+  text-align: center;
+  font-size: 16px;
+}
+
+.document-body {
+  /* padding: 10px; */
+  text-align: center;
+  display: flex;
+  align-items: center;
+  padding-left: 35%;
+}
+
+
+.pdf-icon {
+  width: 40px;
+ 
+  height: 40px;
+  margin-top: 10%;
+}
+
+.download-button {
+  background-color: white;
+  /* color: white; */
+  border: none;
+  padding: 10% 5%;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+
+
+/* .telechargement{
+  width: 50%;
+} */
+
+
+
+
+@media (max-width: 700px) {
+  .modules-formation {
+      width: 100%; /* Make the card take full width on small screens */
+  }
+
+  .course-title{
+    margin-top: 0;
+    
+      padding: 5px; /* Adjust padding for smaller screens */
+      padding-top: 0;
+  }
+  .document-body{
+    padding:0
+  }
+}
+
+
+
+
+

@@ -1,4 +1,5 @@
-import React ,{useState} from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import Select from 'react-select';
@@ -9,37 +10,48 @@ import FormationCard from './FormationCard';
 import Chatbot from "../../components/chatbot/Chatbot";
 
 const optionsType = [
-    { value: 'Avant Promotion', label: 'Avant Promotion' },
-    { value: 'A La Carte', label: 'A La Carte' },
-  ];
+  { value: 'Avant Promotion', label: 'Avant Promotion' },
+  { value: 'A La Carte', label: 'A La Carte' },
+];
 
-  const optionsMode = [
-    { value: 'presentiel', label: 'Présentiel' },
-    { value: 'en_ligne', label: 'En ligne' },
-    { value: 'hybride', label: 'Hybride' },
+const optionsMode = [
+  { value: 'presentiel', label: 'Présentiel' },
+  { value: 'en_ligne', label: 'En ligne' },
+  { value: 'hybride', label: 'Hybride' },
 ];
 
 const optionsDuree = [
-    { value: '1', label: '20 heures' },
-    { value: '2', label: '60 heures' },
-    { value: '3', label: '150 heures' },
-    { value: '4', label: '250 heures' },
-    { value: '4', label: 'plus de 250 heures' },
+  { value: '1', label: '20 heures' },
+  { value: '2', label: '60 heures' },
+  { value: '3', label: '150 heures' },
+  { value: '4', label: '250 heures' },
+  { value: '4', label: 'plus de 250 heures' },
 ];
 
 const optionsNiveau = [
-    { value: 'debutant', label: 'Débutant' },
-    { value: 'intermediaire', label: 'Intermédiaire' },
-    { value: 'avance', label: 'Avancé' },
+  { value: 'debutant', label: 'Débutant' },
+  { value: 'intermediaire', label: 'Intermédiaire' },
+  { value: 'avance', label: 'Avancé' },
 ];
 
 const optionsLangue = [
-    { value: 'francais', label: 'Français' },
-    { value: 'anglais', label: 'Anglais' },
-    { value: 'arabe', label: 'Arabe' },
+  { value: 'francais', label: 'Français' },
+  { value: 'anglais', label: 'Anglais' },
+  { value: 'arabe', label: 'Arabe' },
 ];
-
 function CatalogueFormation(props) {
+  const [formations, setFormations] = useState([]); 
+
+  // Fetch formations from the backend using Axios
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_API_URL}/themes-formation/`) 
+      .then(response => {
+        setFormations(response.data); // Set the formations from the API response
+      })
+      .catch(error => {
+        console.error('Error fetching formations:', error);
+      });
+  }, []);
 
 
   const [selectedCertif, setSelectedCertif] = useState(null);
@@ -73,15 +85,13 @@ function CatalogueFormation(props) {
 
         })
       };
-
   return (
-    <div>
-      <Navbar/>
-      <Chatbot/>
-    <div className={cn(styles.root, props.className, 'cf')}>
-
-      <div className={styles.filterSearch}>
-
+    <div style={{maxWidth:'100%'}}>
+      <Navbar />
+      <Chatbot />
+      <div className={cn(styles.root, props.className, 'cf')}>
+        {/* <div className={styles.filterSearch}>
+          
       <div className={styles.box6} >
         <div className={styles.searchIcon}>
      
@@ -137,101 +147,23 @@ function CatalogueFormation(props) {
       </div>
 
 
-      <div className={styles.sectionContainer}>
-       <h3 className={styles.subtitle}>Formations A La Carte</h3>
-       <div className={styles.cardsContainer}>
-        <FormationCard/>
-        <FormationCard/>
-        <FormationCard/>
-        <FormationCard/>
-        <FormationCard/>
-        <FormationCard/>
-       </div>
-       <button className={styles.imageButton}>
-        Voir plus
-       </button>
-
+        <div className={styles.sectionContainer}>
+          <h3 className={styles.subtitle}>Formations A La Carte</h3>
+          <div className={styles.cardsContainer}>
+            {formations.length > 0 ? (
+              formations.map((formation) => (
+                <FormationCard key={formation.id} nomFormation={formation.titre } />
+              ))
+            ) : (
+              <p>Aucune formation disponible</p>
+            )}
+          </div>
+          <button className={styles.imageButton}>
+            Voir plus
+          </button>
+        </div> */}
       </div>
-
-
-      <div className={styles.sectionContainer}>
-       <h3 className={styles.subtitle}>Formations Avant Promotion</h3>
-       <div className={styles.cardsContainer}>
-        <FormationCard/>
-        <FormationCard/>
-        <FormationCard/>
-        <FormationCard/>
-        <FormationCard/>
-        <FormationCard/>
-       </div>
-       <button className={styles.imageButton}>
-        Voir plus
-       </button>
-
-      </div>
-
-
-
-      <div className={styles.sectionContainer}>
-       <h3 className={styles.subtitle}>Les plus demandees</h3>
-       <div className={styles.cardsContainer}>
-        <FormationCard/>
-        <FormationCard/>
-        <FormationCard/>
-        <FormationCard/>
-        <FormationCard/>
-        <FormationCard/>
-       </div>
-       <button className={styles.imageButton}>
-        Voir plus
-       </button>
-
-      </div>
-
-      <div className={styles.rect141}>
-        
-      <img className={styles.image23} src={'/assets/4fd778fb2debfd63ba00ed3f426459a3.png'} alt="alt text" />
-      <img className={styles.image24} src={'/assets/a04411374e37fb63d245db9bdc0585e8.png'} alt="alt text" />
-      <img className={styles.image25} src={'/assets/084ab549acda233d9b17e97e5ccd3740.png'} alt="alt text" />
-      <img className={styles.image22} src={'/assets/f28f31c1e283df752aabad027ad4bfc7.png'} alt="alt text" />
-
-      <img className={styles.image23} src={'/assets/logo_benevity.png'} alt="alt text" />
-      <img className={styles.image24} src={'/assets/cisco.jpg'} alt="alt text" />
-      <img className={styles.image25} src={'/assets/084ab549acda233d9b17e97e5ccd3740.png'} alt="alt text" />
-      <img className={styles.image22} src={'/assets/f28f31c1e283df752aabad027ad4bfc7.png'} alt="alt text" />
-
-      <img className={styles.image23} src={'/assets/4fd778fb2debfd63ba00ed3f426459a3.png'} alt="alt text" />
-      <img className={styles.image24} src={'/assets/a04411374e37fb63d245db9bdc0585e8.png'} alt="alt text" />
-      <img className={styles.image25} src={'/assets/084ab549acda233d9b17e97e5ccd3740.png'} alt="alt text" />
-      <img className={styles.image26} src={'/assets/alt.png'} alt="alt text" />
-      <img className={styles.image22} src={'/assets/f28f31c1e283df752aabad027ad4bfc7.png'} alt="alt text" />
-      <img className={styles.image26} src={'/assets/cleverreach.png'} alt="alt text" />
-      <img className={styles.image24} src={'/assets/adobe_corporate_logo.png'} alt="alt text" />
-      <img className={styles.image26} src={'/assets/dell.png'} alt="alt text" />
-
-      <img className={styles.image23} src={'/assets/logo_benevity.png'} alt="alt text" />
-      <img className={styles.image24} src={'/assets/cisco.jpg'} alt="alt text" />
-      <img className={styles.image25} src={'/assets/084ab549acda233d9b17e97e5ccd3740.png'} alt="alt text" />
-      <img className={styles.image26} src={'/assets/webex_1.png'} alt="alt text" />
-      <img className={styles.image22} src={'/assets/f28f31c1e283df752aabad027ad4bfc7.png'} alt="alt text" />
-      <img className={styles.image26} src={'/assets/cleverreach.png'} alt="alt text" />
-      <img className={styles.image24} src={'/assets/a04411374e37fb63d245db9bdc0585e8.png'} alt="alt text" />
-      <img className={styles.image26} src={'/assets/dell.png'} alt="alt text" />
-
-      </div>
-      
-      <div className={styles.temContainer}>
-      <h3 className={styles.subtitle}>Voix des Apprenants : Témoignages Inspirants</h3>
-      <div className={styles.temFlex}>
-      <img className={styles.test1} src={'/assets/testimonial1.svg'} alt="alt text" />
-      <img className={styles.test2} src={'/assets/testimonial2.svg'} alt="alt text" />
-      <img className={styles.test3} src={'/assets/testimonial3.svg'} alt="alt text" />
-      </div>
-      </div>
-  
-      
-    </div>
-    <Footer/>
+      <Footer />
     </div>
   );
 }

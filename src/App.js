@@ -24,8 +24,13 @@ import Authentification from './pages/Authentification/Authentification';
 import Clubs from './pages/Clubs/Clubs';
 import ProfileEdit from './pages/Admin/ProfileEditeur'
 
+
+// import FormationAvantPromo from './pages/AvantPromo/FormationAvantPromo'
+
 import AvantPromo from './pages/AvantPromo/index'
-import CatalogueFormation from './pages/CatalogueFormations/index'
+import CatalogueFormation from './pages/CatalogueFormations/CatalogueFormation'
+import DetailFormation from './pages/Formation/DetailFormation'
+
 import DemandeDevis from './pages/DemandeDevis/index'
 import DemandeEnregistree from './pages/DemandeDevis/DemandeEnreg'
 import DF from './pages/DF/index'
@@ -88,6 +93,7 @@ import AddModule from './pages/Relex/AjouterModule'
 import ModuleList from './pages/Relex/ModuleList'
 import AjouterFormation from './pages/Relex/AjouterFormation'
 import FormationsList from './pages/Relex/formationsList'
+import FormationAvantPromo from './pages/AvantPromo/FormationAvantPromo';
 // ======= page historique pas integrer les 2 
 // ======= page chercheur pas integrer 
 // ======= page Publications
@@ -139,8 +145,12 @@ function App() {
         <Route path ="/ProjetsInter" element ={<ProjetsInter/>}/>
         <Route path="/Admin/Ajouter_user" allowedRoles={['administrateur']} element={<PrivateRoute><AjouterUser /></PrivateRoute>} />
         <Route path="/Admin/Liste_des_utilisateurs" allowedRoles={['administrateur']} element={<PrivateRoute><ListUser /></PrivateRoute>} />   
-        < Route path ="/AvantPromo" element ={<AvantPromo/>}/>
+        {/* < Route path ="/AvantPromo" element ={<AvantPromo/>}/> */}
+
+        < Route path ="/AvantPromo" element ={<FormationAvantPromo/>}/>
+
         < Route path ="/CatalogueFormation" element ={<CatalogueFormation/>}/>
+        < Route path ="/DetailFormation/:id" element ={<DetailFormation/>}/>
         < Route path ="/DemandeDevis" element ={<DemandeDevis/>}/>
         < Route path ="/DemandeEnregistree" element ={<DemandeEnregistree/>}/>
         < Route path ="/DetailsFormation" element ={<DF/>}/>

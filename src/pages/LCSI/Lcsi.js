@@ -1,5 +1,5 @@
-import {React, useState} from 'react';
-import './Lcsi.css'
+import {React, useState, useEffect} from 'react';
+import axios from 'axios';import '../Lmcs/Lmcs.css'
 import Lcsiback from '../../images/Lcsiback.png';
 import lcsib from '../../images/lcsib.png';
 import a from '../../images/a.png';
@@ -23,12 +23,27 @@ import Navbar from '../../components/navbar/navbar'
 import Footer from '../../components/Footer/Footer'
 import {  GoChevronRight } from "react-icons/go";
 import {  GoChevronLeft } from "react-icons/go";
-const Lmcs= () => {
+const Lcsi= () => {
   const pageSize = 4;
- 
   const [currentPage, setCurrentPage] = useState(0);
   const [activeBox, setActiveBox] = useState(null);
   const [serviceCardIndex, setServiceCardIndex] = useState(0);
+  const [blogPosts, setBlogPosts] = useState([]);
+
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_API_URL}/publication/labo/2/`)
+      .then(response => {
+       // console.log("Response data:", response.data);  // Inspecter la structure des données
+        setBlogPosts(response.data);
+      })
+      .catch(error => {
+        console.error("There was an error fetching the blog posts!", error);
+      });
+  }, []);
+  if (blogPosts.length > 0) {
+    console.log(blogPosts[0].titre);  // Accéder au titre du premier article
+  }
+
 
   const getCurrentPageCards = () => {
     const startIndex = currentPage * pageSize;
@@ -41,12 +56,10 @@ const Lmcs= () => {
     const endIndex = startIndex + pageSize;
     return cardData1.slice(startIndex, endIndex);
   };
-  
+
   const handleBoxClick = (index) => {
     setActiveBox(index);
   };
-  
- 
   return (
     <div className="lcsi-container">
       <Navbar/>
@@ -54,12 +67,12 @@ const Lmcs= () => {
     <Introduction/>
     <QuickFacts/>
     <Presentation
-        getCurrentPageCards={getCurrentPageCards} 
+       getCurrentPageCards={getCurrentPageCards} 
        handleBoxClick={handleBoxClick} 
        activeBox={activeBox} 
     />
-    <ServiceCard
-      cardData1={cardData1}
+   <ServiceCard
+       blogPosts={blogPosts}
       serviceCardIndex={serviceCardIndex}
       setServiceCardIndex={setServiceCardIndex} 
        />
@@ -73,7 +86,7 @@ const Header = () => (
     <img className="lcsi-cover" src={Lcsiback} alt="alt text" />
     <img className="top-image" src={lcsib} alt="alt text" />
     <div className='lcsi-header'>
-      <h1 className='lcsi-hero_title'>Laboratoire de la Communication dans les Systèmes Informatiques</h1>
+      <h1 className='lcsi-hero_title'>Laboratoire de la Communication dans les Systèmes Informatiques </h1>
       <div className='imagecontainer'>
   <div className='top-images'>
     <img src={groupe1} alt="groupe 1" />
@@ -134,7 +147,7 @@ const QuickFacts = () => (
     </div>
   </div>
 );
-const Presentation = ({getCurrentPageCards , handleBoxClick, activeBox }) => (
+const Presentation = ({ getCurrentPageCards, handleBoxClick, activeBox }) => (
   <div className='lcsi-RECT3'>
     <div className="lcsi-content-wrapper">
      
@@ -159,6 +172,7 @@ const Presentation = ({getCurrentPageCards , handleBoxClick, activeBox }) => (
             onClick={() => handleBoxClick(index)}
           >
             <img className="lcsi-image00" src={icon} alt="alt text" />
+                
             <h4 className="lcsi-highlight00">{product.service}</h4>
             <h5 className="lcsi-highlight01">
               {product.desc}
@@ -170,7 +184,7 @@ const Presentation = ({getCurrentPageCards , handleBoxClick, activeBox }) => (
     </div>
   </div>
 );
-const ServiceCard = ({ cardData1, serviceCardIndex, setServiceCardIndex }) => {
+const ServiceCard = ({ blogPosts, serviceCardIndex, setServiceCardIndex }) => {
   const cardsPerPage = 2;
 
   const handlePrevClick = () => {
@@ -178,7 +192,7 @@ const ServiceCard = ({ cardData1, serviceCardIndex, setServiceCardIndex }) => {
   };
 
   const handleNextClick = () => {
-    setServiceCardIndex(Math.min(cardData1.length - cardsPerPage, serviceCardIndex + cardsPerPage));
+    setServiceCardIndex(Math.min(blogPosts.length - cardsPerPage, serviceCardIndex + cardsPerPage));
   };
 
   return (
@@ -190,18 +204,18 @@ const ServiceCard = ({ cardData1, serviceCardIndex, setServiceCardIndex }) => {
         </span>
       </h1>
       <div className='containerblog'>
-        {cardData1.slice(serviceCardIndex, serviceCardIndex + cardsPerPage).map((product, index) => (
+        {blogPosts.slice(serviceCardIndex, serviceCardIndex + cardsPerPage).map((blogPosts, index) => (
           <div key={serviceCardIndex +index} className='lcsi-blog'>
             <div className='lcsi-blog-content'>
-              <h3 className='lcsi-blog_subtitle'>{product.title}</h3>
-              <h5 className='lcsi-blog_highlight'>{product.desc}</h5>
+              <h3 className='lcsi-blog_subtitle'>{blogPosts.titre}</h3>
+              <h5 className='lcsi-blog_highlight'>{blogPosts.description}</h5>
               <div className='lcsi-blog-meta'>
                 <img className='lcsi-blog_images' src={aplaude} alt="alt text" />
-                <span className='lcsi-blog-like'>{product.like}</span>
+                <span className='lcsi-blog-like'>31</span>
                 <img className='lcsi-blog_images' src={vue} alt="alt text" />
-                <span className='lcsi-blog_vues'>{product.vues}</span>
+                <span className='lcsi-blog_vues'>42</span>
                 <img className='lcsi-blog_images' src={clock} alt="alt text" />
-                <span className='lcsi-blog_temps'>{product.temps}</span>
+                <span className='lcsi-blog_temps'>13</span>
               </div>
               <a href="lien-vers-votre-page" className='lcsi-blog_more'>Read More...</a>
             </div>
@@ -215,13 +229,14 @@ const ServiceCard = ({ cardData1, serviceCardIndex, setServiceCardIndex }) => {
         <GoChevronLeft style={{color:'white',fontSize: '40px'}}/>
 
         </button>
-        <button onClick={handleNextClick} disabled={serviceCardIndex >= cardData1.length - cardsPerPage}>
+        <button onClick={handleNextClick} disabled={serviceCardIndex >= blogPosts.length - cardsPerPage}>
         <GoChevronRight style={{ color:'white',fontSize: '40px' }} />
           </button>
       </div>
     </div>
   );
 };
+
 
 const Partenaire=()=>(
   <div className='lcsiparten'>
@@ -240,4 +255,4 @@ const Partenaire=()=>(
 )
 
 
-export default Lmcs
+export default Lcsi

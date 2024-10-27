@@ -172,6 +172,7 @@ const Presentation = ({ getCurrentPageCards, handleBoxClick, activeBox }) => (
             onClick={() => handleBoxClick(index)}
           >
             <img className="lcsi-image00" src={icon} alt="alt text" />
+                
             <h4 className="lcsi-highlight00">{product.service}</h4>
             <h5 className="lcsi-highlight01">
               {product.desc}

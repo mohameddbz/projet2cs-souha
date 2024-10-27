@@ -1,0 +1,202 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa; 
+  font-family: 'Arial', sans-serif;
+}
+
+.header-container {
+  background-color: #0061B1;
+  padding: 40px 2%;
+
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.course-container {
+  display: flex;
+  padding: 0 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+/* Left Section (Course Description) */
+.course-description {
+  width: 50%;
+  color: white;
+}
+
+.course-description h1 {
+  color: white;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.course-description p {
+  color: white;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.course-info {
+  margin-top: 20px;
+}
+
+.rating {
+  color: #ffcc00;
+  font-weight: bold;
+}
+
+.instructor {
+  font-weight: bold;
+}
+
+.what-youll-learn {
+  margin: 30px 40% 20px 2%;
+  /* padding: 100px; */
+  border: 1px solid rgba(0, 97, 177, 0.64) ; 
+border-radius: 8px; 
+padding: 20px; 
+}
+
+.what-youll-learn h2 {
+  color: #000000eb;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.what-youll-learn ul {
+  list-style: none;
+  padding: 0;
+}
+
+.what-youll-learn ul li {
+  /* background: #e7f0ff; */
+  margin-bottom: 10px;
+  padding: 10px;
+ 
+}
+.what-youll-learn p, 
+.what-youll-learn li {
+font-size: 1em; 
+font-family: 'Open Sans', sans-serif; 
+
+line-height: 1.5; 
+margin-bottom: 10px; 
+}
+/* Right Section (Course Details) */
+.course-details {
+  background-color: #fff;
+  width: 30%;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-left: 62%;
+  position: absolute;
+  bottom: -160%;
+}
+
+.course-details h3 {
+  color: #002e68;
+  margin-bottom: 30px;
+}
+
+.course-details ul {
+  list-style: none;
+  padding: 0;
+}
+
+.course-details ul li {
+  margin-bottom: 25px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.course-details ul li::before {
+  content: '✔️';
+  position: absolute;
+  left: 0;
+  color: #4CAF50;
+}
+
+.brochure-buttons {
+  margin-top: 20px;
+}
+
+.brochure-buttons button {
+  margin-right: 10px;
+  padding: 0;
+  /* background-color: #004080; */
+  color: #144D7C;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.brochure-buttons button:hover {
+  /* background-color: #003366; */
+}
+
+.price-simulator {
+  margin-top: 30px;
+}
+
+.price-simulator h4 {
+  margin-bottom: 10px;
+}
+
+.simulate-button {
+  padding: 10px 20px;
+  background-color: #0061B1;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.simulate-button:hover {
+  background-color: #007399;
+}
+
+/* Course Image Styling */
+.course-image {
+  /* width: 80%; */
+  height: auto;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* Media Queries for Small Screens */
+@media (max-width: 768px) {
+  .header-container {
+      flex-direction: column;
+  }
+
+  .course-description, 
+  .course-details {
+      width: 87%;
+      
+      margin: 0; 
+      margin-left: 2%;
+      padding: 20px; 
+  }
+
+  .course-details {
+      margin-top: 20px; 
+      position: relative; 
+      bottom: auto; 
+  }
+
+  .what-youll-learn {
+      margin: 30px 5%; 
+      width: 80%;
+  }
+}
+

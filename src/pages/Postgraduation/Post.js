@@ -23,7 +23,7 @@ const Post = () => {
     const fetchEventsData = async () => {
       try {
         const eventsResponse = await axios.get(
-          `${process.env.REACT_APP_API_URL}/publication/searchall/?type_publication=event&etat=valide`
+          `${process.env.REACT_APP_API_URL}/publications/bycategory/1/`
         );
         setEventsData(eventsResponse.data);
       } catch (error) {
@@ -114,12 +114,15 @@ const Post = () => {
             <div key={index} className='post-evenement'>
               <div className='post-evenement-s1'>
                 <div className='post-evenement-img-cont'>
-                  <img src={event.image || treePic} alt='' className='post-evenement-img' />
+                <img  src={`${process.env.REACT_APP_API_URL}${event.image}`} alt="alt text" />
+
+                
+                  {/* <img src={event.image || treePic} alt='' className='post-evenement-img' /> */}
                   <div className='post-evenement-date'>
-                    {event.date ? (
+                    {event.date_debut ? (
                       <>
-                        <span className='post-evn-span'>{event.date.split(' ')[0]}</span>
-                        {event.date.split(' ')[1]} {event.date.split(' ')[2]}
+                        <span className='post-evn-span'>{event.date_debut.split(' ')[0]}</span>
+                        {event.date_debut.split(' ')[1]} {event.date_debut.split(' ')[2]}
                       </>
                     ) : (
                       'Date non disponible'
@@ -141,10 +144,10 @@ const Post = () => {
         {soutData.map((event, index) => (
           <div key={index} className='sout-evenement'>
             <div className='poste-evenement-date'>
-              {event.date ? (
+              {event.date_debut ? (
                 <>
-                  <span className='post-evn-span'>{event.date.split(' ')[0]}</span>
-                  {event.date.split(' ')[1]} {event.date.split(' ')[2]}
+                  <span className='post-evn-span'>{event.date_debut.split(' ')[0]}</span>
+                  {event.date_debut.split(' ')[1]} {event.date_debut.split(' ')[2]}
                 </>
               ) : (
                 'Date non disponible'
