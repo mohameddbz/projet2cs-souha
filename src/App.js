@@ -66,6 +66,10 @@ import PublicationDetail from './pages/SuccessStories/PublicationDetail';
 import ProgrammeFinal from './pages/Programme/ProgrammeFinal';
 import AjouterUser from './pages/Admin/AjouterUser';
 import ListUser from './pages/Admin/ListeUser';
+import MotPresident from './pages/MotPresident/MotPresident';
+import Vision from './pages/VisionMission/Vision';
+import Seminaire from './pages/Seminaire/Seminaire';
+import DetailEvenement from './pages/DetailsEvenement/DetailsEvenement';
       
 // ======= page historique pas integrer les 2 
 // ======= page chercheur pas integrer 
@@ -142,10 +146,13 @@ function App() {
         <Route path='/Ebachelier/Forum' element={<ForumPage/>}></Route>
         <Route path='/Presentation' element={<Presentation/>}></Route>
         <Route path='/ProgrammeFinal' element={<ProgrammeFinal/>}></Route>
-        
 
+        <Route path='/MotPresident' element={<MotPresident/>}></Route>
+        <Route path='/Vision_Mission' element={<Vision/>}></Route>
 
+        <Route path='/Seminaire' element={<Seminaire/>} ></Route>
 
+        <Route path='/EventList/DetailEven' element={<DetailEvenement/>}></Route>
 
       </Routes>
       </BrowserRouter>

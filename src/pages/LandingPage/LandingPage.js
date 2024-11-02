@@ -20,6 +20,8 @@ function LandingPage () {
         <Events/>
         <QuickFact/>
         <Footer/>
+
+        <hr  className='d'  />
       </div> 
     </div>
   )

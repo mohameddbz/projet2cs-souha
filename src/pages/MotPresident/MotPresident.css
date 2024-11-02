@@ -1,0 +1,145 @@
+.custom-frame {
+    display: inline-block;
+    position: relative;
+    padding: 6px;
+    border-radius: 8px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); Ombre légère pour l'effet 3D */
+  }
+  
+  .framed-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 6px; 
+  }
+  
+  /* Bordure personnalisée */
+  .custom-frame::before,
+  .custom-frame::after {
+    content: '';
+    position: absolute;
+    border: 5px solid #1E90FF; /* Couleur bleue pour les coins */
+  }
+  
+  .custom-frame::before {
+    top: 0;
+    right: 0;
+    border-width: 5px 5px 0 0;
+    width: calc(60%);
+    height: calc(60%);
+    border-radius: 6px 6px 6px 0;
+
+  }
+  
+  .custom-frame::after {
+    bottom: 0;
+    left: 0;
+    border-width: 0 0 5px 5px;
+    width: calc(60%);
+    height: calc(60%);
+    border-radius: 6px 0 6px 6px;
+
+  }
+     .titlee{
+        font-size: 3rem;
+        font-weight: 700;
+        color: #0080ff;
+        text-align: center;
+        padding: 1.5rem 2rem ;
+     } 
+     @media (max-width: 768px) {
+       .titlee{
+        font-size: 1rem;
+        color: #0080ff;
+        font-weight: 600;
+        text-align: center;
+        padding:auto ;
+       }
+      }
+   
+  .headers {
+    padding: 80px;
+    display: flex ;
+    flex-direction: row;
+    gap: 20px;
+    background-color: rgba(30, 144, 255, 0.1);  
+  } 
+  @media (max-width: 768px) {
+    .headers {
+        padding: 80px;
+        display: flex ;
+        flex-direction: column;
+        gap: 20px;
+        background-color: rgba(30, 144, 255, 0.1);  
+      } 
+  }
+
+  .pict{
+     flex : 1 ; 
+     display: flex; 
+     justify-content: center;
+     align-items: center; 
+  }
+
+  .mot-pres{
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .quotes-start-span{
+    font-size: 40px;
+    color: #0080ff;
+    position: absolute ;
+    top: -22px;
+    left: -12px ;
+  }
+  .quotes-end-span{
+    font-size: 40px;
+    color: #0080ff;
+    position: absolute ;
+    bottom: -18px;
+    right: -15px ;
+  }
+
+
+  .text-span{
+    font-weight: bold;
+    font-size: large;
+    position: relative;
+    display: inline;
+  }
+
+  .quote-div{
+    padding-top: 30px;
+  }
+
+  p.name-pres{
+    color: #1E90FF;
+    font-size: larger;
+    font-weight: 700;
+  }
+
+  div.name-pres{
+    padding-left: 30px;
+    padding-right: 30px;
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  div.all-text {
+    padding: 5% 10%;
+    font-weight: bold;
+    font-size: large;
+  }
+  span.all-text {
+    padding: 0 3%;
+    font-weight: bold;
+    font-size: large;
+  }
+  .text-colorer{
+    font-weight: bold;
+    font-size: large;
+    color: #1E90FF;
+  }
