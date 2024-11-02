@@ -104,6 +104,11 @@ import DemendeList from './pages/Relex/DemendesList'
 import DevisList from './pages/Relex/DevisList'
 import EventPage from './pages/Admin/Club_pub'
 import ClubEvent from './pages/Admin/Club_create'
+import MotPresident from './pages/MotPresident/MotPresident';
+import Vision from './pages/VisionMission/Vision';
+import Seminaire from './pages/Seminaire/Seminaire';
+import DetailEvenement from './pages/DetailsEvenement/DetailsEvenement';
+      
 // ======= page historique pas integrer les 2 
 // ======= page chercheur pas integrer 
 // ======= page Publications
@@ -220,8 +225,12 @@ function App() {
         <Route path="/club/event"  element={<EventPage/>} />
         <Route path="/club/Creer"  element={<ClubEvent/>} />
 
+        <Route path='/MotPresident' element={<MotPresident/>}></Route>
+        <Route path='/Vision_Mission' element={<Vision/>}></Route>
 
+        <Route path='/Seminaire' element={<Seminaire/>} ></Route>
 
+        <Route path='/EventList/DetailEven' element={<DetailEvenement/>}></Route>
 
       </Routes>
       </BrowserRouter>

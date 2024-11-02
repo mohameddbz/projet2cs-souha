@@ -1,0 +1,227 @@
+
+ /* this is for the search bar  */
+.container-search-bar{
+    padding: 1.25rem 1rem;
+    justify-content: space-between;
+    align-items: center;
+    display: flex ;
+    flex-direction: row;
+    border-radius: 8px;
+    border-width: 2px;
+    border-style: solid ;
+    border-color: #0061B1;
+}
+
+input{
+    width: auto;
+    border: none;
+    outline: none;
+    font-weight: 600;
+    font-size:large;
+    color:#0061B1  ;
+
+}
+@media (max-width: 575px) {
+    input{
+        width: min-content;
+    }
+    input:focus{
+        border-bottom: 2px;
+       border-bottom-style: solid;
+       box-shadow: #3D3B40;
+    }
+
+    .container-search-bar{
+        margin: 1rem 1rem;
+        gap: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .left-flex{
+        gap: 10px;
+    }
+    .right-flex{
+        gap: 2rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+  }
+  @media (min-width: 576px) and (max-width: 767.98px) {
+    .container-search-bar{
+        margin: 4rem 3rem;
+    }
+    input{
+        width: min-content;
+    }
+    .left-flex,.right-flex{
+        gap: 10px;
+    }
+    .right-flex{
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+    }
+    
+  }
+    @media (min-width:768px) {
+        .left-flex, .right-flex{
+            gap: 30px;
+          }
+          .right-flex{
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+        }
+    }
+  
+
+.left-flex{
+    align-items: center;
+    display: flex;
+    flex-direction: row; 
+}
+
+.filter{
+    gap: 10px;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    font-weight: 700;
+}
+
+.search-but{
+    background-color: #0061B1;
+    border-radius: 40px ;
+    border-style: solid;
+    color: white;
+    border-color: #0061B1;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    transition: background-color 0.6s ease, color 0.6s ease; 
+    cursor: pointer;
+  }
+
+
+  /* icon here  */
+  
+  .search-but:hover{
+    background-color: white;
+    color: #0061B1;
+  }
+
+  .search-icon{
+    height: 24px;
+    width: 24px;
+    color: #726E75;
+  }
+  .filter-icon{
+    height: 32px;
+    width: 32px;
+    color: #3D3B40;
+  }
+
+
+  /* fin de la search bar css  */
+
+
+
+  /* event component css here  */
+
+  /* Event component CSS */
+.container-component {
+    border-radius: 8px;
+    border-width: 0;
+    border-style: solid;
+    margin: 2rem 4rem;
+    display: flex;
+    flex-direction: row;
+    background-color: #9DCCFF1A;
+    align-items: stretch; /* Ensure children stretch to the container's height */
+
+
+    box-shadow: 
+    -5px 9px 5px -5px #0061B180,  /* Ombre à gauche */
+    5px 9px 5px -5px #0061B180,   /* Ombre à droite */
+    0 9px 7px -5px #0061B180;   /* Ombre en bas */
+}
+
+.text-container {
+    padding-top: 1rem;
+    padding-left: 1rem;
+    flex: 4; /* Takes up 4 parts of the flex space */
+    display: flex;
+    flex-direction: column;
+    
+}
+.circular-image{
+    height: auto;
+    width: auto;
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+}
+.image-containerr {
+    padding: 2rem;
+    flex: 1; /* Takes up 1 part of the flex space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+p.titreS{
+    text-align: start;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0080ff;
+  }
+
+p.visiteur{
+    text-align: start;
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: black;
+}
+
+
+
+.place-time{
+    display: flex;
+    flex-direction: row;
+    justify-content: start ;
+    gap: 1rem;
+}
+
+.icon-text{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: 400;
+    font-size: 1.25rem;
+}
+
+/*  the style for the page here  */
+
+
+.container-search-bar-components{
+    position: relative;
+    padding: 7.5rem 10rem;
+    
+}
+.lmcs-image{
+    position: absolute;
+    right: 20px;
+    top: -100px;
+    z-index: 0;
+}
+.front-components{
+    
+    background-color: white;
+    position: relative;
+    z-index: 3;
+}
+

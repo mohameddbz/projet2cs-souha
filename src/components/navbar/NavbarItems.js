@@ -10,10 +10,10 @@ const listItem=[
                         lien:'/Presentation'
                     },{
                         item:'Mot Président',
-                        lien:''
+                        lien:'/MotPresident'
                     },{
                         item:'Vision et Mission',
-                        lien:''
+                        lien:'Vision_Mission'
                     },{
                         item:'Musée ESI',
                         lien:''

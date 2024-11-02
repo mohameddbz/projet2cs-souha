@@ -1,0 +1,190 @@
+/* .wave-background {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background-color: #ffffff;
+    overflow: hidden;
+  }
+  
+  .wave-background::before,
+  .wave-background::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  
+  .wave-background::before {
+    background: radial-gradient(circle at 50% 50%, rgba(30, 144, 255, 0.1), transparent 70%);
+  }
+  
+  .wave-background::after {
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(30, 144, 255, 0.2) 0%,
+      rgba(30, 144, 255, 0.2) 2px,
+      transparent 2px,
+      transparent 4px
+    );
+    opacity: 0.3;
+    animation: wave-animation 10s infinite linear;
+  }
+  
+  @keyframes wave-animation {
+    from {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+    to {
+      transform: translate(-50%, -50%) rotate(405deg);
+    }
+  }
+   */
+/* 
+   body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .wave-background {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-color: #ffffff;
+    overflow: hidden;
+  }
+  
+  .wave-background::before,
+  .wave-background::after {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: wave-animation 20s infinite linear;
+  }
+  
+  .wave-background::before {
+    background-image: radial-gradient(circle at 50% 50%, transparent, rgba(0, 119, 255, 0.2));
+  }
+  
+  .wave-background::after {
+    background-image: repeating-linear-gradient(0deg, rgba(0, 119, 255, 0.15) 0px, transparent 2px, transparent 10px),
+                      repeating-linear-gradient(90deg, rgba(0, 119, 255, 0.15) 0px, transparent 2px, transparent 10px);
+  }
+  
+  @keyframes wave-animation {
+    0% {
+      transform: rotate(0deg) scale(1);
+    }
+    100% {
+      transform: rotate(360deg) scale(1);
+    }
+  } */
+
+  .wave-background{
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  background-image: url('./../../images/wave.png');
+background-size: cover;  background-position: center;
+  background-repeat: no-repeat;
+
+  }
+
+  .headd{
+        padding: 5% 10% ;
+  }
+  p.titleee{
+    text-align: start;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #0080ff;
+  }
+  p{
+    margin: 0.75rem;
+  }
+  p.subtitlee{
+    text-align: start;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #0080ff;
+  }
+
+  p.texttitlee{
+    padding: 3rem 0;
+    padding-bottom: 0;
+    font-size: 1.25rem;
+    color: black;
+    font-weight: 600;
+  }
+
+
+  p.subtitle2{
+    text-align: start;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0080ff;
+  }
+
+  .sectionss{
+    padding: 0 10%;
+  }
+
+.line-horizontal{
+  border: none; 
+  height: 3px; 
+  background: linear-gradient(to right, #0080ff, #1E90FF); 
+  margin: 1.5rem 0; 
+  position: relative; 
+  box-shadow: 0 2px 4px rgba(0, 117, 226, 0.2); 
+}
+   
+p.cycle{
+  padding: 1rem 0;
+  padding-top: 2rem;
+  text-align: start;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: black;
+}
+.normal-text{
+  font-size: 1.25rem;
+  color: black;
+  font-weight: 600;
+}
+
+
+.two-column-list {
+  padding: 2rem 4rem;
+font-size: 1.25rem;
+color: black;
+font-weight: 600; 
+}
+@media (min-width: 768px) {
+  .two-column-list {
+    justify-content: center;
+    padding: 2rem 4rem;
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 1rem; 
+    font-size: 1.25rem;
+    color: black;
+    font-weight: 600;
+    } 
+}
+
+
+
+
+

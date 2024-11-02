@@ -1,0 +1,423 @@
+.detail-event-container{
+    display: flex;
+    flex-direction: column;
+    margin-block: 4rem;
+    margin-inline: 8rem;
+    border-radius: 8px ;
+    overflow: hidden;
+    box-shadow: 
+    -5px 9px 5px -5px #314c6380,  /* Ombre à gauche */
+    10px 9px 5px -5px #314c6380,   /* Ombre à droite */
+    0 9px 7px -5px #314c6380,   /* Ombre en bas */
+    10px -9px 7px -5px #314c6380;   /* Ombre en bas */
+}
+
+.titleee{
+    margin-top: 2.5rem;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.titleee span{
+    font-size: 3rem;
+    color: #0061B1;
+}
+
+.top-flex{
+    display: flex;
+    flex-direction: row;
+   
+}
+.image-evn-container{
+    flex : 6; 
+    display:  flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-event{
+    width: 80%;
+    height: 80%;
+    border-radius: 2%;
+}
+
+.top-right-container{
+    flex: 4;
+    height: max-content;
+    padding-inline: 1rem ;
+}
+
+.categorie-event{
+    font-size: x-large;
+    padding-top: 1.5rem;
+    color: #0061B1;
+}
+.detail-event-container h1{
+ color: #0061B1;
+ font-weight: 400;
+ font-size: 36px;
+}
+
+
+.bottom-flex {
+    display: flex;
+    flex-direction: row;
+    /* border-style: solid;
+    border-color: black ;
+    border-top: 3px; */
+}
+
+.description-event{
+    flex:6;
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column;
+    border :  0px ; 
+    border-top: 1px;
+    border-style: solid;
+    border-color: #0000002a;
+}
+
+.description-event P {
+    margin-inline: 1.5rem;
+}
+
+.descriptP{
+    background-color: #0061B1;
+    padding: 1rem;
+    display: flex;
+    color: white;
+    justify-content: center;
+    border-radius:12px;
+}
+.descriptP span {
+    font-size: xx-large;
+}
+
+.description-text{
+    padding-block : 30px ;
+    color: black;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.bottom-right{
+    flex : 4; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-inline:1rem ;
+   
+    border :  0px ; 
+    border-top: 1px;
+    border-left: 1px;
+    border-style: solid;
+    border-color: #0000002a;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/* date component */
+
+
+
+.date-container{
+    width: fit-content;
+    background-color: #0061B1;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    border-style: solid;
+    padding: 0.5rem;
+    border-width: 0px;
+    border-radius: 0px 0px 8px  8px;
+}
+
+.date-container P {
+    color: white;
+    display: inline-block;
+    padding-block: 0;
+    margin-block: 0;
+    width: fit-content;
+}
+
+.day{
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.month{
+    font-size: 2.25rem;
+    font-weight: 600;
+}
+
+
+
+
+
+/* button right component  */
+
+
+.place-time{
+    padding-left: 30px ;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.itemS{
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+    gap: 12px;
+
+}
+.itemS P{
+    font-size: larger;
+    font-weight: 500;
+}
+
+.icon-compo{
+    width: 40px;
+    height: 40px;
+    color: #0061B1;
+}
+.icon-compo-map{
+    width: 45px;
+    height: 45px;
+    color: #0061B1;
+}
+
+.desktop-div {
+    display: block;
+}
+
+.mobile-div {
+    display: none;
+}
+
+   @media (max-width: 768px) {
+    .mobile-div {
+        gap: 0;
+    }
+    .titleee{
+        margin-top: 0rem;
+        font-size: 1.5rem;
+        text-align: center;
+    }
+    
+    .titleee span{
+        font-size: 1.5rem;
+        color: #0061B1;
+    }
+       .mobile-date-event{
+        position: absolute;
+        top: 8px;
+        left: 16px;
+       }
+
+      /* ca c'est pour la date  */
+       .date-container{
+        width: fit-content;
+        background-color: #FFFFFFA0;
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        border-style: solid;
+        padding: 0.25rem;
+        border-width: 0px;
+        border-radius: 0px 0px 4px  4px;
+    }
+    
+    .date-container P {
+        color: #0061B1;
+        display: inline-block;
+        padding-block: 0;
+        margin-block: 0;
+        width: fit-content;
+    }
+    
+    .day{
+        font-size: 2rem;
+        font-weight: 700;
+    }
+    
+    .month{
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+
+    .categorie-event{
+        font-size: large;
+        padding-top: 1.5rem;
+        color: #0061B1;
+    }
+
+    h1{
+        font-weight: 700;
+        font-size: x-large;
+        color: #0061B1;
+    }
+
+    h4{
+        margin: 0;
+    }
+
+    .description{
+        margin: 0;
+        padding-left : 2px ;
+       
+    }
+
+    .description p {
+        margin: 0;
+        color: #0061B1;
+        font-size: medium;
+        color: black;
+
+    }
+
+
+   }
+
+
+@media  (min-width: 500px) and (max-width: 768px) {
+    .desktop-div {
+        display: none;
+    }
+
+    .mobile-div {
+        display: block;
+        
+        padding: 2rem;
+    }
+    .mobile-image-container{
+        position: relative;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        overflow: hidden;
+        border: solid;
+        border-width: 0px ;
+        
+    }
+    .mobile-image-event{     
+        width: 100%;
+    }
+    .place-time{
+        position: absolute;
+        top: 100px;
+        right: 20px;
+        max-width: 200px;
+        background-color: #FFFFFFA0;
+        padding-inline: 10px ;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .itemS{
+        display: flex;
+        flex-direction: row;
+        justify-items: center;
+        align-items: center;
+        gap: 10px;
+    
+    }
+    .itemS P{
+        font-size: medium;
+        font-weight: 500;
+        display: -webkit-box;        /* Pour activer le mode flexbox pour le conteneur */
+        -webkit-line-clamp: 2;       /* Limite le texte à 2 lignes */
+        -webkit-box-orient: vertical;/* Définit l'orientation verticale des lignes */
+        overflow: hidden;            /* Cache le texte qui dépasse */
+        text-overflow: ellipsis;     /* Ajoute des "..." pour le texte tronqué */
+        max-height: 3em;             /* Limite la hauteur à deux lignes (2 * line-height) */
+        line-height: 1.5em;          /* Définit la hauteur de ligne, ajustable */
+    }
+    
+    .icon-compo{
+        width: 20px;
+        height: 20px;
+        color: #0061B1;
+    }
+}
+
+
+@media (max-width: 499px) {
+    .desktop-div {
+        display: none;
+    }
+
+    .mobile-div {
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+    }
+
+    .mobile-image-container{
+        position: relative;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        overflow: hidden;
+        border: solid;
+        border-width: 0px ;
+        
+    }
+    .mobile-image-event{     
+        width: 100%;
+    }
+
+
+
+
+
+
+    /* ce css code pour le responsive de ... */
+    .place-time{
+        padding-left: 15px ;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .itemS{
+        display: flex;
+        flex-direction: row;
+        justify-items: center;
+        align-items: center;
+        gap: 12px;
+    
+    }
+    .itemS P{
+        font-size: larger;
+        font-weight: 500;
+        overflow: hidden;          /* Cache le texte qui déborde de la boîte */
+        text-overflow: ellipsis;   /* Affiche "..." pour le texte qui dépasse */
+        white-space: nowrap;       /* Empêche le texte de s'étendre sur plusieurs lignes */
+
+    }
+    
+    .icon-compo{
+        width: 40px;
+        height: 40px;
+        color: #0061B1;
+    }
+
+    .icon-compo-map{
+        width: 45px;
+        height: 45px;
+        color: #0061B1;
+    }
+    
+}
