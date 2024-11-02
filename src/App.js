@@ -94,6 +94,16 @@ import ModuleList from './pages/Relex/ModuleList'
 import AjouterFormation from './pages/Relex/AjouterFormation'
 import FormationsList from './pages/Relex/formationsList'
 import FormationAvantPromo from './pages/AvantPromo/FormationAvantPromo';
+import AddChapitre from './pages/Relex/AddChapitre'
+import ChapitreList from './pages/Relex/ChapitresList'
+import AjouterCour from './pages/Relex/AjouterCour'
+import CourList from './pages/Relex/courList'
+import AjouterTheme from './pages/Relex/AjouterTheme'
+import ThemeList from './pages/Relex/ThemeList'
+import DemendeList from './pages/Relex/DemendesList'
+import DevisList from './pages/Relex/DevisList'
+import EventPage from './pages/Admin/Club_pub'
+import ClubEvent from './pages/Admin/Club_create'
 // ======= page historique pas integrer les 2 
 // ======= page chercheur pas integrer 
 // ======= page Publications
@@ -178,6 +188,14 @@ function App() {
 
 
          mohamed verification
+        <Route path='/relex/DevisList' element={<DevisList/>} ></Route>
+        <Route path='/relex/DemendeList' element={<DemendeList/>} ></Route>
+        <Route path='/relex/ThemeList' element={<ThemeList/>} ></Route>
+        <Route path='/relex/AjouterTheme' element={<AjouterTheme/>} ></Route>
+        <Route path='/relex/CourList' element={<CourList/>} ></Route> 
+        <Route path='/relex/AjouterCour' element={<AjouterCour/>} ></Route>
+        <Route path='/relex/ChapitreList' element={<ChapitreList/>} ></Route>
+        <Route path='/relex/AddChapitre' element={<AddChapitre/>} ></Route> 
         <Route path='/relex/formationList' element={<FormationsList/>} ></Route>
         <Route path='/relex/AddFormation' element={<AjouterFormation/>} ></Route>
         <Route path='/relex/ModuleList' element={<ModuleList/>} ></Route>
@@ -199,7 +217,8 @@ function App() {
         <Route path="/Valid/publications_en_attente" allowedRoles={['administrateur']} element={<PrivateRoute><Valid/></PrivateRoute>} />
         <Route path="/editeur/profile" allowedRoles={['editeur']} element={<PrivateRoute><ProfileEdit/></PrivateRoute>} />
         <Route path="/fablab/profile"  element={<ProfileFablab/>} />
-        
+        <Route path="/club/event"  element={<EventPage/>} />
+        <Route path="/club/Creer"  element={<ClubEvent/>} />
 
 
 

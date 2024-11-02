@@ -119,15 +119,20 @@ const Post = () => {
                 
                   {/* <img src={event.image || treePic} alt='' className='post-evenement-img' /> */}
                   <div className='post-evenement-date'>
-                    {event.date_debut ? (
-                      <>
-                        <span className='post-evn-span'>{event.date_debut.split(' ')[0]}</span>
-                        {event.date_debut.split(' ')[1]} {event.date_debut.split(' ')[2]}
-                      </>
-                    ) : (
-                      'Date non disponible'
-                    )}
-                  </div>
+  {event.date_debut ? (
+    <>
+      <span className='post-evn-span'>
+        {new Date(event.date_debut).toLocaleDateString('fr-FR', {
+          day: '2-digit',
+          month: 'long',
+          year: 'numeric'
+        })}
+      </span>
+    </>
+  ) : (
+    'Date non disponible'
+  )}
+</div>
                 </div>
               </div>
               <div className='post-evenement-s2'>
