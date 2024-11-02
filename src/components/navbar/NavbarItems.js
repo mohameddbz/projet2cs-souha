@@ -37,13 +37,15 @@ const listItem=[
                     },{
                         item:'Fablab Accueil',
                         lien:'/FabLab/Accueil'
-                    },{
-                        item:'Fablab Demande',
-                        lien:'/FabLab/Demande_piece'
-                    }
-                    ,{
+                     },
+                    //,{
+                    //     item:'Fablab Demande',
+                    //     lien:'/FabLab/Demande_piece'
+                    // }
+                    // ,
+                    {
                         item:'Fablab Piece',
-                        lien:'/FabLab/Details_piece'
+                        lien:'/FabLab/piece'
                     },{
                         item:'Fablab Inscription',
                         lien:'/FabLab/Inscription'
@@ -68,7 +70,8 @@ const listItem=[
                             lien:''
                         },{
                             item:'Forum',
-                            lien:'/Ebachelier/Forum'
+                            lien:'/Ebachelier/Forum',
+                            // adminLink: '/Ebachelier/BachelierAdmin'
                         }]
                 }
             ]
@@ -169,8 +172,8 @@ const listItem=[
                                     item:'Inscription',
                                     lien:''
                                 },{
-                                    item:'Chercheur',
-                                    lien:'/Chercheur'
+                                    item:'Guide doctoratns',
+                                    lien:''
                                 }]
                         },
                     ]

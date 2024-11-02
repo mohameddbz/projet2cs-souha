@@ -1,7 +1,7 @@
 import React , { useState , useEffect}from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import styles from './index.module.scss';
+import styles from './enreg.module.scss';
 import Navbar from '../../components/navbar/navbar';
 import Footer from '../../components/Footer/Footer';
 import Chatbot from "../../components/chatbot/Chatbot";
@@ -24,7 +24,6 @@ function DemandeEnreg(props) {
        <Navbar/>
        <Chatbot/>
         <div className={styles.rect1Enreg} />
-  
         <div className={styles.formDevis} >
         <div className={styles.rect2Enreg} >
         <h2 className={styles.medium_title_box2}>
@@ -33,8 +32,6 @@ function DemandeEnreg(props) {
           </span>
          </h2>
         </div>
-        
-       
          </div>
         <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
        <Footer/>
