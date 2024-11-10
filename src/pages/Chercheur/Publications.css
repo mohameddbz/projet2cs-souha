@@ -1,200 +1,24 @@
 .pub-container {
-  margin-top: 150px; /* Déplace tout le contenu vers le bas de 150px */
+  position: relative; /* Position relative for nested absolute positioning */
+  padding: 10px; /* Padding added for better spacing */
 }
 
 .pub-section2 {
+  display: flex;
   flex-direction: column;
   width: 100%;
-}
-
-.pub-section2 .child-element {
-  width: 100%;
-}
-
-.pub-rect3 {
-  position: absolute;
-  top: 135px;
-  right: 0;
-  left: 0;
-  width: 100%;
-  height: 182px;
-  background-color: rgb(0, 97, 177);
-  /* z-index: 9999; */
-}
-.pub-image4 {
-  position: absolute;
-  top: 44px;
-  right: 810px;
-  bottom: 1457px;
-  left: 28px;
-  width: 186px;
-  height: 189px;
-}
-.pub-image41 {
-  position: absolute;
-  top: 587px;
-  right: 782px;
-  bottom: 914px;
-  left: 56px;
-  width: 186px;
-  height: 189px;
-}
-.pub-medium_title {
-  position: absolute;
-  top: 220px;
-  right: 491px;
-  bottom: 1642px;
-  left: 30px;
-  width: 210px;
-  height: 28px;
-  font: 700 25px/1.15 "Roboto", Helvetica, Arial, serif;
-  color: rgb(0, 97, 177);
-}
-.pub-text2 {
-  position: absolute;
-  top: 280px;
-  right: 838px;
-  bottom: 1390px;
-  left: 45px;
-  width: 166px;
-  height: 15px;
-  font: 500 14px/1.17 "Roboto", Helvetica, Arial, serif;
-  color: rgb(169, 206, 244);
-}
-.pub-highlight {
-  position: absolute;
-  top: 280px;
-  right: 782px;
-  bottom: 1361px;
-  left: 30px;
-  width: 202px;
-  height: 18px;
-  font: 400 15px/1.2 "Roboto", Helvetica, Arial, serif;
-  color: rgb(0, 0, 0);
-}
-.pub-image5 {
-  position: absolute;
-  top: 220px;
-  right: 319px;
-  bottom: 1364px;
-  left: 715px;
-  width: 23px;
-  height: 24px;
-  color: rgb(0, 97, 177);
-}
-.pub-image9 {
-  position: absolute;
-  top: 260px;
-  right: 318px;
-  bottom: 1475px;
-  left: 715px;
-  width: 21px;
-  height: 25px;
-  color: rgb(0, 97, 177);
-}
-.pub-image7 {
-  position: absolute;
-  top: 300px;
-  right: 323px;
-  bottom: 1408px;
-  left: 715px;
-  width: 24px;
-  height: 25px;
-  color: rgb(0, 97, 177);
-}
-.pub-medium_title1 {
-  position: relative;
-  top: 400px;
-  /* right: 775px; */
-  bottom: 1416px;
-  left: 320px;
-  width: 210px;
-  height: 29px;
-  font: 700 25px/1.15 "Roboto", Helvetica, Arial, serif;
-  color: rgb(0, 97, 177);
-}
-.pub-menu {
-  display: flex;
-}
-.pub-menu a {
-  margin-right: 20px; /* Espace entre les liens */
-  text-decoration: none; /* Supprimer les soulignements par défaut des liens */
-  color: rgb(130, 130, 130); /* Couleur par défaut */
-}
-.pub-menu a:last-child {
-  margin-right: 0; /* Pour supprimer la marge à droite du dernier élément */
-}
-.pub-menu a:hover {
-  text-decoration: none; /* Ajouter une soulignement lorsqu'on survole les liens */
-  color: #0061B1;
-}
-.pub-highlight1 {
-  position: relative;
-  top: 380px;
-  right: 863px;
-  bottom: 1241px;
-  left: 64px;
-  width: 197px;
-  height: 18px;
-  font: 700 15px/1.2 "Roboto", Helvetica, Arial, serif;
-  color: rgb(130, 130, 130);
-}
-.f{
-  position:absolute;
-  top:1350px;
-}
-.pub-highlight5 {
-  margin-bottom: 20px; /* Espace entre les éléments avec la classe highlight5 */
-  position: relative;
-  top: 200px;
-  right: 93px;
-  bottom: 1441px;
-  left: 759px;
-  width: 202px;
-  height: 18px;
-  font: 400 15px/1.2 "Roboto", Helvetica, Arial, serif;
-  color: rgb(0, 0, 0);
-}
-.pub-rect4 {
-  position: absolute;
-  top: 455px;
-  right: 924px;
-  bottom: 1230px;
-  left: 64px;
-  width: 36px;
-  height: 5px;
-  background-color: rgb(0, 97, 177);
-  border-radius: 2px 2px 2px 2px;
-}
-.pub-line {
-  position: absolute;
-  top: 532px;
-  right: 40px;
-  bottom: 1237px;
-  left: 40px;
-  width: auto;
-  height: 1px;
-  background-color: rgb(230, 230, 230);
-}
-.pub-container {
-  position: relative; /* Position relative par rapport à son parent */
-}
-
-.pub-buttons {
-  position: relative; 
-  top: 300px; /* Déplacement vers le haut */
-  left: 50px; /* Déplacement vers la droite */
+  margin-left: 10%;
 }
 
 .pub-evenement {
   width: 800px;
   margin-bottom: 25px;
-  height: auto; /* Hauteur ajustée en fonction du contenu */
-  border-radius: 10px; /* Bord arrondi */
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
-  padding: 20px; /* Espacement interne */
-  background-color: #ffffff; /* Couleur de fond */
-  overflow: hidden; /* Empêche le débordement du contenu */
+  height: auto; /* Height adjusted based on content */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
+  padding: 20px; /* Internal padding */
+  background-color: #ffffff; /* Background color */
+  overflow: hidden; /* Prevent overflow */
 }
 
 .pub-evenement-s2 {
@@ -205,65 +29,56 @@
 
 .pub-content {
   flex: 1;
-  margin-right: 20px; /* Espace entre le texte et l'image */
+  margin-right: 20px; /* Space between text and image */
 }
 
 .pub-title {
-  color: #0061B1; 
-  font-size: 18px; 
-  font-weight: bold; 
-  margin-bottom: 10px; 
-  font:  "Open Sans", Helvetica, Arial, serif;
+  color: #0061B1;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-family: "Open Sans", Helvetica, Arial, serif;
 }
 
 .pub-description {
-  font-size: 14px; 
+  font-size: 14px;
   margin-bottom: 10px;
-  word-wrap: break-word; 
-  font: 400 16px/1.35 "Open Sans", Helvetica, Arial, serif;
+  word-wrap: break-word;
+  font-family: "Open Sans", Helvetica, Arial, serif;
 }
 
 .pub-img {
   width: 100px;
-  height: auto; 
-  flex-shrink: 0; 
-  margin-left: 20px; 
-
+  height: auto;
+  flex-shrink: 0;
+  margin-left: 20px;
 }
+
 .chercheur-menu {
   display: flex;
 }
+
 .chercheur-menu a {
-  margin-right: 20px; /* Espace entre les liens */
-  text-decoration: none; /* Supprimer les soulignements par défaut des liens */
-  color: rgb(130, 130, 130); /* Couleur par défaut */
+  margin-right: 20px; /* Space between links */
+  text-decoration: none; /* Remove default underline */
+  color: rgb(130, 130, 130); /* Default color */
 }
+
 .chercheur-menu a:last-child {
-  margin-right: 0; /* Pour supprimer la marge à droite du dernier élément */
+  margin-right: 0; /* Remove margin from the last link */
 }
+
 .chercheur-menu a:hover {
-  text-decoration: none; /* Ajouter une soulignement lorsqu'on survole les liens */
+  text-decoration: underline; /* Add underline on hover */
   color: #0061B1;
 }
-.chercheur-highlight1 {
-  position: relative;
-  top: 380px;
-  right: 863px;
-  bottom: 1241px;
-  left: 64px;
-  width: 197px;
-  height: 18px;
-  font: 700 15px/1.2 "Roboto", Helvetica, Arial, serif;
-  color: rgb(130, 130, 130);
-}
-@media (max-width: 830px) {
-  .pub-rect3 {
-    height: auto; /* Ajuster la hauteur */
-  }
 
-  .pub-image4 {
-    width: 150px; /* Ajuster la taille de l'image */
-    height: auto; /* Ajuster la hauteur de l'image */
+/* Media Queries */
+@media (max-width: 830px) {
+  .pub-rect3,
+  .pub-image4,
+  .pub-image41 {
+    display: none; /* Hide these elements for small screens */
   }
 
   .pub-medium_title,
@@ -271,132 +86,53 @@
   .pub-highlight {
     font-size: 17px;
     left: 20px;
-    width: 100%; /* Ajuster la largeur */
+    width: 100%; /* Adjust width */
   }
 
-  .pub-subtitle {
-   
-    right: auto;
+  .pub-subtitle,
+  .pub-medium_title1 {
     left: 20px;
     width: 90%;
-    font-size: 16px; /* Ajuster la taille de la police pour les petits écrans */
-    
-  }
-  .pub-coordonnes {
-     /* Aligner les éléments en ligne pour les écrans plus grands */
-    left:10px;
-  }
-  .pub-highlight5 {
-    top:120px;
-    left:52%;
-    margin-bottom: 0; /* Réinitialiser l'espacement entre les éléments */
-    margin-right: 10px; /* Espace entre les éléments en ligne */
-  }
-.pub-image5
-
-{
-  top:140px;
-  left:46%;
-  margin-bottom: 0; /* Réinitialiser l'espacement entre les éléments */
-  margin-right: 10px;
-
-}
-.pub-image7
-
-{
-  top:180px;
-  left:46%;
-  margin-bottom: 0; /* Réinitialiser l'espacement entre les éléments */
-  margin-right: 10px;
-
-}
-.pub-image9
-
-{
-  top:220px;
-  left:46%;
-  margin-bottom: 0; /* Réinitialiser l'espacement entre les éléments */
-  margin-right: 10px;
-
-}
-
-
-
-
-  .pub-subtitle1 {
-   
-    right: auto;
-    
-    left: 20px;;
-    width: 90%;
-    font-size: 18px; /* Ajuster la taille de la police pour les petits écrans */
-   
+    font-size: 18px;
+    text-align: center; /* Center text */
   }
 
-  .pub-medium_title11_box {
-    
-    right: auto;
-    
-    left: 20px;
-    width: 90%;
-    font-size: 18px; /* Ajuster la taille de la police pour les petits écrans */
-    margin: 20px 0; /* Ajouter une marge verticale */
-    text-align: center; /* Centrer le texte pour les petits écrans */
-  }
-
-  .pub-medium_title11 {
-    font-size: 20px; /* Ajuster la taille de la police */
-    line-height: 1.4; /* Ajuster l'interligne */
-  }
-
- 
   .pub-menu {
-    flex-direction: row; /* Mettre les liens en colonne pour les petits écrans */
-    align-items: center; /* Centrer les éléments */
+    flex-direction: row; /* Arrange links in a row */
+    align-items: center;
   }
 
-  .pun-menu a {
+  .pub-menu a {
     margin-right: 0;
   }
 
   .pub-medium_title1 {
-    display: none; /* Cacher cet élément pour les petits écrans */
+    display: none; /* Hide for small screens */
   }
 
-  .pub-image41,
-  .pub-rect5 
- 
- 
-  {
-    display: none; /* Cacher ces éléments pour les petits écrans */
+  .pub-container {
+    padding: 10px;
   }
-  
-    .pub-container {
-      padding: 10px; 
-     
-    }
-  
-     .pub-buttons {
-      flex-direction: column; 
-      /* align-items: center; */
-      left:10px
 
-    } 
-  
-    .pub-evenement {
-      width: 90%; 
-      left:10px;
-    }
-  
-    .pub-title {
-      font-size: 1.1em; 
-    }
-  
-    .pub-description {
-      font-size: 0.8em;
-    }
-  .f{
-   position: relative;
+  .pub-buttons {
+    flex-direction: column;
+    left: 10px;
+  }
+
+  .pub-evenement {
+    width: 90%;
+    left: 10px;
+  }
+
+  .pub-title {
+    font-size: 1.1em;
+  }
+
+  .pub-description {
+    font-size: 0.8em;
+  }
+
+  .f {
+    position: relative;
   }
 }
-

@@ -1,0 +1,78 @@
+.chercheur-rect3 {
+  position: relative;
+  width: 100%;
+  height: auto;
+  background-color: rgb(0, 97, 177);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.chercheur-image4 {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.chercheur-medium_title {
+  color: rgb(250, 250, 250);
+  font: 700 25px/1.15 "Roboto", Helvetica, Arial, serif;
+  margin: 0;
+}
+
+.chercheur-highlight {
+  color: rgb(200, 200, 200);
+  font: 500 18px/1.17 "Roboto", Helvetica, Arial, serif;
+  margin-top: 5px;
+}
+
+.chercheur-coordonnes {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.chercheur-coordonnes h5 {
+  margin: 0;
+  font-size: 16px;
+  color: rgb(255, 255, 255);
+}
+
+.chercheur-image7, .chercheur-image9 {
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+.chercheur-image7:hover, .chercheur-image9:hover {
+  color: rgb(0, 150, 250);
+}
+
+.chercheur-menu {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.chercheur-menu a {
+  text-decoration: none;
+  color: rgb(130, 130, 130);
+  font: 700 18px/1.2 "Roboto", Helvetica, Arial, serif;
+  transition: color 0.3s ease;
+}
+
+.chercheur-menu a:hover {
+  color: #0061B1;
+}
+
+.chercheur-line {
+  margin-top: 20px;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  width: 100%;
+}

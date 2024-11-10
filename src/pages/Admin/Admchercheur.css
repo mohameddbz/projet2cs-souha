@@ -1,210 +1,194 @@
 .AdminRoot {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 100%; /* Utiliser toute la largeur disponible */
-    max-width: 1200px; /* Maximum width pour limiter l'étirement sur grands écrans */
-    margin: auto; /* Centrer dans la page */
-    height: 65%;
-    min-height: 673px;
-    background-color: rgb(255, 255, 255);
-    border-radius: 8px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    overflow: hidden;
-  }
-  .AdminTitleContainer {
-    display: flex;
-    align-items: center; /* Alignement vertical au centre */
-    margin-bottom: 20px; /* Espacement sous le titre et l'icône */
-  }
-  .AdminTitle {
-    font-size: 24px; /* Taille du texte du titre */
-    margin-left: 10px;
-  }
-  .AdminIcon {
-    width: 24px; /* Taille de l'icône */
-    height: 24px; /* Taille de l'icône */
-    display: flex; /* Affichage flex pour centrer l'icône */
-    align-items: center;
-    justify-content: center;
-  }
-  .AdminContainer {
-    display: block; /* Pour que le contenu soit en bloc sous le titre et l'icône */
-    width: 100%; /* Utiliser toute la largeur disponible */
-  }
-  
-  .AdminIconCircle, .AdminImage1, .AdminTitle, .AdminContainer {
-    /* Styles communs pour positionnement et dimensionnement */
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .AdminIconCircle {
-      position: relative;
-      display: flex; /* Utiliser flex pour aligner l'icône et le texte horizontalement */
-      align-items: center; /* Alignement vertical au centre */
-      width: 48px; /* Taille du cercle */
-      height: 48px; /* Taille du cercle */
-      background-color: #F5F5F5;
-      border-radius: 50%;
-      justify-content: center; /* Centrer l'icône dans le cercle */
-    }
-  
-  .AdminLabel {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  .AdminImage1 {
-    width: 24px;
-    height: 24px;
-  }
-  
-  
-  .AdminRect5, .AdminRect6 {
-    /* Même largeur pour une uniformité */
-    width: 100%;
-    padding: 15px;
-    margin-top: 20px;
-    background-color: rgba(217, 217, 217, 0);
-    border-radius: 10px;
-    border: 1px solid rgb(217, 217, 217);
-  }
-  .AdminInputContainer, .AdminDescriptionContainer {
-    margin-top: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Full width */
+  max-width: 1200px; /* Maximum width to avoid stretching */
+  margin: auto; /* Center horizontally */
+  min-height: 673px; /* Ensure a minimum height */
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
 
+.AdminTitleContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.AdminTitle {
+  font-size: 24px;
+  margin-left: 10px;
+}
+
+.AdminContainer {
+  display: block;
+  width: 100%;
+}
+
+.AdminInputGroup {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+
+.AdminInputContainer {
+  flex: 1;
+}
+
+.AdminLabel {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.AdminInput, .AdminTextarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  color: #333;
+  border-radius: 5px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+.AdminInputContainer.half-width {
+  flex: 1 1 48%;
+}
+
+.AdminTextarea1 {
+  height: 80px;
+  resize: vertical;
+}
+
+.AdminFileContainer {
+  padding: 20px;
+  background-color: #f4f4f6;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.upload-button, .add-section-button, .AdminCancelButton {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.upload-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.upload-button:hover {
+  background-color: #0056b3;
+}
+
+.add-section-button {
+  background-color: #28a745;
+  color: white;
+  margin-top: 10px;
+}
+
+.add-section-button:hover {
+  background-color: #218838;
+}
+
+.AdminCancelButton {
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.AdminCancelButton:hover {
+  background-color: #e2e6ea;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.AdminFilePreview {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: black;
+}
+
+.sidebar a:hover {
+  color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .AdminRoot {
+    flex-direction: column;
   }
-  .AdminTextarea {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    color: #333;
-    border-radius: 5px;
-    background-color: #fff;
-    border: 1px solid #ccc;
+
+  .AdminInput, .AdminTextarea {
+    width: 100%; /* Ensure full width on smaller screens */
   }
-  .AdminInput {
-    width: 92%;
-    padding: 10px;
-    font-size: 16px;
-    color: #333;
-    border-radius: 5px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-  }
+
   .AdminInputGroup {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px; /* Espace entre les éléments */
+    flex-direction: column;
   }
-  
-  .AdminInputContainer {
-    flex: 1;
+
+  .AdminInputContainer.half-width {
+    flex: 1 1 100%;
   }
-  
-  
-  .AdminTextarea1 {
-    height: 80px; /* Adjust height as necessary */
-    resize: vertical; /* Allows vertical resize only */
-  }
-    
-  .AdminTextarea {
-    height: 140px; /* Adjust height as necessary */
-    resize: vertical; /* Allows vertical resize only */
-  }
-  .button-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  .cancel-button, .submit-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .cancel-button {
-    background-color: #f8f9fa;
-    color: #333;
-  }
-  
-  .submit-button {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .cancel-button:hover {
-    background-color: #e2e6ea;
-  }
-  
-  .submit-button:hover {
-    background-color: #0056b3;
-  }
-  .AdminFileContainer {
-    padding: 20px;
-    background-color: #f4f4f6;
-    border-radius: 8px;
-    margin-top: 20px;
-  }
-  /* Supprime le soulignement et change la couleur des liens */
-  .sidebar a {
-    text-decoration: none; /* Supprime le soulignement */
-    color: black; /* Change la couleur des liens, mettez la couleur que vous souhaitez */
-  }
-  
-  /* Ajoute un style pour les liens au survol */
-  .sidebar a:hover {
-    color: #0056b3; /* Change la couleur au survol */
-  }
-  
-  .AdminHighlight {
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-  
-  .file-upload-btn {
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    display: flex;
-    align-items: center; /* Align vertical */
-  }
-  
-  .file-upload-btn:hover {
-    background-color: #0056b3;
-  }
-  
-  
-  .AdminFilePreview {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  
-  @media (max-width: 768px) {
-    .AdminRoot {
-        flex-direction: column;
-    }
-  
-    .AdminIconCircle, .AdminImage1, .AdminTitle {
-        margin-bottom: 10px;
-    }
-  
-    .AdminRect5, .AdminRect6, .AdminInput, .AdminTextarea {
-        width: 100%; /* Assurez-vous qu'ils s'adaptent à la taille de l'écran mobile */
-    }
-  }
-  
+}
+/* Conteneur pour l'image prévisualisée avec boutons */
+.image-preview-container1 {
+  position: relative;
+  display: inline-flex; /* Changed to inline-flex to align buttons side by side */
+  align-items: flex-start; /* Align items at the start of the container */
+}
+
+/* Image prévisualisée */
+.image-preview {
+  width: 220px; /* Size reduced for the image */
+  height: 220px; /* Size reduced for the image */
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+}
+
+/* Conteneur des boutons d'édition et de suppression */
+.image-buttons-container {
+  position: absolute;
+  right: 0%;
+  display: flex; 
+  gap: 8px; 
+}
+
+/* Bouton pour éditer la photo */
+.edit-photo-button {
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 16px; 
+}
+/* Bouton pour supprimer la photo */
+.remove-photo-button {
+  background-color: rgba(255, 0, 0, 0.7);
+  border: none;
+  color: white;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 16px; 
+}
