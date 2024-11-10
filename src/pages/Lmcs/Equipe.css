@@ -207,3 +207,65 @@ span{
 }
 
 
+@media screen and (max-width: 830px) {
+  .back-image
+  .cover-img {
+    width: 100%; /* Conserve la largeur fixe */
+    height: auto; /* Ajuste automatiquement la hauteur */
+    object-fit: cover; /* Remplit l'espace disponible sans déformer l'image */
+  }
+
+
+  .equiipe-desc {
+    position: relative;
+    top: 30px; 
+    width: 40%; 
+    font-size: 12px;
+    left:30px;
+  }
+
+  .equipe-title {
+    position: relative;
+    top: 60px;
+    width: 90%;
+    left: 30px; 
+   justify-content: center;
+   align-items: center;
+    font-size: 18px;
+  }
+
+  .equipe-con {
+    margin-top: 120px; /* Ajuste le margin-top pour plus de cohérence */
+    margin-left: 0; /* Réinitialise le margin-left */
+    width: 90%; /* Assure que la section prend toute la largeur disponible */
+  }
+
+  .equipe {
+    width: 100%;  
+    padding: 20px; 
+  }
+
+  .equipe-card-container {
+    flex-direction: column; /* Affiche les cartes en colonne */
+    gap: 10px; /* Ajuste l'espacement entre les cartes */
+   justify-content: center;
+   align-items:center;
+    width: 90%; /* Ajuste la largeur pour les petits écrans */
+  }
+
+  .lmcs-card {
+    width: 60%; /* Les cartes prennent toute la largeur de l'écran */
+    height: auto; /* Ajuste la hauteur automatiquement */
+  }
+
+  .pagination {
+    margin-left: 0; /* Réinitialise le margin-left */
+    justify-content: center; /* Centre la pagination horizontalement */
+    width: 100%; /* Les boutons de pagination prennent toute la largeur disponible */
+  }
+
+  .pagination button {
+    font-size: 14px; /* Réduit la taille de la police des boutons */
+    padding: 8px; /* Réduit le padding pour les petits écrans */
+  }
+}

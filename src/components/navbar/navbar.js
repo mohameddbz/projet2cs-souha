@@ -5,163 +5,158 @@ import { faBars, faCircleUser, faXmark , faGlobe , faMagnifyingGlass } from '@fo
 import logo from '../../assets/images/logo_esi1.svg'
 import { Link } from 'react-router-dom'
 import listItem from './NavbarItems'
-import navImg from '../../assets/images/navImg.jpg'
 import DropdownNav from './DropdownNav'
+import { MdOutlineExpandMore } from 'react-icons/md';
 
-function Navbar () {
+
+function Navbar() {
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const [navSmallSize, setNavSmallSize] = useState(false);
     const [openMenuSmallNav, setOpenMenuSmallNav] = useState(false);
-    const leaveDelay = 300; // Délai en millisecondes
-    const isAdmin = localStorage.getItem('is_adminstrateur') === 'true';  // Récupérer le statut d'administrateur
+    const [openAProposSubMenu, setOpenAProposSubMenu] = useState(false);
+
     useEffect(() => {
         const handleResize = () => {
-          setNavSmallSize(window.innerWidth < 920);
+            setNavSmallSize(window.innerWidth < 920);
         };
-    
         handleResize();
-    
         window.addEventListener('resize', handleResize);
-    
         return () => {
-          window.removeEventListener('resize', handleResize);
+            window.removeEventListener('resize', handleResize);
         };
     }, []);
 
-    const handleMouseEnter = (index) => {
-        clearTimeout(leaveTimer);
-        setHoveredIndex(index);
+    const toggleSubMenu = (index) => {
+        setHoveredIndex((prevIndex) => (prevIndex === index ? null : index));
     };
-
-    const handleMouseLeave = () => {
-        // Réinitialiser l'état seulement si le curseur ne survole pas l'élément principal ou le sous-menu
-        const isStillHovered = document.querySelector('.navItem:hover') || document.querySelector('.toggleNavbarItem:hover');
-        if (!isStillHovered) {
-            leaveTimer = setTimeout(() => {
-                setHoveredIndex(null);
-            }, leaveDelay);
-        }
-    }
-
-    let leaveTimer;
 
     return (
         <div className='navbar-full-container'>
             {!navSmallSize ? (
+                // Version desktop
                 <div className='navbar-totale'>
-                <div className='navbar-container'>
-                    <img className='navbarLogo' src={logo} alt=''></img>
-                    <div className='navbar-links'>
-                        <div className='navPart1'>
-                            <TopNav />
-                        </div>
-                        <div className='navPart2'>
-                            <ul className='navPart2UL'>
-                                {listItem.map((item, index) => {
-                                    return (
+                    <div className='navbar-container'>
+                    <Link to="/">
+               <img className='navbarLogo' src={logo} alt='Logo' />
+                   </Link>
+
+                        <div className='navbar-links'>
+                            <div className='navPart1'>
+                                <TopNav />
+                            </div>
+                            <div className='navPart2'>
+                                <ul className='navPart2UL'>
+                                    {listItem.map((item, index) => (
                                         <li
                                             className='navItem'
-                                            onMouseEnter={() => handleMouseEnter(index)}
-                                            onMouseLeave={handleMouseLeave}
+                                            key={index}
+                                            onMouseEnter={() => setHoveredIndex(index)}
+                                            onMouseLeave={() => setHoveredIndex(null)}
                                         >
                                             {item.label}
                                             {hoveredIndex === index && (
                                                 <div className='toggleNavbarItem'>
-                                                    <DropdownNav
-                                                         subMenu={item.subMenu.map(subItem => ({
-                                                            ...subItem,
-                                                            items: subItem.items.map(linkItem => ({
-                                                                ...linkItem,
-                                                                lien: linkItem.item === 'Forum' ? /*(isAdmin ? linkItem.adminLink : linkItem.lien)*/ linkItem.lien : linkItem.lien  // Condition pour le lien d'administration du forum
-                                                            }))
-                                                        }))}
-                                                        hoveredIndex={hoveredIndex}
-                                                        index={index}
-                                                    />
+                                                    <DropdownNav subMenu={item.subMenu} />
                                                 </div>
                                             )}
                                         </li>
-                                    )
-                                })}
-                                <li><Link to='/Auth'><FontAwesomeIcon icon={faCircleUser} className='NavUserIcon' /></Link></li>
-                            </ul>
+                                    ))}
+                                    <li><Link to='/Auth'><FontAwesomeIcon icon={faCircleUser} className='NavUserIcon' /></Link></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+           
             ) : (
-                <div className='collapseNavbar-container'>
-                    <div className='topSectionNav'>
-                        <img className='navCollapLogo' src={logo} alt=''></img>
-                            {!openMenuSmallNav ? (
-                                <div className='toggleIocnDiv'
-                                onClick={() => setOpenMenuSmallNav(!openMenuSmallNav)}
-                                >
-                                    <FontAwesomeIcon
-                                        icon={faBars}
-                                        className="toggleIcon"/>MENU
-                                </div>
-                                
-                                ) : (
-                                <div className='toggleIocnDiv'
-                                onClick={() => setOpenMenuSmallNav(!openMenuSmallNav)}>
-                                    <FontAwesomeIcon
-                                    icon={faXmark}
-                                    alt="icon"
-                                    className="toggleIcon"
-                                />CLOSE
-                                </div>
-                                )}
-                    </div>
-                    <div className='navCollapseListContain'>
-                        {openMenuSmallNav && (
-                        <div className='navCollapseList'>
-                                <div className='NavUserDiv'>
-                                    <Link to='/Auth'><FontAwesomeIcon icon={faCircleUser} className='NavUserCollapIcon'/></Link>
-                                    <div>
-                                        <FontAwesomeIcon icon={faGlobe} style={{color: "#FFFFFF",marginRight:"5px"}} />
-                                        <select name="selectedFruit" defaultValue="french">
-                                            <option value="french">Francais</option>
-                                            <option value="english">Anglais</option>
-                                            <option value="arab">Arabe</option>
-                                        </select>
-                                    </div>
-                                    
-                                </div>
-                                <ul>
-                                    <li className='SearchNav-coll'>
-                                        <input
-                                        className='SearchNav-input'
-                                        type='text' placeholder='Chercher via un mot clé ...'
-                                        />
-                                        <FontAwesomeIcon icon={faMagnifyingGlass} />
-                                    </li>
-                                    <li className='Nav-coll'>L'école</li>
-                                    <li className='Nav-coll'>E-Bachelier</li>
-                                    <li className='Nav-coll'>Etudes & académie</li>
-                                    <li className='Nav-coll'>Partenariat & Formation</li>
-                                </ul>
-                                <ul>
-                                    <li className='topNav-coll'>
-                                        <span className='sdnCollSpan'>SDN</span>
-                                        E-Plateforme
-                                    </li>
-                                    <li className='topNav-coll'>Actualités</li>
-                                    <li className='topNav-coll'>Ecole & staff</li>
-                                    <li className='topNav-coll'>Evenements</li>
-                                    <li className='topNav-coll'>Alumnis</li>
-                                    <li className='topNav-coll'>MyESI</li>
-                                </ul>
-                                
-                        </div>
-                        )}
+               
+              // Version mobile
+<div className='collapseNavbar-container'>
+    <div className='topSectionNav'>
+    <Link to="/">
+    <img className='navCollapLogo' src={logo} alt='Logo'></img>
+                   </Link>
+        <div className='toggleIocnDiv' onClick={() => setOpenMenuSmallNav(!openMenuSmallNav)}>
+            <FontAwesomeIcon icon={openMenuSmallNav ? faXmark : faBars} className="toggleIcon"/>
+            {openMenuSmallNav ? 'CLOSE' : 'MENU'}
+        </div>
+    </div>
+    <div className='navCollapseListContain'>
+        {openMenuSmallNav && (
+            <div className='navCollapseList'>
+                <div className='NavUserDiv'>
+                    <Link to='/Auth'>
+                        <FontAwesomeIcon icon={faCircleUser} className='NavUserCollapIcon'/>
+                    </Link>
+                    <div className='navlangues'>
+                    <FontAwesomeIcon 
+                      icon={faGlobe} 
+                    style={{ color: "#FFFFFF", marginRight: "5px", fontSize: "24px" ,marginTop: "-10px"}} 
+                    />
+
+                        <select name="language" defaultValue="french">
+                            <option value="french">Français</option>
+                            <option value="english">Anglais</option>
+                            <option value="arab">Arabe</option>
+                        </select>
                     </div>
                 </div>
+                <ul>
+                    <li className='SearchNav-coll'>
+                        <input className='SearchNav-input' type='text' placeholder='Chercher via un mot clé ...'/>
+                        <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    </li>
+                    {listItem.map((item, index) => (
+                        <li
+                            key={index}
+                            className='Nav-coll'
+                            onClick={() => toggleSubMenu(index)}
+                        >
+                            {item.label}
+                            <MdOutlineExpandMore className={`expand-icon ${hoveredIndex === index ? 'open' : ''}`} />
+                            {hoveredIndex === index && (
+                                <ul className='sub-menu'>
+                                    <div className='sub-menu-container'>
+                                        {item.subMenu.map((sub, subIndex) => (
+                                            <div className='sub-menu-column' key={subIndex}>
+                                                <h4>{sub.title}</h4>
+                                                <ul>
+                                                    {sub.items.map((subItem, itemIndex) => (
+                                                        <li key={itemIndex}>
+                                                            <Link to={subItem.lien}>{subItem.item}</Link>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </ul>
+                                
+                            )}
+                        </li>
+                       
+                    ))}
+                              
+                    <li className='Nav-coll'>
+                    <Link to='https://www.mesrs.dz/index.php/fr/plateformes-mesrs/' className='topNavLink'>
+                        <span className='sdnSpan'>SDN</span>
+                        E-Plateforme
+                    </Link>
+                </li>
+                    <li className='Nav-coll'><Link to='' className='topNavLink'>Actualités</Link></li>
+                    <li className='Nav-coll'><Link to='' className='topNavLink'>Ecole & staff</Link></li>
+                    <li className='Nav-coll'><Link to='/EventList' className='topNavLink'>Evenements</Link></li>
+                    <li className='Nav-coll'><Link to='' className='topNavLink'>Alumnis</Link></li>
+                    <li className='Nav-coll'><Link to='' className='topNavLink'>MyESI</Link></li>
+                </ul>
+            </div>
+        )}
+    </div>
+</div>
+
             )}
-        </div>
+       </div> 
     )
 }
 
 export default Navbar;
-
-

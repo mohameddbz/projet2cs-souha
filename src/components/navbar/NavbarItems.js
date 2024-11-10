@@ -84,7 +84,7 @@ const listItem=[
                         items:[
                             {
                                 item:'Programme',
-                                lien:'/ProgrammeFinal'
+                                lien:'/Program'
                             },{
                                 item:'Master',
                                 lien:''
@@ -173,7 +173,9 @@ const listItem=[
                                     lien:''
                                 },{
                                     item:'Guide doctoratns',
-                                    lien:''
+                                    lien:''},
+                                   { item:'Chercheur',
+                                    lien:'/Chercheur'
                                 }]
                         },
                     ]

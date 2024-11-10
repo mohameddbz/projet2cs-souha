@@ -54,6 +54,7 @@ import AdminPage from './pages/Admin/Admin';
 import HistoriquePage from './pages/Admin/Historique';
 import Principal from './pages/Admin/Principal';
 import ProfilePage from './pages/Admin/Profile';
+import Historique_p from './pages/Admin/Historique_p';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 import FabLabPage from './pages/Fablab/PagePres';
@@ -112,6 +113,15 @@ import DetailEvenement from './pages/DetailsEvenement/DetailsEvenement';
 // ======= page historique pas integrer les 2 
 // ======= page chercheur pas integrer 
 // ======= page Publications
+
+// import Postgraduation from './Pages/Postgraduation/Postgraduation'
+// import SuccessStories from './pages/SuccessStories/SuccessStories';
+
+import Program from './pages/pgm/Program'
+  
+  
+    
+// =======
 
 function App() {
   return (
@@ -231,6 +241,7 @@ function App() {
         <Route path='/Seminaire' element={<Seminaire/>} ></Route>
 
         <Route path='/EventList/DetailEven' element={<DetailEvenement/>}></Route>
+        <Route path="/Program" element={<Program/>} />
 
       </Routes>
       </BrowserRouter>

@@ -18,9 +18,9 @@ function DropdownNav (props) {
                         <li className='navItem-title'>{list.title}</li>
                         {
                             list.items.map((item, i) =>{
-                                    return( 
-                                        <li className='hoverNavItem'><Link className='hoverNavItemLink' to={item.lien}>{item.item}</Link></li>
-                                    )
+                            return(
+                                <li className='hoverNavItem'><Link className='hoverNavItemLink' to={item.lien}>{item.item}</Link></li>
+                            )
                             })
                         }
                         </ul>

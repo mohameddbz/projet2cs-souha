@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './news.css'; // Assurez-vous que le chemin est correct pour votre fichier CSS
+import content from './contenu';
 import Card from './Card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faAnglesLeft, faAnglesRight} from '@fortawesome/free-solid-svg-icons';

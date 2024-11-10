@@ -289,6 +289,10 @@
   height: 24px;
   border-radius: 12px 12px 12px 12px;
 }
+.cf{
+  position:absolute;
+  top:1750px;
+}
 .chercheur-image8 {
   position: absolute;
   top: 231px;
@@ -309,3 +313,135 @@
   font: 400 15px/1.2 "Roboto", Helvetica, Arial, serif;
   color: rgb(0, 0, 0);
 }
+@media (max-width: 830px) {
+  .chercheur-rect3 {
+    height: auto; /* Ajuster la hauteur */
+  }
+
+  .chercheur-image4 {
+    width: 150px; /* Ajuster la taille de l'image */
+    height: auto; /* Ajuster la hauteur de l'image */
+  }
+
+  .chercheur-medium_title,
+  .chercheur-text2,
+  .chercheur-highlight {
+    font-size: 17px;
+    left: 20px;
+    width: 100%; /* Ajuster la largeur */
+  }
+
+  .chercheur-subtitle {
+   
+    right: auto;
+    left: 20px;
+    width: 90%;
+    font-size: 16px; /* Ajuster la taille de la police pour les petits écrans */
+    
+  }
+  .chercheur-coordonnes {
+     /* Aligner les éléments en ligne pour les écrans plus grands */
+    left:10px;
+  }
+  .chercheur-highlight5 {
+    top:120px;
+    left:52%;
+    margin-bottom: 0; /* Réinitialiser l'espacement entre les éléments */
+    margin-right: 10px; /* Espace entre les éléments en ligne */
+  }
+.chercheur-image5
+
+{
+  top:140px;
+  left:46%;
+  margin-bottom: 0; /* Réinitialiser l'espacement entre les éléments */
+  margin-right: 10px;
+
+}
+.chercheur-image7
+
+{
+  top:180px;
+  left:46%;
+  margin-bottom: 0; /* Réinitialiser l'espacement entre les éléments */
+  margin-right: 10px;
+
+}
+.chercheur-image9
+
+{
+  top:220px;
+  left:46%;
+  margin-bottom: 0; /* Réinitialiser l'espacement entre les éléments */
+  margin-right: 10px;
+
+}
+
+
+
+
+  .chercheur-subtitle1 {
+   
+    right: auto;
+    
+    left: 20px;;
+    width: 90%;
+    font-size: 18px; /* Ajuster la taille de la police pour les petits écrans */
+   
+  }
+
+  .chercheur-medium_title11_box {
+    
+    right: auto;
+    
+    left: 20px;
+    width: 90%;
+    font-size: 18px; /* Ajuster la taille de la police pour les petits écrans */
+    margin: 20px 0; /* Ajouter une marge verticale */
+    text-align: center; /* Centrer le texte pour les petits écrans */
+  }
+
+  .chercheur-medium_title11 {
+    font-size: 20px; /* Ajuster la taille de la police */
+    line-height: 1.4; /* Ajuster l'interligne */
+  }
+
+  .chercheur-medium_title11_span0,
+  .chercheur-medium_title11_span1,
+  .chercheur-medium_title11_span2,
+  .chercheur-medium_title11_span3,
+  .chercheur-medium_title11_span4,
+  .chercheur-medium_title11_span5,
+  .chercheur-medium_title11_span6,
+  .chercheur-medium_title11_span7,
+  .chercheur-medium_title11_span8,
+  .chercheur-medium_title11_span9,
+  .chercheur-medium_title11_span10 {
+    display: block; /* Afficher chaque span sur une nouvelle ligne pour une meilleure lisibilité */
+    font-size: 16px; /* Ajuster la taille de la police pour les petits écrans */
+    line-height: 1.4; /* Ajuster l'interligne */
+  }
+
+  .chercheur-menu {
+    flex-direction: row; /* Mettre les liens en colonne pour les petits écrans */
+    align-items: center; /* Centrer les éléments */
+  }
+
+  .chercheur-menu a {
+    margin-right: 0;
+  }
+
+  .chercheur-medium_title1 {
+    display: none; /* Cacher cet élément pour les petits écrans */
+  }
+
+  .chercheur-image41,
+  .chercheur-rect5 
+ 
+ 
+  {
+    display: none; /* Cacher ces éléments pour les petits écrans */
+  }
+
+}
+

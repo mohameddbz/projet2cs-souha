@@ -11,23 +11,22 @@ function Events() {
   const [cards, setCards] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  
-  const loadDataPublications = async () => {
-    try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/publication/event_publications`);
-      console.log(response);
-      setCards(response.data);
-    } catch (err) {
-      console.error('Error fetching data:', err);
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
-  };
-  
   useEffect(() => {
     loadDataPublications();
   }, []);
+  const loadDataPublications = () => {
+    axios.get('http://localhost:8000/publication/event_publications', {
+    })
+      .then(res => {
+        setCards(res.data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Error fetching data:', err);
+        setError(true);
+        setLoading(false);
+      });
+  };
 
   let sliderRef = useRef(null);
   const next = () => {
@@ -38,7 +37,7 @@ function Events() {
   };
   const settings = {
     dots: false,
-    infinite: cards.length > 1,
+    infinite: true,
     speed: 1000,
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -90,7 +89,7 @@ function Events() {
                 <CardEvenement
                 key={index}
                 isActive={true}
-                Picture={`${process.env.REACT_APP_API_URL}${pub.image}`}
+                Picture={`http://localhost:8000${pub.image}`}
                 titre={pub.titre}
                 description={pub.description}
                 date={pub.date_debut}

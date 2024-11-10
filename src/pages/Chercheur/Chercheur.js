@@ -7,6 +7,7 @@ import { MdMailOutline } from "react-icons/md";
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import Navbar from '../../components/navbar/navbar';
+import Footer from '../../components/Footer/Footer';
 
 const chercheurData = [
   {
@@ -56,9 +57,9 @@ function Chercheur(props) {
     ))}
   </div>
   <div className="chercheur-menu">
-    <a href="#" className="chercheur-highlight1">Profile</a>
-    <a href="#" className="chercheur-highlight1">Publication</a>
-    <a href="#" className="chercheur-highlight1">Projet Recherche</a>
+    <a href="/Chercheur" className="chercheur-highlight1">Profile</a>
+    <a href="/publication" className="chercheur-highlight1">Publication</a>
+   
   </div>
 
   <div>
@@ -117,7 +118,9 @@ function Chercheur(props) {
 </section>
 
     </div>
-    {/* <Footer/> */}
+    <div className='cf'>
+    <Footer/>
+    </div>
     </div>
   );
 }
