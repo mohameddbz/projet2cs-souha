@@ -28,7 +28,7 @@ function Evenement() {
   }, []);
 
   const loadDataCategories = () => {
-    axios.get('http://localhost:8000/allCategories/', {
+    axios.get(`${process.env.REACT_APP_API_URL}/allCategories/`, {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -46,7 +46,7 @@ function Evenement() {
   };
 
   const loadDataPublications = () => {
-    axios.get('http://localhost:8000/publication/event_publications', {
+    axios.get(`${process.env.REACT_APP_API_URL}/publication/event_publications`, {
     })
       .then(res => {
         setCards(res.data);
@@ -167,7 +167,7 @@ function Evenement() {
               <CardEvenement
                 key={index}
                 isActive={index < itemsPerPage}
-                Picture={`http://localhost:8000${pub.image}`}
+                Picture={`${process.env.REACT_APP_API_URL}${pub.image}`}
                 titre={pub.titre}
                 description={pub.description}
                 date={pub.date_debut}
